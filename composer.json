@@ -1,0 +1,28 @@
+{
+    "name": "boxalinoteam/instant-update-lib",
+    "description": "Boxalino Real Time User Experience (RTUX) Instant Update API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Boxalino AG",
+            "role": "Manufacturer",
+            "email": "support@boxalino.com",
+            "homepage": "http://www.boxalino.com/"
+        }
+    ],
+    "extra": {
+        "copyright": "Boxalino AG, 2020",
+        "label": {
+            "de-DE": "Boxalino Exporter für Instant Updates",
+            "en-GB": "Boxalino Exporter for Instant Updates"
+        }
+    },
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boxalino\\InstantUpdate\\": "src/"
+        }
+    }
+}
