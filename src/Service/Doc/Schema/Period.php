@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+/**
+ * Class Period
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
 class Period implements \JsonSerializable
 {
 

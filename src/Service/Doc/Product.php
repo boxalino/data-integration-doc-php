@@ -10,6 +10,7 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Product as RelatedProduct;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Content as RelatedContent;
+use Boxalino\InstantUpdate\Service\Doc\Schema\ProductGroupLink;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Repeated;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
@@ -1150,6 +1151,16 @@ class Product implements \JsonSerializable
     public function setAdditionalProductGroups(array $additional_product_groups): Product
     {
         $this->additional_product_groups = $additional_product_groups;
+        return $this;
+    }
+
+    /**
+     * @param ProductGroupLink $productGroupLink
+     * @return $this
+     */
+    public function addAdditionalProductGroups(ProductGroupLink $productGroupLink) : Product
+    {
+        $this->additional_product_groups[] = $productGroupLink->toArray();
         return $this;
     }
 

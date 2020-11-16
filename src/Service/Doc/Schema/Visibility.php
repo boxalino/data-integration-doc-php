@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+/**
+ * Class Visibility
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
 class Visibility implements \JsonSerializable
 {
 
@@ -33,6 +38,16 @@ class Visibility implements \JsonSerializable
     }
 
     /**
+     * @param string $customerGroup
+     * @return $this
+     */
+    public function addCustomerGroup(string $customerGroup) : Visibility
+    {
+        $this->customer_groups[] = $customerGroup;
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getValues(): array
@@ -50,6 +65,14 @@ class Visibility implements \JsonSerializable
         return $this;
     }
 
-
+    /**
+     * @param Localized $localized
+     * @return $this
+     */
+    public function addValue(Localized $localized) : Visibility
+    {
+        $this->values[] = $localized->toArray();
+        return $this;
+    }
 
 }

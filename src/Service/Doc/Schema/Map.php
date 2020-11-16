@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+/**
+ * Class Map
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
 class Map implements \JsonSerializable
 {
 
@@ -73,6 +78,14 @@ class Map implements \JsonSerializable
         return $this;
     }
 
-
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function addValue($value) : Map
+    {
+        $this->values[] = $value;
+        return $this;
+    }
 
 }

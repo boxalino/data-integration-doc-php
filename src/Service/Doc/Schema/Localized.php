@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+/**
+ * Class Localized
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
 class Localized implements \JsonSerializable
 {
 

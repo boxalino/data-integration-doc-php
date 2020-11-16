@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+/**
+ * Class Pricing
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
 class Pricing implements \JsonSerializable
 {
 
@@ -61,6 +66,16 @@ class Pricing implements \JsonSerializable
     }
 
     /**
+     * @param Localized $localized
+     * @return $this
+     */
+    public function addLabel(Localized $localized) : Visibility
+    {
+        $this->label[] = $localized->toArray();
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getValue(): array
@@ -75,6 +90,16 @@ class Pricing implements \JsonSerializable
     public function setValue(array $value): Pricing
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @param Localized $localized
+     * @return $this
+     */
+    public function addValue(Localized $localized) : Visibility
+    {
+        $this->value[] = $localized->toArray();
         return $this;
     }
 
@@ -96,5 +121,14 @@ class Pricing implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @param Localized $localized
+     * @return $this
+     */
+    public function addSign(Localized $localized) : Visibility
+    {
+        $this->sign[] = $localized->toArray();
+        return $this;
+    }
 
 }
