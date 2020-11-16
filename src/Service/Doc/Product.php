@@ -8,9 +8,12 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Map;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Period;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Product as RelatedProduct;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Content as RelatedContent;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Repeated;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
@@ -55,12 +58,12 @@ class Product implements \JsonSerializable
     protected $in_sales;
 
     /**
-     * @var Array<<\Boxalino\InstantUpdate\Service\Doc\Schema\Product>>
+     * @var Array<<RelatedProduct>>
      */
     protected $product_relations;
 
     /**
-     * @var Array<<\Boxalino\InstantUpdate\Service\Doc\Schema\Content>>
+     * @var Array<<RelatedContent>>
      */
     protected $other_relations;
 
@@ -137,6 +140,11 @@ class Product implements \JsonSerializable
     /**
      * @var Array<<Map>>
      */
+    protected $numeric_attributes;
+
+    /**
+     * @var Array<<Map>>
+     */
     protected $localized_numeric_attributes;
 
     /**
@@ -149,12 +157,14 @@ class Product implements \JsonSerializable
      */
     protected $localized_datetime_attributes;
 
+
     /** Product - Line specific attributes */
 
     /**
      * @var Pricing | null
      */
     protected $pricing;
+
 
     /** Product Group & SKU specific attributes */
 
@@ -172,6 +182,7 @@ class Product implements \JsonSerializable
      * @var Array<<Status>>
      */
     protected $status;
+
 
     /** SKU specific attributes */
 
@@ -355,6 +366,19 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param RelatedProduct ...$relatedProducts
+     * @return $this
+     */
+    public function addProductRelations(RelatedProduct ...$relatedProducts) : self
+    {
+        foreach ($relatedProducts as $product) {
+            $this->product_relations[] = $product->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getOtherRelations(): array
@@ -369,6 +393,19 @@ class Product implements \JsonSerializable
     public function setOtherRelations(array $other_relations): Product
     {
         $this->other_relations = $other_relations;
+        return $this;
+    }
+
+    /**
+     * @param RelatedContent ...$relatedContent
+     * @return $this
+     */
+    public function addOtherRelations(RelatedContent ...$relatedContent) : self
+    {
+        foreach ($relatedContent as $content) {
+            $this->other_relations[] = $content->toArray();
+        }
+
         return $this;
     }
 
@@ -391,6 +428,16 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param string $store
+     * @return $this
+     */
+    public function addStore(string $store) : self
+    {
+        $this->stores[] = $store;
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getTitle(): array
@@ -405,6 +452,20 @@ class Product implements \JsonSerializable
     public function setTitle(array $title): Product
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addTitle(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->title[] = $localized->toArray();
+        }
+
         return $this;
     }
 
@@ -427,6 +488,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addDescription(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->description[] = $localized->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getShortDescription(): array
@@ -441,6 +516,20 @@ class Product implements \JsonSerializable
     public function setShortDescription(array $short_description): Product
     {
         $this->short_description = $short_description;
+        return $this;
+    }
+
+    /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addShortDescription(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->short_description[] = $localized->toArray();
+        }
+
         return $this;
     }
 
@@ -463,6 +552,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addBrands(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->brands[] = $localized->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getSuppliers(): array
@@ -477,6 +580,20 @@ class Product implements \JsonSerializable
     public function setSuppliers(array $suppliers): Product
     {
         $this->suppliers = $suppliers;
+        return $this;
+    }
+
+    /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addSuppliers(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->suppliers[] = $localized->toArray();
+        }
+
         return $this;
     }
 
@@ -517,6 +634,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addImages(Repeated  ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->images[] = $repeated->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getLink(): array
@@ -531,6 +662,20 @@ class Product implements \JsonSerializable
     public function setLink(array $link): Product
     {
         $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @param Localized ...$localizeds
+     * @return $this
+     */
+    public function addLink(Localized  ...$localizeds) : self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->link[] = $localized->toArray();
+        }
+
         return $this;
     }
 
@@ -553,6 +698,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Tag ...$tags
+     * @return $this
+     */
+    public function addTags(Tag  ...$tags) : self
+    {
+        foreach($tags as $tag)
+        {
+            $this->tags[] = $tag->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getLabels(): array
@@ -567,6 +726,20 @@ class Product implements \JsonSerializable
     public function setLabels(array $labels): Product
     {
         $this->labels = $labels;
+        return $this;
+    }
+
+    /**
+     * @param Label ...$labels
+     * @return $this
+     */
+    public function addLabels(Label  ...$labels) : self
+    {
+        foreach($labels as $label)
+        {
+            $this->labels[] = $label->toArray();
+        }
+
         return $this;
     }
 
@@ -589,6 +762,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Period ...$periods
+     * @return $this
+     */
+    public function addPeriods(Period  ...$periods) : self
+    {
+        foreach($periods as $period)
+        {
+            $this->periods[] = $period->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getStringAttributes(): array
@@ -603,6 +790,20 @@ class Product implements \JsonSerializable
     public function setStringAttributes(array $string_attributes): Product
     {
         $this->string_attributes = $string_attributes;
+        return $this;
+    }
+
+    /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addStringAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->string_attributes[] = $repeated->toArray();
+        }
+
         return $this;
     }
 
@@ -625,6 +826,52 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addLocalizedStringAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->localized_string_attributes[] = $repeated->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Array
+     */
+    public function getNumericAttributes(): array
+    {
+        return $this->numeric_attributes;
+    }
+
+    /**
+     * @param Array $numeric_attributes
+     * @return Product
+     */
+    public function setNumericAttributes(array $numeric_attributes): Product
+    {
+        $this->numeric_attributes = $numeric_attributes;
+        return $this;
+    }
+
+    /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addNumericAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->numeric_attributes[] = $repeated->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getLocalizedNumericAttributes(): array
@@ -639,6 +886,20 @@ class Product implements \JsonSerializable
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): Product
     {
         $this->localized_numeric_attributes = $localized_numeric_attributes;
+        return $this;
+    }
+
+    /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addLocalizedNumericAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->localized_numeric_attributes[] = $repeated->toArray();
+        }
+
         return $this;
     }
 
@@ -661,6 +922,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addDatetimeAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->datetime_attributes[] = $repeated->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getLocalizedDatetimeAttributes(): array
@@ -675,6 +950,20 @@ class Product implements \JsonSerializable
     public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): Product
     {
         $this->localized_datetime_attributes = $localized_datetime_attributes;
+        return $this;
+    }
+
+    /**
+     * @param Repeated ...$repeateds
+     * @return $this
+     */
+    public function addLocalizedDatetimeAttributes(Repeated ...$repeateds) : self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->localized_datetime_attributes[] = $repeated->toArray();
+        }
+
         return $this;
     }
 
@@ -715,6 +1004,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Price ...$prices
+     * @return $this
+     */
+    public function addPrice(Price ...$prices) : self
+    {
+        foreach($prices as $price)
+        {
+            $this->price[] = $price->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getVisibility(): array
@@ -733,6 +1036,20 @@ class Product implements \JsonSerializable
     }
 
     /**
+     * @param Visibility ...$visibilities
+     * @return $this
+     */
+    public function addVisibility(Visibility ...$visibilities) : self
+    {
+        foreach($visibilities as $visibility)
+        {
+            $this->visibility[] = $visibility->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getStatus(): array
@@ -747,6 +1064,20 @@ class Product implements \JsonSerializable
     public function setStatus(array $status): Product
     {
         $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @param Status ...$statuses
+     * @return $this
+     */
+    public function addStatus(Status ...$statuses)
+    {
+        foreach($statuses as $status)
+        {
+            $this->status[] = $status->toArray();
+        }
+
         return $this;
     }
 
@@ -837,6 +1168,20 @@ class Product implements \JsonSerializable
     public function setStock(array $stock): Product
     {
         $this->stock = $stock;
+        return $this;
+    }
+
+    /**
+     * @param Stock ...$stocks
+     * @return $this
+     */
+    public function addStock(Stock ...$stocks) : self
+    {
+        foreach($stocks as $stock)
+        {
+            $this->stock[] = $stock->toArray();
+        }
+
         return $this;
     }
 
