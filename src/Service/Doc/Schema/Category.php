@@ -1,8 +1,12 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+
 class Category implements \JsonSerializable
 {
+
+    use DocPropertiesTrait;
 
     /**
      * @var string | null

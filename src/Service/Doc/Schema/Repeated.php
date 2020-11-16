@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+
 /**
  * Class Repeated
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/254050518/Referenced+Schema+Types#LIST
@@ -9,6 +11,8 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
  */
 class Repeated implements \JsonSerializable
 {
+
+    use DocPropertiesTrait;
 
     /**
      * @var string

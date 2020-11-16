@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+
 /**
  * Class Map
  *
@@ -8,6 +10,8 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
  */
 class Map implements \JsonSerializable
 {
+
+    use DocPropertiesTrait;
 
     /**
      * @var string
