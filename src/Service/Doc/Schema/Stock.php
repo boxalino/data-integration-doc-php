@@ -8,7 +8,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Stock implements \JsonSerializable
+class Stock implements \JsonSerializable, DocSchemaDefinitionInterface
 {
     use DocPropertiesTrait;
 

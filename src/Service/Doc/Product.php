@@ -51,112 +51,112 @@ class Product implements \JsonSerializable
     /**
      * @var bool
      */
-    protected $is_new;
+    protected $is_new = false;
 
     /**
      * @var bool
      */
-    protected $in_sales;
+    protected $in_sales = false;
 
     /**
      * @var Array<<RelatedProduct>>
      */
-    protected $product_relations;
+    protected $product_relations = [];
 
     /**
      * @var Array<<RelatedContent>>
      */
-    protected $other_relations;
+    protected $other_relations = [];
 
     /**
      * @var Array<<string>>
      */
-    protected $stores;
+    protected $stores = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $title;
+    protected $title = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $description;
+    protected $description = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $short_description;
+    protected $short_description = [];
 
     /**
      * @var Array<<Repeated>>
      */
-    protected $brands;
+    protected $brands = [];
 
     /**
      * @var Array<<Repeated>>
      */
-    protected $suppliers;
+    protected $suppliers = [];
 
     /**
      * @var Array<<Category>>
      */
-    protected $categories;
+    protected $categories = [];
 
     /**
      * @var Array<<Repeated>>
      */
-    protected $images;
+    protected $images = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $link;
+    protected $link = [];
 
     /**
      * @var Array<<Tag>>
      */
-    protected $tags;
+    protected $tags = [];
 
     /**
      * @var Array<<Label>>
      */
-    protected $labels;
+    protected $labels = [];
 
     /**
      * @var Array<<Period>>
      */
-    protected $periods;
+    protected $periods = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $string_attributes;
+    protected $string_attributes = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $localized_string_attributes;
+    protected $localized_string_attributes = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $numeric_attributes;
+    protected $numeric_attributes = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $localized_numeric_attributes;
+    protected $localized_numeric_attributes = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $datetime_attributes;
+    protected $datetime_attributes = [];
 
     /**
      * @var Array<<Map>>
      */
-    protected $localized_datetime_attributes;
+    protected $localized_datetime_attributes = [];
 
 
     /** Product - Line specific attributes */
@@ -172,17 +172,17 @@ class Product implements \JsonSerializable
     /**
      * @var Array<<Price>>
      */
-    protected $price;
+    protected $price = [];
 
     /**
      * @var Array<<Visibility>>
      */
-    protected $visibility;
+    protected $visibility = [];
 
     /**
      * @var Array<<Status>>
      */
-    protected $status;
+    protected $status = [];
 
 
     /** SKU specific attributes */
@@ -205,12 +205,12 @@ class Product implements \JsonSerializable
     /**
      * @var Array<<ProductGroupLink>>
      */
-    protected $additional_product_groups;
+    protected $additional_product_groups = [];
 
     /**
      * @var Array<<Stock>>
      */
-    protected $stock;
+    protected $stock = [];
 
     /**
      * @var bool

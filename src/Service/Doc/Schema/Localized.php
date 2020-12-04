@@ -8,7 +8,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Localized implements \JsonSerializable
+class Localized implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;
@@ -42,7 +42,7 @@ class Localized implements \JsonSerializable
     }
 
     /**
-     * @return int|string
+     * @return int|string|array
      */
     public function getValue()
     {

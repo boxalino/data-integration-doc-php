@@ -9,9 +9,19 @@ namespace Boxalino\InstantUpdate\Service;
 trait DocPropertiesTrait
 {
     /**
+     * Will only return the properties that are not empty
+     *
      * @return array
      */
     public function toArray() : array
+    {
+        return get_object_vars($this);
+    }
+
+    /**
+     * @return array
+     */
+    public function allPropertiesToArray() : array
     {
         return get_object_vars($this);
     }

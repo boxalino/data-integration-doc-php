@@ -8,7 +8,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Map implements \JsonSerializable
+class Map implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;
@@ -83,7 +83,7 @@ class Map implements \JsonSerializable
     }
 
     /**
-     * @param $value
+     * @param string | int | Localized $value
      * @return $this
      */
     public function addValue($value) : Map

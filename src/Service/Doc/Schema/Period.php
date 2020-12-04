@@ -8,7 +8,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Period implements \JsonSerializable
+class Period implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;

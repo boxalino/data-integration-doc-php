@@ -3,7 +3,7 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
-class Price implements \JsonSerializable
+class Price implements \JsonSerializable, DocSchemaDefinitionInterface
 {
     use DocPropertiesTrait;
 

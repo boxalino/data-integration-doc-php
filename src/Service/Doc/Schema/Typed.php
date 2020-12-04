@@ -3,8 +3,14 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
-class Label implements \JsonSerializable, DocSchemaDefinitionInterface
+/**
+ * Class Typed
+ *
+ * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ */
+class Typed implements \JsonSerializable, DocSchemaDefinitionInterface
 {
+
     use DocPropertiesTrait;
 
     /**
@@ -18,14 +24,9 @@ class Label implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $name;
 
     /**
-     * @var string
+     * @var Array<<string|int|Localized>>
      */
-    protected $value;
-
-    /**
-     * @var Array<<Localized>>
-     */
-    protected $loc_values;
+    protected $values;
 
     /**
      * @return string
@@ -37,9 +38,9 @@ class Label implements \JsonSerializable, DocSchemaDefinitionInterface
 
     /**
      * @param string $type
-     * @return Label
+     * @return self
      */
-    public function setType(string $type): Label
+    public function setType(string $type): self
     {
         $this->type = $type;
         return $this;
@@ -55,49 +56,40 @@ class Label implements \JsonSerializable, DocSchemaDefinitionInterface
 
     /**
      * @param string $name
-     * @return Label
+     * @return self
      */
-    public function setName(string $name): Label
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param string $value
-     * @return Label
-     */
-    public function setValue(string $value): Label
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
      * @return Array
      */
-    public function getLocValues(): array
+    public function getValues(): array
     {
-        return $this->loc_values;
+        return $this->values;
     }
 
     /**
-     * @param Array $loc_values
-     * @return Label
+     * @param Array $values
+     * @return self
      */
-    public function setLocValues(array $loc_values): Label
+    public function setValues(array $values): self
     {
-        $this->loc_values = $loc_values;
+        $this->values = $values;
         return $this;
     }
 
+    /**
+     * @param string | int | Localized $value
+     * @return $this
+     */
+    public function addValue($value) : Map
+    {
+        $this->values[] = $value;
+        return $this;
+    }
 
 }

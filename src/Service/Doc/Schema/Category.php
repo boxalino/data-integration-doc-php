@@ -3,7 +3,7 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
-class Category implements \JsonSerializable
+class Category implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;
@@ -51,6 +51,16 @@ class Category implements \JsonSerializable
     public function setCategoryIds(array $category_ids): Category
     {
         $this->category_ids = $category_ids;
+        return $this;
+    }
+
+    /**
+     * @param Localized $category
+     * @return $this
+     */
+    public function addCategoryId(Localized $category)
+    {
+        $this->category_ids[] = $category;
         return $this;
     }
 

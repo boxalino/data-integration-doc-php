@@ -8,7 +8,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Visibility implements \JsonSerializable
+class Visibility implements \JsonSerializable, DocSchemaDefinitionInterface
 {
     use DocPropertiesTrait;
 
@@ -74,7 +74,7 @@ class Visibility implements \JsonSerializable
      */
     public function addValue(Localized $localized) : Visibility
     {
-        $this->values[] = $localized->toArray();
+        $this->values[] = $localized;
         return $this;
     }
 

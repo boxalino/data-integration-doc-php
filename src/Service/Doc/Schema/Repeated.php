@@ -9,7 +9,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class Repeated implements \JsonSerializable
+class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;
@@ -61,16 +61,12 @@ class Repeated implements \JsonSerializable
     }
 
     /**
-     * @param Localized ...$localizeds
+     * @param Localized $localizeds
      * @return $this
      */
-    public function addValue(Localized ...$localizeds) : self
+    public function addValue(Localized $localizeds) : self
     {
-        foreach($localizeds as $localized)
-        {
-            $this->value[] = $localized->toArray();
-        }
-
+        $this->value[] = $localized;
         return $this;
     }
 

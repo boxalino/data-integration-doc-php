@@ -7,7 +7,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  * Class ProductGroupLink
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
-class ProductGroupLink implements \JsonSerializable
+class ProductGroupLink implements \JsonSerializable, DocSchemaDefinitionInterface
 {
 
     use DocPropertiesTrait;
