@@ -91,16 +91,12 @@ class Sku  implements \JsonSerializable
     }
 
     /**
-     * @param Price ...$prices
+     * @param Price $price
      * @return $this
      */
-    public function addPrice(Price ...$prices) : self
+    public function addPrice(Price $price) : self
     {
-        foreach($prices as $price)
-        {
-            $this->price[] = $price->toArray();
-        }
-
+        $this->price[] = $price;
         return $this;
     }
 
@@ -123,16 +119,12 @@ class Sku  implements \JsonSerializable
     }
 
     /**
-     * @param Visibility ...$visibilities
+     * @param Visibility $visibility
      * @return $this
      */
-    public function addVisibility(Visibility ...$visibilities) : self
+    public function addVisibility(Visibility $visibility) : self
     {
-        foreach($visibilities as $visibility)
-        {
-            $this->visibility[] = $visibility->toArray();
-        }
-
+        $this->visibility[] = $visibility;
         return $this;
     }
 
@@ -155,16 +147,12 @@ class Sku  implements \JsonSerializable
     }
 
     /**
-     * @param Status ...$statuses
+     * @param Status $status
      * @return $this
      */
-    public function addStatus(Status ...$statuses)
+    public function addStatus(Status $status)
     {
-        foreach($statuses as $status)
-        {
-            $this->status[] = $status->toArray();
-        }
-
+        $this->status[] = $status;
         return $this;
     }
 
@@ -244,9 +232,9 @@ class Sku  implements \JsonSerializable
      * @param ProductGroupLink $productGroupLink
      * @return $this
      */
-    public function addAdditionalProductGroups(ProductGroupLink $productGroupLink) : self
+    public function addAdditionalProductGroup(ProductGroupLink $productGroupLink) : self
     {
-        $this->additional_product_groups[] = $productGroupLink->toArray();
+        $this->additional_product_groups[] = $productGroupLink;
         return $this;
     }
 
@@ -269,16 +257,12 @@ class Sku  implements \JsonSerializable
     }
 
     /**
-     * @param Stock ...$stocks
+     * @param Stock $stock
      * @return $this
      */
-    public function addStock(Stock ...$stocks) : self
+    public function addStock(Stock $stock) : self
     {
-        foreach($stocks as $stock)
-        {
-            $this->stock[] = $stock->toArray();
-        }
-
+        $this->stock[] = $stock;
         return $this;
     }
 

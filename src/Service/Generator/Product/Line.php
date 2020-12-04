@@ -5,6 +5,11 @@ use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
+/**
+ * Class Line
+ *
+ * @package Boxalino\InstantUpdate\Service\Generator\Product
+ */
 class Line implements \JsonSerializable
 {
 
@@ -59,16 +64,12 @@ class Line implements \JsonSerializable
     }
 
     /**
-     * @param Group ...$productGroups
+     * @param Group $productGroup
      * @return $this
      */
-    public function addProductGroup(Group ...$productGroups)
+    public function addProductGroup(Group $productGroup)
     {
-        foreach($productGroups as $productGroup)
-        {
-            $this->product_groups[] = $productGroup->toArray();
-        }
-
+        $this->product_groups[] = $productGroup;
         return $this;
     }
 

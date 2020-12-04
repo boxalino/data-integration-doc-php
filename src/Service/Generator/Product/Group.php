@@ -59,16 +59,12 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Price ...$prices
+     * @param Price $price
      * @return $this
      */
-    public function addPrice(Price ...$prices) : self
+    public function addPrice(Price $price) : self
     {
-        foreach($prices as $price)
-        {
-            $this->price[] = $price->toArray();
-        }
-
+        $this->price[] = $price;
         return $this;
     }
 
@@ -91,16 +87,12 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Visibility ...$visibilities
+     * @param Visibility $visibility
      * @return $this
      */
-    public function addVisibility(Visibility ...$visibilities) : self
+    public function addVisibility(Visibility $visibility) : self
     {
-        foreach($visibilities as $visibility)
-        {
-            $this->visibility[] = $visibility->toArray();
-        }
-
+        $this->visibility[] = $visibility;
         return $this;
     }
 
@@ -123,16 +115,12 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Status ...$statuses
+     * @param Status $status
      * @return $this
      */
-    public function addStatus(Status ...$statuses)
+    public function addStatus(Status $status)
     {
-        foreach($statuses as $status)
-        {
-            $this->status[] = $status->toArray();
-        }
-
+        $this->status[] = $status;
         return $this;
     }
 
@@ -155,16 +143,12 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Sku ...$skus
+     * @param Sku $sku
      * @return $this
      */
-    public function addSku(Sku ...$skus)
+    public function addSku(Sku $sku)
     {
-        foreach($skus as $sku)
-        {
-            $this->skus[] = $sku->toArray();
-        }
-
+        $this->skus[] = $sku;
         return $this;
     }
 

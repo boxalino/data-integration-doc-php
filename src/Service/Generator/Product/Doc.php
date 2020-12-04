@@ -5,6 +5,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
 /**
  * Class Doc
+ *
  * Generates the product document per documentation
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252149870/doc+product
  *
@@ -36,9 +37,9 @@ class Doc implements \JsonSerializable
     protected $src_sys_id;
 
     /**
-     * @return Array
+     * @return Line
      */
-    public function getProductLine(): array
+    public function getProductLine(): Line
     {
         return $this->product_line;
     }
