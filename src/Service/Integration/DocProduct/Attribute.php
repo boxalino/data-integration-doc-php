@@ -9,9 +9,11 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\DocSchemaDefinitionInterface;
  *
  * @package Boxalino\InstantUpdate\Service\Integration
  */
-class Attribute
+class Attribute implements AttributeHandlerInterface
 {
     use DocProductAttributeTrait;
+
+    public const INSTANT_UPDATE_ID_FIELD = 'instant_update_id';
 
     /**
      * @var \ArrayObject
@@ -38,14 +40,20 @@ class Attribute
      *
      * @param string $attributeName
      * @param string $schema
-     * @return $this
+     * @return AttributeHandlerInterface
      */
-    public function addSchemaDefinition(string $attributeName, string $schema): self
+    public function addSchemaDefinition(string $attributeName, string $schema): AttributeHandlerInterface
     {
-        $docSchema = new $schema();
-        if ($docSchema instanceof DocSchemaDefinitionInterface) {
-            $this->attributeSchemaDefinitionList->offsetSet($attributeName, $docSchema);
+        try{
+            $docSchema = new $schema();
+            if ($docSchema instanceof DocSchemaDefinitionInterface) {
+                $this->attributeSchemaDefinitionList->offsetSet($attributeName, $docSchema);
+            }
+        } catch (\Throwable $exception)
+        {
+            //the schema model does not exist
         }
+
         return $this;
     }
 
@@ -65,9 +73,9 @@ class Attribute
     /**
      * @param string $propertyName
      * @param string $docAttributeName
-     * @return $this
+     * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): self
+    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): AttributeHandlerInterface
     {
         $this->properties[$propertyName] = $docAttributeName;
         return $this;

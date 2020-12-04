@@ -2,6 +2,7 @@
 namespace Boxalino\InstantUpdate\Service\Integration;
 
 use Boxalino\InstantUpdate\Service\Generator\Product\Doc;
+use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterface;
 
 /**
  * Interface DocProductHandlerInterface
@@ -19,9 +20,9 @@ interface DocProductHandlerInterface
 
     /**
      * @param AttributeHandlerInterface $attributeHandler
-     * @return self
+     * @return DocProductHandlerInterface
      */
-    public function addAttributeHandler(AttributeHandlerInterface $attributeHandler) : self;
+    public function addAttributeHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface;
 
     /**
      * @return Doc

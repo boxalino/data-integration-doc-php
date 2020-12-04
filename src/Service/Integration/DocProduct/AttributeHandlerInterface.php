@@ -56,10 +56,10 @@ interface AttributeHandlerInterface
 
     /**
      * @param string $attributeName
-     * @param DocSchemaDefinitionInterface $schema
-     * @return this
+     * @param string $schema
+     * @return AttributeHandlerInterface
      */
-    public function addSchemaDefinition(string $attributeName, DocSchemaDefinitionInterface $schema) : self;
+    public function addSchemaDefinition(string $attributeName, string $schema) : AttributeHandlerInterface;
 
     /**
      * @param string $attributeName
@@ -70,9 +70,9 @@ interface AttributeHandlerInterface
     /**
      * @param string $propertyName
      * @param string $docAttributeName
-     * @return $this
+     * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): self;
+    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): AttributeHandlerInterface;
 
     /**
      * @param string $propertyName
