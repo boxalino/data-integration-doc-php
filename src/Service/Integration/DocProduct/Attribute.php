@@ -23,7 +23,7 @@ class Attribute implements AttributeHandlerInterface
     /**
      * @var array
      */
-    protected $properties;
+    protected $properties = [];
 
     /**
      * @var \ArrayObject
@@ -32,7 +32,7 @@ class Attribute implements AttributeHandlerInterface
 
     public function __construct()
     {
-        $this->attributesList = new \ArrayObject();
+        $this->attributeSchemaDefinitionList = new \ArrayObject();
     }
 
     /**
@@ -42,12 +42,12 @@ class Attribute implements AttributeHandlerInterface
      * @param string $schema
      * @return AttributeHandlerInterface
      */
-    public function addSchemaDefinition(string $attributeName, string $schema): AttributeHandlerInterface
+    public function addSchemaDefinition(string $attributeName, string $schema) : AttributeHandlerInterface
     {
         try{
             $docSchema = new $schema();
             if ($docSchema instanceof DocSchemaDefinitionInterface) {
-                $this->attributeSchemaDefinitionList->offsetSet($attributeName, $docSchema);
+                $this->attributeSchemaDefinitionList->offsetSet($attributeName, $schema);
             }
         } catch (\Throwable $exception)
         {
@@ -61,10 +61,11 @@ class Attribute implements AttributeHandlerInterface
      * @param string $attributeName
      * @return DocSchemaDefinitionInterface|null
      */
-    public function getAttributeSchema(string $docAttributeName): ?DocSchemaDefinitionInterface
+    public function getAttributeSchema(string $docAttributeName) : ?DocSchemaDefinitionInterface
     {
         if ($this->attributeSchemaDefinitionList->offsetExists($docAttributeName)) {
-            return $this->attributeSchemaDefinitionList->offsetGet($docAttributeName);
+            $schema = $this->attributeSchemaDefinitionList->offsetGet($docAttributeName);
+            return new $schema;
         }
 
         return null;
@@ -75,7 +76,7 @@ class Attribute implements AttributeHandlerInterface
      * @param string $docAttributeName
      * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): AttributeHandlerInterface
+    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName) : AttributeHandlerInterface
     {
         $this->properties[$propertyName] = $docAttributeName;
         return $this;
@@ -85,10 +86,17 @@ class Attribute implements AttributeHandlerInterface
      * @param string $propertyName
      * @return bool
      */
-    public function handlerHasProperty(string $propertyName): bool
+    public function handlerHasProperty(string $propertyName) : bool
     {
         return isset($this->properties[$propertyName]);
     }
 
+    /**
+     * @return array
+     */
+    public function getProperties() : array
+    {
+        return $this->properties;
+    }
 
 }

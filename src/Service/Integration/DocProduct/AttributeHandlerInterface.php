@@ -62,7 +62,7 @@ interface AttributeHandlerInterface
     public function addSchemaDefinition(string $attributeName, string $schema) : AttributeHandlerInterface;
 
     /**
-     * @param string $attributeName
+     * @param string $docAttributeName
      * @return DocSchemaDefinitionInterface|null
      */
     public function getAttributeSchema(string $docAttributeName): ?DocSchemaDefinitionInterface;

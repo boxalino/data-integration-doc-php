@@ -1,6 +1,7 @@
 <?php
 namespace Boxalino\InstantUpdate\Service\Util;
 
+
 /**
  * Base Class for simple data Objects
  */
@@ -19,6 +20,28 @@ abstract class AbstractSimpleObject
     public function __construct(array $data = [])
     {
         $this->_data = $data;
+    }
+
+    /**
+     * Dynamically add properties to the object
+     *
+     * @param string $methodName
+     * @param null $params
+     * @return $this
+     */
+    public function __call(string $methodName, $params = null)
+    {
+        $methodPrefix = substr($methodName, 0, 3);
+        $key = strtolower(substr($methodName, 3, 1)) . substr($methodName, 4);
+        if($methodPrefix == 'get')
+        {
+            try{
+                return $this->_get($key);
+            } catch (\Exception $exception)
+            {
+
+            }
+        }
     }
 
     /**

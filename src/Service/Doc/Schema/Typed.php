@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
+use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
 /**
@@ -82,14 +84,5 @@ class Typed implements \JsonSerializable, DocSchemaDefinitionInterface
         return $this;
     }
 
-    /**
-     * @param string | int | Localized $value
-     * @return $this
-     */
-    public function addValue($value) : Map
-    {
-        $this->values[] = $value;
-        return $this;
-    }
 
 }

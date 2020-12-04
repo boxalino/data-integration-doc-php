@@ -24,7 +24,7 @@ class Stock implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $delivery_center;
 
     /**
-     * @var int | null
+     * @var int | string | null
      */
     protected $value;
 
@@ -73,12 +73,12 @@ class Stock implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @param int|null $value
+     * @param int| string | null $value
      * @return Stock
      */
-    public function setValue(?int $value): Stock
+    public function setValue($value): Stock
     {
-        $this->value = $value;
+        $this->value = (int) $value;
         return $this;
     }
 
