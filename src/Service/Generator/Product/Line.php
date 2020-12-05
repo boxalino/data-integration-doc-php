@@ -71,7 +71,7 @@ class Line implements \JsonSerializable
      */
     public function addProductGroup(Group $productGroup)
     {
-        $this->product_groups[] = $productGroup;
+        $this->product_groups[] = $productGroup->toArray();
         return $this;
     }
 

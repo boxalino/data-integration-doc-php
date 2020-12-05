@@ -52,7 +52,7 @@ class Doc implements \JsonSerializable
      */
     public function setProductLine(Line $productLine): self
     {
-        $this->product_line = $productLine;
+        $this->product_line = $productLine->toArray();
         return $this;
     }
 

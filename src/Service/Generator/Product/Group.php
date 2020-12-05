@@ -79,12 +79,15 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Array $visibility
+     * @param Array $visibilities
      * @return self
      */
-    public function setVisibility(array $visibility): self
+    public function setVisibility(array $visibilities): self
     {
-        $this->visibility = $visibility;
+        foreach($visibilities as $visibility)
+        {
+            $this->visibility[] = $visibility->toArray();
+        }
         return $this;
     }
 
@@ -94,7 +97,7 @@ class Group implements \JsonSerializable
      */
     public function addVisibility(Visibility $visibility) : self
     {
-        $this->visibility[] = $visibility;
+        $this->visibility[] = $visibility->toArray();
         return $this;
     }
 
@@ -117,12 +120,16 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Status $status
+     * @param array $statuss
      * @return $this
      */
-    public function addStatus(Status $status)
+    public function addStatus(array $statuss)
     {
-        $this->status[] = $status;
+        foreach($statuss as $status)
+        {
+            $this->status[] = $status->toArray();
+        }
+
         return $this;
     }
 
@@ -145,12 +152,16 @@ class Group implements \JsonSerializable
     }
 
     /**
-     * @param Sku $sku
+     * @param array $skus
      * @return $this
      */
-    public function addSku(Sku $sku)
+    public function addSkus(array $skus)
     {
-        $this->skus[] = $sku;
+        foreach($skus as $sku)
+        {
+            $this->skus[] = $sku->toArray();
+        }
+
         return $this;
     }
 

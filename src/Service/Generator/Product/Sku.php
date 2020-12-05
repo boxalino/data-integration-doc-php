@@ -142,9 +142,12 @@ class Sku  implements \JsonSerializable
      * @param Array $status
      * @return self
      */
-    public function setStatus(array $status): self
+    public function setStatus(array $statuss): self
     {
-        $this->status = $status;
+        foreach($statuss as $status)
+        {
+            $this->status[] = $status->toArray();
+        }
         return $this;
     }
 
@@ -154,7 +157,7 @@ class Sku  implements \JsonSerializable
      */
     public function addStatus(Status $status)
     {
-        $this->status[] = $status;
+        $this->status[] = $status->toArray();
         return $this;
     }
 
@@ -254,7 +257,10 @@ class Sku  implements \JsonSerializable
      */
     public function setStock(array $stock): self
     {
-        $this->stock = $stock;
+        foreach($stock as $data)
+        {
+            $this->stock[] = $data->toArray();
+        }
         return $this;
     }
 
@@ -264,7 +270,7 @@ class Sku  implements \JsonSerializable
      */
     public function addStock(Stock $stock) : self
     {
-        $this->stock[] = $stock;
+        $this->stock[] = $stock->toArray();
         return $this;
     }
 

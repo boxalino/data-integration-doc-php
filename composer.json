@@ -13,8 +13,8 @@
     "extra": {
         "copyright": "Boxalino AG, 2020",
         "label": {
-            "de-DE": "Boxalino Exporter für Instant Updates",
-            "en-GB": "Boxalino Exporter for Instant Updates"
+            "de-DE": "Boxalino Doc für Instant Updates",
+            "en-GB": "Boxalino Doc for Instant Updates"
         }
     },
     "require": {

@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Generator;
 
+use Boxalino\InstantUpdate\Service\Generator\Product\Sku;
+
 /**
  * Class GeneratorHydratorTrait
  * Is able to map an array-like to the requested object type (ex: doc_product)
@@ -31,14 +33,29 @@ trait GeneratorHydratorTrait
             $adder = "add" . $functionSuffix;
             if(in_array($adder, $methods))
             {
-                $this->$adder($value);
-                continue;
+                try{
+                    $this->$adder($value);
+                    continue;
+                } catch (\Throwable $exception)
+                {
+                    if(in_array($setter, $methods))
+                    {
+                        $this->$setter($value);
+                        continue;
+                    }
+                    throw new \Exception($exception->getMessage());
+                }
             }
 
-            if(in_array($setter, $methods))
+            try{
+                if(in_array($setter, $methods))
+                {
+                    $this->$setter($value);
+                    continue;
+                }
+            } catch (\Throwable $exception)
             {
-                $this->$setter($value);
-                continue;
+                throw new \Exception($exception->getMessage());
             }
         }
 

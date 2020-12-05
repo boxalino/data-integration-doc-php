@@ -59,7 +59,7 @@ class RepeatedLocalized implements \JsonSerializable, DocSchemaDefinitionInterfa
     {
         /** @var \ArrayIterator $iterator */
         $values = $this->value->offsetGet("value");
-        $values[] = $localized->jsonSerialize();
+        $values[] = $localized->toArray();
         $this->value->offsetSet("value", $values);
         $this->values = [$this->value];
 

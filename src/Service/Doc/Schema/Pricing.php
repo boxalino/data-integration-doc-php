@@ -131,7 +131,7 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addSign(Localized $localized) : Visibility
     {
-        $this->sign[] = $localized;
+        $this->sign[] = $localized->toArray();
         return $this;
     }
 

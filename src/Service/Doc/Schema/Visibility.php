@@ -74,7 +74,7 @@ class Visibility implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addValue(Localized $localized) : Visibility
     {
-        $this->values[] = $localized->jsonSerialize();
+        $this->values[] = $localized->toArray();
         return $this;
     }
 
