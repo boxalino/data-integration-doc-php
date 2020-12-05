@@ -4,6 +4,7 @@ namespace Boxalino\InstantUpdate\Service\Generator\Product;
 use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Line
@@ -15,6 +16,7 @@ class Line implements \JsonSerializable
 
     use DocProductTrait;
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /**
      * @var Pricing | null

@@ -34,5 +34,4 @@ trait DocPropertiesTrait
         return json_encode($this->toArray());
     }
 
-
 }

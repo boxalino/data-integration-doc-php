@@ -10,29 +10,31 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 class Sku  implements \JsonSerializable
 {
 
     use DocProductTrait;
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /** Product Group & SKU specific attributes */
 
     /**
      * @var Array<<Price>>
      */
-    protected $price;
+    protected $price = [];
 
     /**
      * @var Array<<Visibility>>
      */
-    protected $visibility;
+    protected $visibility = [];
 
     /**
      * @var Array<<Status>>
      */
-    protected $status;
+    protected $status = [];
 
 
     /** SKU specific attributes */
@@ -55,12 +57,12 @@ class Sku  implements \JsonSerializable
     /**
      * @var Array<<ProductGroupLink>>
      */
-    protected $additional_product_groups;
+    protected $additional_product_groups = [];
 
     /**
      * @var Array<<Stock>>
      */
-    protected $stock;
+    protected $stock = [];
 
     /**
      * @var bool

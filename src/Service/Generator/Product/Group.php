@@ -6,6 +6,7 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Group
@@ -17,6 +18,7 @@ class Group implements \JsonSerializable
 
     use DocProductTrait;
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /** Product Group & SKU specific attributes */
 
@@ -38,7 +40,7 @@ class Group implements \JsonSerializable
     /**
      * @var Array<Sku>
      */
-    protected $skus;
+    protected $skus = [];
 
     /**
      * @return Array

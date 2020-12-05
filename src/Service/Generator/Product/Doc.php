@@ -2,6 +2,7 @@
 namespace Boxalino\InstantUpdate\Service\Generator\Product;
 
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Doc
@@ -15,6 +16,7 @@ class Doc implements \JsonSerializable
 {
 
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /**
      * @var Line

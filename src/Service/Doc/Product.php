@@ -4,7 +4,6 @@ namespace Boxalino\InstantUpdate\Service\Doc;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Category;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Label;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Localized;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Map;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Period;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
@@ -15,6 +14,10 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Repeated;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\NumericAttribute;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\StringAttribute;
+use Boxalino\InstantUpdate\Service\Doc\Schema\TypedLocalized;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
@@ -129,32 +132,32 @@ class Product implements \JsonSerializable
     protected $periods = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<StringAttribute>>
      */
     protected $string_attributes = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<TypedLocalized>>
      */
     protected $localized_string_attributes = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<NumericAttribute>>
      */
     protected $numeric_attributes = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<TypedLocalized>>
      */
     protected $localized_numeric_attributes = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<DatetimeAttribute>>
      */
     protected $datetime_attributes = [];
 
     /**
-     * @var Array<<Map>>
+     * @var Array<<TypedLocalized>>
      */
     protected $localized_datetime_attributes = [];
 

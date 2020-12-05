@@ -60,7 +60,7 @@ class Category implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addCategoryId(Localized $category)
     {
-        $this->category_ids[] = $category;
+        $this->category_ids[] = $category->jsonSerialize();
         return $this;
     }
 

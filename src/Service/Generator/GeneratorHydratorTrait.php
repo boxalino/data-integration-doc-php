@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Generator;
 
-
 /**
  * Class GeneratorHydratorTrait
  * Is able to map an array-like to the requested object type (ex: doc_product)
@@ -11,71 +10,56 @@ namespace Boxalino\InstantUpdate\Service\Generator;
 trait GeneratorHydratorTrait
 {
 
+    public function __construct(array $data = [])
+    {
+        $this->toObject($data);
+    }
+
     /**
-     * Transform an element to an object
+     * Set the array properties to object
      * (ex: a response element to the desired type)
      *
-     * @param \StdClass $data
-     * @param AccessorInterface $object
-     * @return mixed
+     * @param array $data
      */
-    public function toObject(\StdClass $data, AccessorInterface $object) : AccessorInterface
+    public function toObject(array $data)
     {
-        $dataAsObject = new \ReflectionObject($data);
-        $properties = $dataAsObject->getProperties();
-        $class = get_class($object);
-        $methods = get_class_methods($class);
-
-        foreach($properties as $property)
+        $methods = get_class_methods($this);
+        foreach($data as $propertyName=>$value)
         {
-            $propertyName = $property->getName();
-            $value = $data->$propertyName;
-            $setter = "set" . strtoupper(substr($propertyName, 0, 1)) . substr($propertyName, 1);
-            /**
-             * accessor are informative Boxalino system variables which have no value to the integration system
-             */
-            if($value === ['accessor'] || $value === "accessor")
+            $functionSuffix = preg_replace('/\s+/', '', ucwords(implode(" ", explode("_", $propertyName))));
+            $setter = "set" . $functionSuffix;
+            $adder = "add" . $functionSuffix;
+            if(in_array($adder, $methods))
             {
+                $this->$adder($value);
                 continue;
             }
 
             if(in_array($setter, $methods))
             {
-                $object->$setter($value);
+                $this->$setter($value);
                 continue;
             }
-
-            if($this->getAccessorHandler()->hasAccessor($propertyName))
-            {
-                $handler = $this->getAccessorHandler()->getAccessor($propertyName);
-                $objectProperty = $this->getAccessorHandler()->getAccessorSetter($propertyName);
-                /** the facets is returned as a list/[] instead of a model itself */
-                if($propertyName === 'bx-facets')
-                {
-                    $object->set($objectProperty, $value);
-                    continue;
-                }
-
-                if(empty($value))
-                {
-                    $object->set($objectProperty, $handler);
-                    continue;
-                }
-
-                if(is_array($value))
-                {
-                    $value = array_pop($value);
-                }
-                $valueObject = $this->toObject($value, $handler);
-                $object->set($objectProperty, $valueObject);
-
-                continue;
-            }
-
-            $object->set($propertyName, $value);
         }
 
-        return $object;
+        return $this;
+    }
+
+    /**
+     * @param string $propertyName
+     * @param $content
+     */
+    public function set(string $propertyName, $content)
+    {
+        $this->$propertyName = $content;
+    }
+
+    /**
+     * @param string $propertyName
+     */
+    public function get(string $propertyName)
+    {
+        return $this->$propertyName;
     }
 
 

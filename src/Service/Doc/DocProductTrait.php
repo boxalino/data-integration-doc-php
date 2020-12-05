@@ -4,7 +4,6 @@ namespace Boxalino\InstantUpdate\Service\Doc;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Category;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Label;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Localized;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Map;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Period;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Product as RelatedProduct;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Content as RelatedContent;
@@ -64,102 +63,102 @@ trait DocProductTrait
     /**
      * @var Array<<RelatedProduct>>
      */
-    protected $product_relations;
+    protected $product_relations = [];
 
     /**
      * @var Array<<RelatedContent>>
      */
-    protected $other_relations;
+    protected $other_relations = [];
 
     /**
      * @var Array<<string>>
      */
-    protected $stores;
+    protected $stores = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $title;
+    protected $title = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $description;
+    protected $description = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $short_description;
+    protected $short_description = [];
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $brands;
+    protected $brands = [];
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $suppliers;
+    protected $suppliers = [];
 
     /**
      * @var Array<<Category>>
      */
-    protected $categories;
+    protected $categories = [];
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $images;
+    protected $images = [];
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $link;
+    protected $link = [];
 
     /**
      * @var Array<<Tag>>
      */
-    protected $tags;
+    protected $tags = [];
 
     /**
      * @var Array<<Label>>
      */
-    protected $labels;
+    protected $labels = [];
 
     /**
      * @var Array<<Period>>
      */
-    protected $periods;
+    protected $periods = [];
 
     /**
      * @var Array<<StringAttribute>>
      */
-    protected $string_attributes;
+    protected $string_attributes = [];
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_string_attributes;
+    protected $localized_string_attributes = [];
 
     /**
      * @var Array<<NumericAttribute>>
      */
-    protected $numeric_attributes;
+    protected $numeric_attributes = [];
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_numeric_attributes;
+    protected $localized_numeric_attributes = [];
 
     /**
      * @var Array<<DatetimeAttribute>>
      */
-    protected $datetime_attributes;
+    protected $datetime_attributes = [];
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_datetime_attributes;
+    protected $localized_datetime_attributes = [];
 
     /**
      * @return string|null
@@ -234,18 +233,18 @@ trait DocProductTrait
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getLastUpdate(): string
+    public function getLastUpdate(): ?string
     {
         return $this->last_update;
     }
 
     /**
-     * @param string $last_update
+     * @param string | null $last_update
      * @return self
      */
-    public function setLastUpdate(string $last_update): self
+    public function setLastUpdate(?string $last_update): self
     {
         $this->last_update = $last_update;
         return $this;
@@ -401,7 +400,7 @@ trait DocProductTrait
      */
     public function addTitle(Localized $localized): self
     {
-        $this->title[] = $localized->toArray();
+        $this->title[] = $localized;
         return $this;
     }
 
@@ -429,7 +428,7 @@ trait DocProductTrait
      */
     public function addDescription(Localized $localized): self
     {
-        $this->description[] = $localized->toArray();
+        $this->description[] = $localized;
         return $this;
     }
 
@@ -457,7 +456,7 @@ trait DocProductTrait
      */
     public function addShortDescription(Localized $localized): self
     {
-        $this->short_description[] = $localized->toArray();
+        $this->short_description[] = $localized;
         return $this;
     }
 
@@ -782,7 +781,7 @@ trait DocProductTrait
     public function addPeriods(Period  ...$periods): self
     {
         foreach ($periods as $period) {
-            $this->periods[] = $period->toArray();
+            $this->periods[] = $period;
         }
 
         return $this;
@@ -823,7 +822,7 @@ trait DocProductTrait
     public function addStringAttributes(StringAttribute ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->string_attributes[] = $repeated;
+            $this->string_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;
@@ -864,7 +863,7 @@ trait DocProductTrait
     public function addLocalizedStringAttributes(TypedLocalized ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->localized_string_attributes[] = $repeated;
+            $this->localized_string_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;
@@ -905,7 +904,7 @@ trait DocProductTrait
     public function addNumericAttributes(NumericAttribute ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->numeric_attributes[] = $repeated->toArray();
+            $this->numeric_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;
@@ -946,7 +945,7 @@ trait DocProductTrait
     public function addLocalizedNumericAttributes(TypedLocalized ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
+            $this->localized_numeric_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;
@@ -987,7 +986,7 @@ trait DocProductTrait
     public function addDatetimeAttributes(DatetimeAttribute ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->datetime_attributes[] = $repeated->toArray();
+            $this->datetime_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;
@@ -1028,7 +1027,7 @@ trait DocProductTrait
     public function addLocalizedDatetimeAttributes(TypedLocalized ...$repeateds): self
     {
         foreach ($repeateds as $repeated) {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
+            $this->localized_datetime_attributes[] = $repeated->jsonSerialize();
         }
 
         return $this;

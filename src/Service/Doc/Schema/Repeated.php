@@ -66,7 +66,7 @@ class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addValue(Localized $localizeds) : self
     {
-        $this->value[] = $localized;
+        $this->value[] = $localizeds->jsonSerialize();
         return $this;
     }
 

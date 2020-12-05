@@ -21,17 +21,17 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Localized>>
      */
-    protected $label;
+    protected $label = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $value;
+    protected $value = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $sign;
+    protected $sign = [];
 
     /**
      * @return string
@@ -75,7 +75,7 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addLabel(Localized $localized) : Visibility
     {
-        $this->label[] = $localized->toArray();
+        $this->label[] = $localized;
         return $this;
     }
 
@@ -103,7 +103,7 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addValue(Localized $localized) : Visibility
     {
-        $this->value[] = $localized->toArray();
+        $this->value[] = $localized;
         return $this;
     }
 
@@ -131,7 +131,7 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function addSign(Localized $localized) : Visibility
     {
-        $this->sign[] = $localized->toArray();
+        $this->sign[] = $localized;
         return $this;
     }
 
