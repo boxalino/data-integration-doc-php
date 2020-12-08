@@ -55,6 +55,11 @@ interface AttributeHandlerInterface
     public const ATTRIBUTE_TYPE_TYPE = "type";
 
     /**
+     * @return array
+     */
+    public function getValues() : array;
+
+    /**
      * @param string $attributeName
      * @param string $schema
      * @return AttributeHandlerInterface

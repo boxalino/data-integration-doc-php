@@ -4,6 +4,7 @@ namespace Boxalino\InstantUpdate\Service\Generator\Product;
 use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
@@ -11,7 +12,7 @@ use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Generator\Product
  */
-class Line implements \JsonSerializable
+class Line implements \JsonSerializable, DocGeneratorInterface
 {
 
     use DocProductTrait;
@@ -56,12 +57,15 @@ class Line implements \JsonSerializable
     }
 
     /**
-     * @param Array $product_groups
+     * @param Array<<Group>> $product_groups
      * @return self
      */
     public function setProductGroups(array $product_groups): self
     {
-        $this->product_groups = $product_groups;
+        foreach($product_groups as $product_group)
+        {
+            $this->product_groups[] = $product_group->toArray();
+        }
         return $this;
     }
 

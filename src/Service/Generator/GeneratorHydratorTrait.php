@@ -23,43 +23,48 @@ trait GeneratorHydratorTrait
      *
      * @param array $data
      */
-    public function toObject(array $data)
+    public function toObject(array $data) : ?DocGeneratorInterface
     {
-        $methods = get_class_methods($this);
-        foreach($data as $propertyName=>$value)
+        if($this instanceof DocGeneratorInterface)
         {
-            $functionSuffix = preg_replace('/\s+/', '', ucwords(implode(" ", explode("_", $propertyName))));
-            $setter = "set" . $functionSuffix;
-            $adder = "add" . $functionSuffix;
-            if(in_array($adder, $methods))
+            $methods = get_class_methods($this);
+            foreach($data as $propertyName=>$value)
             {
-                try{
-                    $this->$adder($value);
-                    continue;
-                } catch (\Throwable $exception)
+                $functionSuffix = preg_replace('/\s+/', '', ucwords(implode(" ", explode("_", $propertyName))));
+                $setter = "set" . $functionSuffix;
+                $adder = "add" . $functionSuffix;
+                if(in_array($adder, $methods))
                 {
+                    try{
+                        $this->$adder($value);
+                        continue;
+                    } catch (\Throwable $exception)
+                    {
+                        if(in_array($setter, $methods))
+                        {
+                            $this->$setter($value);
+                            continue;
+                        }
+                        throw new \Exception($exception->getMessage());
+                    }
+                }
+
+                try{
                     if(in_array($setter, $methods))
                     {
                         $this->$setter($value);
                         continue;
                     }
+                } catch (\Throwable $exception)
+                {
                     throw new \Exception($exception->getMessage());
                 }
             }
 
-            try{
-                if(in_array($setter, $methods))
-                {
-                    $this->$setter($value);
-                    continue;
-                }
-            } catch (\Throwable $exception)
-            {
-                throw new \Exception($exception->getMessage());
-            }
+            return $this;
         }
 
-        return $this;
+        return null;
     }
 
     /**

@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Generator\Product;
 
+use Boxalino\InstantUpdate\Service\Doc\Schema\DocSchemaDefinitionInterface;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
@@ -12,7 +14,7 @@ use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Generator
  */
-class Doc implements \JsonSerializable
+class Doc implements \JsonSerializable, DocGeneratorInterface
 {
 
     use DocPropertiesTrait;

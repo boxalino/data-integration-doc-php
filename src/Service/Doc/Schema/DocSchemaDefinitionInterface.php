@@ -3,9 +3,14 @@ namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
 /**
  * Interface DocSchemaDefinitionInterface
+ *
  * @package Boxalino\InstantUpdate\Service\Doc\Schema
  */
 interface DocSchemaDefinitionInterface
 {
 
+    /**
+     * @return array
+     */
+    public function toArray() : array;
 }

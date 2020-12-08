@@ -19,14 +19,6 @@ trait DocPropertiesTrait
     }
 
     /**
-     * @return array
-     */
-    public function allPropertiesToArray() : array
-    {
-        return get_object_vars($this);
-    }
-
-    /**
      * @return false|mixed|string
      */
     public function jsonSerialize()

@@ -6,6 +6,7 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
 /**
@@ -13,7 +14,7 @@ use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\InstantUpdate\Service\Generator\Product
  */
-class Group implements \JsonSerializable
+class Group implements \JsonSerializable, DocGeneratorInterface
 {
 
     use DocProductTrait;

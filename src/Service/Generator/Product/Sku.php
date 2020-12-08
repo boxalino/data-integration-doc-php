@@ -10,9 +10,10 @@ use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
 
-class Sku  implements \JsonSerializable
+class Sku  implements \JsonSerializable, DocGeneratorInterface
 {
 
     use DocProductTrait;

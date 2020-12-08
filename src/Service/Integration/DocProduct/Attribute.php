@@ -15,6 +15,10 @@ class Attribute implements AttributeHandlerInterface
 
     public const INSTANT_UPDATE_ID_FIELD = 'instant_update_id';
 
+    public const INSTANT_UPDATE_PARENT_ID_FIELD = 'doc_parent';
+
+    public const INSTANT_UPDATE_DOC_TYPE_FIELD = 'doc_type';
+
     /**
      * @var \ArrayObject
      */
@@ -33,6 +37,15 @@ class Attribute implements AttributeHandlerInterface
     public function __construct()
     {
         $this->attributeSchemaDefinitionList = new \ArrayObject();
+    }
+
+    /**
+     * @TODO: Implement getValues() method.
+     * @return array
+     */
+    public function getValues(): array
+    {
+        return [];
     }
 
     /**
