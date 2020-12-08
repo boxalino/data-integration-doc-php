@@ -98,7 +98,7 @@ class Sku  implements \JsonSerializable
      */
     public function addPrice(Price $price) : self
     {
-        $this->price[] = $price;
+        $this->price[] = $price->toArray();
         return $this;
     }
 
@@ -126,7 +126,7 @@ class Sku  implements \JsonSerializable
      */
     public function addVisibility(Visibility $visibility) : self
     {
-        $this->visibility[] = $visibility;
+        $this->visibility[] = $visibility->toArray();
         return $this;
     }
 

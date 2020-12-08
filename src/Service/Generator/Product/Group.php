@@ -54,7 +54,7 @@ class Group implements \JsonSerializable
      * @param Array $price
      * @return self
      */
-    public function setPrice(array $price): Product
+    public function setPrice(array $price): self
     {
         $this->price = $price;
         return $this;
@@ -66,7 +66,7 @@ class Group implements \JsonSerializable
      */
     public function addPrice(Price $price) : self
     {
-        $this->price[] = $price;
+        $this->price[] = $price->toArray();
         return $this;
     }
 

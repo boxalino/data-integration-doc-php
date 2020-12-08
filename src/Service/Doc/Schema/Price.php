@@ -59,12 +59,15 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @param Array $periods
+     * @param Array<<Period>> $periods
      * @return Price
      */
     public function setPeriods(array $periods): Price
     {
-        $this->periods = $periods;
+        foreach($periods as $period)
+        {
+            $this->periods[] = $period->toArray();
+        }
         return $this;
     }
 
@@ -77,12 +80,15 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @param Array $list_price
+     * @param Array<<PriceLocalized>> $list_price
      * @return Price
      */
     public function setListPrice(array $list_price): Price
     {
-        $this->list_price = $list_price;
+        foreach($list_price as $price)
+        {
+            $this->list_price[] = $price->toArray();
+        }
         return $this;
     }
 
@@ -95,12 +101,15 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @param Array $sales_price
+     * @param Array<<PriceLocalized>> $sales_price
      * @return Price
      */
     public function setSalesPrice(array $sales_price): Price
     {
-        $this->sales_price = $sales_price;
+        foreach($sales_price as $price)
+        {
+            $this->sales_price[] = $price->toArray();
+        }
         return $this;
     }
 
@@ -113,12 +122,15 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @param Array $gross_margin
+     * @param Array<<PriceLocalized>> $gross_margin
      * @return Price
      */
     public function setGrossMargin(array $gross_margin): Price
     {
-        $this->gross_margin = $gross_margin;
+        foreach($gross_margin as $price)
+        {
+            $this->gross_margin[] = $price->toArray();
+        }
         return $this;
     }
 
