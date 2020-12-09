@@ -14,7 +14,7 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $language;
 
     /**
-     * @var int
+     * @var string
      */
     protected $value;
 
@@ -42,9 +42,9 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getValue(): int
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -55,7 +55,7 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
      */
     public function setValue($value): PriceLocalized
     {
-        $this->value = (float) $value;
+        $this->value = (string) $value;
         return $this;
     }
 

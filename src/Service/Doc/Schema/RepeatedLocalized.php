@@ -18,7 +18,7 @@ class RepeatedLocalized implements \JsonSerializable, DocSchemaDefinitionInterfa
     /**
      * @var Array<<Localized>>
      */
-    protected $values;
+    protected $values = [];
 
     /**
      * @var \ArrayObject

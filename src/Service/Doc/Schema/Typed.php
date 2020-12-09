@@ -28,7 +28,7 @@ class Typed implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<string|int|Localized>>
      */
-    protected $values;
+    protected $values = [];
 
     /**
      * @return string

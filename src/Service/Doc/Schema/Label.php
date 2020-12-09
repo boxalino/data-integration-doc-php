@@ -25,7 +25,7 @@ class Label implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Localized>>
      */
-    protected $loc_values;
+    protected $loc_values = [];
 
     /**
      * @return string

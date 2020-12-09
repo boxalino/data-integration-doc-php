@@ -27,7 +27,7 @@ class Line implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var Array<Group>
      */
-    protected $product_groups = [];
+    protected $product_groups;
 
 
     /**

@@ -91,6 +91,26 @@ class DocProduct implements DocProductHandlerInterface
     }
 
     /**
+     * List of DocProduct attributes that should be part of the InstantUpdate request
+     * (ex: used to filter the schema attributes)
+     *
+     * @return array
+     */
+    public function getDocSchemaAttributes() : array
+    {
+        $docSchemaAttributes = [];
+        foreach($this->attributeHandlerList as $handler)
+        {
+            if($handler instanceof AttributeHandlerInterface)
+            {
+                $docSchemaAttributes = array_merge($data, $handler->getDocSchemaAttributes());
+            }
+        }
+
+        return $docSchemaAttributes;
+    }
+
+    /**
      * @param string $type
      * @param array $data
      * @return Doc|Group|Line|Sku

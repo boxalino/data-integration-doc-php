@@ -23,7 +23,7 @@ class DatetimeAttribute extends Typed
      */
     public function addValue(?string $value = null) : self
     {
-        $this->values[] = $value;
+        $this->values[] = is_null($value) ? "" : date("Y-m-d H:i:s", strtotime($value));
         return $this;
     }
 

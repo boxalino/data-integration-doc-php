@@ -22,7 +22,7 @@ class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Localized>>
      */
-    protected $value;
+    protected $value = [];
 
     /**
      * @return string

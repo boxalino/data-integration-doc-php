@@ -15,12 +15,12 @@ class Visibility implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<string>>
      */
-    protected $customer_groups;
+    protected $customer_groups = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $values;
+    protected $values = [];
 
     /**
      * @return Array

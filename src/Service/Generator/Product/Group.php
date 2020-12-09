@@ -26,22 +26,22 @@ class Group implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var Array<<Price>>
      */
-    protected $price = [];
+    protected $price;
 
     /**
      * @var Array<<Visibility>>
      */
-    protected $visibility = [];
+    protected $visibility;
 
     /**
      * @var Array<<Status>>
      */
-    protected $status = [];
+    protected $status;
 
     /**
      * @var Array<Sku>
      */
-    protected $skus = [];
+    protected $skus;
 
     /**
      * @return Array

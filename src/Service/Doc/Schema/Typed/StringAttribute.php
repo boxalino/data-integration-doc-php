@@ -23,7 +23,7 @@ class StringAttribute extends Typed
      */
     public function addValue(?string $value = null) : self
     {
-        $this->values[] = $value;
+        $this->values[] = (string) $value;
         return $this;
     }
 

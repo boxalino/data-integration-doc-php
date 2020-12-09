@@ -26,7 +26,7 @@ class State implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Period>>
      */
-    protected $periods;
+    protected $periods = [];
 
     /**
      * @return string|null

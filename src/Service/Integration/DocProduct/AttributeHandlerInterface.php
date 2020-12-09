@@ -74,16 +74,21 @@ interface AttributeHandlerInterface
 
     /**
      * @param string $propertyName
-     * @param string $docAttributeName
+     * @param string | null $docAttributeName
      * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName): AttributeHandlerInterface;
+    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName): AttributeHandlerInterface;
 
     /**
      * @param string $propertyName
      * @return bool
      */
     public function handlerHasProperty(string $propertyName): bool;
+
+    /**
+     * @return array
+     */
+    public function getDocSchemaAttributes() : array;
 
 
 }

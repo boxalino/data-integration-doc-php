@@ -26,19 +26,20 @@ class Doc implements \JsonSerializable, DocGeneratorInterface
     protected $product_line;
 
     /**
-     * @var string
+     * Required format: YYYY-MM-DD hh:mm:ss
+     * @var string (timestamp)
      */
     protected $creation_tm;
 
     /**
      * @var int
      */
-    protected $client_id;
+    protected $client_id = 0;
 
     /**
      * @var int
      */
-    protected $src_sys_id;
+    protected $src_sys_id = 0;
 
     /**
      * @return Line
@@ -70,9 +71,9 @@ class Doc implements \JsonSerializable, DocGeneratorInterface
      * @param string $creation_tm
      * @return Doc
      */
-    public function setCreationTm(string $creation_tm): Doc
+    public function setCreationTm(?string $creation_tm): Doc
     {
-        $this->creation_tm = $creation_tm;
+        $this->creation_tm = is_null($creation_tm) ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($creation_tm));
         return $this;
     }
 

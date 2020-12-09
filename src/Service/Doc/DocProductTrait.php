@@ -41,11 +41,13 @@ trait DocProductTrait
     protected $label;
 
     /**
+     * Required format: YYYY-MM-DD hh:mm:ss
      * @var string (datetime)
      */
     protected $creation;
 
     /**
+     * Required format: YYYY-MM-DD hh:mm:ss
      * @var string (datetime)
      */
     protected $last_update;
@@ -53,112 +55,112 @@ trait DocProductTrait
     /**
      * @var bool
      */
-    protected $is_new = false;
+    protected $is_new;
 
     /**
      * @var bool
      */
-    protected $in_sales = false;
+    protected $in_sales;
 
     /**
      * @var Array<<RelatedProduct>>
      */
-    protected $product_relations = [];
+    protected $product_relations;
 
     /**
      * @var Array<<RelatedContent>>
      */
-    protected $other_relations = [];
+    protected $other_relations;
 
     /**
      * @var Array<<string>>
      */
-    protected $stores = [];
+    protected $stores;
 
     /**
      * @var Array<<Localized>>
      */
-    protected $title = [];
+    protected $title;
 
     /**
      * @var Array<<Localized>>
      */
-    protected $description = [];
+    protected $description;
 
     /**
      * @var Array<<Localized>>
      */
-    protected $short_description = [];
+    protected $short_description;
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $brands = [];
+    protected $brands;
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $suppliers = [];
+    protected $suppliers;
 
     /**
      * @var Array<<Category>>
      */
-    protected $categories = [];
+    protected $categories;
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $images = [];
+    protected $images;
 
     /**
      * @var Array<<RepeatedLocalized>>
      */
-    protected $link = [];
+    protected $link;
 
     /**
      * @var Array<<Tag>>
      */
-    protected $tags = [];
+    protected $tags;
 
     /**
      * @var Array<<Label>>
      */
-    protected $labels = [];
+    protected $labels;
 
     /**
      * @var Array<<Period>>
      */
-    protected $periods = [];
+    protected $periods;
 
     /**
      * @var Array<<StringAttribute>>
      */
-    protected $string_attributes = [];
+    protected $string_attributes;
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_string_attributes = [];
+    protected $localized_string_attributes;
 
     /**
      * @var Array<<NumericAttribute>>
      */
-    protected $numeric_attributes = [];
+    protected $numeric_attributes;
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_numeric_attributes = [];
+    protected $localized_numeric_attributes;
 
     /**
      * @var Array<<DatetimeAttribute>>
      */
-    protected $datetime_attributes = [];
+    protected $datetime_attributes;
 
     /**
      * @var Array<<TypedLocalized>>
      */
-    protected $localized_datetime_attributes = [];
+    protected $localized_datetime_attributes;
 
     /**
      * @return string|null
@@ -228,7 +230,7 @@ trait DocProductTrait
      */
     public function setCreation(string $creation): self
     {
-        $this->creation = $creation;
+        $this->creation = is_null($creation) ? "" : date("Y-m-d H:i:s", strtotime($creation));
         return $this;
     }
 
@@ -246,7 +248,7 @@ trait DocProductTrait
      */
     public function setLastUpdate(?string $last_update): self
     {
-        $this->last_update = $last_update;
+        $this->last_update = is_null($last_update) ? "" : date("Y-m-d H:i:s", strtotime($last_update));
         return $this;
     }
 

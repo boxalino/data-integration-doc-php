@@ -10,27 +10,27 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<string>>
      */
-    protected $customer_groups;
+    protected $customer_groups = [];
 
     /**
      * @var Array<<Period>>
      */
-    protected $periods;
+    protected $periods = [];
 
     /**
      * @var Array<<PriceLocalized>>
      */
-    protected $list_price;
+    protected $list_price = [];
 
     /**
      * @var Array<<PriceLocalized>>
      */
-    protected $sales_price;
+    protected $sales_price = [];
 
     /**
      * @var Array<<PriceLocalized>>
      */
-    protected $gross_margin;
+    protected $gross_margin = [];
 
     /**
      * @return Array
@@ -72,6 +72,8 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
+     * Price before any discount
+     *
      * @return Array
      */
     public function getListPrice(): array
@@ -101,6 +103,8 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     }
 
     /**
+     * Price displayed to the customers after the discount
+     *
      * @param Array<<PriceLocalized>> $sales_price
      * @return Price
      */

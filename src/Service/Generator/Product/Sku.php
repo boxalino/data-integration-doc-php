@@ -25,17 +25,17 @@ class Sku  implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var Array<<Price>>
      */
-    protected $price = [];
+    protected $price;
 
     /**
      * @var Array<<Visibility>>
      */
-    protected $visibility = [];
+    protected $visibility;
 
     /**
      * @var Array<<Status>>
      */
-    protected $status = [];
+    protected $status;
 
 
     /** SKU specific attributes */
@@ -58,7 +58,7 @@ class Sku  implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var Array<<ProductGroupLink>>
      */
-    protected $additional_product_groups = [];
+    protected $additional_product_groups;
 
     /**
      * @var Array<<Stock>>
@@ -68,12 +68,12 @@ class Sku  implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var bool
      */
-    protected $individually_visible;
+    protected $individually_visible = false;
 
     /**
      * @var bool
      */
-    protected $show_out_of_stock;
+    protected $show_out_of_stock = false;
 
     /**
      * @return Array

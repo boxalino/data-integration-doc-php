@@ -86,12 +86,12 @@ class Attribute implements AttributeHandlerInterface
 
     /**
      * @param string $propertyName
-     * @param string $docAttributeName
+     * @param string | null $docAttributeName
      * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, string $docAttributeName) : AttributeHandlerInterface
+    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName) : AttributeHandlerInterface
     {
-        $this->properties[$propertyName] = $docAttributeName;
+        $this->properties[$propertyName] = $docAttributeName ?? $propertyName;
         return $this;
     }
 
@@ -110,6 +110,14 @@ class Attribute implements AttributeHandlerInterface
     public function getProperties() : array
     {
         return $this->properties;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocSchemaAttributes() : array
+    {
+        return array_values($this->getProperties());
     }
 
 }

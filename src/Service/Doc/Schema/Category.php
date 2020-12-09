@@ -16,7 +16,7 @@ class Category implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Localized>>
      */
-    protected $category_ids;
+    protected $category_ids = [];
 
     /**
      * @return string|null

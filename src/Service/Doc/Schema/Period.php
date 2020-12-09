@@ -16,12 +16,12 @@ class Period implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @var Array<<Localized>>
      */
-    protected $start_datetime;
+    protected $start_datetime = [];
 
     /**
      * @var Array<<Localized>>
      */
-    protected $end_datetime;
+    protected $end_datetime = [];
 
     /**
      * @return Array
