@@ -5,7 +5,7 @@ namespace Boxalino\InstantUpdate\Service\Generator;
  * Interface DocGeneratorInterface
  * @package Boxalino\InstantUpdate\Service\Generator
  */
-interface DocGeneratorInterface
+interface DocGeneratorInterface extends \JsonSerializable
 {
 
     /**

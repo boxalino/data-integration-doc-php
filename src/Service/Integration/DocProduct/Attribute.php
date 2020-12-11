@@ -89,7 +89,7 @@ class Attribute implements AttributeHandlerInterface
      * @param string | null $docAttributeName
      * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName) : AttributeHandlerInterface
+    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName = null) : AttributeHandlerInterface
     {
         $this->properties[$propertyName] = $docAttributeName ?? $propertyName;
         return $this;

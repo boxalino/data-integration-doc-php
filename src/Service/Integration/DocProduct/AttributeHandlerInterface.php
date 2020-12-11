@@ -77,7 +77,7 @@ interface AttributeHandlerInterface
      * @param string | null $docAttributeName
      * @return AttributeHandlerInterface
      */
-    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName): AttributeHandlerInterface;
+    public function addPropertyNameDocAttributeMapping(string $propertyName, ?string $docAttributeName = null): AttributeHandlerInterface;
 
     /**
      * @param string $propertyName

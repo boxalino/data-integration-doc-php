@@ -9,7 +9,7 @@ use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterf
  *
  * @package Boxalino\InstantUpdate\Service\Integration
  */
-interface DocProductHandlerInterface
+interface DocProductHandlerInterface extends DocHandlerInterface
 {
 
     public const DOC_TYPE = "doc_product";
@@ -22,16 +22,7 @@ interface DocProductHandlerInterface
      * @param AttributeHandlerInterface $attributeHandler
      * @return DocProductHandlerInterface
      */
-    public function addAttributeHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface;
+    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface;
 
-    /**
-     * @return Doc
-     */
-    public function getDoc() : Doc;
-
-    /**
-     * @return string
-     */
-    public function getDocType() : string;
 
 }

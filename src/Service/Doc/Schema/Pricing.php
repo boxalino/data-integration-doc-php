@@ -19,19 +19,9 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $type;
 
     /**
-     * @var Array<<Localized>>
+     * @var array
      */
-    protected $label = [];
-
-    /**
-     * @var Array<<Localized>>
-     */
-    protected $value = [];
-
-    /**
-     * @var Array<<Localized>>
-     */
-    protected $sign = [];
+    protected $values = [];
 
     /**
      * @return string
@@ -54,84 +44,32 @@ class Pricing implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @return Array
      */
-    public function getLabel(): array
+    public function getValues(): array
     {
-        return $this->label;
+        return $this->values;
     }
 
     /**
-     * @param Array $label
-     * @return Pricing
+     * @param Array<<PricingLocalized>> $values
+     * @return self
      */
-    public function setLabel(array $label): Pricing
+    public function setValues(array $values): self
     {
-        $this->label = $label;
+        foreach($values as $value)
+        {
+            $this->values[] = $value->toArray();
+        }
         return $this;
     }
 
     /**
-     * @param Localized $localized
+     * @param PricingLocalized $localized
      * @return $this
      */
-    public function addLabel(Localized $localized) : Visibility
+    public function addValue(PricingLocalized $localized) : self
     {
-        $this->label[] = $localized;
-        return $this;
-    }
-
-    /**
-     * @return Array
-     */
-    public function getValue(): array
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param Array $value
-     * @return Pricing
-     */
-    public function setValue(array $value): Pricing
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
-     * @param Localized $localized
-     * @return $this
-     */
-    public function addValue(Localized $localized) : Visibility
-    {
-        $this->value[] = $localized;
-        return $this;
-    }
-
-    /**
-     * @return Array
-     */
-    public function getSign(): array
-    {
-        return $this->sign;
-    }
-
-    /**
-     * @param Array $sign
-     * @return Pricing
-     */
-    public function setSign(array $sign): Pricing
-    {
-        $this->sign = $sign;
-        return $this;
-    }
-
-    /**
-     * @param Localized $localized
-     * @return $this
-     */
-    public function addSign(Localized $localized) : Visibility
-    {
-        $this->sign[] = $localized->toArray();
+        /** @var \ArrayIterator $iterator */
+        $this->values[] = $localized->toArray();
         return $this;
     }
 

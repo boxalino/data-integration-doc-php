@@ -2,7 +2,7 @@
 namespace Boxalino\InstantUpdate\Service\Generator\Product;
 
 use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
+use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
 use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
@@ -21,12 +21,12 @@ class Group implements \JsonSerializable, DocGeneratorInterface
     use DocPropertiesTrait;
     use GeneratorHydratorTrait;
 
-    /** Product Group & SKU specific attributes */
+    /** Product Group specific attributes */
 
     /**
-     * @var Array<<Price>>
+     * @var Array
      */
-    protected $price;
+    protected $pricing = [];
 
     /**
      * @var Array<<Visibility>>
@@ -46,28 +46,31 @@ class Group implements \JsonSerializable, DocGeneratorInterface
     /**
      * @return Array
      */
-    public function getPrice(): array
+    public function getPricing(): array
     {
-        return $this->price;
+        return $this->pricing;
     }
 
     /**
-     * @param Array $price
+     * @param Array<<Pricing>> $price
      * @return self
      */
-    public function setPrice(array $price): self
+    public function setPricing(array $prices): self
     {
-        $this->price = $price;
+        foreach($prices as $price)
+        {
+            $this->pricing[] = $price->toArray();
+        }
         return $this;
     }
 
     /**
-     * @param Price $price
+     * @param Pricing $price
      * @return $this
      */
-    public function addPrice(Price $price) : self
+    public function addPricing(Pricing $price) : self
     {
-        $this->price[] = $price->toArray();
+        $this->pricing[] = $price->toArray();
         return $this;
     }
 

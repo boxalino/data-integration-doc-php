@@ -33,9 +33,9 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
 
     /**
      * @param string $language
-     * @return PriceLocalized
+     * @return self
      */
-    public function setLanguage(string $language): PriceLocalized
+    public function setLanguage(string $language): self
     {
         $this->language = $language;
         return $this;
@@ -51,9 +51,9 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
 
     /**
      * @param int | string | value $value
-     * @return PriceLocalized
+     * @return self
      */
-    public function setValue($value): PriceLocalized
+    public function setValue($value): self
     {
         $this->value = (string) $value;
         return $this;
@@ -69,9 +69,9 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
 
     /**
      * @param string $currency
-     * @return PriceLocalized
+     * @return self
      */
-    public function setCurrency(string $currency): PriceLocalized
+    public function setCurrency(string $currency): self
     {
         $this->currency = $currency;
         return $this;

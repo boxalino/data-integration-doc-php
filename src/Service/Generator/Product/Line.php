@@ -29,7 +29,6 @@ class Line implements \JsonSerializable, DocGeneratorInterface
      */
     protected $product_groups;
 
-
     /**
      * @return Pricing|null
      */

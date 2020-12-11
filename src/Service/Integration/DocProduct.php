@@ -2,6 +2,7 @@
 namespace Boxalino\InstantUpdate\Service\Integration;
 
 use Boxalino\Exporter\Service\InstantUpdate\Document\DocPropertiesHandlerInterface;
+use Boxalino\InstantUpdate\Service\Integration\DocIntegrationTrait;
 use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\Product\Doc;
 use Boxalino\InstantUpdate\Service\Generator\Product\Group;
@@ -16,6 +17,7 @@ use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterf
  */
 class DocProduct implements DocProductHandlerInterface
 {
+    use DocIntegrationTrait;
 
     /**
      * @var \ArrayObject
@@ -31,15 +33,6 @@ class DocProduct implements DocProductHandlerInterface
     public function __construct()
     {
         $this->attributeHandlerList = new \ArrayObject();
-    }
-
-    /**
-     * @TODO: Implement getDoc() method.
-     * @return Doc
-     */
-    public function getDoc(): Doc
-    {
-        return $this->getDocPropertySchema(DocProductHandlerInterface::DOC_TYPE);
     }
 
     /**
@@ -84,7 +77,7 @@ class DocProduct implements DocProductHandlerInterface
      * @param AttributeHandlerInterface $attributeHandler
      * @return DocProductHandlerInterface
      */
-    public function addAttributeHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface
+    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface
     {
         $this->attributeHandlerList->append($attributeHandler);
         return $this;
@@ -108,32 +101,6 @@ class DocProduct implements DocProductHandlerInterface
         }
 
         return $docSchemaAttributes;
-    }
-
-    /**
-     * @param string $type
-     * @param array $data
-     * @return Doc|Group|Line|Sku
-     */
-    public function getDocPropertySchema(string $type, array $data = []) : DocGeneratorInterface
-    {
-        switch($type)
-        {
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_SKU:
-                $schema = new Sku($data);
-                break;
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_GROUP:
-                $schema = new Group($data);
-                break;
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_LINE:
-                $schema = new Line($data);
-                break;
-            default:
-                $schema = new Doc();
-                break;
-        }
-
-        return $schema;
     }
 
     /**
