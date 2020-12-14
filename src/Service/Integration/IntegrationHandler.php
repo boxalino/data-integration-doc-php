@@ -28,7 +28,7 @@ class IntegrationHandler implements IntegrationHandlerInterface
        /** @var DocHandlerInterface $handler */
        foreach($this->docHandlerList as $handler)
        {
-           $docs->append($handler->getDoc());
+           $docs->offsetSet($handler->getDocType(), $handler->getDoc());
        }
 
        return $docs;

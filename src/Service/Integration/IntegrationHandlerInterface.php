@@ -11,7 +11,7 @@ interface IntegrationHandlerInterface
 
     /**
      * Create list of documents to be exported
-     *
+     * (doc-type => doc-content - JSONL format)
      * @return \ArrayIterator
      */
     public function getDocs() : \ArrayIterator;

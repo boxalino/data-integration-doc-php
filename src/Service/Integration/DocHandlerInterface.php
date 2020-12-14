@@ -11,7 +11,10 @@ use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 interface DocHandlerInterface
 {
 
-    public function getDoc();
+    /**
+     * @return string
+     */
+    public function getDoc() : string;
 
     /**
      * @param DocGeneratorInterface $doc
