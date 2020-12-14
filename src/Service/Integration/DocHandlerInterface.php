@@ -30,4 +30,5 @@ interface DocHandlerInterface
      */
     public function getDocPropertySchema(string $type, array $data = []) : DocGeneratorInterface;
 
+
 }

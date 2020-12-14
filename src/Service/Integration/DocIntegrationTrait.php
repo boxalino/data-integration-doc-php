@@ -3,6 +3,7 @@ namespace Boxalino\InstantUpdate\Service\Integration;
 
 use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\Languages\Doc as LanguagesDoc;
+use Boxalino\InstantUpdate\Service\Generator\Attribute\Values\Doc as AttributeValuesDoc;
 use Boxalino\InstantUpdate\Service\Generator\Product\Doc as ProductDoc;
 use Boxalino\InstantUpdate\Service\Generator\Product\Group;
 use Boxalino\InstantUpdate\Service\Generator\Product\Line;
@@ -62,6 +63,9 @@ trait DocIntegrationTrait
     {
         switch($type)
         {
+            case DocAttributeValuesHandlerInterface::DOC_TYPE:
+                $schema = new AttributeValuesDoc($data);
+                break;
             case DocLanguagesHandlerInterface::DOC_TYPE:
                 $schema = new LanguagesDoc();
                 break;

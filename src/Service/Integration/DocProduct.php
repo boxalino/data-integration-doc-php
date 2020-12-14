@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\InstantUpdate\Service\Integration;
 
-use Boxalino\Exporter\Service\InstantUpdate\Document\DocPropertiesHandlerInterface;
 use Boxalino\InstantUpdate\Service\Integration\DocIntegrationTrait;
 use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
 use Boxalino\InstantUpdate\Service\Generator\Product\Doc;
@@ -20,7 +19,7 @@ class DocProduct implements DocProductHandlerInterface
     use DocIntegrationTrait;
 
     /**
-     * @var \ArrayObject
+     * @var \ArrayIterator
      */
     protected $attributeHandlerList;
 
@@ -32,7 +31,7 @@ class DocProduct implements DocProductHandlerInterface
 
     public function __construct()
     {
-        $this->attributeHandlerList = new \ArrayObject();
+        $this->attributeHandlerList = new \ArrayIterator();
     }
 
     /**
@@ -75,12 +74,20 @@ class DocProduct implements DocProductHandlerInterface
      * (the handler must have DB access information for the attribute element data)
      *
      * @param AttributeHandlerInterface $attributeHandler
-     * @return DocProductHandlerInterface
+     * @return DocHandlerInterface
      */
-    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface
+    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocHandlerInterface
     {
         $this->attributeHandlerList->append($attributeHandler);
         return $this;
+    }
+
+    /**
+     * @return \ArrayIterator
+     */
+    public function getHandlers() : \ArrayIterator
+    {
+        return $this->attributeHandlerList;
     }
 
     /**
@@ -92,7 +99,7 @@ class DocProduct implements DocProductHandlerInterface
     public function getDocSchemaAttributes() : array
     {
         $docSchemaAttributes = [];
-        foreach($this->attributeHandlerList as $handler)
+        foreach($this->getHandlers() as $handler)
         {
             if($handler instanceof AttributeHandlerInterface)
             {

@@ -20,9 +20,13 @@ interface DocProductHandlerInterface extends DocHandlerInterface
 
     /**
      * @param AttributeHandlerInterface $attributeHandler
-     * @return DocProductHandlerInterface
+     * @return DocHandlerInterface
      */
-    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocProductHandlerInterface;
+    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocHandlerInterface;
 
+    /**
+     * @return \ArrayIterator
+     */
+    public function getHandlers() : \ArrayIterator;
 
 }

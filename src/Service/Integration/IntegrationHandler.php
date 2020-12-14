@@ -46,5 +46,12 @@ class IntegrationHandler implements IntegrationHandlerInterface
         return $this;
     }
 
+    /**
+     * @return \ArrayIterator
+     */
+    public function getHandlers(): \ArrayIterator
+    {
+        return $this->docHandlerList;
+    }
 
 }

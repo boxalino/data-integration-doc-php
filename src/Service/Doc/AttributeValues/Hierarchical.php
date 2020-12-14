@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc;
+namespace Boxalino\InstantUpdate\Service\Doc\Schema;
 
-use Boxalino\InstantUpdate\Service\Doc\Schema\Localized;
+use Boxalino\InstantUpdate\Service\Doc\Localized;
 use Boxalino\InstantUpdate\Service\Doc\Schema\RepeatedLocalized;
 use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
 
 /**
- * Class AttributeValue
+ * Class Hierarchical
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252313624/doc+attribute+values
  *
  * Currently in use for instant-updates on categories (hierarchical properties)
  *
  * @package Boxalino\InstantUpdate\Service\Doc
  */
-class AttributeValue implements \JsonSerializable
+class Hierarchical implements \JsonSerializable
 {
     use DocPropertiesTrait;
 
@@ -41,22 +41,6 @@ class AttributeValue implements \JsonSerializable
      * @var Array<<string>>
      */
     protected $parent_value_ids;
-
-    /**
-     * Required format: YYYY-MM-DD hh:mm:ss
-     * @var string (timestamp)
-     */
-    protected $creation_tm;
-
-    /**
-     * @var int
-     */
-    protected $client_id = 0;
-
-    /**
-     * @var int
-     */
-    protected $src_sys_id = 0;
 
     /**
      * @return string
@@ -126,25 +110,7 @@ class AttributeValue implements \JsonSerializable
      */
     public function setValueLabel(array $value_label): AttributeValue
     {
-        foreach($value_label as $value)
-        {
-            $this->value_label[] = $value->toArray();
-        }
-        
-        return $this;
-    }
-
-    /**
-     * @param Array<<Localized>> $value_label
-     * @return AttributeValue
-     */
-    public function addValueLabel(array $value_label): AttributeValue
-    {
-        foreach($value_label as $value)
-        {
-            $this->value_label[] = $value->toArray();
-        }
-
+        $this->value_label = $value_label;
         return $this;
     }
 
@@ -166,58 +132,5 @@ class AttributeValue implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $creation_tm
-     * @return AttributeValue
-     */
-    public function setCreationTm(string $creation_tm): AttributeValue
-    {
-        $this->creation_tm = $creation_tm;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
-    /**
-     * @param int $client_id
-     * @return AttributeValue
-     */
-    public function setClientId(int $client_id): AttributeValue
-    {
-        $this->client_id = $client_id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSrcSysId(): int
-    {
-        return $this->src_sys_id;
-    }
-
-    /**
-     * @param int $src_sys_id
-     * @return AttributeValue
-     */
-    public function setSrcSysId(int $src_sys_id): AttributeValue
-    {
-        $this->src_sys_id = $src_sys_id;
-        return $this;
-    }
 
 }

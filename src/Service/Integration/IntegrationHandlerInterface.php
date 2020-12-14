@@ -22,4 +22,9 @@ interface IntegrationHandlerInterface
      */
     public function addHandler(DocHandlerInterface $docHandler) : IntegrationHandlerInterface;
 
+    /**
+     * @return \ArrayIterator
+     */
+    public function getHandlers() : \ArrayIterator;
+
 }
