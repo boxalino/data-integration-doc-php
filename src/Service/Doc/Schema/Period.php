@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc\Schema;
+namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 
 /**
  * Class Period
  *
- * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
 class Period implements \JsonSerializable, DocSchemaDefinitionInterface
 {

@@ -1,26 +1,26 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc;
+namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\InstantUpdate\Service\Doc\Schema\Category;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Label;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Localized;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Period;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Product as RelatedProduct;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Content as RelatedContent;
-use Boxalino\InstantUpdate\Service\Doc\Schema\ProductGroupLink;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Repeated;
-use Boxalino\InstantUpdate\Service\Doc\Schema\RepeatedLocalized;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\NumericAttribute;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\InstantUpdate\Service\Doc\Schema\TypedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Category;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Label;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Period;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Product as RelatedProduct;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Content as RelatedContent;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 
 /**
  * Trait DocProductTrait
  * Base for common properties on product document
  *
- * @package Boxalino\InstantUpdate\Service\Doc
+ * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
 trait DocProductTrait
 {

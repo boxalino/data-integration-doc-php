@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service;
+namespace Boxalino\DataIntegrationDoc\Service;
 
 /**
  * Trait DocPropertiesTrait
  *
- * @package Boxalino\InstantUpdate\Service
+ * @package Boxalino\DataIntegrationDoc\Service
  */
 trait DocPropertiesTrait
 {

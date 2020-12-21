@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
 /**
  * Interface IntegrationHandlerInterface
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 interface IntegrationHandlerInterface
 {
@@ -17,7 +17,7 @@ interface IntegrationHandlerInterface
     public function getDocs() : \ArrayIterator;
 
     /**
-     * @param \Boxalino\InstantUpdate\Service\Integration\DocHandlerInterface $docHandler
+     * @param \Boxalino\DataIntegrationDoc\Service\Integration\DocHandlerInterface $docHandler
      * @return DocHandlerInterface
      */
     public function addHandler(DocHandlerInterface $docHandler) : IntegrationHandlerInterface;

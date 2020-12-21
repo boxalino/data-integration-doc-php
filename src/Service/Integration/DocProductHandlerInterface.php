@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\InstantUpdate\Service\Generator\Product\Doc;
-use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
 
 /**
  * Interface DocProductHandlerInterface
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 interface DocProductHandlerInterface extends DocHandlerInterface
 {

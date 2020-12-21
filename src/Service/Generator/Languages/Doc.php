@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Generator\Languages;
+namespace Boxalino\DataIntegrationDoc\Service\Generator\Languages;
 
-use Boxalino\InstantUpdate\Service\Doc\Language;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Language;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Doc
@@ -12,7 +12,7 @@ use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
  * Generates the languages document per documentation
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252280975/doc+languages
  *
- * @package Boxalino\InstantUpdate\Service\Generator
+ * @package Boxalino\DataIntegrationDoc\Service\Generator
  */
 class Doc extends Language
     implements \JsonSerializable, DocGeneratorInterface

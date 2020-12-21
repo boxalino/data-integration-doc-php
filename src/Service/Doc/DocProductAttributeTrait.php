@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc;
+namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
 
 /**
  * Trait DocProductAttributeTrait
  *
- * @package Boxalino\InstantUpdate\Service\Doc
+ * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
 trait DocProductAttributeTrait
 {

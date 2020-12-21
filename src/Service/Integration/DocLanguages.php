@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\InstantUpdate\Service\Integration\DocIntegrationTrait;
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\Languages\Doc;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc;
 
 /**
  * Class DocLanguages
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 class DocLanguages implements DocLanguagesHandlerInterface
 {

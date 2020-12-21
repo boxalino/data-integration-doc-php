@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Generator\Product;
+namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
-use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Price;
-use Boxalino\InstantUpdate\Service\Doc\Schema\ProductGroupLink;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Repeated;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Stock;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Tag;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Price;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
 class Sku  implements \JsonSerializable, DocGeneratorInterface
 {

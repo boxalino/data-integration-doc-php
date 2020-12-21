@@ -1,21 +1,21 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\Languages\Doc as LanguagesDoc;
-use Boxalino\InstantUpdate\Service\Generator\Attribute\Values\Doc as AttributeValuesDoc;
-use Boxalino\InstantUpdate\Service\Generator\Product\Doc as ProductDoc;
-use Boxalino\InstantUpdate\Service\Generator\Product\Group;
-use Boxalino\InstantUpdate\Service\Generator\Product\Line;
-use Boxalino\InstantUpdate\Service\Generator\Product\Sku;
-use Boxalino\InstantUpdate\Service\Integration\DocLanguagesHandlerInterface;
-use Boxalino\InstantUpdate\Service\Integration\DocProductHandlerInterface;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc as LanguagesDoc;
+use Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Values\Doc as AttributeValuesDoc;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc as ProductDoc;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Group;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Line;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocLanguagesHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocProductHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 
 /**
  * Trait DocIntegrationTrait
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 trait DocIntegrationTrait
 {

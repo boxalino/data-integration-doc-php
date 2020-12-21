@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc;
+namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 
 /**
  * Class Language
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252280975/doc+languages
  *
- * @package Boxalino\InstantUpdate\Service\Doc
+ * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
 class Language implements \JsonSerializable
 {

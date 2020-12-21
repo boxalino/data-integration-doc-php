@@ -1,6 +1,6 @@
 {
-    "name": "boxalino/instant-update-doc",
-    "description": "Boxalino Real Time User Experience (RTUX) Instant Update API",
+    "name": "boxalino/data-integration-doc-php",
+    "description": "Boxalino Real Time User Experience (RTUX) Data Integration Documents for PHP",
     "license": "MIT",
     "authors": [
         {
@@ -13,8 +13,8 @@
     "extra": {
         "copyright": "Boxalino AG, 2020",
         "label": {
-            "de-DE": "Boxalino Doc für Instant Updates",
-            "en-GB": "Boxalino Doc for Instant Updates"
+            "de-DE": "Boxalino Doc für Data Integration",
+            "en-GB": "Boxalino Doc for Data Integration"
         }
     },
     "require": {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Boxalino\\InstantUpdate\\": "src/"
+            "Boxalino\\DataIntegrationDoc\\": "src/"
         }
     }
 }

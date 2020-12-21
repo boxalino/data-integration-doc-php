@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc;
+namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\InstantUpdate\Service\Doc\Schema\Localized;
-use Boxalino\InstantUpdate\Service\Doc\Schema\RepeatedLocalized;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 
 /**
  * Class AttributeValue
@@ -11,7 +11,7 @@ use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
  *
  * Currently in use for instant-updates on categories (hierarchical properties)
  *
- * @package Boxalino\InstantUpdate\Service\Doc
+ * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
 class AttributeValue implements \JsonSerializable
 {

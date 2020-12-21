@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
 /**
  * Class IntegrationHandler
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 class IntegrationHandler implements IntegrationHandlerInterface
 {

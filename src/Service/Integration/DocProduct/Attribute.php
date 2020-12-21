@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration\DocProduct;
+namespace Boxalino\DataIntegrationDoc\Service\Integration\DocProduct;
 
-use Boxalino\InstantUpdate\Service\Doc\DocProductAttributeTrait;
-use Boxalino\InstantUpdate\Service\Doc\Schema\DocSchemaDefinitionInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocProductAttributeTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\DocSchemaDefinitionInterface;
 
 /**
  * Class Attribute
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 class Attribute implements AttributeHandlerInterface
 {

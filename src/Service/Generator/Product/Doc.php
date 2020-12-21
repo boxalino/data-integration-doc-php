@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Generator\Product;
+namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
-use Boxalino\InstantUpdate\Service\Doc\Schema\DocSchemaDefinitionInterface;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\DocSchemaDefinitionInterface;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Doc
@@ -12,7 +12,7 @@ use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
  * Generates the product document per documentation
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252149870/doc+product
  *
- * @package Boxalino\InstantUpdate\Service\Generator
+ * @package Boxalino\DataIntegrationDoc\Service\Generator
  */
 class Doc implements \JsonSerializable, DocGeneratorInterface
 {

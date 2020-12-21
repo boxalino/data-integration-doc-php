@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Doc\Schema;
+namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 
 /**
  * Class Typed
  *
- * @package Boxalino\InstantUpdate\Service\Doc\Schema
+ * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
 class Typed implements \JsonSerializable, DocSchemaDefinitionInterface
 {

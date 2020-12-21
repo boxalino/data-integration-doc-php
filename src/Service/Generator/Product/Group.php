@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Generator\Product;
+namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
-use Boxalino\InstantUpdate\Service\Doc\DocProductTrait;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Pricing;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Status;
-use Boxalino\InstantUpdate\Service\Doc\Schema\Visibility;
-use Boxalino\InstantUpdate\Service\DocPropertiesTrait;
-use Boxalino\InstantUpdate\Service\Generator\DocGeneratorInterface;
-use Boxalino\InstantUpdate\Service\Generator\GeneratorHydratorTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
+use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
 /**
  * Class Group
  *
- * @package Boxalino\InstantUpdate\Service\Generator\Product
+ * @package Boxalino\DataIntegrationDoc\Service\Generator\Product
  */
 class Group implements \JsonSerializable, DocGeneratorInterface
 {

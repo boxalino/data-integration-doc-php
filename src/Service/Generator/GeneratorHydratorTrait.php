@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Generator;
+namespace Boxalino\DataIntegrationDoc\Service\Generator;
 
-use Boxalino\InstantUpdate\Service\Generator\Product\Sku;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
 
 /**
  * Class GeneratorHydratorTrait

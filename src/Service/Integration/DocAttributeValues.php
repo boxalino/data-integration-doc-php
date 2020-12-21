@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\InstantUpdate\Service\Integration\DocIntegrationTrait;
-use Boxalino\InstantUpdate\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
 
 /**
  * Class DocAtrtibuteValues
  *
- * @package Boxalino\InstantUpdate\Service\Integration
+ * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 class DocAttributeValues implements DocAttributeValuesHandlerInterface
 {

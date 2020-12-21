@@ -1,5 +1,5 @@
 <?php
-namespace Boxalino\InstantUpdate\Service\Util;
+namespace Boxalino\DataIntegrationDoc\Service\Util;
 
 
 /**

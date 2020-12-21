@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
-namespace Boxalino\InstantUpdate\Service;
+namespace Boxalino\DataIntegrationDoc\Service;
 
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
 
 /**
  * Interface GcpClientInterface
- * @package Boxalino\InstantUpdate\Service
+ * @package Boxalino\DataIntegrationDoc\Service
  */
 interface GcpClientInterface
 {
