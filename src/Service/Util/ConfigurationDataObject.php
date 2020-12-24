@@ -36,6 +36,14 @@ class ConfigurationDataObject extends AbstractSimpleObject
     }
 
     /**
+     * @return string|null
+     */
+    public function getApiSecret() : ?string
+    {
+        return $this->_get("apiSecret");
+    }
+
+    /**
      * @return bool|null
      */
     public function isDev() : ?bool

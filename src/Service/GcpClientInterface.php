@@ -35,9 +35,10 @@ interface GcpClientInterface
      * @param \ArrayIterator $documents
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      * @throws \Throwable
      */
-    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm) : void;
+    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm, string $ts) : void;
 
     /**
      * Load a document to GCP
@@ -47,8 +48,9 @@ interface GcpClientInterface
      * @param string $type
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      */
-    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm) : void;
+    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm, string $ts) : void;
 
     /**
      * Make a sync request once all the data sync contents have been exported
@@ -56,7 +58,8 @@ interface GcpClientInterface
      * @param ConfigurationDataObject $configurationDataObject
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      */
-    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm) : void;
+    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm, string $ts) : void;
 
 }

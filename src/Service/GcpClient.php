@@ -51,9 +51,10 @@ class GcpClient implements GcpClientInterface
         if($this->allowIndexing($configurationDataObject->getEndpoint()))
         {
             try {
-                $tm = date("YmdHis");
-                $this->load($configurationDataObject, $documents, $mode, $tm);
-                $this->sync($configurationDataObject,$mode, $tm);
+                $tm = gmdate("YmdHis");
+                $ts = $this->getMsTs();
+                $this->load($configurationDataObject, $documents, $mode, $tm, $ts);
+                $this->sync($configurationDataObject,$mode, $tm, $ts);
             } catch (FailDocLoadException $exception)
             {
                 throw $exception;
@@ -72,9 +73,10 @@ class GcpClient implements GcpClientInterface
      * @param \ArrayIterator $documents
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      * @throws \Throwable
      */
-    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm) : void
+    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm, string $ts) : void
     {
         try{
             foreach($documents as $type => $document)
@@ -83,13 +85,14 @@ class GcpClient implements GcpClientInterface
                 {
                     $this->log($document);
                 }
-                
+
                 $this->loadDoc(
                     $configurationDataObject,
                     $document,
                     $type,
                     $mode,
-                    $tm
+                    $tm,
+                    $ts
                 );
             }
         } catch (FailDocLoadException $exception)
@@ -109,8 +112,9 @@ class GcpClient implements GcpClientInterface
      * @param string $type
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      */
-    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm) : void
+    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm, string $ts) : void
     {
         try{
             $this->getClient()->send(
@@ -123,12 +127,13 @@ class GcpClient implements GcpClientInterface
                         'dev' => $configurationDataObject->isDev(),
                         'doc' => $type,
                         'mode'=> $mode,
-                        'tm' => $tm
+                        'tm' => $tm,
+                        'ts' => $ts
                     ],
                     $document
                 ),
                 [
-                    'auth' => [$configurationDataObject->getAccount(), $configurationDataObject->getApiKey(), 'basic']
+                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic']
                 ]
             );
         } catch (\Throwable $exception)
@@ -143,8 +148,9 @@ class GcpClient implements GcpClientInterface
      * @param ConfigurationDataObject $configurationDataObject
      * @param string $mode
      * @param string $tm
+     * @param string $ts
      */
-    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm) : void
+    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm, string $ts) : void
     {
         try{
             $this->getClient()->send(
@@ -156,11 +162,12 @@ class GcpClient implements GcpClientInterface
                         'client' => $configurationDataObject->getAccount(),
                         'dev' => $configurationDataObject->isDev(),
                         'mode'=> $mode,
-                        'tm' => $tm
+                        'tm' => $tm,
+                        'ts' => $ts
                     ]
                 ),
                 [
-                    'auth' => [$configurationDataObject->getAccount(), $configurationDataObject->getApiKey(), 'basic']
+                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic']
                 ]
             );
         } catch (\Throwable $exception)
@@ -222,6 +229,20 @@ class GcpClient implements GcpClientInterface
     public function log(string $message) : void
     {
         $this->logger->info($message);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMsTs() : string
+    {
+        try{
+            list($usec, $sec) = explode(" ", microtime());
+            return ((float)$usec*1000 + (float)$sec*1000);
+        } catch (\Throwable $exception)
+        {
+            return (new \DateTime())->getTimestamp() * 1000;
+        }
     }
 
 }
