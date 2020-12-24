@@ -238,10 +238,12 @@ class GcpClient implements GcpClientInterface
     {
         try{
             list($usec, $sec) = explode(" ", microtime());
-            return ((float)$usec*1000 + (float)$sec*1000);
+            $ts = (string) ((float)$usec*1000 + (float)$sec*1000);
+            
+            return substr($ts, 0, strpos($ts, '.'));
         } catch (\Throwable $exception)
         {
-            return (new \DateTime())->getTimestamp() * 1000;
+            return (string) (new \DateTime())->getTimestamp() * 1000;
         }
     }
 
