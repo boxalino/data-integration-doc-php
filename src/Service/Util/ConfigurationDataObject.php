@@ -58,5 +58,13 @@ class ConfigurationDataObject extends AbstractSimpleObject
     {
         return $this->_get("isTest") ?? false;
     }
-    
+
+    /**
+     * @return array
+     */
+    public function getData() : array
+    {
+        return $this->_data;
+    }
+
 }

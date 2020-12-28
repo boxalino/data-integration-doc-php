@@ -138,7 +138,7 @@ class GcpClient implements GcpClientInterface
             );
         } catch (\Throwable $exception)
         {
-            throw new FailDocLoadException("Doc Load failed for $account on $mode mode at $tm with exception: " . $exception->getMessage());
+            throw new FailDocLoadException("Doc Load failed for {$configurationDataObject->getAccount()} on $mode mode at $tm with exception: " . $exception->getMessage());
         }
     }
 
@@ -172,7 +172,7 @@ class GcpClient implements GcpClientInterface
             );
         } catch (\Throwable $exception)
         {
-            throw new FailSyncException("$mode mode sync request failed for $account on $tm with exception: " . $exception->getMessage());
+            throw new FailSyncException("$mode mode sync request failed for {$configurationDataObject->getAccount()} on $tm with exception: " . $exception->getMessage());
         }
     }
 
@@ -239,7 +239,7 @@ class GcpClient implements GcpClientInterface
         try{
             list($usec, $sec) = explode(" ", microtime());
             $ts = (string) ((float)$usec*1000 + (float)$sec*1000);
-            
+
             return substr($ts, 0, strpos($ts, '.'));
         } catch (\Throwable $exception)
         {
