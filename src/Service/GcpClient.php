@@ -25,11 +25,17 @@ class GcpClient implements GcpClientInterface
      */
     protected $environment;
 
-    public function __construct(LoggerInterface $logger, string $environment)
+    /**
+     * @var 
+     */
+    protected $timeout;
+
+    public function __construct(LoggerInterface $logger, string $environment, int $timeout = 3)
     {
         $this->logger = $logger;
         $this->environment = $environment;
         $this->client = new Client();
+        $this->timeout = $timeout;
     }
 
     /**
@@ -133,11 +139,17 @@ class GcpClient implements GcpClientInterface
                     $document
                 ),
                 [
-                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic']
+                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic'],
+                    'connect_timeout' => $this->timeout
                 ]
             );
         } catch (\Throwable $exception)
         {
+            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            {
+                return;
+            }
+
             throw new FailDocLoadException("Doc Load failed for {$configurationDataObject->getAccount()} on $mode mode at $tm with exception: " . $exception->getMessage());
         }
     }
@@ -167,11 +179,16 @@ class GcpClient implements GcpClientInterface
                     ]
                 ),
                 [
-                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic']
+                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic'],
+                    'connect_timeout' => $this->timeout
                 ]
             );
         } catch (\Throwable $exception)
         {
+            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            {
+                return;
+            }
             throw new FailSyncException("$mode mode sync request failed for {$configurationDataObject->getAccount()} on $tm with exception: " . $exception->getMessage());
         }
     }
