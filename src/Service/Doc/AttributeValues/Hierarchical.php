@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
+namespace Boxalino\DataIntegrationDoc\Service\Doc\AttributeValues;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
