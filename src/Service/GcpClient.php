@@ -260,7 +260,8 @@ class GcpClient implements GcpClientInterface
             return substr($ts, 0, strpos($ts, '.'));
         } catch (\Throwable $exception)
         {
-            return (string) (new \DateTime())->getTimestamp() * 1000;
+            $ts = (new \DateTime())->getTimestamp() * 1000;
+            return (string) $ts;
         }
     }
 
