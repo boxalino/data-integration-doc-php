@@ -64,10 +64,19 @@ trait DocProductAttributeTrait
             AttributeHandlerInterface::ATTRIBUTE_TYPE_CREATION,
             AttributeHandlerInterface::ATTRIBUTE_TYPE_UPDATE,
             AttributeHandlerInterface::ATTRIBUTE_TYPE_LABEL,
+            AttributeHandlerInterface::ATTRIBUTE_TYPE_EAN,
+            AttributeHandlerInterface::ATTRIBUTE_TYPE_TYPE
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getBooleanSchemaTypes() : array
+    {
+        return [
             AttributeHandlerInterface::ATTRIBUTE_TYPE_NEW,
             AttributeHandlerInterface::ATTRIBUTE_TYPE_SALE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_EAN,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_TYPE,
             AttributeHandlerInterface::ATTRIBUTE_TYPE_INDIVIDUALLY_VISIBLE,
             AttributeHandlerInterface::ATTRIBUTE_TYPE_SHOW_OUT_OF_STOCK
         ];

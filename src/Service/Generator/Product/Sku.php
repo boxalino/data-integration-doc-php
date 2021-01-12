@@ -302,14 +302,15 @@ class Sku  implements \JsonSerializable, DocGeneratorInterface
     }
 
     /**
-     * @param bool $show_out_of_stock
+     * @param bool | string | int | null $show_out_of_stock
      * @return self
      */
-    public function setShowOutOfStock(bool $show_out_of_stock): self
+    public function setShowOutOfStock($show_out_of_stock): self
     {
-        $this->show_out_of_stock = $show_out_of_stock;
+        $this->show_out_of_stock = (bool) $show_out_of_stock;
         return $this;
     }
+
 
 
 }
