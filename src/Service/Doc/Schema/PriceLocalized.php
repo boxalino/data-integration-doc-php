@@ -24,6 +24,11 @@ class PriceLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $currency;
 
     /**
+     * @var string
+     */
+    protected $region;
+
+    /**
      * @return string
      */
     public function getLanguage(): string

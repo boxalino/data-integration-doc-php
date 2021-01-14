@@ -25,7 +25,7 @@ class Sku  implements \JsonSerializable, DocGeneratorInterface
     /**
      * @var Array<<Price>>
      */
-    protected $price = [];
+    protected $price;
 
     /**
      * @var Array<<Visibility>>

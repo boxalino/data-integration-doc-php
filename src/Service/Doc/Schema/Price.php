@@ -33,6 +33,11 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $gross_margin = [];
 
     /**
+     * @var Array<<OtherPriceLocalized>>
+     */
+    protected $other_prices = [];
+
+    /**
      * @return Array
      */
     public function getCustomerGroups(): array
@@ -138,5 +143,25 @@ class Price implements \JsonSerializable, DocSchemaDefinitionInterface
         return $this;
     }
 
+    /**
+     * @return Array
+     */
+    public function getOtherPrices(): array
+    {
+        return $this->other_prices;
+    }
+
+    /**
+     * @param Array<<OtherPriceLocalized>> $other_prices
+     * @return Price
+     */
+    public function setOtherPrices(array $other_prices): Price
+    {
+        foreach($other_prices as $price)
+        {
+            $this->other_prices[] = $price->toArray();
+        }
+        return $this;
+    }
 
 }

@@ -2,6 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
@@ -27,6 +28,11 @@ class Group implements \JsonSerializable, DocGeneratorInterface
      * @var Array
      */
     protected $pricing = [];
+
+    /**
+     * @var Array
+     */
+    protected $price;
 
     /**
      * @var Array<<Visibility>>
@@ -168,5 +174,34 @@ class Group implements \JsonSerializable, DocGeneratorInterface
 
         return $this;
     }
+
+    /**
+     * @return Array
+     */
+    public function getPrice(): array
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param Array $price
+     * @return self
+     */
+    public function setPrice(array $price): self
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     * @param Price $price
+     * @return $this
+     */
+    public function addPrice(Price $price) : self
+    {
+        $this->price[] = $price->toArray();
+        return $this;
+    }
+
 
 }
