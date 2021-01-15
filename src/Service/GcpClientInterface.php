@@ -12,12 +12,11 @@ use Psr\Log\LoggerInterface;
 interface GcpClientInterface
 {
 
-    public const INDEXER_ENDPOINT="https://solrsync-stage.bx-cloud.com/solrsync/upload?account=%%account%%&type=datadelta&priority=urgent&versionTs=%%timestamp%%";
-
     public const GCP_ENDPOINT_LOAD="/load";
     public const GCP_ENDPOINT_SYNC="/sync";
     
-    public const GCP_MODE_INSTANT_UPDATE="D";
+    public const GCP_MODE_INSTANT_UPDATE="I";
+    public const GCP_MODE_DELTA="D";
     public const GCP_MODE_FULL="F";
 
     public function getClient() : Client;
