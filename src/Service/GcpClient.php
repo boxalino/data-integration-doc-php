@@ -26,7 +26,7 @@ class GcpClient implements GcpClientInterface
     protected $environment;
 
     /**
-     * @var 
+     * @var
      */
     protected $timeout;
 
@@ -145,7 +145,7 @@ class GcpClient implements GcpClientInterface
             );
         } catch (\Throwable $exception)
         {
-            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            if(strpos($exception->getMessage(), "timed out after"))
             {
                 return;
             }
@@ -185,7 +185,7 @@ class GcpClient implements GcpClientInterface
             );
         } catch (\Throwable $exception)
         {
-            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            if(strpos($exception->getMessage(), "timed out after"))
             {
                 return;
             }
