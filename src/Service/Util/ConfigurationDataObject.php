@@ -48,7 +48,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function isDev() : ?bool
     {
-        return $this->_get("isDev");
+        return $this->_get("isDev") ?? false;
     }
 
     /**
@@ -57,6 +57,30 @@ class ConfigurationDataObject extends AbstractSimpleObject
     public function isTest() : bool
     {
         return $this->_get("isTest") ?? false;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType() : ?string
+    {
+        return $this->_get("type");
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProject() : ?string
+    {
+        return $this->_get("project");
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDataset() : ?string
+    {
+        return $this->_get("dataset");
     }
 
     /**

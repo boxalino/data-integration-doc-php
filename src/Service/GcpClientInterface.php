@@ -14,10 +14,17 @@ interface GcpClientInterface
 
     public const GCP_ENDPOINT_LOAD="/load";
     public const GCP_ENDPOINT_SYNC="/sync";
-    
+
     public const GCP_MODE_INSTANT_UPDATE="I";
     public const GCP_MODE_DELTA="D";
     public const GCP_MODE_FULL="F";
+
+    public const GCP_TYPE_PRODUCT="product";
+    public const GCP_TYPE_ORDER="order";
+    public const GCP_TYOE_USER="user";
+    public const GCP_TYPE_USER_CONTENT="user_content";
+    public const GCP_TYPE_USER_SELECTION="user_selection";
+    public const GCP_TYOE_CONTENT="content";
 
     public function getClient() : Client;
 

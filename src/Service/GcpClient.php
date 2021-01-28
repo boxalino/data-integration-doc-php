@@ -165,18 +165,22 @@ class GcpClient implements GcpClientInterface
     public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm, string $ts) : void
     {
         try{
+            $properties = [
+                'Content-Type' => 'application/json',
+                'client' => $configurationDataObject->getAccount(),
+                'dev' => $configurationDataObject->isDev(),
+                'type' => $configurationDataObject->getType(),
+                'project' => $configurationDataObject->getProject(),
+                'dataset' => $configurationDataObject->getDataset(),
+                'mode'=> $mode,
+                'tm' => $tm,
+                'ts' => $ts
+            ];
             $this->getClient()->send(
                 new Request(
                     'POST',
                     $this->getEndpointSync($configurationDataObject->getEndpoint()),
-                    [
-                        'Content-Type' => 'application/json',
-                        'client' => $configurationDataObject->getAccount(),
-                        'dev' => $configurationDataObject->isDev(),
-                        'mode'=> $mode,
-                        'tm' => $tm,
-                        'ts' => $ts
-                    ]
+                    array_filter($properties)
                 ),
                 [
                     'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic'],
