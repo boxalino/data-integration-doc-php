@@ -13,11 +13,11 @@ class Attribute implements AttributeHandlerInterface
 {
     use DocProductAttributeTrait;
 
-    public const INSTANT_UPDATE_ID_FIELD = 'instant_update_id';
+    public const DI_ID_FIELD = 'instant_update_id';
 
-    public const INSTANT_UPDATE_PARENT_ID_FIELD = 'doc_parent';
+    public const DI_PARENT_ID_FIELD = 'doc_parent';
 
-    public const INSTANT_UPDATE_DOC_TYPE_FIELD = 'doc_type';
+    public const DI_DOC_TYPE_FIELD = 'doc_type';
 
     /**
      * @var \ArrayObject

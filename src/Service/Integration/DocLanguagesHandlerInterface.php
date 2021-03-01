@@ -12,6 +12,6 @@ use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc;
 interface DocLanguagesHandlerInterface extends DocHandlerInterface
 {
 
-    public const DOC_TYPE = "doc_languages";
+    public const DOC_TYPE = "doc_language";
 
 }

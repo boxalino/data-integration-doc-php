@@ -11,7 +11,7 @@ use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerI
 interface DocAttributeValuesHandlerInterface extends DocHandlerInterface
 {
 
-    public const DOC_TYPE = "doc_attribute_values";
+    public const DOC_TYPE = "doc_attribute_value";
 
     /**
      * @param AttributeHandlerInterface $attributeHandler
