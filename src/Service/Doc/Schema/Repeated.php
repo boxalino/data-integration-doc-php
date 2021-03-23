@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class Repeated
@@ -9,7 +10,7 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
+class Repeated implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;
@@ -20,9 +21,9 @@ class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
     protected $name;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<RepeatedLocalized>>
      */
-    protected $value = [];
+    protected $values = [];
 
     /**
      * @return string
@@ -45,7 +46,7 @@ class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
     /**
      * @return Array
      */
-    public function getValue(): array
+    public function getValues(): array
     {
         return $this->value;
     }
@@ -54,19 +55,19 @@ class Repeated implements \JsonSerializable, DocSchemaDefinitionInterface
      * @param Array $value
      * @return Repeated
      */
-    public function setValue(array $value): Repeated
+    public function setValues(array $value): Repeated
     {
-        $this->value = $value;
+        $this->values = $value;
         return $this;
     }
 
     /**
-     * @param Localized $localizeds
+     * @param RepeatedLocalized $localizeds
      * @return $this
      */
-    public function addValue(Localized $localized) : self
+    public function addValue(RepeatedLocalized $localized) : self
     {
-        $this->value[] = $localized->toArray();
+        $this->values[] = $localized->toArray();
         return $this;
     }
 

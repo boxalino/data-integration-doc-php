@@ -3,7 +3,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\DocProductTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
@@ -12,7 +12,7 @@ use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Generator\Product
  */
-class Line implements \JsonSerializable, DocGeneratorInterface
+class Line implements DocGeneratorInterface
 {
 
     use DocProductTrait;

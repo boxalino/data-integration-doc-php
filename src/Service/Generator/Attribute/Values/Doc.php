@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Values;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\AttributeValue;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
@@ -15,11 +14,28 @@ use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
  * @package Boxalino\DataIntegrationDoc\Service\Generator
  */
 class Doc extends AttributeValue
-    implements \JsonSerializable, DocGeneratorInterface
+    implements DocGeneratorInterface
 {
 
-    use DocPropertiesTrait;
     use GeneratorHydratorTrait;
+
+    /**
+     * @return string
+     */
+    public function getCreationTm(): string
+    {
+        return $this->creation_tm;
+    }
+
+    /**
+     * @param string $creation_tm
+     * @return AttributeValue
+     */
+    public function setCreationTm(string $creation_tm): AttributeValue
+    {
+        $this->creation_tm = is_null($creation_tm) ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($creation_tm));
+        return $this;
+    }
 
 
 }

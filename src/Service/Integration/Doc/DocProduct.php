@@ -1,13 +1,15 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Group;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Line;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
 
 /**
  * Class DocProduct
@@ -16,49 +18,12 @@ use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerI
  */
 class DocProduct implements DocProductHandlerInterface
 {
+    use DocGeneratorTrait;
     use DocIntegrationTrait;
-
-    /**
-     * @var \ArrayIterator
-     */
-    protected $attributeHandlerList;
-
-    /**
-     * @var array | null
-     */
-    protected $docProductData = null;
-
 
     public function __construct()
     {
         $this->attributeHandlerList = new \ArrayIterator();
-    }
-
-    /**
-     * Create the product groups content (based on the IDs to be updated)
-     *
-     * Structure of the array:
-     * [product1=>[property1=>property1schema, property2=>property2schema,[..]],..]
-     *
-     * @return array
-     */
-    public function getDocProductData() : array
-    {
-        if(is_null($this->docProductData))
-        {
-            $data = [];
-            foreach($this->attributeHandlerList as $handler)
-            {
-                if($handler instanceof AttributeHandlerInterface)
-                {
-                    $data = array_merge_recursive($data, $handler->getValues());
-                }
-            }
-
-            $this->docProductData = $data;
-        }
-
-        return $this->docProductData;
     }
 
     /**
@@ -67,27 +32,6 @@ class DocProduct implements DocProductHandlerInterface
     public function getDocType() : string
     {
         return DocProductHandlerInterface::DOC_TYPE;
-    }
-
-    /**
-     * Dynamically configure the attribute handlers for every data type to be retrieved
-     * (the handler must have DB access information for the attribute element data)
-     *
-     * @param AttributeHandlerInterface $attributeHandler
-     * @return DocHandlerInterface
-     */
-    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocHandlerInterface
-    {
-        $this->attributeHandlerList->append($attributeHandler);
-        return $this;
-    }
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getHandlers() : \ArrayIterator
-    {
-        return $this->attributeHandlerList;
     }
 
     /**
@@ -101,7 +45,7 @@ class DocProduct implements DocProductHandlerInterface
         $docSchemaAttributes = [];
         foreach($this->getHandlers() as $handler)
         {
-            if($handler instanceof AttributeHandlerInterface)
+            if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
                 $docSchemaAttributes = array_merge($data, $handler->getDocSchemaAttributes());
             }
@@ -129,7 +73,7 @@ class DocProduct implements DocProductHandlerInterface
         $propertyDiff = array_diff(array_keys($diffObjectProperties), array_keys($objectProperties));
         $diffObjectData = array_filter($data, function($property) use ($propertyDiff)
         {
-            return in_array($property, $propertyDiff) || $property === AttributeHandlerInterface::ATTRIBUTE_TYPE_INTERNAL_ID;
+            return in_array($property, $propertyDiff) || $property === DocSchemaInterface::FIELD_INTERNAL_ID;
         }, ARRAY_FILTER_USE_KEY);
 
         return $this->getDocPropertySchema($diffObjectType, $diffObjectData);

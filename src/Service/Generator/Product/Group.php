@@ -6,7 +6,7 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
@@ -15,9 +15,8 @@ use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Generator\Product
  */
-class Group implements \JsonSerializable, DocGeneratorInterface
+class Group implements DocGeneratorInterface
 {
-
     use DocProductTrait;
     use DocPropertiesTrait;
     use GeneratorHydratorTrait;

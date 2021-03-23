@@ -1,8 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Generator;
 
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
-
 /**
  * Class GeneratorHydratorTrait
  * Is able to map an array-like to the requested object type (ex: doc_product)

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaInterface;
 
 /**
  * Trait DocProductAttributeTrait
@@ -17,12 +17,12 @@ trait DocProductAttributeTrait
     public function getLocalizedSchemaProperties(): array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STATUS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_TITLE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DESCRIPTION,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SHORT_DESCRIPTION,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_LINK,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_LABELS,
+            DocSchemaInterface::FIELD_STATUS,
+            DocSchemaInterface::FIELD_TITLE,
+            DocSchemaInterface::FIELD_DESCRIPTION,
+            DocSchemaInterface::FIELD_SHORT_DESCRIPTION,
+            DocSchemaInterface::FIELD_LINK,
+            DocSchemaInterface::FIELD_LABELS,
         ];
     }
 
@@ -32,9 +32,9 @@ trait DocProductAttributeTrait
     public function getTypedSchemaProperties(): array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STRING,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_NUMERIC,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DATETIME,
+            DocSchemaInterface::FIELD_STRING,
+            DocSchemaInterface::FIELD_NUMERIC,
+            DocSchemaInterface::FIELD_DATETIME,
         ];
     }
 
@@ -44,11 +44,11 @@ trait DocProductAttributeTrait
     public function getTypedLocalizedSchemaProperties(): array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STRING_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_NUMERIC_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DATETIME_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_BRANDS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SUPPLIERS,
+            DocSchemaInterface::FIELD_STRING_LOCALIZED,
+            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
+            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
+            DocSchemaInterface::FIELD_BRANDS,
+            DocSchemaInterface::FIELD_SUPPLIERS,
         ];
     }
 
@@ -58,14 +58,18 @@ trait DocProductAttributeTrait
     public function getSingleValueSchemaTypes() : array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_INTERNAL_ID,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_EXTERNAL_ID,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SKU,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_CREATION,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_UPDATE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_LABEL,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_EAN,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_TYPE
+            DocSchemaInterface::FIELD_INTERNAL_ID,
+            DocSchemaInterface::FIELD_EXTERNAL_ID,
+            DocSchemaInterface::FIELD_SKU,
+            DocSchemaInterface::FIELD_CREATION,
+            DocSchemaInterface::FIELD_UPDATE,
+            DocSchemaInterface::FIELD_LABEL,
+            DocSchemaInterface::FIELD_EAN,
+            DocSchemaInterface::FIELD_TYPE,
+            DocSchemaInterface::FIELD_TITLE,
+            DocSchemaInterface::FIELD_DESCRIPTION,
+            DocSchemaInterface::FIELD_SHORT_DESCRIPTION,
+            DocSchemaInterface::FIELD_LINK
         ];
     }
 
@@ -75,10 +79,10 @@ trait DocProductAttributeTrait
     public function getBooleanSchemaTypes() : array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_NEW,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SALE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_INDIVIDUALLY_VISIBLE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SHOW_OUT_OF_STOCK
+            DocSchemaInterface::FIELD_NEW,
+            DocSchemaInterface::FIELD_SALE,
+            DocSchemaInterface::FIELD_INDIVIDUALLY_VISIBLE,
+            DocSchemaInterface::FIELD_SHOW_OUT_OF_STOCK
         ];
     }
 
@@ -88,29 +92,25 @@ trait DocProductAttributeTrait
     public function getMultivalueSchemaTypes() : array
     {
         return [
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STATUS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_VISIBILITY,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_CATEGORIES,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_TITLE,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DESCRIPTION,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SHORT_DESCRIPTION,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STOCK,
-            #AttributeHandlerInterface::ATTRIBUTE_TYPE_STORES,
-            #AttributeHandlerInterface::ATTRIBUTE_TYPE_PRICE,
-            #AttributeHandlerInterface::ATTRIBUTE_TYPE_PRICING,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STRING,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_STRING_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_NUMERIC,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_NUMERIC_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DATETIME,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_DATETIME_LOCALIZED,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_PRODUCT_RELATIONS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_IMAGES,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_LINK,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_BRANDS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_SUPPLIERS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_LABELS,
-            AttributeHandlerInterface::ATTRIBUTE_TYPE_PERIODS
+            DocSchemaInterface::FIELD_STATUS,
+            DocSchemaInterface::FIELD_VISIBILITY,
+            DocSchemaInterface::FIELD_CATEGORIES,
+            DocSchemaInterface::FIELD_STOCK,
+            #DocSchemaInterface::FIELD_STORES,
+            #DocSchemaInterface::FIELD_PRICE,
+            #DocSchemaInterface::FIELD_PRICING,
+            DocSchemaInterface::FIELD_STRING,
+            DocSchemaInterface::FIELD_STRING_LOCALIZED,
+            DocSchemaInterface::FIELD_NUMERIC,
+            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
+            DocSchemaInterface::FIELD_DATETIME,
+            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
+            DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
+            DocSchemaInterface::FIELD_IMAGES,
+            DocSchemaInterface::FIELD_BRANDS,
+            DocSchemaInterface::FIELD_SUPPLIERS,
+            DocSchemaInterface::FIELD_LABELS,
+            DocSchemaInterface::FIELD_PERIODS
         ];
     }
 

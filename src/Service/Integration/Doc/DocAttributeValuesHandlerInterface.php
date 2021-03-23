@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
 
 /**
  * Interface DocAttributeValuesHandlerInterface
@@ -14,10 +15,10 @@ interface DocAttributeValuesHandlerInterface extends DocHandlerInterface
     public const DOC_TYPE = "doc_attribute_value";
 
     /**
-     * @param AttributeHandlerInterface $attributeHandler
+     * @param DocPropertiesInterface $attributeHandler
      * @return DocHandlerInterface
      */
-    public function addHandler(AttributeHandlerInterface $handler) : DocHandlerInterface;
+    public function addHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
 
     /**
      * @return \ArrayIterator

@@ -11,6 +11,7 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
@@ -19,9 +20,9 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 
-class Product implements \JsonSerializable
+class Product implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;
@@ -638,10 +639,10 @@ class Product implements \JsonSerializable
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param RepeatedLocalized ...$repeateds
      * @return $this
      */
-    public function addImages(Repeated  ...$repeateds) : self
+    public function addImages(RepeatedLocalized  ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -665,7 +666,7 @@ class Product implements \JsonSerializable
      */
     public function setLink(array $link): Product
     {
-        $this->link = $link;
+        $this->link = $link->toArray();
         return $this;
     }
 

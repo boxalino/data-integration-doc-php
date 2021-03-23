@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 
 /**
  * Class Language
@@ -9,7 +9,7 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
-class Language implements \JsonSerializable
+class Language implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
 

@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class Period
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class Period implements \JsonSerializable, DocSchemaDefinitionInterface
+class Period implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;

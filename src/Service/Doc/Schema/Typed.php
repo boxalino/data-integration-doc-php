@@ -3,14 +3,15 @@ namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class Typed
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class Typed implements \JsonSerializable, DocSchemaDefinitionInterface
+class Typed implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;

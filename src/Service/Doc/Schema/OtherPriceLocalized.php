@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 class OtherPriceLocalized extends PriceLocalized
-    implements \JsonSerializable, DocSchemaDefinitionInterface
+    implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
 
@@ -53,6 +54,6 @@ class OtherPriceLocalized extends PriceLocalized
         $this->type = $type;
         return $this;
     }
-    
+
 
 }

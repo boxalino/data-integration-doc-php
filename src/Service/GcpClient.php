@@ -8,6 +8,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class GcpClient
+ *
+ * @package Boxalino\DataIntegrationDoc\Service
+ */
 class GcpClient implements GcpClientInterface
 {
     /**
@@ -57,7 +62,7 @@ class GcpClient implements GcpClientInterface
         if($this->allowIndexing($configurationDataObject->getEndpoint()))
         {
             try {
-                $tm = gmdate("YmdHis");
+                $tm = $this->getTm();
                 $ts = $this->getMsTs();
                 $this->load($configurationDataObject, $documents, $mode, $tm, $ts);
                 $this->sync($configurationDataObject,$mode, $tm, $ts);
@@ -129,12 +134,12 @@ class GcpClient implements GcpClientInterface
                     $this->getEndpointLoad($configurationDataObject->getEndpoint()),
                     [
                         'Content-Type' => 'application/json',
-                        'client' => $configurationDataObject->getAccount(),
-                        'dev' => $configurationDataObject->isDev(),
-                        'doc' => $type,
-                        'mode'=> $mode,
-                        'tm' => $tm,
-                        'ts' => $ts
+                        GcpClientInterface::DI_REQUEST_CLIENT   => $configurationDataObject->getAccount(),
+                        GcpClientInterface::DI_REQUEST_DEV      => $configurationDataObject->isDev(),
+                        GcpClientInterface::DI_REQUEST_DOC      => $type,
+                        GcpClientInterface::DI_REQUEST_MODE     => $mode,
+                        GcpClientInterface::DI_REQUEST_TM       => $tm,
+                        GcpClientInterface::DI_REQUEST_TS       => $ts
                     ],
                     $document
                 ),
@@ -167,14 +172,14 @@ class GcpClient implements GcpClientInterface
         try{
             $properties = [
                 'Content-Type' => 'application/json',
-                'client' => $configurationDataObject->getAccount(),
-                'dev' => $configurationDataObject->isDev(),
-                'type' => $configurationDataObject->getType(),
-                'project' => $configurationDataObject->getProject(),
-                'dataset' => $configurationDataObject->getDataset(),
-                'mode'=> $mode,
-                'tm' => $tm,
-                'ts' => $ts
+                GcpClientInterface::DI_REQUEST_CLIENT   => $configurationDataObject->getAccount(),
+                GcpClientInterface::DI_REQUEST_DEV      => $configurationDataObject->isDev(),
+                GcpClientInterface::DI_REQUEST_TYPE     => $configurationDataObject->getType(),
+                GcpClientInterface::DI_REQUEST_PROJECT  => $configurationDataObject->getProject(),
+                GcpClientInterface::DI_REQUEST_DATASET  => $configurationDataObject->getDataset(),
+                GcpClientInterface::DI_REQUEST_MODE     => $mode,
+                GcpClientInterface::DI_REQUEST_TM       => $tm,
+                GcpClientInterface::DI_REQUEST_TS       => $ts
             ];
             $this->getClient()->send(
                 new Request(
@@ -267,6 +272,14 @@ class GcpClient implements GcpClientInterface
             $ts = (new \DateTime())->getTimestamp() * 1000;
             return (string) $ts;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTm() : string
+    {
+        return gmdate("YmdHis");
     }
 
 }

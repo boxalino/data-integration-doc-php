@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
+use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
+
 /**
  * Class IntegrationHandler
  *
@@ -9,13 +12,13 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration;
 class IntegrationHandler implements IntegrationHandlerInterface
 {
     /**
-     * @var \ArrayIterator
+     * @var \ArrayObject
      */
     protected $docHandlerList;
 
     public function __construct()
     {
-        $this->docHandlerList = new \ArrayIterator();
+        $this->docHandlerList = new \ArrayObject();
     }
 
     /**
@@ -38,18 +41,20 @@ class IntegrationHandler implements IntegrationHandlerInterface
      * Dynamically configure the document handlers for every doc type to be exported
      *
      * @param DocHandlerInterface $docHandler
+     * @param string $integrationStrategy F | I | D
      * @return IntegrationHandlerInterface
      */
     public function addHandler(DocHandlerInterface $docHandler) : IntegrationHandlerInterface
     {
         $this->docHandlerList->append($docHandler);
+
         return $this;
     }
 
     /**
-     * @return \ArrayIterator
+     * @return \ArrayObject
      */
-    public function getHandlers(): \ArrayIterator
+    public function getHandlers(): \ArrayObject
     {
         return $this->docHandlerList;
     }

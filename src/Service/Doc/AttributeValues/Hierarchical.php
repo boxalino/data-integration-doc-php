@@ -3,7 +3,8 @@ namespace Boxalino\DataIntegrationDoc\Service\Doc\AttributeValues;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class Hierarchical

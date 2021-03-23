@@ -1,16 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc as LanguagesDoc;
-use Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Values\Doc as AttributeValuesDoc;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc as ProductDoc;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Group;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Line;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocLanguagesHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocProductHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 
 /**
  * Trait DocIntegrationTrait
@@ -19,74 +11,62 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  */
 trait DocIntegrationTrait
 {
-   use DocPropertiesTrait;
 
     /**
-     * @var array
+     * @var \ArrayIterator
      */
-   protected $docs = [];
+    protected $attributeHandlerList;
 
     /**
-     * @var string
+     * @var null
      */
-   protected $creation_tm;
+    protected $docData = null;
 
     /**
-     * @param DocGeneratorInterface $doc
+     * Dynamically configure the attribute handlers for every data type to be retrieved
+     * (the handler must have DB access information for the attribute element data)
+     *
+     * @param DocSchemaPropertyHandlerInterface $attributeHandler
+     * @return DocHandlerInterface
      */
-    public function addDocLine(DocGeneratorInterface $doc)
+    public function addHandler(DocSchemaPropertyHandlerInterface $attributeHandler) : DocHandlerInterface
     {
-        $this->docs[] = $doc;
+        $this->attributeHandlerList->append($attributeHandler);
+        return $this;
     }
 
     /**
-     * @return string | JSONL
+     * @return \ArrayIterator
      */
-    public function getDoc() : string
+    public function getHandlers() : \ArrayIterator
     {
-        $docs = [];
-        /** @var DocGeneratorInterface $doc */
-        foreach($this->docs as $doc)
+        return $this->attributeHandlerList;
+    }
+
+    /**
+     * Create the content (based on the IDs to be updated)
+     *
+     * Structure of the array:
+     * [product1=>[property1=>property1schema, property2=>property2schema,[..]],..]
+     *
+     * @return array
+     */
+    public function generateDocData() : array
+    {
+        if(is_null($this->docData))
         {
-            $docs[] = $doc->jsonSerialize();
+            $data = [];
+            foreach($this->getHandlers() as $handler)
+            {
+                if($handler instanceof DocSchemaPropertyHandlerInterface)
+                {
+                    $data = array_merge_recursive($data, $handler->getValues());
+                }
+            }
+
+            $this->docData = $data;
         }
 
-        return implode("\n", $docs);
+        return $this->docData;
     }
-
-    /**
-     * @param string $type
-     * @param array $data
-     * @return DocGeneratorInterface
-     */
-    public function getDocPropertySchema(string $type, array $data = []) : DocGeneratorInterface
-    {
-        switch($type)
-        {
-            case DocAttributeValuesHandlerInterface::DOC_TYPE:
-                $schema = new AttributeValuesDoc($data);
-                break;
-            case DocLanguagesHandlerInterface::DOC_TYPE:
-                $schema = new LanguagesDoc();
-                break;
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_SKU:
-                $schema = new Sku($data);
-                break;
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_GROUP:
-                $schema = new Group($data);
-                break;
-            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_LINE:
-                $schema = new Line($data);
-                break;
-            case DocProductHandlerInterface::DOC_TYPE:
-                $schema = new ProductDoc();
-                break;
-            default:
-                break;
-        }
-
-        return $schema;
-    }
-
-
 }

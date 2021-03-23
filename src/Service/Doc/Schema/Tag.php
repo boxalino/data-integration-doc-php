@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
-class Tag implements \JsonSerializable, DocSchemaDefinitionInterface
+class Tag implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;

@@ -3,7 +3,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 
 /**
  * Class AttributeValue
@@ -13,7 +13,7 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc
  */
-class AttributeValue implements \JsonSerializable
+class AttributeValue implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
 
@@ -130,7 +130,7 @@ class AttributeValue implements \JsonSerializable
         {
             $this->value_label[] = $value->toArray();
         }
-        
+
         return $this;
     }
 

@@ -667,7 +667,7 @@ trait DocProductTrait
      * @param Array<<Localized>> $localizeds
      * @return $this
      */
-    public function addLinks(array $localizeds): self
+    public function addLink(array $localizeds): self
     {
         foreach($localizeds as $localized)
         {
@@ -681,7 +681,7 @@ trait DocProductTrait
      * @param Localized $localized
      * @return $this
      */
-    public function addLink(Localized  $localized): self
+    public function addLinks(Localized  $localized): self
     {
         $this->link[] = $localized->toArray();
         return $this;

@@ -1,8 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\DocSchemaDefinitionInterface;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
@@ -14,7 +13,7 @@ use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Generator
  */
-class Doc implements \JsonSerializable, DocGeneratorInterface
+class Doc implements DocGeneratorInterface
 {
 
     use DocPropertiesTrait;

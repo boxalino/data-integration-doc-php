@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Service\Integration;
+namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocProduct\AttributeHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
 
 /**
  * Interface DocProductHandlerInterface
@@ -19,10 +19,10 @@ interface DocProductHandlerInterface extends DocHandlerInterface
     public const DOC_PRODUCT_LEVEL_GROUP = 'product_groups';
 
     /**
-     * @param AttributeHandlerInterface $attributeHandler
+     * @param DocSchemaPropertyHandlerInterface $attributeHandler
      * @return DocHandlerInterface
      */
-    public function addHandler(AttributeHandlerInterface $attributeHandler) : DocHandlerInterface;
+    public function addHandler(DocSchemaPropertyHandlerInterface $attributeHandler) : DocHandlerInterface;
 
     /**
      * @return \ArrayIterator

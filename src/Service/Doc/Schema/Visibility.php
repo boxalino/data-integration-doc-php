@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class Visibility
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class Visibility implements \JsonSerializable, DocSchemaDefinitionInterface
+class Visibility implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
 

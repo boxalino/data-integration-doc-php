@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class TypedLocalized
@@ -11,7 +12,7 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
 class TypedLocalized extends RepeatedLocalized
-    implements \JsonSerializable, DocSchemaDefinitionInterface
+    implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;

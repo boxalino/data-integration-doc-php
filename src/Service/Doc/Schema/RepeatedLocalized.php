@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
  * Class RepeatedLocalized
@@ -10,7 +11,7 @@ use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class RepeatedLocalized implements \JsonSerializable, DocSchemaDefinitionInterface
+class RepeatedLocalized implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;
@@ -18,36 +19,28 @@ class RepeatedLocalized implements \JsonSerializable, DocSchemaDefinitionInterfa
     /**
      * @var Array<<Localized>>
      */
-    protected $values = [];
+    protected $value = [];
 
     /**
-     * @var \ArrayObject
+     * @var string
      */
-    protected $value;
-
-    /**
-     * TypedLocalized constructor.
-     */
-    public function __construct()
-    {
-        $this->value = new \ArrayObject(['value'=> []]);
-    }
+    protected $value_id;
 
     /**
      * @return Array
      */
-    public function getValues(): array
+    public function getValue(): array
     {
-        return $this->values;
+        return $this->value;
     }
 
     /**
      * @param Array $values
      * @return self
      */
-    public function setValues(array $values): self
+    public function setValue(array $values): self
     {
-        $this->values = $values;
+        $this->value = $values;
         return $this;
     }
 
@@ -57,12 +50,25 @@ class RepeatedLocalized implements \JsonSerializable, DocSchemaDefinitionInterfa
      */
     public function addValue(Localized $localized) : self
     {
-        /** @var \ArrayIterator $iterator */
-        $values = $this->value->offsetGet("value");
-        $values[] = $localized->toArray();
-        $this->value->offsetSet("value", $values);
-        $this->values = [$this->value];
+        $this->value[] = $localized->toArray();
+        return $this;
+    }
 
+    /**
+     * @return string
+     */
+    public function getValueId(): string
+    {
+        return $this->value_id;
+    }
+
+    /**
+     * @param string $value_id
+     * @return self
+     */
+    public function setValueId(string $value_id): self
+    {
+        $this->value_id = $value_id;
         return $this;
     }
 

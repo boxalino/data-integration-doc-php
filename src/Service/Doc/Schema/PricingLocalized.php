@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 class PricingLocalized extends PriceLocalized
 {
@@ -10,7 +11,6 @@ class PricingLocalized extends PriceLocalized
      * @var string
      */
     protected $label;
-
 
     /**
      * @return string

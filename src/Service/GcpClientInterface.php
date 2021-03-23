@@ -7,6 +7,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Interface GcpClientInterface
+ *
  * @package Boxalino\DataIntegrationDoc\Service
  */
 interface GcpClientInterface
@@ -28,6 +29,22 @@ interface GcpClientInterface
     public const GCP_TYPE_USER_SELECTION="user_selection";
     public const GCP_TYPE_CONTENT="content";
 
+    public const DI_REQUEST_MODE="mode";
+    public const DI_REQUEST_TM="tm";
+    public const DI_REQUEST_TS="ts";
+    public const DI_REQUEST_TYPE="type";
+    public const DI_REQUEST_CLIENT="client";
+    public const DI_REQUEST_DEV="dev";
+    public const DI_REQUEST_DOC="doc";
+    public const DI_REQUEST_PROJECT="project";
+    public const DI_REQUEST_DATASET="dataset";
+
+
+    /**
+     * Generic HTTP client
+     *
+     * @return Client
+     */
     public function getClient() : Client;
 
     /**

@@ -9,11 +9,11 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Service\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
-class Sku  implements \JsonSerializable, DocGeneratorInterface
+class Sku  implements DocGeneratorInterface
 {
 
     use DocProductTrait;
