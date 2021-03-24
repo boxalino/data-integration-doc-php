@@ -14,6 +14,21 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
+    public function getGenericAttributeGrouping() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_STRING,
+            DocSchemaInterface::FIELD_NUMERIC,
+            DocSchemaInterface::FIELD_DATETIME,
+            DocSchemaInterface::FIELD_STRING_LOCALIZED,
+            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
+            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function getLocalizedSchemaProperties(): array
     {
         return [

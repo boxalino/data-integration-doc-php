@@ -4,6 +4,9 @@ namespace Boxalino\DataIntegrationDoc\Service\Doc;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
+use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
 
 /**
  * Class AttributeValue
@@ -41,6 +44,36 @@ class AttributeValue implements DocPropertiesInterface
      * @var Array<<string>>
      */
     protected $parent_value_ids;
+
+    /**
+     * @var Array<<Localized>>
+     */
+    protected $short_description;
+
+    /**
+     * @var Array<<Localized>>
+     */
+    protected $description;
+
+    /**
+     * @var Array<<RepeatedLocalized>>
+     */
+    protected $images;
+
+    /**
+     * @var Array<<Localized>>
+     */
+    protected $link;
+
+    /**
+     * @var Array<<Status>>
+     */
+    protected $status;
+
+    /**
+     * @var Array<<Localized>>
+     */
+    protected $tags;
 
     /**
      * Required format: YYYY-MM-DD hh:mm:ss
@@ -163,6 +196,206 @@ class AttributeValue implements DocPropertiesInterface
     public function setParentValueIds(array $parent_value_ids): AttributeValue
     {
         $this->parent_value_ids = $parent_value_ids;
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getShortDescription(): array
+    {
+        return $this->short_description;
+    }
+
+    /**
+     * @param [] $short_description
+     * @return AttributeValue
+     */
+    public function setShortDescription(array $short_description): AttributeValue
+    {
+        $this->short_description = $short_description;
+        return $this;
+    }
+
+    /**
+     * @param Array<<Localized>> $localized
+     * @return $this
+     */
+    public function addShortDescription(array $descriptions): self
+    {
+        foreach($descriptions as $localized)
+        {
+            $this->short_description[] = $localized->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getDescription(): array
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param [] $description
+     * @return AttributeValue
+     */
+    public function setDescription(array $description): AttributeValue
+    {
+        foreach($description as $status)
+        {
+            $this->description[] = $status->toArray();
+        }
+        return $this;
+    }
+
+    /**
+     * @param Array<<Localized>> $localized
+     * @return $this
+     */
+    public function addDescription(array $descriptions): self
+    {
+        foreach($descriptions as $localized)
+        {
+            $this->description[] = $localized->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getImages(): array
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param [] $images
+     * @return AttributeValue
+     */
+    public function setImages(array $images): AttributeValue
+    {
+        foreach($images as $status)
+        {
+            $this->images[] = $status->toArray();
+        }
+        return $this;
+    }
+
+    /**
+     * @param Array<<RepeatedLocalized>> $repeateds
+     * @return $this
+     */
+    public function addImages(array $repeateds): self
+    {
+        foreach($repeateds as $repeated)
+        {
+            $this->images[] = $repeated->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getLink(): array
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param [] $link
+     * @return AttributeValue
+     */
+    public function setLink(array $link): AttributeValue
+    {
+        foreach($link as $status)
+        {
+            $this->link[] = $status->toArray();
+        }
+        return $this;
+    }
+
+    /**
+     * @param Array<<Localized>> $localizeds
+     * @return $this
+     */
+    public function addLink(array $localizeds): self
+    {
+        foreach($localizeds as $localized)
+        {
+            $this->link[] = $localized->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getStatus(): array
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param Array $status
+     * @return self
+     */
+    public function setStatus(array $statuss): self
+    {
+        foreach($statuss as $status)
+        {
+            $this->status[] = $status->toArray();
+        }
+        return $this;
+    }
+
+    /**
+     * @param Status $status
+     * @return $this
+     */
+    public function addStatus(Status $status)
+    {
+        $this->status[] = $status->toArray();
+        return $this;
+    }
+
+    /**
+     * @return []
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param [] $tags
+     * @return AttributeValue
+     */
+    public function setTags(array $tags): AttributeValue
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * @param Array<<Tag>> $tags
+     * @return $this
+     */
+    public function addTags(array $tags): self
+    {
+        foreach($tags as $tag)
+        {
+            $this->tags[] = $tag->toArray();
+        }
+
         return $this;
     }
 

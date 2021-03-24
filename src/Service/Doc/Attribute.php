@@ -205,14 +205,14 @@ class Attribute implements DocPropertiesInterface
      *
      * @var int
      */
-    protected $client_id;
+    protected $client_id = 0;
 
     /**
      * technical field
      *
      * @var int
      */
-    protected $src_sys_id;
+    protected $src_sys_id = 0;
 
     /**
      * @return string

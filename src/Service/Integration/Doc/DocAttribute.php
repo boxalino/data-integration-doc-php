@@ -118,7 +118,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->properties->append($propertyName);
+            $this->properties->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -132,7 +132,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->multivalueAttributesList->append($propertyName);
+            $this->multivalueAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -146,7 +146,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->indexedAttributesList->append($propertyName);
+            $this->indexedAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -160,7 +160,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->numericAttributesList->append($propertyName);
+            $this->numericAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -174,7 +174,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->datetimeAttributesList->append($propertyName);
+            $this->datetimeAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -188,7 +188,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->localizedAttributesList->append($propertyName);
+            $this->localizedAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -202,7 +202,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->hierarchicalAttributesList->append($propertyName);
+            $this->hierarchicalAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -216,7 +216,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->searchByAttributesList->append($propertyName);
+            $this->searchByAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -230,7 +230,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->searchSuggestionAttributesList->append($propertyName);
+            $this->searchSuggestionAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -244,7 +244,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->filterByAttributesList->append($propertyName);
+            $this->filterByAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -258,7 +258,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->groupByAttributesList->append($propertyName);
+            $this->groupByAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
     }
@@ -272,9 +272,28 @@ class DocAttribute implements DocAttributeHandlerInterface
         $properties = array_filter(explode(",",$propertyName));
         foreach($properties as $propertyName)
         {
-            $this->orderByAttributesList->append($propertyName);
+            $this->orderByAttributesList->offsetSet($propertyName, $propertyName);
         }
         return $this;
+    }
+
+    /**
+     * Unset a property from the list once has been edited
+     *
+     * @param string $propertyName
+     */
+    public function unset(string $propertyName) : void
+    {
+        foreach(get_object_vars($this) as $property)
+        {
+            if($property instanceof \ArrayIterator)
+            {
+                if($property->offsetExists($propertyName))
+                {
+                    $property->offsetUnset($propertyName);
+                }
+            }
+        }
     }
 
 }

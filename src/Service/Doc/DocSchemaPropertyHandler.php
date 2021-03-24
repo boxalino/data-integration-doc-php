@@ -96,6 +96,26 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
     }
 
     /**
+     * @param string $propertyName
+     * @return string|null
+     */
+    public function getDocPropertyByField(string $propertyName) : ?string
+    {
+        if(isset($this->properties[$propertyName]))
+        {
+            $maping = $this->properties[$propertyName];
+            if(in_array($maping, $this->getGenericAttributeGrouping()))
+            {
+                return $propertyName;
+            }
+
+            return $maping;
+        }
+
+        return null;
+    }
+
+    /**
      * @return array
      */
     public function getProperties() : array
