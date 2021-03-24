@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\DataIntegration\Service\Util\Document\StringLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
