@@ -128,19 +128,21 @@ class GcpClient implements GcpClientInterface
     public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm, string $ts) : void
     {
         try{
-            $this->getClient()->send(
+            $requestParameters = [
+                'Content-Type' => 'application/json',
+                GcpClientInterface::DI_REQUEST_CLIENT   => $configurationDataObject->getAccount(),
+                GcpClientInterface::DI_REQUEST_DEV      => $configurationDataObject->isDev(),
+                GcpClientInterface::DI_REQUEST_DOC      => $type,
+                GcpClientInterface::DI_REQUEST_MODE     => $mode,
+                GcpClientInterface::DI_REQUEST_TM       => $tm,
+                GcpClientInterface::DI_REQUEST_TS       => $ts
+            ];
+
+            $response = $this->getClient()->send(
                 new Request(
                     'POST',
                     $this->getEndpointLoad($configurationDataObject->getEndpoint()),
-                    [
-                        'Content-Type' => 'application/json',
-                        GcpClientInterface::DI_REQUEST_CLIENT   => $configurationDataObject->getAccount(),
-                        GcpClientInterface::DI_REQUEST_DEV      => $configurationDataObject->isDev(),
-                        GcpClientInterface::DI_REQUEST_DOC      => $type,
-                        GcpClientInterface::DI_REQUEST_MODE     => $mode,
-                        GcpClientInterface::DI_REQUEST_TM       => $tm,
-                        GcpClientInterface::DI_REQUEST_TS       => $ts
-                    ],
+                    $requestParameters,
                     $document
                 ),
                 [
@@ -152,6 +154,12 @@ class GcpClient implements GcpClientInterface
         {
             if(strpos($exception->getMessage(), "timed out after"))
             {
+                return;
+            }
+
+            if(strpos($exception->getMessage(), "413 Request Entity Too Large"))
+            {
+                $this->loadByChunk($configurationDataObject, $requestParameters, $document);
                 return;
             }
 
@@ -203,6 +211,70 @@ class GcpClient implements GcpClientInterface
     }
 
     /**
+     * Load a document to GCP
+     *
+     * @param ConfigurationDataObject $configurationDataObject
+     */
+    public function loadByChunk(ConfigurationDataObject $configurationDataObject, array $requestParameters, string $document) : void
+    {
+        try{
+            $url = $this->getLoadUrl($configurationDataObject, $requestParameters);
+            $upload = $this->getClient()->send(
+                new Request(
+                    'PUT',
+                    $url,
+                    [
+                        'Content-Type' => 'application/octet-stream'
+                    ],
+                    $document
+                ),
+                [ 'connect_timeout' => 900 ]
+            );
+
+            $uploadId = $upload->getHeader("X-GUploader-UploadID")[0];
+            $loadedSize = $upload->getHeader("x-goog-stored-content-length")[0];
+
+            $this->logger->info("Boxalino Data Integration finised for " . json_encode($requestParameters) . ". Code - $uploadId. Load size - $loadedSize ");
+        } catch (\Throwable $exception)
+        {
+            if(strpos($exception->getMessage(), "timed out after"))
+            {
+                $this->logger->info("Please get in touch with Boxalino. The document took longer to be exported.". $exception->getMessage());
+                return;
+            }
+
+            throw new FailDocLoadException("Doc Load Chunk failed for " . json_encode($requestParameters) . ". Exception: " . $exception->getMessage());
+        }
+    }
+
+    /**
+     * @param ConfigurationDataObject $configurationDataObject
+     * @param array $requestParameters
+     * @return string|null
+     */
+    public function getLoadUrl(ConfigurationDataObject $configurationDataObject, array $requestParameters) : ?string
+    {
+        try{
+            $signedUrlRequest = $this->getClient()->send(
+                new Request(
+                    'POST',
+                    $this->getEndpointLoadChunk($configurationDataObject->getEndpoint()),
+                    $requestParameters
+                ),
+                [
+                    'auth' => [$configurationDataObject->getApiKey(), $configurationDataObject->getApiSecret(), 'basic'],
+                    'connect_timeout' => 2
+                ]
+            );
+
+            return trim(stripslashes(rawurldecode($signedUrlRequest->getBody()->getContents())), '"');
+        } catch (\Throwable $exception)
+        {
+            throw new FailDocLoadException("Doc Load failed for ". json_encode($requestParameters) .". Exception: " . $exception->getMessage());
+        }
+    }
+
+    /**
      * @param string $endpoint
      * @return string
      */
@@ -218,6 +290,15 @@ class GcpClient implements GcpClientInterface
     public function getEndpointSync(string $endpoint) : string
     {
         return $endpoint . GcpClientInterface::GCP_ENDPOINT_SYNC;
+    }
+
+    /**
+     * @param string $endpoint
+     * @return string
+     */
+    public function getEndpointLoadChunk(string $endpoint) : string
+    {
+        return $endpoint . GcpClientInterface::GCP_ENDPOINT_LOAD_CHUNK;
     }
 
     /**
