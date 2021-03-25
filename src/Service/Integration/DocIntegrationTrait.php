@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 
 /**
@@ -69,4 +71,6 @@ trait DocIntegrationTrait
 
         return $this->docData;
     }
+
+
 }

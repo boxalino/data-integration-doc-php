@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
+use Boxalino\DataIntegrationDoc\Service\Doc\Attribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandler;
@@ -15,6 +17,12 @@ class DocAttribute implements DocAttributeHandlerInterface
 
     use DocGeneratorTrait;
     use DocIntegrationTrait;
+    use DocSchemaIntegrationTrait;
+
+    /**
+     * @var array
+     */
+    protected $languages = [];
 
     /**
      * @var \ArrayIterator
@@ -295,5 +303,73 @@ class DocAttribute implements DocAttributeHandlerInterface
             }
         }
     }
+
+    /**
+     * Adding the configured attributes
+     */
+    public function addConfiguredProperties() : void
+    {
+        foreach($this->getProperties() as $property)
+        {
+            /** @var Attribute $doc */
+            $doc = $this->getDocPropertySchema($this->getDocType());
+            $doc->setName($property)
+                ->addLabel($this->getPropertyLabel($property, $this->getLanguages()))
+                ->setIndexed($this->indexedAttributesList->offsetExists($property))
+                ->setHierarchical($this->hierarchicalAttributesList->offsetExists($property))
+                ->setMultiValue($this->multivalueAttributesList->offsetExists($property))
+                ->setLocalized($this->localizedAttributesList->offsetExists($property))
+                ->setSearchBy($this->searchByAttributesList->offsetExists($property) ? 1 : 0)
+                ->setSearchSuggestion($this->searchSuggestionAttributesList->offsetExists($property))
+                ->setFilterBy($this->filterByAttributesList->offsetExists($property))
+                ->setGroupBy($this->groupByAttributesList->offsetExists($property))
+                ->setOrderBy($this->orderByAttributesList->offsetExists($property))
+                ->setCreationTm(date("Y-m-d H:i:s"));
+
+            $this->addDocLine($doc);
+        }
+    }
+
+    /**
+     * Unset a property from the list once has been edited
+     * Applies custom configurations on an existing doc
+     *
+     * @param string $propertyName
+     */
+    public function applyPropertyConfigurations(Attribute &$doc) : void
+    {
+        $property = $doc->getName();
+
+        if($this->indexedAttributesList->offsetExists($property)){$doc->setIndexed(true);}
+        if($this->hierarchicalAttributesList->offsetExists($property)){$doc->setHierarchical(true);}
+        if($this->multivalueAttributesList->offsetExists($property)){$doc->setMultiValue(true);}
+        if($this->localizedAttributesList->offsetExists($property)){$doc->setLocalized(true);}
+        if($this->searchByAttributesList->offsetExists($property)){$doc->setSearchBy(1);}
+        if($this->searchSuggestionAttributesList->offsetExists($property)){$doc->setSearchSuggestion(true);}
+        if($this->filterByAttributesList->offsetExists($property)){$doc->setFilterBy(true);}
+        if($this->groupByAttributesList->offsetExists($property)){$doc->setGroupBy(true);}
+        if($this->orderByAttributesList->offsetExists($property)){$doc->setOrderBy(true);}
+
+        $this->unset($property);
+    }
+
+    /**
+     * @param array $languages
+     * @return DocHandlerInterface
+     */
+    public function setLanguages(array $languages) : DocHandlerInterface
+    {
+        $this->languages = $languages;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages() : array
+    {
+        return $this->languages;
+    }
+
 
 }

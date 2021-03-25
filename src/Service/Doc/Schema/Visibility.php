@@ -60,12 +60,15 @@ class Visibility implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $values
+     * @param Array<<Localized>> $values
      * @return Visibility
      */
     public function setValues(array $values): Visibility
     {
-        $this->values = $values;
+        foreach($values as $localized)
+        {
+            $this->values[] = $localized->toArray();
+        }
         return $this;
     }
 

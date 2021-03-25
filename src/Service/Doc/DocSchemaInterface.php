@@ -75,6 +75,7 @@ interface DocSchemaInterface
     public const FIELD_CREATION = "creation";
     public const FIELD_UPDATE = "last_update";
     public const FIELD_CATEGORIES = "categories";
+    public const FIELD_CATEGORY_ID= "category_id";
     public const FIELD_STOCK = "stock";
     public const FIELD_PRICE = "price";
 

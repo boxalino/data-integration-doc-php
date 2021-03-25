@@ -101,6 +101,16 @@ class Price implements DocPropertiesInterface
     }
 
     /**
+     * @param PriceLocalized $priceLocalized
+     * @return $this
+     */
+    public function addListPrice(PriceLocalized $priceLocalized) : Price
+    {
+        $this->list_price[] = $priceLocalized->toArray();
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getSalesPrice(): array
@@ -120,6 +130,16 @@ class Price implements DocPropertiesInterface
         {
             $this->sales_price[] = $price->toArray();
         }
+        return $this;
+    }
+
+    /**
+     * @param PriceLocalized $priceLocalized
+     * @return $this
+     */
+    public function addSalesPrice(PriceLocalized $priceLocalized) : Price
+    {
+        $this->sales_price[] = $priceLocalized->toArray();
         return $this;
     }
 
