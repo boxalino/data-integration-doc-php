@@ -15,6 +15,7 @@ interface GcpClientInterface
 
     public const GCP_ENDPOINT_LOAD="/load";
     public const GCP_ENDPOINT_LOAD_CHUNK="/load/chunk";
+    public const GCP_ENDPOINT_LOAD_BQ="/load/bq";
     public const GCP_ENDPOINT_SYNC="/sync";
 
     public const GCP_MODE_INSTANT_UPDATE="I";
