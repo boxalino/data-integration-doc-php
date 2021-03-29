@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 
 /**
- * Class StringAttribute
+ * Class StringLocalizedAttribute
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class StringAttribute extends Repeated
+class StringLocalizedAttribute extends Repeated
 {
 
     /**
@@ -18,12 +18,12 @@ class StringAttribute extends Repeated
     protected $type = "string";
 
     /**
-     * @param string | null $value
+     * @param RepeatedLocalized $localizeds
      * @return $this
      */
-    public function addValue(?string $value = null) : self
+    public function addValue(RepeatedLocalized $localized) : self
     {
-        $this->values[] = (string) $value;
+        $this->values[] = $localized->toArray();
         return $this;
     }
 

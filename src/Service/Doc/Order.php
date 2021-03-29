@@ -1,164 +1,219 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Product as OrderProduct;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Voucher as OrderVoucher;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Contact;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Comment;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 
 class Order implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
 
     /**
+     * the internal identifier of the order
      * @var string
      */
     protected $internal_id;
 
     /**
+     * the external identifier of the order (can be the same as the internal identifier)
      * @var string | null
      */
     protected $external_id;
 
     /**
+     * the parent order id (when applicable)
      * @var string | null
      */
     protected $parent_order_id;
 
     /**
+     * the persona type who created this order
      * @var string | null
      */
     protected $persona_type;
 
     /**
+     * the persona who created this order
      * @var string
      */
     protected $persona_id;
 
     /**
+     * ECM for e-commerce, ERP for external, etc
      * @var string | null
      */
     protected $order_sys_cd = "ECM";
 
     /**
+     * the store in which the order was done
+     * @var string | null
+     */
+    protected $store;
+
+    /**
+     * the persona type who sold this order
      * @var string | null
      */
     protected $seller_persona_type;
 
     /**
+     * the persona who sold this order
      * @var string | null
      */
     protected $seller_persona_id;
 
     /**
+     * the order currency code (e.g.: 'chf', 'eur', ...)
      * @var string | null
      */
     protected $currency_cd;
 
     /**
+     * the total value of the order
      * @var int
      */
     protected $total_crncy_amt;
 
     /**
+     * the total value of the order
      * @var int | null
      */
     protected $total_crncy_amt_net;
 
     /**
+     * the gross margin of the order
      * @var int | null
      */
     protected $total_gross_margin_crncy_amt;
 
     /**
+     * the net margin of the order
      * @var int | null
      */
     protected $total_net_margin_crncy_amt;
 
     /**
+     * the shipping costs of the order
+     * @var int | null
+     */
+    protected $shipping_costs;
+
+    /**
+     * the net shipping costs of the order
      * @var int | null
      */
     protected $shipping_costs_net;
 
     /**
+     * the currency factor of the order
      * @var int | null
      */
     protected $currency_factor;
 
     /**
+     * was the order tax free?
      * @var bool | null
      */
     protected $tax_free;
 
     /**
+     * the tax rate of the order
      * @var int | null
      */
     protected $tax_rate;
 
     /**
+     * the tax amount of the order
      * @var int | null
      */
     protected $tax_amnt;
 
     /**
+     * the payment method
+     * should be one of the following value (other values will be considered as OTHER)
+     * FREE/GRATIS/GIFT , INVOICE , PREPAYMENT , MASTERCARD , VISA , AMEX , TWINT , POINTS_PAY
+     * MARKETPLACES , GALAXUS_MARKETPLACE , COLLECTIVE_INVOICE , OTHER
+     *
      * @var string | null
      */
     protected $payment_method;
 
     /**
+     * the shipping method
+     * should be one of the following value (other values will be considered as OTHER)
+     * MAIL , DIGITAL , NONE , DPD_PRODUCT , DPD_STANDARD_DEPOSIT , DPD_STANDARD_SIGNING
+     * DPD_EXPRESS_SIGNING , PLANZER_DEPOSIT , PLANZER_SIGNING , NOTIME
+     * PERSONAL_PICKUP , OWN_DRIVER , OTHER
+     *
      * @var string | null
      */
     protected $shipping_method;
 
     /**
+     * the shipping description
      * @var string | null
      */
     protected $shipping_description;
 
     /**
+     * the device used
      * @var string | null
      */
     protected $device;
 
     /**
+     * the referer used
      * @var string | null
      */
     protected $referer;
 
     /**
+     * the partner used
      * @var string | null
      */
     protected $partner;
 
     /**
+     * the language of the order
      * @var string | null
      */
     protected $language;
 
     /**
+     * the tracking code of the order
      * @var string | null
      */
     protected $tracking_code;
 
     /**
+     * was the order a gift?
      * @var bool | null
      */
     protected $is_gift;
 
     /**
+     * was the order with wrapping?
      * @var bool | null
      */
     protected $wrapping;
 
     /**
+     * the email of the order
      * @var string | null
      */
     protected $email;
 
     /**
+     * chain of comments related to the order
      * @var Array<<Comment>> | array
      */
     protected $comments = [];
@@ -174,6 +229,7 @@ class Order implements DocPropertiesInterface
     protected $customer_comments = [];
 
     /**
+     * billing/shipping information
      * @var Array<<Contact>> | array
      */
     protected $contacts = [];
@@ -189,7 +245,7 @@ class Order implements DocPropertiesInterface
     protected $last_update;
 
     /**
-     * @var string | datetime| null
+     * @var string | datetime | null
      */
     protected $confirmation;
 
@@ -219,11 +275,15 @@ class Order implements DocPropertiesInterface
     protected $repaired;
 
     /**
+     * should the order be considered as successful or not
      * @var bool | null
      */
     protected $status;
 
     /**
+     * should be one of the following value (other values will be considered as OTHER):
+     * MANUALLY_CREATED , IMPORTED , INCONSISTENT , CONSISTENT , CLEARED , CONFIRMED , UNCONFIRMED ,
+     * PROCESSING , SHIPPED , RECEIVED , CLOSED , ABORTED , OTHER
      * @var string | null
      */
     protected $status_code;
@@ -234,7 +294,7 @@ class Order implements DocPropertiesInterface
     protected $string_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<StringLocalizedAttribute>>
      */
     protected $localized_string_attributes = [];
 
@@ -244,7 +304,7 @@ class Order implements DocPropertiesInterface
     protected $numeric_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<NumericLocalizedAttribute>>
      */
     protected $localized_numeric_attributes = [];
 
@@ -254,31 +314,35 @@ class Order implements DocPropertiesInterface
     protected $datetime_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<DatetimeLocalizedAttribute>>
      */
     protected $localized_datetime_attributes = [];
 
     /**
-     * @var Array<<\Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Product>>
+     * the products of the order
+     * @var Array<<OrderProduct>>
      */
     protected $products = [];
 
     /**
-     * @var Array<<\Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Voucher>>
+     * @var Array<<OrderVoucher>>
      */
     protected $vouchers = [];
 
     /**
+     * technical field
      * @var string
      */
-    protected $created_tm;
+    protected $creation_tm;
 
     /**
+     * technical field
      * @var int
      */
     protected $client_id = 0;
 
     /**
+     * technical field
      * @var int
      */
     protected $src_sys_id = 0;
@@ -819,7 +883,26 @@ class Order implements DocPropertiesInterface
      */
     public function setComments(array $comments): Order
     {
-        $this->comments = $comments;
+        foreach($comments as $comment)
+        {
+            if($comment instanceof Comment)
+            {
+                $this->comments[] = $comment->toArray();
+                continue;
+            }
+
+            $this->comments[] = $comment;
+        }
+        return $this;
+    }
+
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
+    public function addComments(Comment $comment) : Order
+    {
+        $this->comments[] = $comment->toArray();
         return $this;
     }
 
@@ -837,7 +920,26 @@ class Order implements DocPropertiesInterface
      */
     public function setInternalComments(array $internal_comments): Order
     {
-        $this->internal_comments = $internal_comments;
+        foreach($internal_comments as $comment)
+        {
+            if($comment instanceof Comment)
+            {
+                $this->internal_comments[] = $comment->toArray();
+                continue;
+            }
+
+            $this->internal_comments[] = $comment;
+        }
+        return $this;
+    }
+
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
+    public function addInternalComments(Comment $comment) : Order
+    {
+        $this->internal_comments[] = $comment->toArray();
         return $this;
     }
 
@@ -855,7 +957,26 @@ class Order implements DocPropertiesInterface
      */
     public function setCustomerComments(array $customer_comments): Order
     {
-        $this->customer_comments = $customer_comments;
+        foreach($customer_comments as $comment)
+        {
+            if($comment instanceof Comment)
+            {
+                $this->customer_comments[] = $comment->toArray();
+                continue;
+            }
+
+            $this->customer_comments[] = $comment;
+        }
+        return $this;
+    }
+
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
+    public function addCustomerComments(Comment $comment) : Order
+    {
+        $this->customer_comments[] = $comment->toArray();
         return $this;
     }
 
@@ -873,14 +994,33 @@ class Order implements DocPropertiesInterface
      */
     public function setContacts(array $contacts): Order
     {
-        $this->contacts = $contacts;
+        foreach($contacts as $contact)
+        {
+            if($contact instanceof Contact)
+            {
+                $this->contacts[] = $contact->toArray();
+                continue;
+            }
+
+            $this->contacts[] = $contact;
+        }
+        return $this;
+    }
+
+    /**
+     * @param Contact $contact
+     * @return $this
+     */
+    public function addContacts(Contact $contact) : Order
+    {
+        $this->contacts[] = $contact->toArray();
         return $this;
     }
 
     /**
      * @return datetime|string|null
      */
-    public function getCreation(): string|datetime|null
+    public function getCreation(): ?string
     {
         return $this->creation;
     }
@@ -889,7 +1029,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $creation
      * @return Order
      */
-    public function setCreation(string|datetime|null $creation): Order
+    public function setCreation(?string $creation): Order
     {
         $this->creation = $creation;
         return $this;
@@ -898,7 +1038,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getLastUpdate(): string|datetime|null
+    public function getLastUpdate(): ?string
     {
         return $this->last_update;
     }
@@ -907,7 +1047,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $last_update
      * @return Order
      */
-    public function setLastUpdate(string|datetime|null $last_update): Order
+    public function setLastUpdate(?string $last_update): Order
     {
         $this->last_update = $last_update;
         return $this;
@@ -916,7 +1056,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getConfirmation(): string|datetime|null
+    public function getConfirmation(): ?string
     {
         return $this->confirmation;
     }
@@ -925,7 +1065,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $confirmation
      * @return Order
      */
-    public function setConfirmation(string|datetime|null $confirmation): Order
+    public function setConfirmation(?string $confirmation): Order
     {
         $this->confirmation = $confirmation;
         return $this;
@@ -934,7 +1074,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getCleared(): string|datetime|null
+    public function getCleared(): ?string
     {
         return $this->cleared;
     }
@@ -943,7 +1083,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $cleared
      * @return Order
      */
-    public function setCleared(string|datetime|null $cleared): Order
+    public function setCleared(?string $cleared): Order
     {
         $this->cleared = $cleared;
         return $this;
@@ -952,7 +1092,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getSent(): string|datetime|null
+    public function getSent(): ?string
     {
         return $this->sent;
     }
@@ -961,7 +1101,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $sent
      * @return Order
      */
-    public function setSent(string|datetime|null $sent): Order
+    public function setSent(?string $sent): Order
     {
         $this->sent = $sent;
         return $this;
@@ -970,7 +1110,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getReceived(): string|datetime|null
+    public function getReceived(): ?string
     {
         return $this->received;
     }
@@ -979,7 +1119,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $received
      * @return Order
      */
-    public function setReceived(string|datetime|null $received): Order
+    public function setReceived(?string $received): Order
     {
         $this->received = $received;
         return $this;
@@ -988,7 +1128,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getReturned(): string|datetime|null
+    public function getReturned(): ?string
     {
         return $this->returned;
     }
@@ -997,7 +1137,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $returned
      * @return Order
      */
-    public function setReturned(string|datetime|null $returned): Order
+    public function setReturned(?string $returned): Order
     {
         $this->returned = $returned;
         return $this;
@@ -1006,7 +1146,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return datetime|string|null
      */
-    public function getRepaired(): string|datetime|null
+    public function getRepaired(): ?string
     {
         return $this->repaired;
     }
@@ -1015,7 +1155,7 @@ class Order implements DocPropertiesInterface
      * @param datetime|string|null $repaired
      * @return Order
      */
-    public function setRepaired(string|datetime|null $repaired): Order
+    public function setRepaired(?string $repaired): Order
     {
         $this->repaired = $repaired;
         return $this;
@@ -1076,10 +1216,10 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param StringAttribute ...$repeateds
      * @return $this
      */
-    public function addStringAttributes(Repeated ...$repeateds) : self
+    public function addStringAttributes(StringAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -1108,10 +1248,10 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param StringLocalizedAttribute ...$repeateds
      * @return $this
      */
-    public function addLocalizedStringAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -1140,10 +1280,10 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param NumericAttribute ...$repeateds
      * @return $this
      */
-    public function addNumericAttributes(Repeated ...$repeateds) : self
+    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -1172,10 +1312,10 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param NumericLocalizedAttribute ...$repeateds
      * @return $this
      */
-    public function addLocalizedNumericAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -1204,10 +1344,10 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param DatetimeAttribute ...$repeateds
      * @return $this
      */
-    public function addDatetimeAttributes(Repeated ...$repeateds) : self
+    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -1236,16 +1376,12 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param DatetimeLocalizedAttribute
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute $repeated) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_datetime_attributes[] = $repeated->toArray();
         return $this;
     }
 
@@ -1286,20 +1422,56 @@ class Order implements DocPropertiesInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getStore(): ?string
+    {
+        return $this->store;
+    }
+
+    /**
+     * @param string|null $store
+     * @return Order
+     */
+    public function setStore(?string $store): Order
+    {
+        $this->store = $store;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getShippingCosts(): ?int
+    {
+        return $this->shipping_costs;
+    }
+
+    /**
+     * @param int|null $shipping_costs
+     * @return Order
+     */
+    public function setShippingCosts(?int $shipping_costs): Order
+    {
+        $this->shipping_costs = $shipping_costs;
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getCreatedTm(): string
+    public function getCreationTm(): string
     {
-        return $this->created_tm;
+        return $this->creation_tm;
     }
 
     /**
      * @param string $created_tm
      * @return Order
      */
-    public function setCreatedTm(string $created_tm): Order
+    public function setCreationTm(string $created_tm): Order
     {
-        $this->created_tm = $created_tm;
+        $this->creation_tm = $created_tm;
         return $this;
     }
 

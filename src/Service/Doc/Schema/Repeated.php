@@ -16,12 +16,17 @@ class Repeated implements DocPropertiesInterface
     use DocPropertiesTrait;
 
     /**
+     * @var
+     */
+    protected $type;
+
+    /**
      * @var string
      */
     protected $name;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<string|int|RepeatedLocalized>>
      */
     protected $values = [];
 
@@ -44,6 +49,24 @@ class Repeated implements DocPropertiesInterface
     }
 
     /**
+     * @return string
+     */
+    public function getType() : string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return self
+     */
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getValues(): array
@@ -58,16 +81,6 @@ class Repeated implements DocPropertiesInterface
     public function setValues(array $value): Repeated
     {
         $this->values = $value;
-        return $this;
-    }
-
-    /**
-     * @param RepeatedLocalized $localizeds
-     * @return $this
-     */
-    public function addValue(RepeatedLocalized $localized) : self
-    {
-        $this->values[] = $localized->toArray();
         return $this;
     }
 

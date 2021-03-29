@@ -18,28 +18,23 @@ class GcpClient implements GcpClientInterface
     use GcpClientTrait;
 
     /**
-     * @var Client
-     */
-    protected $client;
-
-    /**
      * @var LoggerInterface
      */
     protected $logger;
-
     /**
      * @var string
      */
     protected $environment;
 
-    public function __construct(LoggerInterface $logger, string $environment, int $timeout = 3)
+    /**
+     * GcpClient constructor.
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
-        $this->environment = $environment;
         $this->client = new Client();
-        $this->timeout = $timeout;
     }
-
 
     /**
      * @param ConfigurationDataObject $configurationDataObject
@@ -116,18 +111,10 @@ class GcpClient implements GcpClientInterface
      * @return bool
      * @throws \Throwable
      */
-    public function logOrThrowException(\Throwable $exception): bool
+    public function logOrThrowException(\Throwable $exception)
     {
-        if ($this->environment === 'dev') {
-            $this->log($exception->getMessage());
-            throw $exception;
-        }
-        if ($this->environment === 'prod') {
-            $this->logger->critical($exception->getMessage());
-            throw $exception;
-        }
-
-        return false;
+        $this->logger->alert("Boxalino API Data Integration error: " . $exception->getMessage());
+        throw $exception;
     }
 
 

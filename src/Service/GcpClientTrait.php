@@ -161,13 +161,13 @@ trait GcpClientTrait
                 $loadedSize = $upload->getHeader("x-goog-stored-content-length")[0];
                 $this->log("Boxalino Data Integration finised for " . json_encode($requestParameters) . ". Code - $uploadId. Load size - $loadedSize ");
             }
-            
+
             $this->loadBq($configurationDataObject, $requestParameters);
         } catch (\Throwable $exception)
         {
             if(strpos($exception->getMessage(), "timed out after"))
             {
-                $this->logger->info("Please get in touch with Boxalino. The document took longer to be exported.". $exception->getMessage());
+                $this->log("Please get in touch with Boxalino. The document took longer to be exported.". $exception->getMessage());
                 return;
             }
 
@@ -307,7 +307,7 @@ trait GcpClientTrait
      * Timestamp
      * Use this to identify the BQ table for this content
      * (ex: <client>_<mode>.<doc>_<mode>_<tm> in our GCP project)
-     * 
+     *
      * @return string
      */
     public function getTm() : string

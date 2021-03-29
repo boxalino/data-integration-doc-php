@@ -2,7 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
@@ -56,7 +56,7 @@ class AttributeValue implements DocPropertiesInterface
     protected $description;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $images;
 
@@ -71,7 +71,7 @@ class AttributeValue implements DocPropertiesInterface
     protected $status;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<Tag>>
      */
     protected $tags;
 
@@ -288,7 +288,7 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param Array<<RepeatedLocalized>> $repeateds
+     * @param Array<<RepeatedGenericLocalized>> $repeateds
      * @return $this
      */
     public function addImages(array $repeateds): self

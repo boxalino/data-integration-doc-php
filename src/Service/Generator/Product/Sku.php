@@ -4,7 +4,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Generator\Product;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocProductTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;

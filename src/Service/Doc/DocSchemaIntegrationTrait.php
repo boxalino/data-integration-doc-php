@@ -7,9 +7,11 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\PriceLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\PricingLocalized;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
 
@@ -192,6 +194,47 @@ trait DocSchemaIntegrationTrait
     }
 
     /**
+     * @param array $values
+     * @param string $propertyName
+     * @return NumericAttribute
+     */
+    public function getNumericAttributeSchema(array $values, string $propertyName, ?string $key) : NumericAttribute
+    {
+        $typedProperty = new NumericAttribute();
+        $typedProperty->setName($propertyName);
+        foreach($values as $value)
+        {
+            $typedProperty->addValue($value);
+        }
+
+        if(is_null($key))
+        {
+            return $typedProperty;
+        }
+
+        $typedProperty->setKey($key);
+        return $typedProperty;
+    }
+
+    /**
+     * @param array $values
+     * @param string $propertyName
+     * @return DatetimeAttribute
+     */
+    public function getDatetimeAttributeSchema(array $values, string $propertyName) : DatetimeAttribute
+    {
+        $typedProperty = new DatetimeAttribute();
+        $typedProperty->setName($propertyName);
+        foreach($values as $value)
+        {
+            $typedProperty->addValue($value);
+        }
+
+        return $typedProperty;
+    }
+
+
+    /**
      * @param array|string|int $item
      * @return array<<Localized>>
      */
@@ -214,11 +257,11 @@ trait DocSchemaIntegrationTrait
      * @param array $languages
      * @param string|null $propertyName
      * @param string|null $idField
-     * @return Repeated
+     * @return RepeatedGenericLocalized
      */
-    public function getRepeatedLocalizedSchema(array $item, array $languages, ?string $propertyName= null, ?string $idField=DocSchemaInterface::FIELD_INTERNAL_ID) : Repeated
+    public function getRepeatedLocalizedSchema(array $item, array $languages, ?string $propertyName= null, ?string $idField=DocSchemaInterface::FIELD_INTERNAL_ID) : RepeatedGenericLocalized
     {
-        $property = new Repeated();
+        $property = new RepeatedGenericLocalized();
         $schema = new RepeatedLocalized();
         if(!is_null($propertyName))
         {

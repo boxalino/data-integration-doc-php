@@ -2,14 +2,14 @@
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
 
 /**
  * Class NumericAttribute
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class NumericAttribute extends Typed
+class NumericAttribute extends Repeated
 {
 
     /**

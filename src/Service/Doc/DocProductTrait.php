@@ -8,13 +8,14 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
 
 /**
  * Trait DocProductTrait
@@ -93,12 +94,12 @@ trait DocProductTrait
     protected $short_description;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $brands;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $suppliers;
 
@@ -108,12 +109,12 @@ trait DocProductTrait
     protected $categories;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $images;
 
     /**
-     * @var Array<<RepeatedLocalized>>
+     * @var Array<<Localized>>
      */
     protected $link;
 
@@ -138,7 +139,7 @@ trait DocProductTrait
     protected $string_attributes;
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<StringLocalizedAttribute>>
      */
     protected $localized_string_attributes;
 
@@ -148,7 +149,7 @@ trait DocProductTrait
     protected $numeric_attributes;
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<NumericLocalizedAttribute>>
      */
     protected $localized_numeric_attributes;
 
@@ -158,7 +159,7 @@ trait DocProductTrait
     protected $datetime_attributes;
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<DatetimeLocalizedAttribute>>
      */
     protected $localized_datetime_attributes;
 
@@ -494,7 +495,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param  Array<<RepeatedLocalized>> $localizeds
+     * @param  Array<<RepeatedGenericLocalized>> $localizeds
      * @return $this
      */
     public function addBrands(array $localizeds): self
@@ -508,10 +509,10 @@ trait DocProductTrait
     }
 
     /**
-     * @param RepeatedLocalized $localized
+     * @param RepeatedGenericLocalized $localized
      * @return $this
      */
-    public function addBrand(RepeatedLocalized $localized): self
+    public function addBrand(RepeatedGenericLocalized $localized): self
     {
         $this->brands[] = $localized->toArray();
         return $this;
@@ -536,7 +537,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<RepeatedLocalized>> $localizeds
+     * @param Array<<RepeatedGenericLocalized>> $localizeds
      * @return $this
      */
     public function addSuppliers(array $localizeds): self
@@ -550,10 +551,10 @@ trait DocProductTrait
     }
 
     /**
-     * @param RepeatedLocalized $localized
+     * @param RepeatedGenericLocalized $localized
      * @return $this
      */
-    public function addSupplier(RepeatedLocalized  $localized): self
+    public function addSupplier(RepeatedGenericLocalized  $localized): self
     {
         $this->suppliers[] = $localized->toArray();
         return $this;
@@ -621,7 +622,7 @@ trait DocProductTrait
 
     /**
      * @TODO do the images have to be localized!? won`t it be data redundancy?
-     * @param Array<<RepeatedLocalized>> $repeateds
+     * @param Array<<RepeatedGenericLocalized>> $repeateds
      * @return $this
      */
     public function addImages(array $repeateds): self
@@ -636,10 +637,10 @@ trait DocProductTrait
 
     /**
      * @TODO do the images have to be localized!? won`t it be data redundancy?
-     * @param RepeatedLocalized $repeated
+     * @param RepeatedGenericLocalized $repeated
      * @return $this
      */
-    public function addImage(RepeatedLocalized  $repeated): self
+    public function addImage(RepeatedGenericLocalized  $repeated): self
     {
         $this->images[] = $repeated->toArray();
         return $this;
@@ -863,7 +864,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<TypedLocalized>> $localized_string_attributes
+     * @param Array<<StringLocalizedAttribute>> $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
@@ -873,7 +874,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<TypedLocalized>> $repeateds
+     * @param Array<<StringLocalizedAttribute>> $repeateds
      * @return $this
      */
     public function addLocalizedStringAttributes(array $repeateds): self
@@ -887,10 +888,10 @@ trait DocProductTrait
     }
 
     /**
-     * @param TypedLocalized $repeated
+     * @param StringLocalizedAttribute $repeated
      * @return $this
      */
-    public function addLocalizedStringAttribute(TypedLocalized $repeated): self
+    public function addLocalizedStringAttribute(StringLocalizedAttribute $repeated): self
     {
         $this->localized_string_attributes[] = $repeated->toArray();
         return $this;
@@ -957,7 +958,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<TypedLocalized>> $repeateds
+     * @param Array<<NumericLocalizedAttribute>> $repeateds
      * @return $this
      */
     public function addLocalizedNumericAttributes(array $repeateds): self
@@ -971,10 +972,10 @@ trait DocProductTrait
     }
 
     /**
-     * @param TypedLocalized $repeated
+     * @param NumericLocalizedAttribute $repeated
      * @return $this
      */
-    public function addLocalizedNumericAttribute(TypedLocalized $repeated): self
+    public function addLocalizedNumericAttribute(NumericLocalizedAttribute $repeated): self
     {
         $this->localized_numeric_attributes[] = $repeated->toArray();
         return $this;
@@ -1041,7 +1042,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<TypedLocalized>> $repeateds
+     * @param Array<<DatetimeLocalizedAttribute>> $repeateds
      * @return $this
      */
     public function addLocalizedDatetimeAttributes(array $repeateds): self
@@ -1055,10 +1056,10 @@ trait DocProductTrait
     }
 
     /**
-     * @param TypedLocalized $repeated
+     * @param DatetimeLocalizedAttribute $repeated
      * @return $this
      */
-    public function addLocalizedDatetimeAttribute(TypedLocalized $repeated): self
+    public function addLocalizedDatetimeAttribute(DatetimeLocalizedAttribute $repeated): self
     {
         $this->localized_datetime_attributes[] = $repeated->toArray();
         return $this;

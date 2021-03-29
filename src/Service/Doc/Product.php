@@ -10,7 +10,7 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\ProductGroupLink;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Stock;
@@ -18,6 +18,9 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
@@ -93,12 +96,12 @@ class Product implements DocPropertiesInterface
     protected $short_description = [];
 
     /**
-     * @var Array<<Repeated>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $brands = [];
 
     /**
-     * @var Array<<Repeated>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $suppliers = [];
 
@@ -108,7 +111,7 @@ class Product implements DocPropertiesInterface
     protected $categories = [];
 
     /**
-     * @var Array<<Repeated>>
+     * @var Array<<RepeatedGenericLocalized>>
      */
     protected $images = [];
 
@@ -138,7 +141,7 @@ class Product implements DocPropertiesInterface
     protected $string_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<StringLocalizedAttribute>>
      */
     protected $localized_string_attributes = [];
 
@@ -148,7 +151,7 @@ class Product implements DocPropertiesInterface
     protected $numeric_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<NumericLocalizedAttribute>>
      */
     protected $localized_numeric_attributes = [];
 
@@ -158,7 +161,7 @@ class Product implements DocPropertiesInterface
     protected $datetime_attributes = [];
 
     /**
-     * @var Array<<TypedLocalized>>
+     * @var Array<<DatetimeLocalizedAttribute>>
      */
     protected $localized_datetime_attributes = [];
 
@@ -557,10 +560,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Localized ...$localizeds
+     * @param RepeatedGenericLocalized ...$localizeds
      * @return $this
      */
-    public function addBrands(Localized  ...$localizeds) : self
+    public function addBrands(RepeatedGenericLocalized  ...$localizeds) : self
     {
         foreach($localizeds as $localized)
         {
@@ -589,10 +592,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Localized ...$localizeds
+     * @param RepeatedGenericLocalized ...$localizeds
      * @return $this
      */
-    public function addSuppliers(Localized  ...$localizeds) : self
+    public function addSuppliers(RepeatedGenericLocalized  ...$localizeds) : self
     {
         foreach($localizeds as $localized)
         {
@@ -639,10 +642,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param RepeatedLocalized ...$repeateds
+     * @param RepeatedGenericLocalized ...$repeateds
      * @return $this
      */
-    public function addImages(RepeatedLocalized  ...$repeateds) : self
+    public function addImages(RepeatedGenericLocalized  ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -799,10 +802,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param StringAttribute ...$repeateds
      * @return $this
      */
-    public function addStringAttributes(Repeated ...$repeateds) : self
+    public function addStringAttributes(StringAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -831,10 +834,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param StringLocalizedAttribute ...$repeateds
      * @return $this
      */
-    public function addLocalizedStringAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -863,10 +866,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param NumericAttribute ...$repeateds
      * @return $this
      */
-    public function addNumericAttributes(Repeated ...$repeateds) : self
+    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -895,10 +898,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param NumericLocalizedAttribute ...$repeateds
      * @return $this
      */
-    public function addLocalizedNumericAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -927,10 +930,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param DatetimeAttribute ...$repeateds
      * @return $this
      */
-    public function addDatetimeAttributes(Repeated ...$repeateds) : self
+    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {
@@ -959,10 +962,10 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Repeated ...$repeateds
+     * @param DatetimeLocalizedAttribute ...$repeateds
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(Repeated ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute ...$repeateds) : self
     {
         foreach($repeateds as $repeated)
         {

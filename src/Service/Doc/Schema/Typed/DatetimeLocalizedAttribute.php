@@ -2,13 +2,14 @@
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Repeated;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\RepeatedLocalized;
 
 /**
- * Class DatetimeAttribute
+ * Class DatetimeLocalizedAttribute
  *
  * @package Boxalino\DataIntegrationDoc\Service\Doc\Schema
  */
-class DatetimeAttribute extends Repeated
+class DatetimeLocalizedAttribute extends Repeated
 {
 
     /**
@@ -17,12 +18,12 @@ class DatetimeAttribute extends Repeated
     protected $type = "datetime";
 
     /**
-     * @param string | null $value
+     * @param RepeatedLocalized $localizeds
      * @return $this
      */
-    public function addValue(?string $value = null) : self
+    public function addValue(RepeatedLocalized $localized) : self
     {
-        $this->values[] = is_null($value) ? "" : date("Y-m-d H:i:s", strtotime($value));
+        $this->values[] = $localized->toArray();
         return $this;
     }
 
