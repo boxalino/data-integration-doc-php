@@ -9,7 +9,7 @@ use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
-class IntegrationHandler implements IntegrationHandlerInterface
+abstract class IntegrationHandler implements IntegrationHandlerInterface
 {
     /**
      * @var \ArrayObject
@@ -20,6 +20,9 @@ class IntegrationHandler implements IntegrationHandlerInterface
     {
         $this->docHandlerList = new \ArrayObject();
     }
+
+    abstract function getIntegrationStrategy(): string;
+    abstract function getIntegrationType(): string;
 
     /**
      * @return \ArrayIterator

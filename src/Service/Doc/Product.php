@@ -21,7 +21,6 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 

@@ -2,15 +2,15 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
 /**
- * Interface UserIntegrationHandlerInterface
+ * Interface ProductInstantIntegrationHandlerInterface
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
-interface UserIntegrationHandlerInterface
+interface ProductInstantIntegrationHandlerInterface
     extends IntegrationHandlerInterface
 {
 
-    public const INTEGRATION_TYPE="user";
+    public const INTEGRATION_TYPE="product";
 
-    public const INTEGRATION_MODE="F";
+    public const INTEGRATION_MODE="I";
 }

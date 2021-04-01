@@ -271,16 +271,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param StringAttribute ...$repeateds
+     * @param StringAttribute $attribute
      * @return $this
      */
-    public function addStringAttributes(StringAttribute ...$repeateds) : self
+    public function addStringAttributes(StringAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->string_attributes[] = $repeated->toArray();
-        }
-
+        $this->string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -303,16 +299,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param StringLocalizedAttribute ...$repeateds
+     * @param StringLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedStringAttributes(StringLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_string_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -335,16 +327,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param NumericAttribute ...$repeateds
+     * @param NumericAttribute $attribute
      * @return $this
      */
-    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
+    public function addNumericAttributes(NumericAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -367,16 +355,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param NumericLocalizedAttribute ...$repeateds
+     * @param NumericLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedNumericAttributes(NumericLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -399,16 +383,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param DatetimeAttribute ...$repeateds
+     * @param DatetimeAttribute $attribute
      * @return $this
      */
-    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
+    public function addDatetimeAttributes(DatetimeAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -431,16 +411,12 @@ class Voucher implements DocPropertiesInterface
     }
 
     /**
-     * @param DatetimeLocalizedAttribute ...$repeateds
+     * @param DatetimeLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 

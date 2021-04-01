@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Generator\Order;
 
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Order;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
@@ -17,6 +18,7 @@ class Doc extends Order
     implements DocGeneratorInterface
 {
 
+    use DocPropertiesTrait;
     use GeneratorHydratorTrait;
 
 

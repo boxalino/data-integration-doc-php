@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\DocProductAttributeTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 
 /**
@@ -11,8 +10,9 @@ use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
  */
 abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInterface
 {
+
     use DocPropertiesTrait;
-    use DocProductAttributeTrait;
+    use DocSchemaIntegrationTrait;
 
     /**
      * @var \ArrayObject

@@ -41,13 +41,13 @@ interface IntegrationHandlerInterface
      *
      * @return string
      */
-    //public function getIntegrationType() : string;
+    public function getIntegrationType() : string;
 
     /**
      * Describe the integration strategy (product, user, order, etc)
      *
      * @return string
      */
-    //public function getIntegrationStrategy() : string;
+    public function getIntegrationStrategy() : string;
 
 }

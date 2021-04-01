@@ -9,6 +9,8 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration;
 interface OrderIntegrationHandlerInterface
     extends IntegrationHandlerInterface
 {
+    public const INTEGRATION_TYPE="order";
 
+    public const INTEGRATION_MODE="F";
 
 }

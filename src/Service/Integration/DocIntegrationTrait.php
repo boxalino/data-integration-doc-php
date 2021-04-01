@@ -72,5 +72,12 @@ trait DocIntegrationTrait
         return $this->docData;
     }
 
+    /**
+     * @return array
+     */
+    public function getDocData() : array
+    {
+        return $this->docData ?? [];
+    }
 
 }

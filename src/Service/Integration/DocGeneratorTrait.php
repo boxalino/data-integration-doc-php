@@ -92,7 +92,7 @@ trait DocGeneratorTrait
                 $schema = new ProductDoc();
                 break;
             case DocOrderHandlerInterface::DOC_TYPE:
-                $schema = new OrderDoc();
+                $schema = new OrderDoc($data);
                 break;
             default:
                 break;

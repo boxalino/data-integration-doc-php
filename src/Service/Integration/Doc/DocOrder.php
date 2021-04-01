@@ -4,6 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\Order\Doc;
+use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
 
 /**
  * Class DocOrder
@@ -13,11 +14,17 @@ use Boxalino\DataIntegrationDoc\Service\Generator\Order\Doc;
 class DocOrder implements DocOrderHandlerInterface
 {
     use DocGeneratorTrait;
+    use DocIntegrationTrait;
 
     /**
      * @var array | null
      */
     protected $docData = null;
+
+    public function __construct()
+    {
+        $this->attributeHandlerList = new \ArrayIterator();
+    }
 
     /**
      * @return string

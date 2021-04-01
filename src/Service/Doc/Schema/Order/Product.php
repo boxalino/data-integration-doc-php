@@ -1,19 +1,21 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order;
 
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
-class Product implements DocPropertiesInterface
+class Product implements DocPropertiesInterface, DocGeneratorInterface
 {
 
+    use GeneratorHydratorTrait;
     use DocPropertiesTrait;
 
     /**
@@ -32,37 +34,37 @@ class Product implements DocPropertiesInterface
     protected $type;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $unit_list_price;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $unit_sales_price;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $unit_gross_margin;
 
     /**
-     * @var int | null
+     * @var string | null
      */
     protected $quantity;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $total_list_price;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $total_sales_price;
 
     /**
-     * @var int | null
+     * @var float | null
      */
     protected $total_gross_margin;
 
@@ -116,9 +118,9 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param string|null $type
-     * @return Content
+     * @return Product
      */
-    public function setType(?string $type): Content
+    public function setType(?string $type): Product
     {
         $this->type = $type;
         return $this;
@@ -161,56 +163,56 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getUnitListPrice(): ?int
+    public function getUnitListPrice(): ?float
     {
         return $this->unit_list_price;
     }
 
     /**
-     * @param int|null $unit_list_price
+     * @param string|null $unit_list_price
      * @return Product
      */
-    public function setUnitListPrice(?int $unit_list_price): Product
+    public function setUnitListPrice(?string $unit_list_price): Product
     {
-        $this->unit_list_price = $unit_list_price;
+        $this->unit_list_price = (float)$unit_list_price;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getUnitSalesPrice(): ?int
+    public function getUnitSalesPrice(): ?float
     {
         return $this->unit_sales_price;
     }
 
     /**
-     * @param int|null $unit_sales_price
+     * @param string|null $unit_sales_price
      * @return Product
      */
-    public function setUnitSalesPrice(?int $unit_sales_price): Product
+    public function setUnitSalesPrice(?string $unit_sales_price): Product
     {
-        $this->unit_sales_price = $unit_sales_price;
+        $this->unit_sales_price = (float)$unit_sales_price;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getUnitGrossMargin(): ?int
+    public function getUnitGrossMargin(): ?float
     {
         return $this->unit_gross_margin;
     }
 
     /**
-     * @param int|null $unit_gross_margin
+     * @param float|null $unit_gross_margin
      * @return Product
      */
-    public function setUnitGrossMargin(?int $unit_gross_margin): Product
+    public function setUnitGrossMargin(?string $unit_gross_margin): Product
     {
-        $this->unit_gross_margin = $unit_gross_margin;
+        $this->unit_gross_margin = (float)$unit_gross_margin;
         return $this;
     }
 
@@ -223,66 +225,66 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param int|null $quantity
+     * @param string|null $quantity
      * @return Product
      */
-    public function setQuantity(?int $quantity): Product
+    public function setQuantity(?string $quantity): Product
     {
-        $this->quantity = $quantity;
+        $this->quantity = (int)$quantity;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalListPrice(): ?int
+    public function getTotalListPrice(): ?float
     {
         return $this->total_list_price;
     }
 
     /**
-     * @param int|null $total_list_price
+     * @param string|null $total_list_price
      * @return Product
      */
-    public function setTotalListPrice(?int $total_list_price): Product
+    public function setTotalListPrice(?string $total_list_price): Product
     {
-        $this->total_list_price = $total_list_price;
+        $this->total_list_price = (float)$total_list_price;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalSalesPrice(): ?int
+    public function getTotalSalesPrice(): ?float
     {
         return $this->total_sales_price;
     }
 
     /**
-     * @param int|null $total_sales_price
+     * @param string|null $total_sales_price
      * @return Product
      */
-    public function setTotalSalesPrice(?int $total_sales_price): Product
+    public function setTotalSalesPrice(?string $total_sales_price): Product
     {
-        $this->total_sales_price = $total_sales_price;
+        $this->total_sales_price = (float)$total_sales_price;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalGrossMargin(): ?int
+    public function getTotalGrossMargin(): ?float
     {
         return $this->total_gross_margin;
     }
 
     /**
-     * @param int|null $total_gross_margin
+     * @param string|null $total_gross_margin
      * @return Product
      */
-    public function setTotalGrossMargin(?int $total_gross_margin): Product
+    public function setTotalGrossMargin(?string $total_gross_margin): Product
     {
-        $this->total_gross_margin = $total_gross_margin;
+        $this->total_gross_margin = (float)$total_gross_margin;
         return $this;
     }
 
@@ -341,16 +343,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param StringAttribute ...$repeateds
+     * @param StringAttribute $attribute
      * @return $this
      */
-    public function addStringAttributes(StringAttribute ...$repeateds) : self
+    public function addStringAttributes(StringAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->string_attributes[] = $repeated->toArray();
-        }
-
+        $this->string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -373,16 +371,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param StringLocalizedAttribute ...$repeateds
+     * @param StringLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedStringAttributes(StringLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_string_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -405,16 +399,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param NumericAttribute ...$repeateds
+     * @param NumericAttribute $attribute
      * @return $this
      */
-    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
+    public function addNumericAttributes(NumericAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -437,16 +427,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param NumericLocalizedAttribute ...$repeateds
+     * @param NumericLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedNumericAttributes(NumericLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -469,16 +455,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param DatetimeAttribute ...$repeateds
+     * @param DatetimeAttribute $attribute
      * @return $this
      */
-    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
+    public function addDatetimeAttributes(DatetimeAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -501,16 +483,12 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param DatetimeLocalizedAttribute ...$repeateds
+     * @param DatetimeLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 

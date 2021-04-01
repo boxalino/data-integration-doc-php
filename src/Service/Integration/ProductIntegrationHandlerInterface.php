@@ -10,5 +10,8 @@ interface ProductIntegrationHandlerInterface
     extends IntegrationHandlerInterface
 {
 
+    public const INTEGRATION_TYPE="product";
+
+    public const INTEGRATION_MODE="F";
 
 }

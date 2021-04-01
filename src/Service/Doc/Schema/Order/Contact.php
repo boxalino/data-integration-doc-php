@@ -7,14 +7,16 @@ use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\GeneratorHydratorTrait;
 
-class Contact implements DocPropertiesInterface
+class Contact implements DocPropertiesInterface, DocGeneratorInterface
 {
 
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /**
      * @var string | null
@@ -275,11 +277,6 @@ class Contact implements DocPropertiesInterface
      * @var Array<<State>> | array
      */
     protected $voucher_states = [];
-
-    /**
-     * @var Array<<Contact>> | array
-     */
-    protected $contacts = [];
 
     /**
      * @return string|null
@@ -656,6 +653,16 @@ class Contact implements DocPropertiesInterface
     public function setCustomerGroups(array $customer_groups): Contact
     {
         $this->customer_groups = $customer_groups;
+        return $this;
+    }
+
+    /**
+     * @param string $customer_groups
+     * @return Contact
+     */
+    public function addCustomerGroups(string $customer_group): Contact
+    {
+        $this->customer_groups[] = $customer_group;
         return $this;
     }
 
@@ -1110,24 +1117,6 @@ class Contact implements DocPropertiesInterface
     }
 
     /**
-     * @return array|[]
-     */
-    public function getContacts(): array
-    {
-        return $this->contacts;
-    }
-
-    /**
-     * @param array|[] $contacts
-     * @return Contact
-     */
-    public function setContacts(array $contacts): Contact
-    {
-        $this->contacts = $contacts;
-        return $this;
-    }
-
-    /**
      * @return Array
      */
     public function getStringAttributes(): array
@@ -1137,25 +1126,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $string_attributes
-     * @return Product
+     * @return self
      */
-    public function setStringAttributes(array $string_attributes): Product
+    public function setStringAttributes(array $string_attributes): self
     {
         $this->string_attributes = $string_attributes;
         return $this;
     }
 
     /**
-     * @param StringAttribute ...$repeateds
+     * @param StringAttribute $attribute
      * @return $this
      */
-    public function addStringAttributes(StringAttribute ...$repeateds) : self
+    public function addStringAttributes(StringAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->string_attributes[] = $repeated->toArray();
-        }
-
+        $this->string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1169,25 +1154,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $localized_string_attributes
-     * @return Contact
+     * @return self
      */
-    public function setLocalizedStringAttributes(array $localized_string_attributes): Contact
+    public function setLocalizedStringAttributes(array $localized_string_attributes): self
     {
         $this->localized_string_attributes = $localized_string_attributes;
         return $this;
     }
 
     /**
-     * @param StringLocalizedAttribute ...$repeateds
+     * @param StringLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedStringAttributes(StringLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_string_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1201,25 +1182,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $numeric_attributes
-     * @return Contact
+     * @return self
      */
-    public function setNumericAttributes(array $numeric_attributes): Contact
+    public function setNumericAttributes(array $numeric_attributes): self
     {
         $this->numeric_attributes = $numeric_attributes;
         return $this;
     }
 
     /**
-     * @param NumericAttribute ...$repeateds
+     * @param NumericAttribute $attribute
      * @return $this
      */
-    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
+    public function addNumericAttributes(NumericAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1233,25 +1210,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $localized_numeric_attributes
-     * @return Contact
+     * @return self
      */
-    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): Contact
+    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
     {
         $this->localized_numeric_attributes = $localized_numeric_attributes;
         return $this;
     }
 
     /**
-     * @param NumericLocalizedAttribute ...$repeateds
+     * @param NumericLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedNumericAttributes(NumericLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1265,25 +1238,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $datetime_attributes
-     * @return Contact
+     * @return self
      */
-    public function setDatetimeAttributes(array $datetime_attributes): Contact
+    public function setDatetimeAttributes(array $datetime_attributes): self
     {
         $this->datetime_attributes = $datetime_attributes;
         return $this;
     }
 
     /**
-     * @param DatetimeAttribute ...$repeateds
+     * @param DatetimeAttribute $attribute
      * @return $this
      */
-    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
+    public function addDatetimeAttributes(DatetimeAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1297,25 +1266,21 @@ class Contact implements DocPropertiesInterface
 
     /**
      * @param Array $localized_datetime_attributes
-     * @return Contact
+     * @return self
      */
-    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): Contact
+    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
     {
         $this->localized_datetime_attributes = $localized_datetime_attributes;
         return $this;
     }
 
     /**
-     * @param DatetimeLocalizedAttribute ...$repeateds
+     * @param DatetimeLocalizedAttribute $attribute
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute $attribute) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
-        }
-
+        $this->localized_datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 

@@ -29,7 +29,7 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getLocalizedSchemaProperties(): array
+    public function getProductLocalizedSchemaProperties(): array
     {
         return [
             DocSchemaInterface::FIELD_STATUS,
@@ -70,7 +70,7 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getSingleValueSchemaTypes() : array
+    public function getProductSingleValueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_INTERNAL_ID,
@@ -91,7 +91,7 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getBooleanSchemaTypes() : array
+    public function getProductBooleanSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_NEW,
@@ -104,7 +104,7 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getMultivalueSchemaTypes() : array
+    public function getProductMultivalueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_STATUS,

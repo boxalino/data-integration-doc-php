@@ -4,7 +4,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\TypedLocalized;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesInterface;
 

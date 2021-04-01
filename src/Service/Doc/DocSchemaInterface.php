@@ -90,4 +90,49 @@ interface DocSchemaInterface
     public const FIELD_DATETIME_LOCALIZED = "localized_datetime_attributes";
 
 
+    /**
+     * order properties
+     */
+    public const FIELD_PARENT_ORDER_ID="parent_order_id";
+    public const FIELD_PERSONA_TYPE="persona_type";
+    public const FIELD_PERSONA_ID="persona_id";
+    public const FIELD_STORE="store";
+    public const FIELD_SELLER_PERSONA_TYPE="seller_persona_type";
+    public const FIELD_SELLER_PERSONA_ID="seller_persona_id";
+    public const FIELD_CURRENCY_CD="currency_cd";
+    public const FIELD_TOTAL_CRNCY_AMT="total_crncy_amt";
+    public const FIELD_TOTAL_CRNCY_AMT_NET="total_crncy_amt_net";
+    public const FIELD_TOTAL_GROSS_MARGIN_CRNCY_AMT="total_gross_margin_crncy_amt";
+    public const FIELD_TOTAL_NET_MARGIN_CRNCY_AMT="total_net_margin_crncy_amt";
+    public const FIELD_SHIPPING_COSTS_NET="shipping_costs_net";
+    public const FIELD_SHIPPING_COSTS="shipping_costs";
+    public const FIELD_CURRENCY_FACTOR="currency_factor";
+    public const FIELD_TAX_FREE="tax_free";
+    public const FIELD_TAX_RATE="tax_rate";
+    public const FIELD_TAX_AMNT="tax_amnt";
+    public const FIELD_PAYMENT_METHOD="payment_method";
+    public const FIELD_SHIPPING_METHOD="shipping_method";
+    public const FIELD_SHIPPING_DESCRIPTION="shipping_description";
+    public const FIELD_DEVICE="device";
+    public const FIELD_REFERER="referer";
+    public const FIELD_PARTNER="partner";
+    public const FIELD_LANGUAGE="language";
+    public const FIELD_TRACKING_CODE="tracking_code";
+    public const FIELD_IS_GIFT="is_gift";
+    public const FIELD_WRAPPING="wrapping";
+    public const FIELD_EMAIL="email";
+    public const FIELD_COMMENTS="comments";
+    public const FIELD_INTERNAL_COMMENTS="internal_comments";
+    public const FIELD_CUSTOMER_COMMENTS="customer_comments";
+    public const FIELD_CONTACTS="contacts";
+    public const FIELD_CONFIRMATION="confirmation";
+    public const FIELD_CLEARED="cleared";
+    public const FIELD_SENT="sent";
+    public const FIELD_RECEIVED="received";
+    public const FIELD_RETURNED="returned";
+    public const FIELD_REPAIRED="repaired";
+    public const FIELD_STATUS_CODE="status_code";
+    public const FIELD_VOUCHERS="vouchers";
+
+
 }

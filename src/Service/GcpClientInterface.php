@@ -40,6 +40,7 @@ interface GcpClientInterface
     public const DI_REQUEST_DOC="doc";
     public const DI_REQUEST_PROJECT="project";
     public const DI_REQUEST_DATASET="dataset";
+    public const DI_REQUEST_CHUNK="chunk";
 
 
     /**

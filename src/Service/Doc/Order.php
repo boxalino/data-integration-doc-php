@@ -1,17 +1,16 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Doc;
 
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Comment;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Contact;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Product as OrderProduct;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Voucher as OrderVoucher;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Contact;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Order\Comment;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\NumericLocalizedAttribute;
+use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\StringLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 
 class Order implements DocPropertiesInterface
 {
@@ -79,43 +78,43 @@ class Order implements DocPropertiesInterface
 
     /**
      * the total value of the order
-     * @var int
+     * @var float
      */
     protected $total_crncy_amt;
 
     /**
      * the total value of the order
-     * @var int | null
+     * @var float | null
      */
     protected $total_crncy_amt_net;
 
     /**
      * the gross margin of the order
-     * @var int | null
+     * @var float | null
      */
     protected $total_gross_margin_crncy_amt;
 
     /**
      * the net margin of the order
-     * @var int | null
+     * @var float | null
      */
     protected $total_net_margin_crncy_amt;
 
     /**
      * the shipping costs of the order
-     * @var int | null
+     * @var float | null
      */
     protected $shipping_costs;
 
     /**
      * the net shipping costs of the order
-     * @var int | null
+     * @var float | null
      */
     protected $shipping_costs_net;
 
     /**
      * the currency factor of the order
-     * @var int | null
+     * @var float | null
      */
     protected $currency_factor;
 
@@ -127,13 +126,13 @@ class Order implements DocPropertiesInterface
 
     /**
      * the tax rate of the order
-     * @var int | null
+     * @var float | null
      */
     protected $tax_rate;
 
     /**
      * the tax amount of the order
-     * @var int | null
+     * @var float | null
      */
     protected $tax_amnt;
 
@@ -276,9 +275,10 @@ class Order implements DocPropertiesInterface
 
     /**
      * should the order be considered as successful or not
-     * @var bool | null
+     * @TODO check with Sylvain why is status an int?!
+     * @var float | null
      */
-    protected $status;
+    protected $status = 0;
 
     /**
      * should be one of the following value (other values will be considered as OTHER):
@@ -287,6 +287,11 @@ class Order implements DocPropertiesInterface
      * @var string | null
      */
     protected $status_code;
+
+    /**
+     * @var string | null
+     */
+    protected $internal_state;
 
     /**
      * @var Array<<StringAttribute>>
@@ -518,100 +523,100 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param int $total_crncy_amt
+     * @param float $total_crncy_amt
      * @return Order
      */
-    public function setTotalCrncyAmt(int $total_crncy_amt): Order
+    public function setTotalCrncyAmt(float $total_crncy_amt): Order
     {
         $this->total_crncy_amt = $total_crncy_amt;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalCrncyAmtNet(): ?int
+    public function getTotalCrncyAmtNet(): ?float
     {
         return $this->total_crncy_amt_net;
     }
 
     /**
-     * @param int|null $total_crncy_amt_net
+     * @param float|null $total_crncy_amt_net
      * @return Order
      */
-    public function setTotalCrncyAmtNet(?int $total_crncy_amt_net): Order
+    public function setTotalCrncyAmtNet(?float $total_crncy_amt_net): Order
     {
         $this->total_crncy_amt_net = $total_crncy_amt_net;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalGrossMarginCrncyAmt(): ?int
+    public function getTotalGrossMarginCrncyAmt(): ?float
     {
         return $this->total_gross_margin_crncy_amt;
     }
 
     /**
-     * @param int|null $total_gross_margin_crncy_amt
+     * @param float|null $total_gross_margin_crncy_amt
      * @return Order
      */
-    public function setTotalGrossMarginCrncyAmt(?int $total_gross_margin_crncy_amt): Order
+    public function setTotalGrossMarginCrncyAmt(?float $total_gross_margin_crncy_amt): Order
     {
         $this->total_gross_margin_crncy_amt = $total_gross_margin_crncy_amt;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTotalNetMarginCrncyAmt(): ?int
+    public function getTotalNetMarginCrncyAmt(): ?float
     {
         return $this->total_net_margin_crncy_amt;
     }
 
     /**
-     * @param int|null $total_net_margin_crncy_amt
+     * @param float|null $total_net_margin_crncy_amt
      * @return Order
      */
-    public function setTotalNetMarginCrncyAmt(?int $total_net_margin_crncy_amt): Order
+    public function setTotalNetMarginCrncyAmt(?float $total_net_margin_crncy_amt): Order
     {
         $this->total_net_margin_crncy_amt = $total_net_margin_crncy_amt;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getShippingCostsNet(): ?int
+    public function getShippingCostsNet(): ?float
     {
         return $this->shipping_costs_net;
     }
 
     /**
-     * @param int|null $shipping_costs_net
+     * @param float|null $shipping_costs_net
      * @return Order
      */
-    public function setShippingCostsNet(?int $shipping_costs_net): Order
+    public function setShippingCostsNet(?float $shipping_costs_net): Order
     {
         $this->shipping_costs_net = $shipping_costs_net;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getCurrencyFactor(): ?int
+    public function getCurrencyFactor(): ?float
     {
         return $this->currency_factor;
     }
 
     /**
-     * @param int|null $currency_factor
+     * @param float|null $currency_factor
      * @return Order
      */
-    public function setCurrencyFactor(?int $currency_factor): Order
+    public function setCurrencyFactor(?float $currency_factor): Order
     {
         $this->currency_factor = $currency_factor;
         return $this;
@@ -636,36 +641,36 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTaxRate(): ?int
+    public function getTaxRate(): ?float
     {
         return $this->tax_rate;
     }
 
     /**
-     * @param int|null $tax_rate
+     * @param float|null $tax_rate
      * @return Order
      */
-    public function setTaxRate(?int $tax_rate): Order
+    public function setTaxRate(?float $tax_rate): Order
     {
         $this->tax_rate = $tax_rate;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getTaxAmnt(): ?int
+    public function getTaxAmnt(): ?float
     {
         return $this->tax_amnt;
     }
 
     /**
-     * @param int|null $tax_amnt
+     * @param float|null $tax_amnt
      * @return Order
      */
-    public function setTaxAmnt(?int $tax_amnt): Order
+    public function setTaxAmnt(?float $tax_amnt): Order
     {
         $this->tax_amnt = $tax_amnt;
         return $this;
@@ -1162,18 +1167,18 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return bool|null
+     * @return float|null
      */
-    public function getStatus(): ?bool
+    public function getStatus(): ?float
     {
         return $this->status;
     }
 
     /**
-     * @param bool|null $status
+     * @param float|null $status
      * @return Order
      */
-    public function setStatus(?bool $status): Order
+    public function setStatus(?float $status): Order
     {
         $this->status = $status;
         return $this;
@@ -1198,6 +1203,24 @@ class Order implements DocPropertiesInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getInternalState(): ?string
+    {
+        return $this->internal_state;
+    }
+
+    /**
+     * @param string|null $internal_state
+     * @return Order
+     */
+    public function setInternalState(?string $internal_state): Order
+    {
+        $this->internal_state = $internal_state;
+        return $this;
+    }
+
+    /**
      * @return Array
      */
     public function getStringAttributes(): array
@@ -1211,21 +1234,26 @@ class Order implements DocPropertiesInterface
      */
     public function setStringAttributes(array $string_attributes): Order
     {
-        $this->string_attributes = $string_attributes;
+        foreach($string_attributes as $string_attribute)
+        {
+            if($string_attribute instanceof StringAttribute)
+            {
+                $this->string_attributes[] = $string_attribute->toArray();
+                continue;
+            }
+            $this->string_attributes[] = $string_attribute;
+        }
+
         return $this;
     }
 
     /**
-     * @param StringAttribute ...$repeateds
+     * @param StringAttribute $repeateds
      * @return $this
      */
-    public function addStringAttributes(StringAttribute ...$repeateds) : self
+    public function addStringAttributes(StringAttribute $repeated) : self
     {
-        foreach($repeateds as $repeated)
-        {
-            $this->string_attributes[] = $repeated->toArray();
-        }
-
+        $this->string_attributes[] = $repeated->toArray();
         return $this;
     }
 
@@ -1399,7 +1427,15 @@ class Order implements DocPropertiesInterface
      */
     public function setProducts(array $products): Order
     {
-        $this->products = $products;
+        foreach($products as $product)
+        {
+            if($product instanceof OrderProduct)
+            {
+                $this->products[] = $product->toArray();
+                continue;
+            }
+            $this->products[] = $product;
+        }
         return $this;
     }
 
@@ -1440,18 +1476,18 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getShippingCosts(): ?int
+    public function getShippingCosts(): ?float
     {
         return $this->shipping_costs;
     }
 
     /**
-     * @param int|null $shipping_costs
+     * @param float|int|null $shipping_costs
      * @return Order
      */
-    public function setShippingCosts(?int $shipping_costs): Order
+    public function setShippingCosts(?float $shipping_costs): Order
     {
         $this->shipping_costs = $shipping_costs;
         return $this;
