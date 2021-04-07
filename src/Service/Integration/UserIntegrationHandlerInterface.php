@@ -13,4 +13,6 @@ interface UserIntegrationHandlerInterface
     public const INTEGRATION_TYPE="user";
 
     public const INTEGRATION_MODE="F";
+
+
 }

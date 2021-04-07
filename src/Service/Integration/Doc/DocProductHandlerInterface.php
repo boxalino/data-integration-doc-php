@@ -22,7 +22,7 @@ interface DocProductHandlerInterface extends DocHandlerInterface
      * @param DocSchemaPropertyHandlerInterface $attributeHandler
      * @return DocHandlerInterface
      */
-    public function addHandler(DocSchemaPropertyHandlerInterface $attributeHandler) : DocHandlerInterface;
+    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $attributeHandler) : DocHandlerInterface;
 
     /**
      * @return \ArrayIterator

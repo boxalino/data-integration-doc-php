@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\User\Doc;
 
@@ -12,8 +11,6 @@ use Boxalino\DataIntegrationDoc\Service\Generator\User\Doc;
  */
 class DocUser implements DocUserHandlerInterface
 {
-    use DocGeneratorTrait;
-
     /**
      * @var array | null
      */
@@ -25,6 +22,15 @@ class DocUser implements DocUserHandlerInterface
     public function getDocType() : string
     {
         return DocUserHandlerInterface::DOC_TYPE;
+    }
+
+    /**
+     * @param array $data
+     * @return DocGeneratorInterface
+     */
+    public function getDocSchemaGenerator(array $data = []) : DocGeneratorInterface
+    {
+        return new Doc($data);
     }
 
 }

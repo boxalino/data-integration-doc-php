@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
-use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
+use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 
 /**
  * Interface IntegrationHandlerInterface
@@ -32,6 +32,8 @@ interface IntegrationHandlerInterface
     public function addHandler(DocHandlerInterface $docHandler) : IntegrationHandlerInterface;
 
     /**
+     * Get handlers for every doc type required for the given data integration strategy
+     *
      * @return \ArrayObject
      */
     public function getHandlers() : \ArrayObject;
@@ -44,10 +46,21 @@ interface IntegrationHandlerInterface
     public function getIntegrationType() : string;
 
     /**
-     * Describe the integration strategy (product, user, order, etc)
+     * Describe the integration strategy (F, I, D)
      *
      * @return string
      */
-    public function getIntegrationStrategy() : string;
+    public function getIntegrationMode() : string;
+
+    /**
+     * Sync request once all handlers have loaded their content
+     */
+    public function integrate() : void;
+
+    /**
+     * @param ConfigurationDataObject $configurationDataObject
+     * @return IntegrationHandlerInterface
+     */
+    public function addConfigurationScope(ConfigurationDataObject $configurationDataObject) : IntegrationHandlerInterface;
 
 }

@@ -3,6 +3,8 @@ namespace Boxalino\DataIntegrationDoc\Service\Generator;
 
 /**
  * Interface DocGeneratorInterface
+ * Implement in order to dynamically generate each doc_X content type line/row
+ *
  * @package Boxalino\DataIntegrationDoc\Service\Generator
  */
 interface DocGeneratorInterface extends \JsonSerializable

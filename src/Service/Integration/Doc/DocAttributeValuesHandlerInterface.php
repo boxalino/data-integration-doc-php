@@ -18,7 +18,7 @@ interface DocAttributeValuesHandlerInterface extends DocHandlerInterface
      * @param DocPropertiesInterface $attributeHandler
      * @return DocHandlerInterface
      */
-    public function addHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
+    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
 
     /**
      * @return \ArrayIterator

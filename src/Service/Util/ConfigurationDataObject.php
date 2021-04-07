@@ -1,6 +1,7 @@
 <?php
 namespace Boxalino\DataIntegrationDoc\Service\Util;
 
+use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\AbstractSimpleObject;
 
 /**
@@ -64,7 +65,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getType() : ?string
     {
-        return $this->_get("type");
+        return $this->_get(GcpClientInterface::DI_REQUEST_TYPE);
     }
 
     /**
@@ -72,7 +73,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getProject() : ?string
     {
-        return $this->_get("project");
+        return $this->_get(GcpClientInterface::DI_REQUEST_PROJECT);
     }
 
     /**
@@ -80,7 +81,39 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getDataset() : ?string
     {
-        return $this->_get("dataset");
+        return $this->_get(GcpClientInterface::DI_REQUEST_DATASET);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTm() : ?string
+    {
+        return $this->_get(GcpClientInterface::DI_REQUEST_TM);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTs() : ?string
+    {
+        return $this->_get(GcpClientInterface::DI_REQUEST_TS);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMode() : ?string
+    {
+        return $this->_get(GcpClientInterface::DI_REQUEST_MODE);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getChunk() : ?string
+    {
+        return $this->_get(GcpClientInterface::DI_REQUEST_CHUNK);
     }
 
     /**
@@ -89,6 +122,56 @@ class ConfigurationDataObject extends AbstractSimpleObject
     public function getData() : array
     {
         return $this->_data;
+    }
+
+    /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType(string $type) : self
+    {
+        $this->setData(GcpClientInterface::DI_REQUEST_TYPE, $type);
+        return $this;
+    }
+
+    /**
+     * @param string $tm
+     * @return $this
+     */
+    public function setTm(string $tm) : self
+    {
+        $this->setData(GcpClientInterface::DI_REQUEST_TM, $tm);
+        return $this;
+    }
+
+    /**
+     * @param string $mode
+     * @return $this
+     */
+    public function setMode(string $mode) : self
+    {
+        $this->setData(GcpClientInterface::DI_REQUEST_MODE, $mode);
+        return $this;
+    }
+
+    /**
+     * @param string $ts
+     * @return $this
+     */
+    public function setTs(string $ts) : self
+    {
+        $this->setData(GcpClientInterface::DI_REQUEST_TS, $ts);
+        return $this;
+    }
+
+    /**
+     * @param string $chunk
+     * @return $this
+     */
+    public function setChunk(string $chunk) : self
+    {
+        $this->setData(GcpClientInterface::DI_REQUEST_CHUNK, $chunk);
+        return $this;
     }
 
 }

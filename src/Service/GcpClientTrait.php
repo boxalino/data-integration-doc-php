@@ -43,11 +43,8 @@ trait GcpClientTrait
      * @param ConfigurationDataObject $configurationDataObject
      * @param string $document
      * @param string $type
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      */
-    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm, string $ts) : void
+    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type) : void
     {
         try{
             $requestParameters = [
@@ -55,9 +52,9 @@ trait GcpClientTrait
                 GcpClientInterface::DI_REQUEST_CLIENT   => $configurationDataObject->getAccount(),
                 GcpClientInterface::DI_REQUEST_DEV      => $configurationDataObject->isDev(),
                 GcpClientInterface::DI_REQUEST_DOC      => $type,
-                GcpClientInterface::DI_REQUEST_MODE     => $mode,
-                GcpClientInterface::DI_REQUEST_TM       => $tm,
-                GcpClientInterface::DI_REQUEST_TS       => $ts
+                GcpClientInterface::DI_REQUEST_MODE     => $configurationDataObject->getMode(),
+                GcpClientInterface::DI_REQUEST_TM       => $configurationDataObject->getTm(),
+                GcpClientInterface::DI_REQUEST_TS       => $configurationDataObject->getTs()
             ];
 
             $response = $this->getClient()->send(
@@ -93,11 +90,8 @@ trait GcpClientTrait
      * Make a sync request once all the data sync contents have been exported
      *
      * @param ConfigurationDataObject $configurationDataObject
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      */
-    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm, string $ts) : void
+    public function sync(ConfigurationDataObject $configurationDataObject) : void
     {
         try{
             $properties = [
@@ -107,9 +101,9 @@ trait GcpClientTrait
                 GcpClientInterface::DI_REQUEST_TYPE     => $configurationDataObject->getType(),
                 GcpClientInterface::DI_REQUEST_PROJECT  => $configurationDataObject->getProject(),
                 GcpClientInterface::DI_REQUEST_DATASET  => $configurationDataObject->getDataset(),
-                GcpClientInterface::DI_REQUEST_MODE     => $mode,
-                GcpClientInterface::DI_REQUEST_TM       => $tm,
-                GcpClientInterface::DI_REQUEST_TS       => $ts
+                GcpClientInterface::DI_REQUEST_MODE     => $configurationDataObject->getMode(),
+                GcpClientInterface::DI_REQUEST_TM       => $configurationDataObject->getTm(),
+                GcpClientInterface::DI_REQUEST_TS       => $configurationDataObject->getTs()
             ];
             $this->getClient()->send(
                 new Request(
@@ -289,7 +283,7 @@ trait GcpClientTrait
      *
      * @return string
      */
-    public function getMsTs() : string
+    public function getTs() : string
     {
         try{
             list($usec, $sec) = explode(" ", microtime());

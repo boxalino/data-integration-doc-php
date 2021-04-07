@@ -14,17 +14,6 @@ interface DocAttributeHandlerInterface extends DocHandlerInterface
     public const DOC_TYPE = "doc_attribute";
 
     /**
-     * @param DocSchemaPropertyHandlerInterface $attributeHandler
-     * @return DocHandlerInterface
-     */
-    public function addHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getHandlers() : \ArrayIterator;
-
-    /**
      * @param string $propertyName
      * @return DocHandlerInterface
      */

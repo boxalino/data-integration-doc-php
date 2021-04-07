@@ -123,12 +123,5 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
         return $this->properties;
     }
 
-    /**
-     * @return array
-     */
-    public function getDocSchemaAttributes() : array
-    {
-        return array_values($this->getProperties());
-    }
 
 }

@@ -41,10 +41,6 @@ interface DocSchemaPropertyHandlerInterface
      */
     public function handlerHasProperty(string $propertyName): bool;
 
-    /**
-     * @return array
-     */
-    public function getDocSchemaAttributes() : array;
 
 
 }

@@ -42,14 +42,14 @@ class GcpClient implements GcpClientInterface
      * @param string $mode (F, D, I)
      * @throws \Throwable
      */
-    public function send(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode) : void
+    public function send(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents) : void
     {
         try {
-            $tm = $this->getTm();
-            $ts = $this->getMsTs();
+            $configurationDataObject->setTm($this->getTm());
+            $configurationDataObject->setTs($this->getTs());
 
-            $this->load($configurationDataObject, $documents, $mode, $tm, $ts);
-            $this->sync($configurationDataObject,$mode, $tm, $ts);
+            $this->load($configurationDataObject, $documents);
+            $this->sync($configurationDataObject);
         } catch (FailDocLoadException $exception)
         {
             throw $exception;
@@ -72,12 +72,9 @@ class GcpClient implements GcpClientInterface
      *
      * @param ConfigurationDataObject $configurationDataObject
      * @param \ArrayIterator $documents
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      * @throws \Throwable
      */
-    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm, string $ts) : void
+    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents) : void
     {
         try{
             foreach($documents as $type => $document)
@@ -91,10 +88,7 @@ class GcpClient implements GcpClientInterface
                 $this->loadDoc(
                     $configurationDataObject,
                     $document,
-                    $type,
-                    $mode,
-                    $tm,
-                    $ts
+                    $type
                 );
             }
         } catch (FailDocLoadException $exception)

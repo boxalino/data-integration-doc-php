@@ -10,7 +10,7 @@ abstract class AbstractSimpleObject
     /**
      * @var array
      */
-    protected $_data;
+    protected $_data = [];
 
     /**
      * Initialize internal storage

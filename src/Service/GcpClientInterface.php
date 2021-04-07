@@ -53,20 +53,16 @@ interface GcpClientInterface
     /**
      * @param ConfigurationDataObject $configurationDataObject
      * @param \ArrayIterator $documents
-     * @param string $mode
      * @throws \Throwable
      */
-    public function send(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode) : void;
+    public function send(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents) : void;
 
     /**
      * @param ConfigurationDataObject $configurationDataObject
      * @param \ArrayIterator $documents
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      * @throws \Throwable
      */
-    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents, string $mode, string $tm, string $ts) : void;
+    public function load(ConfigurationDataObject $configurationDataObject, \ArrayIterator $documents) : void;
 
     /**
      * Load a document to GCP
@@ -74,20 +70,31 @@ interface GcpClientInterface
      * @param ConfigurationDataObject $configurationDataObject
      * @param string $document
      * @param string $type
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      */
-    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type, string $mode, string $tm, string $ts) : void;
+    public function loadDoc(ConfigurationDataObject $configurationDataObject, string $document, string $type) : void;
 
     /**
      * Make a sync request once all the data sync contents have been exported
      *
      * @param ConfigurationDataObject $configurationDataObject
-     * @param string $mode
-     * @param string $tm
-     * @param string $ts
      */
-    public function sync(ConfigurationDataObject $configurationDataObject, string $mode, string $tm, string $ts) : void;
+    public function sync(ConfigurationDataObject $configurationDataObject) : void;
+
+    /**
+     * Timestamp
+     * Use this to identify the BQ table for this content
+     * (ex: <client>_<mode>.<doc>_<mode>_<tm> in our GCP project)
+     *
+     * @return string
+     */
+    public function getTm() : string;
+
+    /**
+     * The content version (miliseconds based in UNIX timestamp)
+     * This is required in order for the LIVE sync to apply content updates in chronological order
+     *
+     * @return string
+     */
+    public function getTs() : string;
 
 }

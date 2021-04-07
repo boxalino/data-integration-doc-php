@@ -2,14 +2,15 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
+use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
 use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Group;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Line;
 use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class DocProduct
@@ -18,12 +19,23 @@ use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
  */
 class DocProduct implements DocProductHandlerInterface
 {
-    use DocGeneratorTrait;
-    use DocIntegrationTrait;
+    use DocHandlerIntegrationTrait;
+    use LoadTrait;
 
-    public function __construct()
+    public function __construct(LoggerInterface $logger)
     {
-        $this->attributeHandlerList = new \ArrayIterator();
+        $this->logger = $logger;
+        $this->propertyHandlerList = new \ArrayIterator();
+    }
+
+    /**
+     * The product content is to be integrated by chunks, based on the batch size configured on client side
+     * This is the recommended/default strategy due to the massive ammount of content that can be exported per integration process
+     */
+    public function integrate(): void
+    {
+        $document = $this->getDocContent();
+        $this->load($document, $this->getDocType());
     }
 
     /**
@@ -35,23 +47,38 @@ class DocProduct implements DocProductHandlerInterface
     }
 
     /**
-     * List of DocProduct attributes that should be part of the DataIntegrationDoc request
-     * (ex: used to filter the schema attributes)
-     *
-     * @return array
+     * @param array $data
+     * @return DocGeneratorInterface
      */
-    public function getDocSchemaAttributes() : array
+    public function getDocSchemaGenerator(array $data = []) : DocGeneratorInterface
     {
-        $docSchemaAttributes = [];
-        foreach($this->getHandlers() as $handler)
+        return $this->getSchemaGeneratorByType($this->getDocType());
+    }
+
+    /**
+     * @param string $type
+     * @param array $data
+     * @return DocGeneratorInterface
+     */
+    public function getSchemaGeneratorByType(string $type, array $data = []) : DocGeneratorInterface
+    {
+        switch($type)
         {
-            if($handler instanceof DocSchemaPropertyHandlerInterface)
-            {
-                $docSchemaAttributes = array_merge($data, $handler->getDocSchemaAttributes());
-            }
+            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_SKU:
+                $schema = new Sku($data);
+                break;
+            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_GROUP:
+                $schema = new Group($data);
+                break;
+            case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_LINE:
+                $schema = new Line($data);
+                break;
+            case DocProductHandlerInterface::DOC_TYPE:
+                $schema = new Doc();
+                break;
         }
 
-        return $docSchemaAttributes;
+        return $schema;
     }
 
     /**
@@ -63,11 +90,11 @@ class DocProduct implements DocProductHandlerInterface
     public function docTypePropDiffDuplicate(string $objectType, string $diffObjectType, array $data = [])
     {
         /** @var DocGeneratorInterface $object */
-        $object = $this->getDocPropertySchema($objectType);
+        $object = $this->getSchemaGeneratorByType($objectType);
         $objectProperties = $object->toArray();
 
         /** @var DocGeneratorInterface $diffObject */
-        $diffObject = $this->getDocPropertySchema($diffObjectType);
+        $diffObject = $this->getSchemaGeneratorByType($diffObjectType);
         $diffObjectProperties = $diffObject->toArray();
 
         $propertyDiff = array_diff(array_keys($diffObjectProperties), array_keys($objectProperties));
@@ -76,7 +103,7 @@ class DocProduct implements DocProductHandlerInterface
             return in_array($property, $propertyDiff) || $property === DocSchemaInterface::FIELD_INTERNAL_ID;
         }, ARRAY_FILTER_USE_KEY);
 
-        return $this->getDocPropertySchema($diffObjectType, $diffObjectData);
+        return $this->getSchemaGeneratorByType($diffObjectType, $diffObjectData);
     }
 
 

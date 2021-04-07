@@ -3,21 +3,25 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Doc\Attribute;
 use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaIntegrationTrait;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocGeneratorTrait;
-use Boxalino\DataIntegrationDoc\Service\Integration\DocIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
+use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandler;
+use Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Doc;
+use Psr\Log\LoggerInterface;
+use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
 
 /**
  * Class DocAtrtibute
+ * Handler for the doc_attribute file content
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
 class DocAttribute implements DocAttributeHandlerInterface
 {
 
-    use DocGeneratorTrait;
-    use DocIntegrationTrait;
+    use DocHandlerIntegrationTrait;
     use DocSchemaIntegrationTrait;
+    use LoadTrait;
 
     /**
      * @var array
@@ -84,9 +88,9 @@ class DocAttribute implements DocAttributeHandlerInterface
      */
     protected $properties;
 
-    public function __construct()
+    public function __construct(LoggerInterface $logger)
     {
-        $this->attributeHandlerList = new \ArrayIterator();
+        $this->propertyHandlerList = new \ArrayIterator();
         $this->multivalueAttributesList = new \ArrayIterator();
         $this->indexedAttributesList = new \ArrayIterator();
         $this->numericAttributesList = new \ArrayIterator();
@@ -99,6 +103,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         $this->groupByAttributesList = new \ArrayIterator();
         $this->orderByAttributesList = new \ArrayIterator();
         $this->properties = new \ArrayIterator();
+        $this->logger = $logger;
     }
 
     /**
@@ -107,6 +112,24 @@ class DocAttribute implements DocAttributeHandlerInterface
     public function getDocType() : string
     {
         return DocAttributeHandlerInterface::DOC_TYPE;
+    }
+
+    /**
+     * @param array $data
+     * @return DocGeneratorInterface
+     */
+    public function getDocSchemaGenerator(array $data = []) : DocGeneratorInterface
+    {
+        return new Doc($data);
+    }
+
+    /**
+     * Doc Attribute options are exported following the simple load strategy
+     */
+    public function integrate(): void
+    {
+        $document = $this->getDocContent();
+        $this->load($document, $this->getDocType());
     }
 
     /**
@@ -312,7 +335,7 @@ class DocAttribute implements DocAttributeHandlerInterface
         foreach($this->getProperties() as $property)
         {
             /** @var Attribute $doc */
-            $doc = $this->getDocPropertySchema($this->getDocType());
+            $doc = $this->getDocSchemaGenerator();
             $doc->setName($property)
                 ->addLabel($this->getPropertyLabel($property, $this->getLanguages()))
                 ->setIndexed($this->indexedAttributesList->offsetExists($property))
