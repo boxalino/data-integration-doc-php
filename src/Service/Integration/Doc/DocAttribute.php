@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\Attribute;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Doc\Attribute;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandler;
-use Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Doc;
+use Boxalino\DataIntegrationDoc\Generator\Attribute\Doc;
 use Psr\Log\LoggerInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 
 /**
  * Class DocAtrtibute
@@ -121,15 +121,6 @@ class DocAttribute implements DocAttributeHandlerInterface
     public function getDocSchemaGenerator(array $data = []) : DocGeneratorInterface
     {
         return new Doc($data);
-    }
-
-    /**
-     * Doc Attribute options are exported following the simple load strategy
-     */
-    public function integrate(): void
-    {
-        $document = $this->getDocContent();
-        $this->load($document, $this->getDocType());
     }
 
     /**

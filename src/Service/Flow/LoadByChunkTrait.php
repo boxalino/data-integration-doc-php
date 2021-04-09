@@ -20,7 +20,7 @@ trait LoadByChunkTrait
     public function loadByChunk(string $document) : void
     {
         try{
-            $url = $this->getLoadUrl();
+            $url = $this->getGcsLoadUrl();
             $upload = $this->getClient()->send(
                 new Request(
                     'PUT',
@@ -37,10 +37,8 @@ trait LoadByChunkTrait
             {
                 $uploadId = $upload->getHeader("X-GUploader-UploadID")[0];
                 $loadedSize = $upload->getHeader("x-goog-stored-content-length")[0];
-                $this->getLogger()->info("Chunk loaded to Boxalino GCS. Code - $uploadId. Load size - $loadedSize ");
+                $this->getLogger()->info("{$this->getDiConfiguration()->getType()} Chunk loaded to Boxalino GCS. Code - $uploadId. Load size - $loadedSize ");
             }
-
-            $this->loadBq();
         } catch (\Throwable $exception)
         {
             if(strpos($exception->getMessage(), "timed out after"))

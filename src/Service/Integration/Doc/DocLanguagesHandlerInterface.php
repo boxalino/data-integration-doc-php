@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\Languages\Doc;
 
 /**
  * Interface DocLanguagesHandlerInterface

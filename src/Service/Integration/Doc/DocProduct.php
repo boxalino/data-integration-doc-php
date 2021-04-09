@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaInterface;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Doc;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Group;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Line;
-use Boxalino\DataIntegrationDoc\Service\Generator\Product\Sku;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\Product\Doc;
+use Boxalino\DataIntegrationDoc\Generator\Product\Group;
+use Boxalino\DataIntegrationDoc\Generator\Product\Line;
+use Boxalino\DataIntegrationDoc\Generator\Product\Sku;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Psr\Log\LoggerInterface;
 
@@ -26,16 +26,6 @@ class DocProduct implements DocProductHandlerInterface
     {
         $this->logger = $logger;
         $this->propertyHandlerList = new \ArrayIterator();
-    }
-
-    /**
-     * The product content is to be integrated by chunks, based on the batch size configured on client side
-     * This is the recommended/default strategy due to the massive ammount of content that can be exported per integration process
-     */
-    public function integrate(): void
-    {
-        $document = $this->getDocContent();
-        $this->load($document, $this->getDocType());
     }
 
     /**

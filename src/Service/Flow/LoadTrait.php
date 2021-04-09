@@ -2,7 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
-use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
+use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -37,6 +37,7 @@ trait LoadTrait
             if(strpos($exception->getMessage(), "413 Request Entity Too Large"))
             {
                 $this->loadByChunk($document);
+                $this->loadBq();
                 return;
             }
 

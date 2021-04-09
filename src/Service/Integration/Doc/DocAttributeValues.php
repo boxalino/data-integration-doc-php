@@ -2,11 +2,11 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
-use Boxalino\DataIntegrationDoc\Service\Generator\Attribute\Values\Doc;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Generator\Attribute\Values\Doc;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Psr\Log\LoggerInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 
 /**
  * Class DocAtrtibuteValues
@@ -42,13 +42,5 @@ class DocAttributeValues implements DocAttributeValuesHandlerInterface
         return new Doc($data);
     }
 
-    /**
-     * DocAttributeValues are exported following the simple load strategy
-     */
-    public function integrate(): void
-    {
-        $document = $this->getDocContent();
-        $this->load($document, $this->getDocType());
-    }
 
 }

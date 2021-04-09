@@ -1,7 +1,7 @@
 <?php
 namespace Boxalino\DataIntegrationDoc\Service\Util;
 
-use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
+use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\AbstractSimpleObject;
 
 /**
@@ -65,7 +65,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getType() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_TYPE);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_TYPE);
     }
 
     /**
@@ -73,7 +73,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getProject() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_PROJECT);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_PROJECT);
     }
 
     /**
@@ -81,7 +81,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getDataset() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_DATASET);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_DATASET);
     }
 
     /**
@@ -89,7 +89,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getTm() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_TM);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_TM);
     }
 
     /**
@@ -97,7 +97,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getTs() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_TS);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_TS);
     }
 
     /**
@@ -105,7 +105,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getMode() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_MODE);
+        return $this->_get(GcpRequestInterface::DI_REQUEST_MODE);
     }
 
     /**
@@ -113,7 +113,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getChunk() : ?string
     {
-        return $this->_get(GcpClientInterface::DI_REQUEST_CHUNK);
+        return (int) $this->_get(GcpRequestInterface::DI_REQUEST_CHUNK);
     }
 
     /**
@@ -130,7 +130,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function setType(string $type) : self
     {
-        $this->setData(GcpClientInterface::DI_REQUEST_TYPE, $type);
+        $this->setData(GcpRequestInterface::DI_REQUEST_TYPE, $type);
         return $this;
     }
 
@@ -140,7 +140,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function setTm(string $tm) : self
     {
-        $this->setData(GcpClientInterface::DI_REQUEST_TM, $tm);
+        $this->setData(GcpRequestInterface::DI_REQUEST_TM, $tm);
         return $this;
     }
 
@@ -150,7 +150,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function setMode(string $mode) : self
     {
-        $this->setData(GcpClientInterface::DI_REQUEST_MODE, $mode);
+        $this->setData(GcpRequestInterface::DI_REQUEST_MODE, $mode);
         return $this;
     }
 
@@ -160,17 +160,17 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function setTs(string $ts) : self
     {
-        $this->setData(GcpClientInterface::DI_REQUEST_TS, $ts);
+        $this->setData(GcpRequestInterface::DI_REQUEST_TS, $ts);
         return $this;
     }
 
     /**
-     * @param string $chunk
+     * @param string|int $chunk
      * @return $this
      */
-    public function setChunk(string $chunk) : self
+    public function setChunk($chunk) : self
     {
-        $this->setData(GcpClientInterface::DI_REQUEST_CHUNK, $chunk);
+        $this->setData(GcpRequestInterface::DI_REQUEST_CHUNK, (int) $chunk);
         return $this;
     }
 

@@ -2,7 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
-use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
+use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -19,7 +19,7 @@ trait SyncTrait
     use DiRequestTrait;
 
     /**
-     * Load docs to GCS, by batches
+     * Triggers the content sync request
      */
     public function sync() : void
     {

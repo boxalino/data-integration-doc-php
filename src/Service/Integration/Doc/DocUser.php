@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\User\Doc;
+use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\User\Doc;
 
 /**
  * Class DocOrder
@@ -11,6 +12,9 @@ use Boxalino\DataIntegrationDoc\Service\Generator\User\Doc;
  */
 class DocUser implements DocUserHandlerInterface
 {
+    use DocHandlerIntegrationTrait;
+    use LoadTrait;
+
     /**
      * @var array | null
      */

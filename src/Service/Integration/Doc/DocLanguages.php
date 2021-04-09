@@ -2,8 +2,8 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Generator\Languages\Doc;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\Languages\Doc;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Psr\Log\LoggerInterface;
 
@@ -39,14 +39,5 @@ class DocLanguages implements DocLanguagesHandlerInterface
         return new Doc($data);
     }
 
-    /**
-     * Languages are exported following the simple load strategy
-     * (small data load)
-     */
-    public function integrate(): void
-    {
-       $document = $this->getDocContent();
-       $this->load($document, $this->getDocType());
-    }
 
 }

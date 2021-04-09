@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
-use Boxalino\DataIntegrationDoc\Service\GcpClientInterface;
+use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use GuzzleHttp\Client;
@@ -52,10 +52,10 @@ trait DiRequestTrait
     {
         if(is_null($endpoint))
         {
-            return $this->getDiConfiguration()->getEndpoint() . GcpClientInterface::GCP_ENDPOINT_LOAD;
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD;
         }
 
-        return $endpoint . GcpClientInterface::GCP_ENDPOINT_LOAD;
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_LOAD;
     }
 
     /**
@@ -66,10 +66,24 @@ trait DiRequestTrait
     {
         if(is_null($endpoint))
         {
-            return $this->getDiConfiguration()->getEndpoint() . GcpClientInterface::GCP_ENDPOINT_SYNC;
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_SYNC;
         }
 
-        return $endpoint . GcpClientInterface::GCP_ENDPOINT_SYNC;
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_SYNC;
+    }
+
+    /**
+     * @param string | null $endpoint
+     * @return string
+     */
+    public function getEndpointSyncCheck(?string $endpoint = null) : string
+    {
+        if(is_null($endpoint))
+        {
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_SYNC_CHECK;
+        }
+
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_SYNC_CHECK;
     }
 
     /**
@@ -80,10 +94,10 @@ trait DiRequestTrait
     {
         if(is_null($endpoint))
         {
-            return $this->getDiConfiguration()->getEndpoint() . GcpClientInterface::GCP_ENDPOINT_LOAD_CHUNK;
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD_CHUNK;
         }
 
-        return $endpoint . GcpClientInterface::GCP_ENDPOINT_LOAD_CHUNK;
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_LOAD_CHUNK;
     }
 
     /**
@@ -94,10 +108,10 @@ trait DiRequestTrait
     {
         if(is_null($endpoint))
         {
-            return $this->getDiConfiguration()->getEndpoint() . GcpClientInterface::GCP_ENDPOINT_LOAD_BQ;
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD_BQ;
         }
 
-        return $endpoint . GcpClientInterface::GCP_ENDPOINT_LOAD_BQ;
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_LOAD_BQ;
     }
 
     /**
@@ -160,16 +174,16 @@ trait DiRequestTrait
     {
         $params = [
             'Content-Type' => 'application/json',
-            GcpClientInterface::DI_REQUEST_CLIENT   => $this->getDiConfiguration()->getAccount(),
-            GcpClientInterface::DI_REQUEST_DEV      => $this->getDiConfiguration()->isDev(),
-            GcpClientInterface::DI_REQUEST_TYPE     => $this->getDiConfiguration()->getType(),
-            GcpClientInterface::DI_REQUEST_MODE     => $this->getDiConfiguration()->getMode(),
-            GcpClientInterface::DI_REQUEST_TM       => $this->getDiConfiguration()->getTm(),
-            GcpClientInterface::DI_REQUEST_TS       => $this->getDiConfiguration()->getTs(),
-            GcpClientInterface::DI_REQUEST_PROJECT  => $this->getDiConfiguration()->getProject(),
-            GcpClientInterface::DI_REQUEST_DATASET  => $this->getDiConfiguration()->getDataset(),
-            GcpClientInterface::DI_REQUEST_DOC      => $doc,
-            GcpClientInterface::DI_REQUEST_CHUNK    => $chunk
+            GcpRequestInterface::DI_REQUEST_CLIENT   => $this->getDiConfiguration()->getAccount(),
+            GcpRequestInterface::DI_REQUEST_DEV      => $this->getDiConfiguration()->isDev(),
+            GcpRequestInterface::DI_REQUEST_TYPE     => $this->getDiConfiguration()->getType(),
+            GcpRequestInterface::DI_REQUEST_MODE     => $this->getDiConfiguration()->getMode(),
+            GcpRequestInterface::DI_REQUEST_TM       => $this->getDiConfiguration()->getTm(),
+            GcpRequestInterface::DI_REQUEST_TS       => $this->getDiConfiguration()->getTs(),
+            GcpRequestInterface::DI_REQUEST_PROJECT  => $this->getDiConfiguration()->getProject(),
+            GcpRequestInterface::DI_REQUEST_DATASET  => $this->getDiConfiguration()->getDataset(),
+            GcpRequestInterface::DI_REQUEST_DOC      => $doc,
+            GcpRequestInterface::DI_REQUEST_CHUNK    => $chunk
         ];
 
         return array_filter($params);
@@ -186,12 +200,10 @@ trait DiRequestTrait
 
     /**
      * @param int $timeout
-     * @return self
      */
-    public function setTimeout(int $timeout): self
+    public function setTimeout(int $timeout)
     {
         $this->timeout = $timeout;
-        return $this;
     }
 
 

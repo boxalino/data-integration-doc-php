@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
+use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
+use GuzzleHttp\Psr7\Request;
+
 /**
  * Endpoint to access a private content upload link to GCS
  * curl -X PUT -H 'Content-Type: application/octet-stream' --upload-file my-file $url
@@ -20,16 +23,16 @@ trait GcsLoadUrlTrait
     public function getGcsLoadUrl() : ?string
     {
         try{
-            $this->useChunk();
             $signedUrlRequest = $this->getClient()->send(
                 new Request(
                     'POST',
                     $this->getEndpointLoadChunk(),
-                    $this->getHttpRequestHeaders($this->getDocType(), $this->getDiConfiguration()->getChunk())
+                    $this->getHttpRequestHeaders($this->getDocType(), (int) $this->getDiConfiguration()->getChunk())
                 ),
                 $this->getHttpRequestOptions()
             );
 
+            $this->useChunk();
             return trim(stripslashes(rawurldecode($signedUrlRequest->getBody()->getContents())), '"');
         } catch (\Throwable $exception)
         {
@@ -48,7 +51,7 @@ trait GcsLoadUrlTrait
     public function useChunk() : void
     {
         $chunk = (int)$this->getDiConfiguration()->getChunk();
-        $this->getDiConfiguration()->setChunk($chunk++);
+        $this->getDiConfiguration()->setChunk($chunk+1);
     }
 
 

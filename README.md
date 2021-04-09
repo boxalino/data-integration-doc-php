@@ -9,7 +9,6 @@ data contracts (as seen [here](https://github.com/boxalino/data-integration-doc-
   * [Generator](https://github.com/boxalino/data-integration-doc-php/tree/master/src/Service/Generator) structures can be used to
 generate each type of doc_ JSONL
   * [Integration handlers](https://github.com/boxalino/data-integration-doc-php/tree/master/src/Service/Integration) are used in the DI strategies
-  * [GCP Client](https://github.com/boxalino/data-integration-doc-php/blob/master/src/Service/GcpClient.php) will disclose the required parameters for the public request endpoint
 
 ## Contact us!
 If you have any question, just contact us at support@boxalino.com

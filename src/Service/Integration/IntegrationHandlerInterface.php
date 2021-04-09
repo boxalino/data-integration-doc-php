@@ -15,12 +15,15 @@ interface IntegrationHandlerInterface
 {
 
     /**
-     * Create list of documents to be exported
-     * (doc-type => doc-content - JSONL format)
-     *
-     * @return \ArrayIterator
+     * Sync request once all handlers have loaded their content
      */
-    public function getDocs() : \ArrayIterator;
+    public function integrate() : void;
+
+    /**
+     * @param ConfigurationDataObject $configurationDataObject
+     * @return IntegrationHandlerInterface
+     */
+    public function manageConfiguration(ConfigurationDataObject $configurationDataObject) : IntegrationHandlerInterface;
 
     /**
      * Handlers are managing the export of every DOC structure, as documented
@@ -52,15 +55,5 @@ interface IntegrationHandlerInterface
      */
     public function getIntegrationMode() : string;
 
-    /**
-     * Sync request once all handlers have loaded their content
-     */
-    public function integrate() : void;
-
-    /**
-     * @param ConfigurationDataObject $configurationDataObject
-     * @return IntegrationHandlerInterface
-     */
-    public function addConfigurationScope(ConfigurationDataObject $configurationDataObject) : IntegrationHandlerInterface;
 
 }

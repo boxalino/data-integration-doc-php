@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaIntegrationTrait;
-use Boxalino\DataIntegrationDoc\Service\Doc\DocSchemaPropertyHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Doc\Schema\Localized;
-use Boxalino\DataIntegrationDoc\Service\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaIntegrationTrait;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
+use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use Psr\Log\LoggerInterface;
@@ -41,6 +42,15 @@ trait DocHandlerIntegrationTrait
      * @var ConfigurationDataObject
      */
     protected $diConfiguration;
+
+    /**
+     * generic integrate flow
+     */
+    public function integrate(): void
+    {
+        $document = $this->getDocContent();
+        $this->load($document, $this->getDocType());
+    }
 
     /**
      * @param DocGeneratorInterface $doc
@@ -96,18 +106,13 @@ trait DocHandlerIntegrationTrait
      */
     public function generateDocData() : array
     {
-        if(is_null($this->docData))
+        $this->docData = [];
+        foreach($this->getHandlers() as $handler)
         {
-            $data = [];
-            foreach($this->getHandlers() as $handler)
+            if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
-                if($handler instanceof DocSchemaPropertyHandlerInterface)
-                {
-                    $data = array_merge_recursive($data, $handler->getValues());
-                }
+                $this->docData = array_merge_recursive($this->docData,  $handler->getValues());
             }
-
-            $this->docData = $data;
         }
 
         return $this->docData;
