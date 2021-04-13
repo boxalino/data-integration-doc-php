@@ -4,13 +4,12 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration;
 use Boxalino\DataIntegrationDoc\Service\Integration\Mode\InstantIntegrationInterface;
 
 /**
- * Interface ProductInstantIntegrationHandlerInterface
+ * Interface OrderDeltaIntegrationHandlerInterface
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
-interface ProductDocInstantIntegrationHandlerInterface
+interface OrderInstantIntegrationHandlerInterface
     extends IntegrationHandlerInterface, InstantIntegrationInterface
 {
-
 
 }

@@ -18,15 +18,5 @@ interface DocProductHandlerInterface extends DocHandlerInterface
     public const DOC_PRODUCT_LEVEL_LINE = 'product_line';
     public const DOC_PRODUCT_LEVEL_GROUP = 'product_groups';
 
-    /**
-     * @param DocSchemaPropertyHandlerInterface $attributeHandler
-     * @return DocHandlerInterface
-     */
-    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $attributeHandler) : DocHandlerInterface;
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getHandlers() : \ArrayIterator;
 
 }

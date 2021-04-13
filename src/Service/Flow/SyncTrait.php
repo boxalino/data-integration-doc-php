@@ -38,6 +38,11 @@ trait SyncTrait
                 return;
             }
 
+            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            {
+                throw new FailSyncException("Boxalino Data Integration sync request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()}. Please report this incident to Boxalino.");
+            }
+
             throw new FailSyncException(
                 "Boxalino Data Integration sync request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
                 . $exception->getMessage()

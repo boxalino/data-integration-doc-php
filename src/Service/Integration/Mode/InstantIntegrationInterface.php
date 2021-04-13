@@ -7,6 +7,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Mode;
  */
 interface InstantIntegrationInterface
 {
+
     public const INTEGRATION_MODE="I";
 
     /**
@@ -19,5 +20,6 @@ interface InstantIntegrationInterface
      * @return InstantIntegrationInterface
      */
     public function setIds(array $ids) : InstantIntegrationInterface;
+
 
 }

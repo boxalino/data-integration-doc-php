@@ -18,6 +18,11 @@ trait DocInstantIntegrationTrait
     protected $ids = [];
 
     /**
+     * @var
+     */
+    protected $instantMode = false;
+
+    /**
      * @return array
      */
     public function getIds(): array
@@ -48,5 +53,26 @@ trait DocInstantIntegrationTrait
         return false;
     }
 
+    /**
+     * @param $value
+     * @return DocInstantIntegrationInterface
+     */
+    public function allowInstantMode($value) : DocInstantIntegrationInterface
+    {
+        if($value === "true" || $value=== "1")
+        {
+            $this->instantMode = true;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasModeEnabled() : bool
+    {
+        return $this->instantMode;
+    }
 
 }

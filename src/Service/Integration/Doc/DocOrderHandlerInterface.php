@@ -14,15 +14,5 @@ interface DocOrderHandlerInterface extends DocHandlerInterface
 
     public const DOC_TYPE = "doc_order";
 
-    /**
-     * @param DocPropertiesInterface $attributeHandler
-     * @return DocHandlerInterface
-     */
-    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getHandlers() : \ArrayIterator;
 
 }

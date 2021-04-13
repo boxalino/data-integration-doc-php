@@ -201,9 +201,9 @@ trait DiRequestTrait
     /**
      * @param int $timeout
      */
-    public function setTimeout(int $timeout)
+    public function setTimeout($timeout) : void
     {
-        $this->timeout = $timeout;
+        $this->timeout = (int) $timeout;
     }
 
 

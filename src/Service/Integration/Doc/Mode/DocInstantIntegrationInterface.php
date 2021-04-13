@@ -24,4 +24,15 @@ interface DocInstantIntegrationInterface
      */
     public function filterByIds() : bool;
 
+    /**
+     * @return bool
+     */
+    public function hasModeEnabled() : bool;
+
+    /**
+     * @param $value
+     * @return DocInstantIntegrationInterface
+     */
+    public function allowInstantMode($value) : DocInstantIntegrationInterface;
+
 }

@@ -50,7 +50,6 @@ trait DeltaIntegrationTrait
                 {
                     $handler->setSyncCheck($this->syncCheck());
                 }
-
                 $handler->integrate();
             }
         }

@@ -29,9 +29,15 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
      */
     protected $attributesList;
 
+    /**
+     * @var \ArrayIterator
+     */
+    protected $instantAttributesList;
+
     public function __construct()
     {
         $this->attributeSchemaDefinitionList = new \ArrayObject();
+        $this->instantAttributesList = new \ArrayIterator();
     }
 
     /**
@@ -114,6 +120,30 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
         }
 
         return null;
+    }
+
+    /**
+     * @param string $propertyName
+     * @return DocSchemaPropertyHandlerInterface
+     */
+    public function allowPropertyOnInstantMode(string $propertyName) : DocSchemaPropertyHandlerInterface
+    {
+        $this->instantAttributesList->offsetSet($propertyName, true);
+        return $this;
+    }
+
+    /**
+     * @param string $propertyName
+     * @return bool
+     */
+    public function isPropertyAllowedOnInstantMode(string $propertyName) : bool
+    {
+        if($this->instantAttributesList->offsetExists($propertyName))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /**

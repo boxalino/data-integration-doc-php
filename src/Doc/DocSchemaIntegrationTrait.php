@@ -78,8 +78,8 @@ trait DocSchemaIntegrationTrait
             $label = is_array($labels) ? $labels[$language] : $labels;
             foreach($currencyCodes as $currencyCode)
             {
-                $currencyFactor = isset($currencyFactors[$currencyCode]) ? (int) $currencyFactors[$currencyCode] : 1;
-                $schema->addValue($this->getPricingLocalizedSchema($language, $currencyCode, $price, $currencyFactor, $label));
+                $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
+                $schema->addValue($this->getPricingLocalizedSchema($language, $currencyCode, (int)$price, $currencyFactor, $label));
             }
         }
 
@@ -92,11 +92,11 @@ trait DocSchemaIntegrationTrait
      * @param string $language
      * @param string $currencyCode
      * @param int $value
-     * @param int $factor
+     * @param float $factor
      * @param string $label
      * @return PricingLocalized
      */
-    public function getPricingLocalizedSchema(string $language, string $currencyCode, int $value, int $factor, string $label) : PricingLocalized
+    public function getPricingLocalizedSchema(string $language, string $currencyCode, int $value, float $factor, string $label) : PricingLocalized
     {
         $schema = new PricingLocalized();
         $schema->setValue(round($value*$factor, 2))
@@ -122,7 +122,7 @@ trait DocSchemaIntegrationTrait
         {
             foreach($currencyCodes as $currencyCode)
             {
-                $currencyFactor = isset($currencyFactors[$currencyCode]) ? (int) $currencyFactors[$currencyCode] : 1;
+                $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
                 if(!is_null($salesPrice))
                 {
                     $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (int)$salesPrice, $currencyFactor));
@@ -142,10 +142,10 @@ trait DocSchemaIntegrationTrait
      * @param string $language
      * @param string $currencyCode
      * @param int $value
-     * @param int $factor
+     * @param float $factor
      * @return PriceLocalized
      */
-    public function getPriceLocalizedSchema(string $language, string $currencyCode, int $value, int $factor) : PriceLocalized
+    public function getPriceLocalizedSchema(string $language, string $currencyCode, int $value, float $factor) : PriceLocalized
     {
         $schema = new PriceLocalized();
         $schema->setValue(round($value*$factor, 2))

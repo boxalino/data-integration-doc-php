@@ -50,10 +50,10 @@ interface DocHandlerInterface
      * Adding a property integration handler, to map the documented schema for the attribute
      * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/254050518/Referenced+Schema+Types
      *
-     * @param DocSchemaPropertyHandlerInterface $attributeHandler
+     * @param DocSchemaPropertyHandlerInterface $propertyHandler
      * @return DocHandlerInterface
      */
-    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $handler) : DocHandlerInterface;
+    public function addPropertyHandler(DocSchemaPropertyHandlerInterface $propertyHandler) : DocHandlerInterface;
 
     /**
      * @return \ArrayIterator

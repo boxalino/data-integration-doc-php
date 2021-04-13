@@ -12,4 +12,5 @@ interface ProductIntegrationHandlerInterface
     extends IntegrationHandlerInterface, FullIntegrationInterface
 {
 
+
 }

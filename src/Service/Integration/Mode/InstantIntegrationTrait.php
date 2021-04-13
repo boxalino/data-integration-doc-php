@@ -38,14 +38,15 @@ trait InstantIntegrationTrait
         {
             if($handler instanceof DocHandlerInterface)
             {
-                $handler->setDiConfiguration($configuration);
-
                 if($handler instanceof DocInstantIntegrationInterface)
                 {
-                    $handler->setIds($this->getIds());
+                    if($handler->hasModeEnabled())
+                    {
+                        $handler->setDiConfiguration($configuration);
+                        $handler->setIds($this->getIds());
+                        $handler->integrate();
+                    }
                 }
-
-                $handler->integrate();
             }
         }
 
@@ -69,5 +70,6 @@ trait InstantIntegrationTrait
         $this->ids = $ids;
         return $this;
     }
+
 
 }

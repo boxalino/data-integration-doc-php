@@ -41,6 +41,17 @@ interface DocSchemaPropertyHandlerInterface
      */
     public function handlerHasProperty(string $propertyName): bool;
 
+    /**
+     * @param string $propertyName
+     * @return bool
+     */
+    public function isPropertyAllowedOnInstantMode(string $propertyName) : bool;
+
+    /**
+     * @param string $propertyName
+     * @return DocSchemaPropertyHandlerInterface
+     */
+    public function allowPropertyOnInstantMode(string $propertyName) : DocSchemaPropertyHandlerInterface;
 
 
 }
