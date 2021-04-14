@@ -142,7 +142,7 @@ class Attribute implements DocPropertiesInterface
      *
      * @var bool
      */
-    protected $filter_by = true;
+    protected $filter_by = false;
 
     /**
      * is it an attribute that needs to be grouped by in some requests
@@ -166,7 +166,7 @@ class Attribute implements DocPropertiesInterface
      *
      * @var bool
      */
-    protected $indexed = false;
+    protected $indexed = true;
 
     /**
      * the attribute visibility :
