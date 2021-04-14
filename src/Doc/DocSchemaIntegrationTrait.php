@@ -79,7 +79,7 @@ trait DocSchemaIntegrationTrait
             foreach($currencyCodes as $currencyCode)
             {
                 $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
-                $schema->addValue($this->getPricingLocalizedSchema($language, $currencyCode, (int)$price, $currencyFactor, $label));
+                $schema->addValue($this->getPricingLocalizedSchema($language, $currencyCode, (float)$price, $currencyFactor, $label));
             }
         }
 
@@ -96,7 +96,7 @@ trait DocSchemaIntegrationTrait
      * @param string $label
      * @return PricingLocalized
      */
-    public function getPricingLocalizedSchema(string $language, string $currencyCode, int $value, float $factor, string $label) : PricingLocalized
+    public function getPricingLocalizedSchema(string $language, string $currencyCode, float $value, float $factor, string $label) : PricingLocalized
     {
         $schema = new PricingLocalized();
         $schema->setValue(round($value*$factor, 2))
@@ -125,12 +125,12 @@ trait DocSchemaIntegrationTrait
                 $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
                 if(!is_null($salesPrice))
                 {
-                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (int)$salesPrice, $currencyFactor));
+                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$salesPrice, $currencyFactor));
                 }
 
                 if(!is_null($listPrice))
                 {
-                    $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (int)$listPrice, $currencyFactor));
+                    $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$listPrice, $currencyFactor));
                 }
             }
         }
@@ -145,7 +145,7 @@ trait DocSchemaIntegrationTrait
      * @param float $factor
      * @return PriceLocalized
      */
-    public function getPriceLocalizedSchema(string $language, string $currencyCode, int $value, float $factor) : PriceLocalized
+    public function getPriceLocalizedSchema(string $language, string $currencyCode, float $value, float $factor) : PriceLocalized
     {
         $schema = new PriceLocalized();
         $schema->setValue(round($value*$factor, 2))
@@ -245,6 +245,7 @@ trait DocSchemaIntegrationTrait
         {
             $localized = new Localized();
             $value = is_array($item) ? $item[$language] : $item;
+            if(is_null($value)){$value="";}
             $localized->setLanguage($language)->setValue($value);
             $schema[] = $localized;
         }

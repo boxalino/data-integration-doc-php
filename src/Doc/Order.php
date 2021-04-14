@@ -44,7 +44,7 @@ class Order implements DocPropertiesInterface
      * the persona who created this order
      * @var string
      */
-    protected $persona_id;
+    protected $persona_id = "N/A";
 
     /**
      * ECM for e-commerce, ERP for external, etc
@@ -436,7 +436,7 @@ class Order implements DocPropertiesInterface
      * @param string $persona_id
      * @return Order
      */
-    public function setPersonaId(string $persona_id): Order
+    public function setPersonaId(?string $persona_id): Order
     {
         $this->persona_id = $persona_id;
         return $this;

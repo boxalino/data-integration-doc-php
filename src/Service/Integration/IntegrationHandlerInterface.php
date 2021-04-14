@@ -55,5 +55,10 @@ interface IntegrationHandlerInterface
      */
     public function getIntegrationMode() : string;
 
+    /**
+     * @return ConfigurationDataObject
+     */
+    public function getDiConfiguration() : ConfigurationDataObject;
+
 
 }

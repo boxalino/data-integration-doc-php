@@ -308,7 +308,7 @@ class Contact implements DocPropertiesInterface, DocGeneratorInterface
      * @param string $persona_id
      * @return Contact
      */
-    public function setPersonaId(string $persona_id): Contact
+    public function setPersonaId(?string $persona_id): Contact
     {
         $this->persona_id = $persona_id;
         return $this;
