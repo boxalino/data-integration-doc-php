@@ -1453,7 +1453,25 @@ class Order implements DocPropertiesInterface
      */
     public function setVouchers(array $vouchers): Order
     {
-        $this->vouchers = $vouchers;
+        foreach($vouchers as $voucher)
+        {
+            if($voucher instanceof OrderVoucher)
+            {
+                $this->vouchers[] = $voucher->toArray();
+                continue;
+            }
+            $this->vouchers[] = $voucher;
+        }
+        return $this;
+    }
+
+    /**
+     * @param [] $vouchers
+     * @return Order
+     */
+    public function addVouchers(OrderVoucher $voucher): Order
+    {
+        $this->vouchers[] = $voucher->toArray();
         return $this;
     }
 
