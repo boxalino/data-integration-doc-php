@@ -210,9 +210,9 @@ class Voucher implements DocPropertiesInterface
      * @param int|null $voucher_percentage_value
      * @return Voucher
      */
-    public function setVoucherPercentageValue(?int $voucher_percentage_value): Voucher
+    public function setVoucherPercentageValue($voucher_percentage_value = null): Voucher
     {
-        $this->voucher_percentage_value = $voucher_percentage_value;
+        $this->voucher_percentage_value = (float) $voucher_percentage_value;
         return $this;
     }
 
@@ -228,9 +228,9 @@ class Voucher implements DocPropertiesInterface
      * @param int|null $voucher_absolute_value
      * @return Voucher
      */
-    public function setVoucherAbsoluteValue(?int $voucher_absolute_value): Voucher
+    public function setVoucherAbsoluteValue($voucher_absolute_value = null): Voucher
     {
-        $this->voucher_absolute_value = $voucher_absolute_value;
+        $this->voucher_absolute_value = (float) $voucher_absolute_value;
         return $this;
     }
 
