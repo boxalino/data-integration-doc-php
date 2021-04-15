@@ -9,9 +9,10 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
-class Voucher implements DocPropertiesInterface
+class Voucher implements DocPropertiesInterface, DocGeneratorInterface
 {
 
     use GeneratorHydratorTrait;
