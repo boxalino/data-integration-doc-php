@@ -42,6 +42,8 @@ interface DocSchemaInterface
     public const FIELD_LABELS = "labels";
     public const FIELD_LABEL = "label";
     public const FIELD_PRICING = "pricing";
+    public const FIELD_PERSONA_TYPE="persona_type";
+    public const FIELD_PERSONA_ID="persona_id";
 
     /**
      * doc_attribute properties
@@ -94,8 +96,6 @@ interface DocSchemaInterface
      * order properties
      */
     public const FIELD_PARENT_ORDER_ID="parent_order_id";
-    public const FIELD_PERSONA_TYPE="persona_type";
-    public const FIELD_PERSONA_ID="persona_id";
     public const FIELD_STORE="store";
     public const FIELD_SELLER_PERSONA_TYPE="seller_persona_type";
     public const FIELD_SELLER_PERSONA_ID="seller_persona_id";
@@ -133,6 +133,44 @@ interface DocSchemaInterface
     public const FIELD_REPAIRED="repaired";
     public const FIELD_STATUS_CODE="status_code";
     public const FIELD_VOUCHERS="vouchers";
+
+    /** user properties */
+    public const FIELD_PREFIX="prefix";
+    public const FIELD_FIRSTNAME="firstname";
+    public const FIELD_LASTNAME="lastname";
+    public const FIELD_MIDDLENAME="middlename";
+    public const FIELD_SUFFIX="suffix";
+    public const FIELD_GENDER="gender";
+    public const FIELD_DATE_OF_BIRTH="date_of_birth";
+    public const FIELD_ACCOUNT_CREATION="account_creation";
+    public const FIELD_AUTO_GROUP="auto_group";
+    public const FIELD_INVOICE_STATUS="invoice_status";
+    public const FIELD_SPOUSE_ID="spouse_id";
+    public const FIELD_CHILDREN_IDS="children_ids";
+    public const FIELD_CUSTOMER_GROUPS="customer_groups";
+    public const FIELD_WEBSITES="websites";
+    public const FIELD_COMPANY="company";
+    public const FIELD_VAT="vat";
+    public const FIELD_VAT_IS_VALID="vat_is_valid";
+    public const FIELD_VAT_REQUEST_ID="vat_request_id";
+    public const FIELD_VAT_REQUEST_DATE="vat_request_date";
+    public const FIELD_VAT_REQUEST_SUCCESS="vat_request_success";
+    public const FIELD_STREET="street";
+    public const FIELD_ADDITIONAL_ADDRESS_LINE="additional_address_line";
+    public const FIELD_CITY="city";
+    public const FIELD_ZIPCODE="zipcode";
+    public const FIELD_STATEID="stateID";
+    public const FIELD_DEPARTMENT="department";
+    public const FIELD_STATENAME="statename";
+    public const FIELD_COUNTRYISO="countryiso";
+    public const FIELD_COUNTRYID="countryID";
+    public const FIELD_PHONE="phone";
+    public const FIELD_MOBILE_PHONE="mobile_phone";
+    public const FIELD_FAX="fax";
+    public const FIELD_GIFTREGISTRY_ITEM_ID="giftregistry_item_id";
+    public const FIELD_SUBSCRIPTIONS="subscriptions";
+    public const FIELD_NOTIFICATIONS="notifications";
+    public const FIELD_VOUCHER_STATES="voucher_states";
 
 
 }

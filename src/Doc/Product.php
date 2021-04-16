@@ -10,6 +10,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
@@ -792,25 +793,39 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $string_attributes
-     * @return Product
+     * @return self
      */
-    public function setStringAttributes(array $string_attributes): Product
+    public function setStringAttributes(array $string_attributes): self
     {
-        $this->string_attributes = $string_attributes;
+        foreach($string_attributes as $attribute)
+        {
+            $this->addStringAttribute($attribute);
+        }
+
         return $this;
     }
 
     /**
-     * @param StringAttribute ...$repeateds
+     * @param Array<<StringAttribute>> $repeateds
      * @return $this
      */
-    public function addStringAttributes(StringAttribute ...$repeateds) : self
+    public function addStringAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->string_attributes[] = $repeated->toArray();
+            $this->addStringAttribute($repeated);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addStringAttribute(Repeated $attribute) : self
+    {
+        $this->string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -824,25 +839,38 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $localized_string_attributes
-     * @return Product
+     * @return self
      */
-    public function setLocalizedStringAttributes(array $localized_string_attributes): Product
+    public function setLocalizedStringAttributes(array $localized_string_attributes): self
     {
-        $this->localized_string_attributes = $localized_string_attributes;
+        foreach($localized_string_attributes as $attribute)
+        {
+            $this->addLocalizedStringAttribute($attribute);
+        }
         return $this;
     }
 
     /**
-     * @param StringLocalizedAttribute ...$repeateds
+     * @param Array<<StringLocalizedAttribute>> $repeateds
      * @return $this
      */
-    public function addLocalizedStringAttributes(StringLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedStringAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->localized_string_attributes[] = $repeated->toArray();
+            $this->addLocalizedStringAttribute($repeated);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addLocalizedStringAttribute(Repeated $attribute) : self
+    {
+        $this->localized_string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -856,25 +884,38 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $numeric_attributes
-     * @return Product
+     * @return self
      */
-    public function setNumericAttributes(array $numeric_attributes): Product
+    public function setNumericAttributes(array $numeric_attributes): self
     {
-        $this->numeric_attributes = $numeric_attributes;
+        foreach($numeric_attributes as $attribute)
+        {
+            $this->addNumericAttribute($attribute);
+        }
         return $this;
     }
 
     /**
-     * @param NumericAttribute ...$repeateds
+     * @param Array<<NumericAttribute>> $repeateds
      * @return $this
      */
-    public function addNumericAttributes(NumericAttribute ...$repeateds) : self
+    public function addNumericAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->numeric_attributes[] = $repeated->toArray();
+            $this->addNumericAttribute($repeated);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addNumericAttribute(Repeated $attribute) : self
+    {
+        $this->numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -888,25 +929,39 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $localized_numeric_attributes
-     * @return Product
+     * @return self
      */
-    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): Product
+    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
     {
-        $this->localized_numeric_attributes = $localized_numeric_attributes;
+        /** @var NumericLocalizedAttribute $attribute */
+        foreach($localized_numeric_attributes as $attribute)
+        {
+            $this->addLocalizedNumericAttribute($attribute);
+        }
         return $this;
     }
 
     /**
-     * @param NumericLocalizedAttribute ...$repeateds
+     * @param Array<<NumericLocalizedAttribute>> $repeateds
      * @return $this
      */
-    public function addLocalizedNumericAttributes(NumericLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedNumericAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
+            $this->addLocalizedNumericAttribute($repeated);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addLocalizedNumericAttribute(Repeated $attribute) : self
+    {
+        $this->localized_numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -920,25 +975,39 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $datetime_attributes
-     * @return Product
+     * @return self
      */
-    public function setDatetimeAttributes(array $datetime_attributes): Product
+    public function setDatetimeAttributes(array $datetime_attributes): self
     {
-        $this->datetime_attributes = $datetime_attributes;
+        /** @var DatetimeAttribute $attribute */
+        foreach($datetime_attributes as $attribute)
+        {
+            $this->addDatetimeAttribute($attribute);
+        }
         return $this;
     }
 
     /**
-     * @param DatetimeAttribute ...$repeateds
+     * @param Array<<DatetimeAttribute>> $repeateds
      * @return $this
      */
-    public function addDatetimeAttributes(DatetimeAttribute ...$repeateds) : self
+    public function addDatetimeAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->datetime_attributes[] = $repeated->toArray();
+            $this->addDatetimeAttribute($repeated);
         }
 
+        return $this;
+    }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addDatetimeAttribute(Repeated $attribute) : self
+    {
+        $this->datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -952,27 +1021,42 @@ class Product implements DocPropertiesInterface
 
     /**
      * @param Array $localized_datetime_attributes
-     * @return Product
+     * @return self
      */
-    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): Product
+    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
     {
-        $this->localized_datetime_attributes = $localized_datetime_attributes;
+        /** @var DatetimeLocalizedAttribute $attribute */
+        foreach($localized_datetime_attributes as $attribute)
+        {
+            $this->addLocalizedDatetimeAttribute($attribute);
+        }
         return $this;
     }
 
     /**
-     * @param DatetimeLocalizedAttribute ...$repeateds
+     * @param Array<<DatetimeLocalizedAttribute>> $repeateds
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(DatetimeLocalizedAttribute ...$repeateds) : self
+    public function addLocalizedDatetimeAttributes(array $repeateds): self
     {
-        foreach($repeateds as $repeated)
+        foreach ($repeateds as $repeated)
         {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
+            $this->addLocalizedDatetimeAttribute($repeated);
         }
 
         return $this;
     }
+
+    /**
+     * @param Repeated $attribute
+     * @return $this
+     */
+    public function addLocalizedDatetimeAttribute(Repeated $attribute) : self
+    {
+        $this->localized_datetime_attributes[] = $attribute->toArray();
+        return $this;
+    }
+
 
     /**
      * @return Pricing|null

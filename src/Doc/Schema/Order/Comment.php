@@ -6,11 +6,14 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
-class Comment implements DocPropertiesInterface
+class Comment implements DocPropertiesInterface, DocGeneratorInterface
 {
 
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /**
      * @var string | null

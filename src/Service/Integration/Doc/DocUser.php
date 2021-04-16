@@ -4,6 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\User\Doc;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class DocOrder
@@ -19,6 +20,13 @@ class DocUser implements DocUserHandlerInterface
      * @var array | null
      */
     protected $docData = null;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->propertyHandlerList = new \ArrayIterator();
+        $this->logger = $logger;
+    }
+
 
     /**
      * @return string

@@ -23,7 +23,7 @@ interface GcpRequestInterface
     public const GCP_TYPE_PRODUCT_ATTRIBUTE="attribute";
     public const GCP_TYPE_PRODUCT_ATTRIBUTE_VALUE="attribute_value";
     public const GCP_TYPE_ORDER="order";
-    public const GCP_TYOE_USER="user";
+    public const GCP_TYPE_USER="user";
     public const GCP_TYPE_USER_CONTENT="user_content";
     public const GCP_TYPE_USER_SELECTION="user_selection";
     public const GCP_TYPE_CONTENT="content";

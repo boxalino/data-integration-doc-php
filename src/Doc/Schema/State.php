@@ -1,17 +1,20 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
+use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
-/**
- * Class State
- * @package Boxalino\DataIntegrationDoc\Doc\Schema
- */
-class State implements DocPropertiesInterface
+class State implements DocPropertiesInterface, DocGeneratorInterface
 {
 
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
 
     /**
      * @var string | null
@@ -26,10 +29,10 @@ class State implements DocPropertiesInterface
     /**
      * @var int
      */
-    protected $status;
+    protected $status = 0;
 
     /**
-     * @var Array<<Period>>
+     * @var Array<<Period>> | array
      */
     protected $periods = [];
 
@@ -88,7 +91,7 @@ class State implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array|[]
      */
     public function getPeriods(): array
     {
@@ -96,7 +99,7 @@ class State implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $periods
+     * @param array|[] $periods
      * @return State
      */
     public function setPeriods(array $periods): State

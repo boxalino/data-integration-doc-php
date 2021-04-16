@@ -8,6 +8,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
@@ -827,7 +828,11 @@ trait DocProductTrait
      */
     public function setStringAttributes(array $string_attributes): self
     {
-        $this->string_attributes = $string_attributes;
+        foreach($string_attributes as $attribute)
+        {
+            $this->addStringAttribute($attribute);
+        }
+
         return $this;
     }
 
@@ -839,19 +844,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->string_attributes[] = $repeated->toArray();
+            $this->addStringAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param StringAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addStringAttribute(StringAttribute $repeated): self
+    public function addStringAttribute(Repeated $attribute) : self
     {
-        $this->string_attributes[] = $repeated->toArray();
+        $this->string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -864,12 +869,15 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array<<StringLocalizedAttribute>> $localized_string_attributes
+     * @param Array $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
     {
-        $this->localized_string_attributes = $localized_string_attributes;
+        foreach($localized_string_attributes as $attribute)
+        {
+            $this->addLocalizedStringAttribute($attribute);
+        }
         return $this;
     }
 
@@ -881,19 +889,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->localized_string_attributes[] = $repeated->toArray();
+            $this->addLocalizedStringAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param StringLocalizedAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addLocalizedStringAttribute(StringLocalizedAttribute $repeated): self
+    public function addLocalizedStringAttribute(Repeated $attribute) : self
     {
-        $this->localized_string_attributes[] = $repeated->toArray();
+        $this->localized_string_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -911,7 +919,10 @@ trait DocProductTrait
      */
     public function setNumericAttributes(array $numeric_attributes): self
     {
-        $this->numeric_attributes = $numeric_attributes;
+        foreach($numeric_attributes as $attribute)
+        {
+            $this->addNumericAttribute($attribute);
+        }
         return $this;
     }
 
@@ -923,19 +934,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->numeric_attributes[] = $repeated->toArray();
+            $this->addNumericAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param NumericAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addNumericAttribute(NumericAttribute $repeated): self
+    public function addNumericAttribute(Repeated $attribute) : self
     {
-        $this->numeric_attributes[] = $repeated->toArray();
+        $this->numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -953,7 +964,11 @@ trait DocProductTrait
      */
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
     {
-        $this->localized_numeric_attributes = $localized_numeric_attributes;
+        /** @var NumericLocalizedAttribute $attribute */
+        foreach($localized_numeric_attributes as $attribute)
+        {
+            $this->addLocalizedNumericAttribute($attribute);
+        }
         return $this;
     }
 
@@ -965,19 +980,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->localized_numeric_attributes[] = $repeated->toArray();
+            $this->addLocalizedNumericAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param NumericLocalizedAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addLocalizedNumericAttribute(NumericLocalizedAttribute $repeated): self
+    public function addLocalizedNumericAttribute(Repeated $attribute) : self
     {
-        $this->localized_numeric_attributes[] = $repeated->toArray();
+        $this->localized_numeric_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -995,7 +1010,11 @@ trait DocProductTrait
      */
     public function setDatetimeAttributes(array $datetime_attributes): self
     {
-        $this->datetime_attributes = $datetime_attributes;
+        /** @var DatetimeAttribute $attribute */
+        foreach($datetime_attributes as $attribute)
+        {
+            $this->addDatetimeAttribute($attribute);
+        }
         return $this;
     }
 
@@ -1007,19 +1026,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->datetime_attributes[] = $repeated->toArray();
+            $this->addDatetimeAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param DatetimeAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addDatetimeAttribute(DatetimeAttribute $repeated): self
+    public function addDatetimeAttribute(Repeated $attribute) : self
     {
-        $this->datetime_attributes[] = $repeated->toArray();
+        $this->datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 
@@ -1037,7 +1056,11 @@ trait DocProductTrait
      */
     public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
     {
-        $this->localized_datetime_attributes = $localized_datetime_attributes;
+        /** @var DatetimeLocalizedAttribute $attribute */
+        foreach($localized_datetime_attributes as $attribute)
+        {
+            $this->addLocalizedDatetimeAttribute($attribute);
+        }
         return $this;
     }
 
@@ -1049,19 +1072,19 @@ trait DocProductTrait
     {
         foreach ($repeateds as $repeated)
         {
-            $this->localized_datetime_attributes[] = $repeated->toArray();
+            $this->addLocalizedDatetimeAttribute($repeated);
         }
 
         return $this;
     }
 
     /**
-     * @param DatetimeLocalizedAttribute $repeated
+     * @param Repeated $attribute
      * @return $this
      */
-    public function addLocalizedDatetimeAttribute(DatetimeLocalizedAttribute $repeated): self
+    public function addLocalizedDatetimeAttribute(Repeated $attribute) : self
     {
-        $this->localized_datetime_attributes[] = $repeated->toArray();
+        $this->localized_datetime_attributes[] = $attribute->toArray();
         return $this;
     }
 

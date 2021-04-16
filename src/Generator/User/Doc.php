@@ -8,8 +8,8 @@ use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 /**
  * Class Doc
  *
- * Generates the order document per documentation
- * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252313666/doc+order
+ * Generates the user document per documentation
+ * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252182638/doc+user
  *
  * @package Boxalino\DataIntegrationDoc\Generator
  */
