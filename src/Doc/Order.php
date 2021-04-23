@@ -15,6 +15,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 class Order implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
+    use TechnicalPropertiesTrait;
 
     /**
      * the internal identifier of the order
@@ -517,7 +518,7 @@ class Order implements DocPropertiesInterface
     /**
      * @return int
      */
-    public function getTotalCrncyAmt(): int
+    public function getTotalCrncyAmt(): float
     {
         return $this->total_crncy_amt;
     }
@@ -1592,59 +1593,6 @@ class Order implements DocPropertiesInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $created_tm
-     * @return Order
-     */
-    public function setCreationTm(string $created_tm): Order
-    {
-        $this->creation_tm = $created_tm;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
-    /**
-     * @param int $client_id
-     * @return Order
-     */
-    public function setClientId(int $client_id): Order
-    {
-        $this->client_id = $client_id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSrcSysId(): int
-    {
-        return $this->src_sys_id;
-    }
-
-    /**
-     * @param int $src_sys_id
-     * @return Order
-     */
-    public function setSrcSysId(int $src_sys_id): Order
-    {
-        $this->src_sys_id = $src_sys_id;
-        return $this;
-    }
 
 
 }
