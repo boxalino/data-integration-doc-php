@@ -28,4 +28,14 @@ trait DocPropertiesTrait
         return json_encode($this->toArray());
     }
 
+    /**
+     * Will return all properties
+     *
+     * @return array
+     */
+    public function toList() : array
+    {
+        return get_object_vars($this);
+    }
+    
 }
