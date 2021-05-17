@@ -173,4 +173,11 @@ interface DocSchemaInterface
     public const FIELD_VOUCHER_STATES="voucher_states";
 
 
+    /** content properties */
+    public const FIELD_ID="id";
+    public const FIELD_PARENT_CONTENT_IDS="parent_content_ids";
+    public const FIELD_CONTENTS="contents";
+    public const FIELD_CUSTOMERS="customers";
+
+
 }
