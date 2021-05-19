@@ -281,6 +281,41 @@ trait DocSchemaIntegrationTrait
     }
 
     /**
+     * @param array | string $item
+     * @param array $languages
+     * @param string|null $propertyName
+     * @param string|null $idField
+     * @return RepeatedGenericLocalized
+     */
+    public function getRepeatedGenericLocalizedSchema($item, array $languages, ?string $propertyName= null, ?string $idField = null) : RepeatedGenericLocalized
+    {
+        $property = new RepeatedGenericLocalized();
+        $schema = new RepeatedLocalized();
+        if(!is_null($propertyName))
+        {
+            $property->setName($propertyName);
+        }
+        foreach($languages as $language)
+        {
+            $localized = new Localized();
+            $value = is_array($item)&isset($item[$language]) ? $item[$language] : $item;
+            if(is_null($value)){$value="";}
+            $localized->setLanguage($language)->setValue($value);
+            $schema->addValue($localized);
+        }
+        if(!is_null($idField))
+        {
+            if(isset($item[$idField]))
+            {
+                $schema->setValueId($item[$idField]);
+            }
+        }
+        $property->addValue($schema);
+
+        return $property;
+    }
+
+    /**
      * @param string $propertyName
      * @return array
      */
