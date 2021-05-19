@@ -14,6 +14,19 @@ trait DocContentAttributeTrait
     /**
      * @return array
      */
+    public function getContentDatetimeSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_CREATION,
+            DocSchemaInterface::FIELD_UPDATE,
+            DocSchemaInterface::FIELD_DATETIME,
+            DocSchemaInterface::FIELD_DATETIME_LOCALIZED
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function getContentSingleValueSchemaTypes() : array
     {
         return [

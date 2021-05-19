@@ -21,4 +21,10 @@ interface DocGeneratorInterface extends \JsonSerializable
      */
     public function toArray() : array;
 
+    /**
+     * @return array
+     */
+    public function toList() : array;
+
+
 }
