@@ -20,6 +20,7 @@ interface GcpRequestInterface
     public const GCP_MODE_FULL="F";
 
     public const GCP_TYPE_PRODUCT="product";
+    public const GCP_TYPE_LANGUAGE="language";
     public const GCP_TYPE_PRODUCT_ATTRIBUTE="attribute";
     public const GCP_TYPE_PRODUCT_ATTRIBUTE_VALUE="attribute_value";
     public const GCP_TYPE_ORDER="order";
