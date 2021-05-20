@@ -10,6 +10,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\PricingLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
@@ -243,9 +244,18 @@ trait DocSchemaIntegrationTrait
         $schema = [];
         foreach($languages as $language)
         {
+            $value = $item;
+            if(is_array($item))
+            {
+                $value = reset($item);
+                if(isset($item[$language]))
+                {
+                    $value = $item[$language];
+                }
+            }
+            if(is_null($value) || is_bool($value)){$value="";}
+
             $localized = new Localized();
-            $value = is_array($item) ? $item[$language] : $item;
-            if(is_null($value)){$value="";}
             $localized->setLanguage($language)->setValue($value);
             $schema[] = $localized;
         }
@@ -280,29 +290,29 @@ trait DocSchemaIntegrationTrait
         return $property;
     }
 
+
     /**
-     * @param array | string $item
+     * @param string | array $item
      * @param array $languages
      * @param string|null $propertyName
+     * @param DocPropertiesInterface|null $property
      * @param string|null $idField
-     * @return RepeatedGenericLocalized
+     * @return DocPropertiesInterface
      */
-    public function getRepeatedGenericLocalizedSchema($item, array $languages, ?string $propertyName= null, ?string $idField = null) : RepeatedGenericLocalized
+    public function getRepeatedGenericLocalizedSchema($item, array $languages, ?string $propertyName= null, ?DocPropertiesInterface $property = null, ?string $idField = null) : DocPropertiesInterface
     {
-        $property = new RepeatedGenericLocalized();
+        if(is_null($property))
+        {
+            $property = new RepeatedGenericLocalized();
+        }
+
         $schema = new RepeatedLocalized();
+        $schema->setValue($this->getLocalizedSchema($item, $languages));
         if(!is_null($propertyName))
         {
             $property->setName($propertyName);
         }
-        foreach($languages as $language)
-        {
-            $localized = new Localized();
-            $value = is_array($item)&isset($item[$language]) ? $item[$language] : $item;
-            if(is_null($value)){$value="";}
-            $localized->setLanguage($language)->setValue($value);
-            $schema->addValue($localized);
-        }
+
         if(!is_null($idField))
         {
             if(isset($item[$idField]))
@@ -310,9 +320,44 @@ trait DocSchemaIntegrationTrait
                 $schema->setValueId($item[$idField]);
             }
         }
+
         $property->addValue($schema);
 
         return $property;
+    }
+
+    /**
+     * @param string $value
+     * @param string $type
+     * @param array $languages
+     * @param array $localizedValues
+     * @return Tag
+     */
+    public function getTagSchema(string $value, array $languages = [], string $type = "generic", array $localizedValues = []) : Tag
+    {
+        $property = new Tag();
+        $property->setValue($value);
+        $property->setType($type);
+
+        if(count($languages) > 1 && !empty($localizedValues))
+        {
+            $property->setLocValues($this->getLocalizedSchema($localizedValues, $languages));
+        }
+
+        return $property;
+    }
+
+    /**
+     * @param string|array $item
+     * @param array $languages
+     * @param string $type
+     * @param array $localizedValues
+     * @return DocPropertiesInterface
+     */
+    public function getImagesSchema($item, array $languages=[], string $type = "main", array $localizedValues = []) : DocPropertiesInterface
+    {
+        $propertyType = new RepeatedGenericLocalized();
+        return $this->getRepeatedGenericLocalizedSchema($item, $languages, $type, $propertyType);
     }
 
     /**

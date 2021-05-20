@@ -87,4 +87,20 @@ trait DocContentAttributeTrait
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function getContentContentSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_IMAGES,
+            DocSchemaInterface::FIELD_PRODUCTS,
+            DocSchemaInterface::FIELD_CONTENTS,
+            DocSchemaInterface::FIELD_CUSTOMERS,
+            DocSchemaInterface::FIELD_TAGS,
+            DocSchemaInterface::FIELD_LABELS,
+            DocSchemaInterface::FIELD_PERIODS
+        ];
+    }
+
 }

@@ -129,4 +129,18 @@ trait DocProductAttributeTrait
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function getProductContentSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_CATEGORIES,
+            DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
+            DocSchemaInterface::FIELD_SUPPLIERS,
+            DocSchemaInterface::FIELD_LABELS,
+            DocSchemaInterface::FIELD_PERIODS
+        ];
+    }
+
 }

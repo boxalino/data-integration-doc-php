@@ -74,7 +74,27 @@ class Tag implements DocPropertiesInterface
      */
     public function setLocValues(array $loc_values): Tag
     {
-        $this->loc_values = $loc_values;
+        foreach ($loc_values as $value)
+        {
+            if($value instanceof Localized)
+            {
+                $this->loc_values[] = $value->toArray();
+                continue;
+            }
+
+            $this->loc_values[] = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Localized $localized
+     * @return $this
+     */
+    public function addLocValue(Localized $localized) : Visibility
+    {
+        $this->loc_values[] = $localized->toArray();
         return $this;
     }
 
