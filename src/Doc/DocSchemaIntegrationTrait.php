@@ -245,22 +245,39 @@ trait DocSchemaIntegrationTrait
         foreach($languages as $language)
         {
             $value = $item;
-            if(is_array($item))
+            if(is_array($item) && isset($item[$language]))
             {
-                $value = reset($item);
-                if(isset($item[$language]))
-                {
-                    $value = $item[$language];
-                }
+                $value = $item[$language];
             }
             if(is_null($value) || is_bool($value)){$value="";}
 
-            $localized = new Localized();
-            $localized->setLanguage($language)->setValue($value);
-            $schema[] = $localized;
+            if(is_array($value))
+            {
+                foreach($value as $data)
+                {
+                    $schema[] = $this->_addLocalized($data, $language);
+                }
+
+                continue;
+            }
+
+            $schema[] = $this->_addLocalized($value, $language);
         }
 
         return $schema;
+    }
+
+    /**
+     * @param $value
+     * @param string $language
+     * @return Localized
+     */
+    protected function _addLocalized($value, string $language) : Localized
+    {
+        $localized = new Localized();
+        $localized->setLanguage($language)->setValue($value);
+
+        return $localized;
     }
 
     /**
