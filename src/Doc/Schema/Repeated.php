@@ -78,9 +78,18 @@ class Repeated implements DocPropertiesInterface
      * @param Array $value
      * @return Repeated
      */
-    public function setValues(array $value): Repeated
+    public function setValues(array $values): Repeated
     {
-        $this->values = $value;
+        foreach($values as $value)
+        {
+            if($value instanceof DocPropertiesInterface)
+            {
+                $this->values[] = $value->toArray();
+                continue;
+            }
+            $this->values[] = $value;
+        }
+
         return $this;
     }
 

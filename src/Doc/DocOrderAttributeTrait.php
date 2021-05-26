@@ -97,4 +97,19 @@ trait DocOrderAttributeTrait
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function getOrderContentSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_PRODUCTS,
+            DocSchemaInterface::FIELD_COMMENTS,
+            DocSchemaInterface::FIELD_INTERNAL_COMMENTS,
+            DocSchemaInterface::FIELD_CUSTOMER_COMMENTS,
+            DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
+            DocSchemaInterface::FIELD_VOUCHERS
+        ];
+    }
+
 }

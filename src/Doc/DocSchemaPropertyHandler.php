@@ -13,6 +13,7 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
 
     use DocPropertiesTrait;
     use DocSchemaIntegrationTrait;
+    use GenericAttributeTrait;
 
     /**
      * @var \ArrayObject

@@ -40,9 +40,19 @@ class RepeatedLocalized implements DocPropertiesInterface
      */
     public function setValue(array $values): self
     {
-        $this->value = $values;
+        foreach($values as $value)
+        {
+            if($value instanceof DocPropertiesInterface)
+            {
+                $this->value[] = $value->toArray();
+                continue;
+            }
+            $this->value[] = $value;
+        }
+
         return $this;
     }
+
 
     /**
      * @param Localized $localized

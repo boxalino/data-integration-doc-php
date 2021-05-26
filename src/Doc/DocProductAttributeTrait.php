@@ -11,20 +11,6 @@ use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 trait DocProductAttributeTrait
 {
 
-    /**
-     * @return array
-     */
-    public function getGenericAttributeGrouping() : array
-    {
-        return [
-            DocSchemaInterface::FIELD_STRING,
-            DocSchemaInterface::FIELD_NUMERIC,
-            DocSchemaInterface::FIELD_DATETIME,
-            DocSchemaInterface::FIELD_STRING_LOCALIZED,
-            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
-        ];
-    }
 
     /**
      * @return array
@@ -41,31 +27,6 @@ trait DocProductAttributeTrait
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function getTypedSchemaProperties(): array
-    {
-        return [
-            DocSchemaInterface::FIELD_STRING,
-            DocSchemaInterface::FIELD_NUMERIC,
-            DocSchemaInterface::FIELD_DATETIME,
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getTypedLocalizedSchemaProperties(): array
-    {
-        return [
-            DocSchemaInterface::FIELD_STRING_LOCALIZED,
-            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
-            DocSchemaInterface::FIELD_BRANDS,
-            DocSchemaInterface::FIELD_SUPPLIERS,
-        ];
-    }
 
     /**
      * @return array
@@ -123,6 +84,20 @@ trait DocProductAttributeTrait
             DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
             DocSchemaInterface::FIELD_IMAGES,
             DocSchemaInterface::FIELD_BRANDS,
+            DocSchemaInterface::FIELD_SUPPLIERS,
+            DocSchemaInterface::FIELD_LABELS,
+            DocSchemaInterface::FIELD_PERIODS
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getProductContentSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_CATEGORIES,
+            DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
             DocSchemaInterface::FIELD_SUPPLIERS,
             DocSchemaInterface::FIELD_LABELS,
             DocSchemaInterface::FIELD_PERIODS
