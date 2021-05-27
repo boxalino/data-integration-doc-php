@@ -249,7 +249,6 @@ trait DocSchemaIntegrationTrait
             {
                 $value = $item[$language];
             }
-            if(is_null($value) || is_bool($value)){$value="";}
 
             if(is_array($value))
             {
@@ -269,12 +268,13 @@ trait DocSchemaIntegrationTrait
 
     /**
      * @param $value
-     * @param string $language
+     * @param string | null $language
      * @return Localized
      */
-    protected function _addLocalized($value, string $language) : Localized
+    protected function _addLocalized($value, ?string $language = "") : Localized
     {
         $localized = new Localized();
+        if(is_null($value) || empty($value)){ $value= "";}
         $localized->setLanguage($language)->setValue($value);
 
         return $localized;
