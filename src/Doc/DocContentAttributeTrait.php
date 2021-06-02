@@ -18,9 +18,7 @@ trait DocContentAttributeTrait
     {
         return [
             DocSchemaInterface::FIELD_CREATION,
-            DocSchemaInterface::FIELD_UPDATE,
-            DocSchemaInterface::FIELD_DATETIME,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED
+            DocSchemaInterface::FIELD_UPDATE
         ];
     }
 
