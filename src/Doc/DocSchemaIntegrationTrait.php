@@ -245,7 +245,7 @@ trait DocSchemaIntegrationTrait
         foreach($languages as $language)
         {
             $value = $item;
-            if(is_array($item) && isset($item[$language]))
+            if(is_array($item) && array_key_exists($language, $item))
             {
                 $value = $item[$language];
             }
@@ -274,7 +274,7 @@ trait DocSchemaIntegrationTrait
     protected function _addLocalized($value, ?string $language = "") : Localized
     {
         $localized = new Localized();
-        if(is_null($value) || empty($value)){ $value= "";}
+        if(is_null($value)){ $value= "";}
         $localized->setLanguage($language)->setValue($value);
 
         return $localized;
