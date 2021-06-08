@@ -67,10 +67,12 @@ trait DocHandlerIntegrationTrait
     {
         $docs = [];
         /** @var DocGeneratorInterface $doc */
-        foreach($this->docs as $doc)
+        foreach($this->getDocs() as $doc)
         {
             $docs[] = $doc->jsonSerialize();
         }
+
+        $this->resetDocs();
 
         return implode("\n", $docs);
     }
@@ -150,6 +152,23 @@ trait DocHandlerIntegrationTrait
     public function getDiConfiguration(): ConfigurationDataObject
     {
         return $this->diConfiguration;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocs() : array
+    {
+        return $this->docs;
+    }
+
+    /**
+     * Reset doc lines
+     * (required for object reusability)
+     */
+    public function resetDocs()  : void
+    {
+        $this->docs = [];
     }
 
 
