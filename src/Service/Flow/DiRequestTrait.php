@@ -23,7 +23,12 @@ trait DiRequestTrait
     /**
      * @var int
      */
-    protected $timeout = 3;
+    protected $timeout = 0;
+
+    /**
+     * @var int
+     */
+    protected $connectTimeout = 5;
 
     /**
      * @var ConfigurationDataObject
@@ -118,16 +123,22 @@ trait DiRequestTrait
      * @param int|null $timeout
      * @return array
      */
-    public function getHttpRequestOptions(?int $timeout = null) : array
+    public function getHttpRequestOptions(?int $timeout = null, ?int $connectTimeout = null) : array
     {
         if(is_null($timeout))
         {
             $timeout = $this->timeout;
         }
 
+        if(is_null($connectTimeout))
+        {
+            $timeout = $this->connectTimeout;
+        }
+
         return [
             'auth' => [$this->getDiConfiguration()->getApiKey(), $this->getDiConfiguration()->getApiSecret(), 'basic'],
-            'connect_timeout' => $timeout
+            'timeout' => $timeout,
+            'connect_timeout' => $connectTimeout
         ];
     }
 
@@ -204,6 +215,22 @@ trait DiRequestTrait
     public function setTimeout($timeout) : void
     {
         $this->timeout = (int) $timeout;
+    }
+
+    /**
+     * @return int
+     */
+    public function getConnectTimeout(): int
+    {
+        return $this->connectTimeout;
+    }
+
+    /**
+     * @param int $timeout
+     */
+    public function setConnectTimeout($timeout) : void
+    {
+        $this->connectTimeout = (int) $timeout;
     }
 
 
