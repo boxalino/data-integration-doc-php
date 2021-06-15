@@ -2,6 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Doc\Product;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
@@ -37,6 +38,11 @@ class Group implements DocGeneratorInterface
      * @var Array<<Visibility>>
      */
     protected $visibility;
+
+    /**
+     * @var array
+     */
+    protected $attribute_visibility_grouping = [];
 
     /**
      * @var Array<<Status>>
@@ -107,6 +113,38 @@ class Group implements DocGeneratorInterface
     public function addVisibility(Visibility $visibility) : self
     {
         $this->visibility[] = $visibility->toArray();
+        return $this;
+    }
+
+    /**
+     * @return Array
+     */
+    public function getAttributeVisibilityGrouping(): array
+    {
+        return $this->attribute_visibility_grouping;
+    }
+
+    /**
+     * @param Array $visibility
+     * @return Product
+     */
+    public function setAttributeVisibilityGrouping(array $visibilities): Product
+    {
+        $this->attribute_visibility_grouping = $visibilities;
+        return $this;
+    }
+
+    /**
+     * @param $attributes
+     * @return $this
+     */
+    public function addAttributeVisibilityGrouping($attributes) : self
+    {
+        foreach($attributes as $attribute)
+        {
+            $this->attribute_visibility_grouping[] = $attribute;
+        }
+
         return $this;
     }
 

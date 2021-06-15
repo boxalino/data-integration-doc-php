@@ -68,6 +68,7 @@ trait DocProductAttributeTrait
     public function getProductMultivalueSchemaTypes() : array
     {
         return [
+            DocSchemaInterface::FIELD_ATTRIBUTE_VISIBILITY_GROUPING,
             DocSchemaInterface::FIELD_STATUS,
             DocSchemaInterface::FIELD_VISIBILITY,
             DocSchemaInterface::FIELD_CATEGORIES,

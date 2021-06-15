@@ -187,6 +187,11 @@ class Product implements DocPropertiesInterface
     protected $visibility = [];
 
     /**
+     * @var Array<<string>>
+     */
+    protected $attribute_visibility_grouping = [];
+
+    /**
      * @var Array<<Status>>
      */
     protected $status = [];
@@ -1135,6 +1140,38 @@ class Product implements DocPropertiesInterface
         foreach($visibilities as $visibility)
         {
             $this->visibility[] = $visibility->toArray();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Array
+     */
+    public function getAttributeVisibilityGrouping(): array
+    {
+        return $this->attribute_visibility_grouping;
+    }
+
+    /**
+     * @param Array $visibility
+     * @return Product
+     */
+    public function setAttributeVisibilityGrouping(array $visibilities): Product
+    {
+        $this->attribute_visibility_grouping = $visibilities;
+        return $this;
+    }
+
+    /**
+     * @param $attributes
+     * @return $this
+     */
+    public function addAttributeVisibilityGrouping($attributes) : self
+    {
+        foreach($attributes as $attribute)
+        {
+            $this->attribute_visibility_grouping[] = $attribute;
         }
 
         return $this;

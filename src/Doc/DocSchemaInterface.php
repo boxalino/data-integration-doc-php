@@ -80,6 +80,7 @@ interface DocSchemaInterface
     public const FIELD_CATEGORY_ID= "category_id";
     public const FIELD_STOCK = "stock";
     public const FIELD_PRICE = "price";
+    public const FIELD_ATTRIBUTE_VISIBILITY_GROUPING = "attribute_visibility_grouping";
 
     /**
      * generic properties in schema
