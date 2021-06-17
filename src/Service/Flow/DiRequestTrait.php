@@ -28,7 +28,7 @@ trait DiRequestTrait
     /**
      * @var int
      */
-    protected $connectTimeout = 5;
+    protected $connectTimeout = 200;
 
     /**
      * @var ConfigurationDataObject

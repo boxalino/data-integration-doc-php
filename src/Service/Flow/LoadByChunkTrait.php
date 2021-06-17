@@ -30,7 +30,7 @@ trait LoadByChunkTrait
                     ],
                     $document
                 ),
-                [ 'connect_timeout' => 900 ]
+                [ 'connect_timeout' => 900, 'timeout' => 0 ]
             );
 
             if($this->getDiConfiguration()->isTest())

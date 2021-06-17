@@ -6,6 +6,7 @@ use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
+use Boxalino\DataIntegrationDoc\Service\Flow\DiLogTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use Psr\Log\LoggerInterface;
@@ -17,6 +18,7 @@ use Psr\Log\LoggerInterface;
  */
 trait DocHandlerIntegrationTrait
 {
+    use DiLogTrait;
 
     /**
      * @var \ArrayIterator
@@ -109,13 +111,22 @@ trait DocHandlerIntegrationTrait
     public function generateDocData() : array
     {
         $this->docData = [];
+
+        $this->logTime("start" . __FUNCTION__);
         foreach($this->getHandlers() as $handler)
         {
+            $this->logTime("startTimeHandler");
+
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
                 $this->docData = array_merge_recursive($this->docData,  $handler->getValues());
             }
+
+            $this->logTime("endTimeHandler");
+            $this->logMessage(get_class($handler), "endTimeHandler", "startTimeHandler");
         }
+        $this->logTime("end" . __FUNCTION__);
+        $this->logMessage(__FUNCTION__, "end" . __FUNCTION__, "start" . __FUNCTION__);
 
         return $this->docData;
     }
@@ -129,14 +140,6 @@ trait DocHandlerIntegrationTrait
     }
 
     /**
-     * @return LoggerInterface
-     */
-    public function getLogger() : LoggerInterface
-    {
-        return $this->logger;
-    }
-
-    /**
      * @param ConfigurationDataObject $configurationDataObject
      * @return DocHandlerInterface
      */
@@ -144,14 +147,6 @@ trait DocHandlerIntegrationTrait
     {
         $this->diConfiguration = $configurationDataObject;
         return $this;
-    }
-
-    /**
-     * @return ConfigurationDataObject
-     */
-    public function getDiConfiguration(): ConfigurationDataObject
-    {
-        return $this->diConfiguration;
     }
 
     /**
