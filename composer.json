@@ -11,14 +11,16 @@
         }
     ],
     "extra": {
-        "copyright": "Boxalino AG, 2020",
+        "copyright": "Boxalino AG, 2021",
         "label": {
             "de-DE": "Boxalino Doc für Data Integration",
             "en-GB": "Boxalino Doc for Data Integration"
         }
     },
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "symfony/console": "^5.0",
+        "psr/log": "*"
     },
     "autoload": {
         "psr-4": {
