@@ -81,11 +81,11 @@ class DocProduct implements DocProductHandlerInterface
     {
         /** @var DocGeneratorInterface $object */
         $object = $this->getSchemaGeneratorByType($objectType);
-        $objectProperties = $object->toArray();
+        $objectProperties = $object->toList();
 
         /** @var DocGeneratorInterface $diffObject */
         $diffObject = $this->getSchemaGeneratorByType($diffObjectType);
-        $diffObjectProperties = $diffObject->toArray();
+        $diffObjectProperties = $diffObject->toList();
 
         $propertyDiff = array_diff(array_keys($diffObjectProperties), array_keys($objectProperties));
         $diffObjectData = array_filter($data, function($property) use ($propertyDiff)
