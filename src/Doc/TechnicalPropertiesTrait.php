@@ -12,6 +12,7 @@ trait TechnicalPropertiesTrait
 
     /**
      * technical field
+     * Required format: YYYY-MM-DD hh:mm:ss
      * @var string
      */
     protected $creation_tm;
@@ -37,12 +38,12 @@ trait TechnicalPropertiesTrait
     }
 
     /**
-     * @param string $created_tm
+     * @param string | null $creation_tm
      * @return self
      */
-    public function setCreationTm(string $created_tm): self
+    public function setCreationTm(?string $creation_tm): self
     {
-        $this->creation_tm = $created_tm;
+        $this->creation_tm = is_null($creation_tm) ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($creation_tm));
         return $this;
     }
 

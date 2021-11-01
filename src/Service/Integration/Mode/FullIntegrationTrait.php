@@ -40,7 +40,7 @@ trait FullIntegrationTrait
             }
         }
 
-        $this->sync();
+        //$this->sync();
     }
 
 

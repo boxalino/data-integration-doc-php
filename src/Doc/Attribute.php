@@ -19,6 +19,7 @@ use League\Flysystem\Adapter\Local;
 class Attribute implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
+    use TechnicalPropertiesTrait;
 
     /**
      * the name of the attribute
@@ -192,26 +193,6 @@ class Attribute implements DocPropertiesInterface
      */
     protected $periods = [];
 
-    /**
-     * technical field
-     *
-     * @var string
-     */
-    protected $creation_tm;
-
-    /**
-     * technical field
-     *
-     * @var int
-     */
-    protected $client_id = 0;
-
-    /**
-     * technical field
-     *
-     * @var int
-     */
-    protected $src_sys_id = 0;
 
     /**
      * @return string
@@ -364,7 +345,7 @@ class Attribute implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStores(): array
     {
@@ -372,7 +353,7 @@ class Attribute implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $stores
+     * @param array $stores
      * @return self
      */
     public function setStores(array $stores): self
@@ -733,60 +714,6 @@ class Attribute implements DocPropertiesInterface
     public function addPeriod(Period $period): self
     {
         $this->periods[] = $period->toArray();
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $creation_tm
-     * @return Attribute
-     */
-    public function setCreationTm(string $creation_tm): Attribute
-    {
-        $this->creation_tm = $creation_tm;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
-    /**
-     * @param int $client_id
-     * @return Attribute
-     */
-    public function setClientId(int $client_id): Attribute
-    {
-        $this->client_id = $client_id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSrcSysId(): int
-    {
-        return $this->src_sys_id;
-    }
-
-    /**
-     * @param int $src_sys_id
-     * @return Attribute
-     */
-    public function setSrcSysId(int $src_sys_id): Attribute
-    {
-        $this->src_sys_id = $src_sys_id;
         return $this;
     }
 

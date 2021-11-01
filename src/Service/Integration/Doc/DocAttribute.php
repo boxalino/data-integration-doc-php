@@ -4,8 +4,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 use Boxalino\DataIntegrationDoc\Doc\Attribute;
 use Boxalino\DataIntegrationDoc\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
-use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandler;
 use Boxalino\DataIntegrationDoc\Generator\Attribute\Doc;
 use Psr\Log\LoggerInterface;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;

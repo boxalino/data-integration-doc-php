@@ -1,9 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode;
 
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode\DocInstantIntegrationInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Mode\InstantIntegrationInterface;
-use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 
 /**
  * Interface DocInstantIntegrationTrait
@@ -74,5 +72,6 @@ trait DocInstantIntegrationTrait
     {
         return $this->instantMode;
     }
+
 
 }

@@ -39,7 +39,7 @@ class Line implements DocGeneratorInterface
 
     /**
      * @param Pricing|null $pricing
-     * @return Product
+     * @return self
      */
     public function setPricing(?Pricing $pricing): self
     {
@@ -48,7 +48,7 @@ class Line implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getProductGroups(): array
     {

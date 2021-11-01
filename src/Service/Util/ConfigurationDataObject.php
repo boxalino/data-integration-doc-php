@@ -1,8 +1,8 @@
 <?php
 namespace Boxalino\DataIntegrationDoc\Service\Util;
 
+use Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface;
 use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
-use Boxalino\DataIntegrationDoc\Service\Util\AbstractSimpleObject;
 
 /**
  * Class ConfigurationDataObject
@@ -17,7 +17,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getEndpoint() : ?string
     {
-        return $this->_get("endpoint");
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_ENDPOINT);
     }
 
     /**
@@ -25,7 +25,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getAccount() : ?string
     {
-        return $this->_get("account");
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_ACCOUNT);
     }
 
     /**
@@ -33,7 +33,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getApiKey() : ?string
     {
-        return $this->_get("apiKey");
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_API_KEY);
     }
 
     /**
@@ -41,7 +41,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getApiSecret() : ?string
     {
-        return $this->_get("apiSecret");
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_API_SECRET);
     }
 
     /**
@@ -49,7 +49,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function isDev() : ?bool
     {
-        return $this->_get("isDev") ?? false;
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_IS_DEV) ?? false;
     }
 
     /**
@@ -57,7 +57,7 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function isTest() : bool
     {
-        return $this->_get("isTest") ?? false;
+        return $this->_get(DiConfigurationInterface::DI_CONFIG_IS_TEST) ?? false;
     }
 
     /**
@@ -173,5 +173,6 @@ class ConfigurationDataObject extends AbstractSimpleObject
         $this->setData(GcpRequestInterface::DI_REQUEST_CHUNK, (int) $chunk);
         return $this;
     }
+
 
 }

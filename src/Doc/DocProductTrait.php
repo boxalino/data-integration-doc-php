@@ -20,7 +20,10 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 
 /**
  * Trait DocProductTrait
- * Base for common properties on product document
+ *
+ * Grouping of properties for a given doc_X data structure
+ * To be used for sync automation logic
+ *
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
@@ -291,7 +294,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getProductRelations(): array
     {
@@ -299,7 +302,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $product_relations
+     * @param array $product_relations
      * @return self
      */
     public function setProductRelations(array $product_relations): self
@@ -323,7 +326,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getOtherRelations(): array
     {
@@ -331,7 +334,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $other_relations
+     * @param array $other_relations
      * @return self
      */
     public function setOtherRelations(array $other_relations): self
@@ -355,7 +358,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStores(): array
     {
@@ -363,7 +366,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $stores
+     * @param array $stores
      * @return self
      */
     public function setStores(array $stores): self
@@ -383,7 +386,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getTitle(): array
     {
@@ -391,7 +394,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $title
+     * @param array $title
      * @return self
      */
     public function setTitle(array $title): self
@@ -415,7 +418,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDescription(): array
     {
@@ -423,7 +426,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $description
+     * @param array $description
      * @return self
      */
     public function setDescription(array $description): self
@@ -447,7 +450,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getShortDescription(): array
     {
@@ -455,7 +458,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $short_description
+     * @param array $short_description
      * @return self
      */
     public function setShortDescription(array $short_description): self
@@ -478,7 +481,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getBrands(): array
     {
@@ -486,7 +489,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $brands
+     * @param array $brands
      * @return self
      */
     public function setBrands(array $brands): self
@@ -520,7 +523,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getSuppliers(): array
     {
@@ -528,7 +531,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $suppliers
+     * @param array $suppliers
      * @return self
      */
     public function setSuppliers(array $suppliers): self
@@ -562,7 +565,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getCategories(): array
     {
@@ -570,7 +573,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $categories
+     * @param array $categories
      * @return self
      */
     public function setCategories(array $categories): self
@@ -604,7 +607,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getImages(): array
     {
@@ -612,7 +615,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $images
+     * @param array $images
      * @return self
      */
     public function setImages(array $images): self
@@ -648,7 +651,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLink(): array
     {
@@ -656,7 +659,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $link
+     * @param array $link
      * @return self
      */
     public function setLink(array $link): self
@@ -690,7 +693,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getTags(): array
     {
@@ -698,7 +701,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $tags
+     * @param array $tags
      * @return self
      */
     public function setTags(array $tags): self
@@ -732,7 +735,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLabels(): array
     {
@@ -774,7 +777,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPeriods(): array
     {
@@ -782,7 +785,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $periods
+     * @param array $periods
      * @return self
      */
     public function setPeriods(array $periods): self
@@ -815,7 +818,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStringAttributes(): array
     {
@@ -823,7 +826,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $string_attributes
+     * @param array $string_attributes
      * @return self
      */
     public function setStringAttributes(array $string_attributes): self
@@ -861,7 +864,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedStringAttributes(): array
     {
@@ -869,7 +872,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $localized_string_attributes
+     * @param array $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
@@ -906,7 +909,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getNumericAttributes(): array
     {
@@ -914,7 +917,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $numeric_attributes
+     * @param array $numeric_attributes
      * @return self
      */
     public function setNumericAttributes(array $numeric_attributes): self
@@ -951,7 +954,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedNumericAttributes(): array
     {
@@ -959,7 +962,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $localized_numeric_attributes
+     * @param array $localized_numeric_attributes
      * @return self
      */
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
@@ -997,7 +1000,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDatetimeAttributes(): array
     {
@@ -1005,7 +1008,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $datetime_attributes
+     * @param array $datetime_attributes
      * @return self
      */
     public function setDatetimeAttributes(array $datetime_attributes): self
@@ -1043,7 +1046,7 @@ trait DocProductTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedDatetimeAttributes(): array
     {
@@ -1051,7 +1054,7 @@ trait DocProductTrait
     }
 
     /**
-     * @param Array $localized_datetime_attributes
+     * @param array $localized_datetime_attributes
      * @return self
      */
     public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self

@@ -27,11 +27,6 @@ abstract class DiGenericAbstractCommand extends Command
     use DiAbstractTrait;
     use DiIntegrateTrait;
 
-    /**
-     * @var DiConfigurationInterface
-     */
-    protected $configurationManager;
-
     public function __construct(
 //        string $environment,
         LoggerInterface $logger,
@@ -82,14 +77,6 @@ abstract class DiGenericAbstractCommand extends Command
 
         $output->writeln("End of Boxalino Data Integration Process.");
         return 0;
-    }
-
-    /**
-     * @return DiConfigurationInterface
-     */
-    public function getConfigurationManager() : DiConfigurationInterface
-    {
-        return $this->configurationManager;
     }
 
     /**

@@ -24,7 +24,7 @@ class Visibility implements DocPropertiesInterface
     protected $values = [];
 
     /**
-     * @return Array
+     * @return array
      */
     public function getCustomerGroups(): array
     {
@@ -32,7 +32,7 @@ class Visibility implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $customer_groups
+     * @param array $customer_groups
      * @return Visibility
      */
     public function setCustomerGroups(array $customer_groups): Visibility
@@ -52,7 +52,7 @@ class Visibility implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getValues(): array
     {

@@ -27,7 +27,7 @@ class RepeatedLocalized implements DocPropertiesInterface
     protected $value_id;
 
     /**
-     * @return Array
+     * @return array
      */
     public function getValue(): array
     {
@@ -35,7 +35,7 @@ class RepeatedLocalized implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $values
+     * @param array $values
      * @return self
      */
     public function setValue(array $values): self

@@ -14,7 +14,7 @@ use Boxalino\DataIntegrationDoc\Framework\Console\DiGenericAbstractCommand;
  * Use to trigger the data integration processes
  * ex: php bin/magento boxalino:di:full:user [account]
  *
- * @package Boxalino\DataIntegration\Service
+ * @package Boxalino\DataIntegrationDoc\Framework
  */
 class FullDataIntegration extends DiGenericAbstractCommand
 {

@@ -43,7 +43,7 @@ class Pricing implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getValues(): array
     {

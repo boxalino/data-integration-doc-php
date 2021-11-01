@@ -1,15 +1,10 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
-use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Service\Flow\DiLogTrait;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
-use Psr\Log\LoggerInterface;
 
 /**
  * Trait DocHandlerIntegrationTrait
@@ -36,16 +31,6 @@ trait DocHandlerIntegrationTrait
     protected $docs = [];
 
     /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var ConfigurationDataObject
-     */
-    protected $diConfiguration;
-
-    /**
      * generic integrate flow
      */
     public function integrate(): void
@@ -63,7 +48,7 @@ trait DocHandlerIntegrationTrait
     }
 
     /**
-     * @return string | JSONL
+     * @return string JSONL format
      */
     public function getDocContent() : string
     {
@@ -119,7 +104,11 @@ trait DocHandlerIntegrationTrait
 
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
-                $this->docData = array_merge_recursive($this->docData,  $handler->getValues());
+                $values = $handler->getValues();
+//                $file = explode("\\", get_class($handler));
+//                file_put_contents("/var/www/magento2/var/log/" . end($file) . ".txt", json_encode($values));
+                if(isset($values[4])) {file_put_contents("/var/www/magento2/var/log/4.log", json_encode($values), FILE_APPEND);}
+                $this->docData = array_merge_recursive($this->docData,  $values);
             }
 
             $this->logTime("endTimeHandler");

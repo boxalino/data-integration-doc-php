@@ -19,23 +19,5 @@ class Doc extends AttributeValue
 
     use GeneratorHydratorTrait;
 
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $creation_tm
-     * @return AttributeValue
-     */
-    public function setCreationTm(string $creation_tm): AttributeValue
-    {
-        $this->creation_tm = is_null($creation_tm) ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($creation_tm));
-        return $this;
-    }
-
 
 }

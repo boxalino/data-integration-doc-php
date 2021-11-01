@@ -1,12 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;

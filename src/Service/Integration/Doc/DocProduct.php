@@ -8,8 +8,6 @@ use Boxalino\DataIntegrationDoc\Generator\Product\Doc;
 use Boxalino\DataIntegrationDoc\Generator\Product\Group;
 use Boxalino\DataIntegrationDoc\Generator\Product\Line;
 use Boxalino\DataIntegrationDoc\Generator\Product\Sku;
-use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -81,11 +79,11 @@ class DocProduct implements DocProductHandlerInterface
     {
         /** @var DocGeneratorInterface $object */
         $object = $this->getSchemaGeneratorByType($objectType);
-        $objectProperties = $object->toArray();
+        $objectProperties = $object->toList();
 
         /** @var DocGeneratorInterface $diffObject */
         $diffObject = $this->getSchemaGeneratorByType($diffObjectType);
-        $diffObjectProperties = $diffObject->toArray();
+        $diffObjectProperties = $diffObject->toList();
 
         $propertyDiff = array_diff(array_keys($diffObjectProperties), array_keys($objectProperties));
         $diffObjectData = array_filter($data, function($property) use ($propertyDiff)

@@ -1,9 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema\Order;
 
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;

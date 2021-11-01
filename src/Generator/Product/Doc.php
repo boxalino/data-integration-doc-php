@@ -2,6 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TechnicalPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -18,27 +19,12 @@ class Doc implements DocGeneratorInterface
 
     use DocPropertiesTrait;
     use GeneratorHydratorTrait;
+    use TechnicalPropertiesTrait;
 
     /**
      * @var Line
      */
     protected $product_line;
-
-    /**
-     * Required format: YYYY-MM-DD hh:mm:ss
-     * @var string (timestamp)
-     */
-    protected $creation_tm;
-
-    /**
-     * @var int
-     */
-    protected $client_id = 0;
-
-    /**
-     * @var int
-     */
-    protected $src_sys_id = 0;
 
     /**
      * @return Line
@@ -58,58 +44,5 @@ class Doc implements DocGeneratorInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $creation_tm
-     * @return Doc
-     */
-    public function setCreationTm(?string $creation_tm): Doc
-    {
-        $this->creation_tm = is_null($creation_tm) ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($creation_tm));
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
-    /**
-     * @param int $client_id
-     * @return Doc
-     */
-    public function setClientId(int $client_id): Doc
-    {
-        $this->client_id = $client_id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSrcSysId(): int
-    {
-        return $this->src_sys_id;
-    }
-
-    /**
-     * @param int $src_sys_id
-     * @return Doc
-     */
-    public function setSrcSysId(int $src_sys_id): Doc
-    {
-        $this->src_sys_id = $src_sys_id;
-        return $this;
-    }
 
 }

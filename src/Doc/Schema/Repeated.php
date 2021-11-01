@@ -67,7 +67,7 @@ class Repeated implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getValues(): array
     {
@@ -75,7 +75,7 @@ class Repeated implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $value
+     * @param array $value
      * @return Repeated
      */
     public function setValues(array $values): Repeated

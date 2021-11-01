@@ -14,6 +14,16 @@ trait DiLogTrait
 {
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
+     * @var ConfigurationDataObject
+     */
+    protected $diConfiguration;
+
+    /**
      * @param string $property
      */
     public function logTime(string $property) : void
@@ -43,7 +53,7 @@ trait DiLogTrait
     }
 
     /**
-     * @param string $text
+     * @param string $step
      * @param string $endTime
      * @param string $startTime
      */
@@ -62,5 +72,6 @@ trait DiLogTrait
     {
         return $this->diConfiguration;
     }
+
 
 }

@@ -46,7 +46,7 @@ trait TypedAttributesTrait
     protected $localized_datetime_attributes = [];
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStringAttributes(): array
     {
@@ -54,7 +54,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array $string_attributes
+     * @param array $string_attributes
      * @return self
      */
     public function setStringAttributes(array $string_attributes): self
@@ -92,7 +92,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedStringAttributes(): array
     {
@@ -100,7 +100,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array $localized_string_attributes
+     * @param array $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
@@ -137,7 +137,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getNumericAttributes(): array
     {
@@ -145,7 +145,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array $numeric_attributes
+     * @param array $numeric_attributes
      * @return self
      */
     public function setNumericAttributes(array $numeric_attributes): self
@@ -182,7 +182,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedNumericAttributes(): array
     {
@@ -190,7 +190,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array $localized_numeric_attributes
+     * @param array $localized_numeric_attributes
      * @return self
      */
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
@@ -228,7 +228,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDatetimeAttributes(): array
     {
@@ -236,7 +236,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array $datetime_attributes
+     * @param array $datetime_attributes
      * @return self
      */
     public function setDatetimeAttributes(array $datetime_attributes): self
@@ -274,7 +274,7 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedDatetimeAttributes(): array
     {

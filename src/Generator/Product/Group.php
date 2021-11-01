@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
-use Boxalino\DataIntegrationDoc\Doc\Product;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
@@ -25,12 +24,12 @@ class Group implements DocGeneratorInterface
     /** Product Group specific attributes */
 
     /**
-     * @var Array
+     * @var array
      */
     protected $pricing = [];
 
     /**
-     * @var Array
+     * @var array
      */
     protected $price;
 
@@ -55,7 +54,7 @@ class Group implements DocGeneratorInterface
     protected $skus;
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPricing(): array
     {
@@ -86,7 +85,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getVisibility(): array
     {
@@ -94,7 +93,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $visibilities
+     * @param array $visibilities
      * @return self
      */
     public function setVisibility(array $visibilities): self
@@ -117,7 +116,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getAttributeVisibilityGrouping(): array
     {
@@ -125,10 +124,10 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $visibility
-     * @return Product
+     * @param array $visibility
+     * @return self
      */
-    public function setAttributeVisibilityGrouping(array $visibilities): Product
+    public function setAttributeVisibilityGrouping(array $visibilities): self
     {
         $this->attribute_visibility_grouping = $visibilities;
         return $this;
@@ -149,7 +148,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStatus(): array
     {
@@ -157,7 +156,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $status
+     * @param array $status
      * @return self
      */
     public function setStatus(array $status): self
@@ -213,7 +212,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPrice(): array
     {
@@ -221,7 +220,7 @@ class Group implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $price
+     * @param array $price
      * @return self
      */
     public function setPrice(array $price): self

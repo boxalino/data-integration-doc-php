@@ -3,10 +3,8 @@ namespace Boxalino\DataIntegrationDoc\Doc;
 
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
-use Boxalino\DataIntegrationDoc\Generator\Product\Sku;
 
 /**
  * Class AttributeValue
@@ -19,6 +17,8 @@ use Boxalino\DataIntegrationDoc\Generator\Product\Sku;
 class AttributeValue implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
+    use TechnicalPropertiesTrait;
+    use TypedAttributesTrait;
 
     /**
      * @var string
@@ -74,22 +74,6 @@ class AttributeValue implements DocPropertiesInterface
      * @var Array<<Tag>>
      */
     protected $tags;
-
-    /**
-     * Required format: YYYY-MM-DD hh:mm:ss
-     * @var string (timestamp)
-     */
-    protected $creation_tm;
-
-    /**
-     * @var int
-     */
-    protected $client_id = 0;
-
-    /**
-     * @var int
-     */
-    protected $src_sys_id = 0;
 
     /**
      * @return string
@@ -345,7 +329,7 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $status
+     * @param array $status
      * @return self
      */
     public function setStatus(array $statuss): self
@@ -399,58 +383,5 @@ class AttributeValue implements DocPropertiesInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCreationTm(): string
-    {
-        return $this->creation_tm;
-    }
-
-    /**
-     * @param string $creation_tm
-     * @return AttributeValue
-     */
-    public function setCreationTm(string $creation_tm): AttributeValue
-    {
-        $this->creation_tm = $creation_tm;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClientId(): int
-    {
-        return $this->client_id;
-    }
-
-    /**
-     * @param int $client_id
-     * @return AttributeValue
-     */
-    public function setClientId(int $client_id): AttributeValue
-    {
-        $this->client_id = $client_id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSrcSysId(): int
-    {
-        return $this->src_sys_id;
-    }
-
-    /**
-     * @param int $src_sys_id
-     * @return AttributeValue
-     */
-    public function setSrcSysId(int $src_sys_id): AttributeValue
-    {
-        $this->src_sys_id = $src_sys_id;
-        return $this;
-    }
 
 }

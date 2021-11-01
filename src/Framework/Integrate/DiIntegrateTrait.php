@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Framework\Integrate;
 
+use Boxalino\DataIntegrationDoc\Framework\Util\DiIntegrationConfigurationInterface;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandlerInterface;
@@ -27,6 +28,11 @@ trait DiIntegrateTrait
     public function integrate(ConfigurationDataObject $configuration) : void
     {
         try {
+            if($this->getIntegrationHandler() instanceof DiIntegrationConfigurationInterface)
+            {
+                $this->getIntegrationHandler()->setSystemConfiguration($configuration);
+            }
+
             $this->getIntegrationHandler()->manageConfiguration($configuration);
             $this->getLogger()->info(
                 "Boxalino DI: Start {$this->getIntegrationHandler()->getIntegrationType()} {$this->getIntegrationHandler()->getIntegrationMode()} {$this->getIntegrationHandler()->getDiConfiguration()->getTm()} sync for {$configuration->getAccount()}"

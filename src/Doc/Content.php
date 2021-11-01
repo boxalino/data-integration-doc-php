@@ -8,6 +8,10 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
 
+/**
+ * doc_content data structure
+ * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252280968/doc+content
+ */
 class Content implements DocPropertiesInterface
 {
     use DocPropertiesTrait;

@@ -7,7 +7,6 @@ use Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface;
 use Psr\Log\LoggerInterface;
 use Boxalino\DataIntegrationDoc\Framework\Console\DiGenericAbstractCommand;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class FullDataIntegration
@@ -15,7 +14,7 @@ use Symfony\Component\Console\Input\InputArgument;
  * Use to trigger the data integration processes
  * ex: php bin/magento boxalino:di:full:product [account]
  *
- * @package Boxalino\DataIntegration\Service
+ * @package Boxalino\DataIntegrationDoc\Framework
  */
 class FullDataIntegration extends DiGenericAbstractCommand
 {
@@ -27,9 +26,8 @@ class FullDataIntegration extends DiGenericAbstractCommand
         DiConfigurationInterface $configurationManager,
         ProductIntegrationHandlerInterface $integrationHandler
     ){
-        $this->integrationHandler = $integrationHandler;
-
         parent::__construct($logger, $configurationManager);
+        $this->integrationHandler = $integrationHandler;
     }
 
     public function getDescription(): string

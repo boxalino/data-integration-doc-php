@@ -12,6 +12,11 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 
+/**
+ * doc_order data structure
+ * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252313666/doc+order
+ *
+ */
 class Order implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
@@ -235,42 +240,42 @@ class Order implements DocPropertiesInterface
     protected $contacts = [];
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $creation;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $last_update;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $confirmation;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $cleared;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $sent;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $received;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $returned;
 
     /**
-     * @var string | datetime | null
+     * @var string  | null
      */
     protected $repaired;
 
@@ -1024,7 +1029,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getCreation(): ?string
     {
@@ -1032,7 +1037,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $creation
+     * @param string|null $creation
      * @return Order
      */
     public function setCreation(?string $creation): Order
@@ -1042,7 +1047,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getLastUpdate(): ?string
     {
@@ -1050,7 +1055,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $last_update
+     * @param string|null $last_update
      * @return Order
      */
     public function setLastUpdate(?string $last_update): Order
@@ -1060,7 +1065,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getConfirmation(): ?string
     {
@@ -1068,7 +1073,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $confirmation
+     * @param string|null $confirmation
      * @return Order
      */
     public function setConfirmation(?string $confirmation): Order
@@ -1078,7 +1083,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getCleared(): ?string
     {
@@ -1086,7 +1091,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $cleared
+     * @param string|null $cleared
      * @return Order
      */
     public function setCleared(?string $cleared): Order
@@ -1096,7 +1101,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getSent(): ?string
     {
@@ -1104,7 +1109,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $sent
+     * @param string|null $sent
      * @return Order
      */
     public function setSent(?string $sent): Order
@@ -1114,7 +1119,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getReceived(): ?string
     {
@@ -1122,7 +1127,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $received
+     * @param string|null $received
      * @return Order
      */
     public function setReceived(?string $received): Order
@@ -1132,7 +1137,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getReturned(): ?string
     {
@@ -1140,7 +1145,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $returned
+     * @param string|null $returned
      * @return Order
      */
     public function setReturned(?string $returned): Order
@@ -1150,7 +1155,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return datetime|string|null
+     * @return string|null
      */
     public function getRepaired(): ?string
     {
@@ -1158,7 +1163,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param datetime|string|null $repaired
+     * @param string|null $repaired
      * @return Order
      */
     public function setRepaired(?string $repaired): Order
@@ -1222,7 +1227,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStringAttributes(): array
     {
@@ -1230,7 +1235,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $string_attributes
+     * @param array $string_attributes
      * @return self
      */
     public function setStringAttributes(array $string_attributes): self
@@ -1268,7 +1273,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedStringAttributes(): array
     {
@@ -1276,7 +1281,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_string_attributes
+     * @param array $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
@@ -1313,7 +1318,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getNumericAttributes(): array
     {
@@ -1321,7 +1326,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $numeric_attributes
+     * @param array $numeric_attributes
      * @return self
      */
     public function setNumericAttributes(array $numeric_attributes): self
@@ -1358,7 +1363,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedNumericAttributes(): array
     {
@@ -1366,7 +1371,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_numeric_attributes
+     * @param array $localized_numeric_attributes
      * @return self
      */
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
@@ -1404,7 +1409,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDatetimeAttributes(): array
     {
@@ -1412,7 +1417,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $datetime_attributes
+     * @param array $datetime_attributes
      * @return self
      */
     public function setDatetimeAttributes(array $datetime_attributes): self
@@ -1450,7 +1455,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedDatetimeAttributes(): array
     {
@@ -1458,7 +1463,7 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_datetime_attributes
+     * @param array $localized_datetime_attributes
      * @return self
      */
     public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self

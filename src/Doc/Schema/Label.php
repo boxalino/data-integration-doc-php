@@ -83,7 +83,7 @@ class Label implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocValues(): array
     {
@@ -91,7 +91,7 @@ class Label implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $loc_values
+     * @param array $loc_values
      * @return Label
      */
     public function setLocValues(array $loc_values): Label

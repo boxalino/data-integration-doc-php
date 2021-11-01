@@ -25,7 +25,7 @@ class Period implements DocPropertiesInterface
     protected $end_datetime = [];
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStartDatetime(): array
     {
@@ -33,7 +33,7 @@ class Period implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $start_datetime
+     * @param array $start_datetime
      * @return Period
      */
     public function setStartDatetime(array $start_datetime): Period
@@ -43,7 +43,7 @@ class Period implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getEndDatetime(): array
     {
@@ -51,7 +51,7 @@ class Period implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $end_datetime
+     * @param array $end_datetime
      * @return Period
      */
     public function setEndDatetime(array $end_datetime): Period

@@ -61,7 +61,7 @@ class Tag implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocValues(): array
     {
@@ -69,7 +69,7 @@ class Tag implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $loc_values
+     * @param array $loc_values
      * @return Tag
      */
     public function setLocValues(array $loc_values): Tag

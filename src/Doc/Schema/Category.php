@@ -38,7 +38,7 @@ class Category implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getCategoryIds(): array
     {
@@ -46,7 +46,7 @@ class Category implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $category_ids
+     * @param array $category_ids
      * @return Category
      */
     public function setCategoryIds(array $category_ids): Category

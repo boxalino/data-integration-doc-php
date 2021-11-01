@@ -2,8 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\SyncTrait;
-use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
-use Boxalino\DataIntegrationDoc\Generator\User\Doc;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 

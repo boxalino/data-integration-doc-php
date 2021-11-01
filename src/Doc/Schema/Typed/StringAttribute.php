@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema\Typed;
 
-use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 
 /**

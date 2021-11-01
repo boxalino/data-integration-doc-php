@@ -39,7 +39,7 @@ class Price implements DocPropertiesInterface
     protected $other_prices = [];
 
     /**
-     * @return Array
+     * @return array
      */
     public function getCustomerGroups(): array
     {
@@ -47,7 +47,7 @@ class Price implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $customer_groups
+     * @param array $customer_groups
      * @return Price
      */
     public function setCustomerGroups(array $customer_groups): Price
@@ -57,7 +57,7 @@ class Price implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPeriods(): array
     {
@@ -80,7 +80,7 @@ class Price implements DocPropertiesInterface
     /**
      * Price before any discount
      *
-     * @return Array
+     * @return array
      */
     public function getListPrice(): array
     {
@@ -111,7 +111,7 @@ class Price implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getSalesPrice(): array
     {
@@ -144,7 +144,7 @@ class Price implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getGrossMargin(): array
     {
@@ -165,7 +165,7 @@ class Price implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getOtherPrices(): array
     {

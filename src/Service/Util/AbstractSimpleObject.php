@@ -39,7 +39,7 @@ abstract class AbstractSimpleObject
                 return $this->_get($key);
             } catch (\Exception $exception)
             {
-
+                //do nothing, the property is simply not set.
             }
         }
     }
@@ -66,5 +66,6 @@ abstract class AbstractSimpleObject
         $this->_data[$key] = $value;
         return $this;
     }
+
 
 }

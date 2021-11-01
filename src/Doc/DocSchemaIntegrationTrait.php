@@ -19,6 +19,9 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 /**
  * Trait DocSchemaIntegrationTrait
  *
+ * Generic property generation based on a given schema
+ * Can be used throughout integrations
+ *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
 trait DocSchemaIntegrationTrait

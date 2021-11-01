@@ -25,6 +25,10 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 
+/**
+ * doc_product data structure
+ * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252149870/doc+product
+ */
 class Product implements DocPropertiesInterface
 {
 
@@ -361,7 +365,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getProductRelations(): array
     {
@@ -369,7 +373,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $product_relations
+     * @param array $product_relations
      * @return Product
      */
     public function setProductRelations(array $product_relations): Product
@@ -392,7 +396,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getOtherRelations(): array
     {
@@ -400,7 +404,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $other_relations
+     * @param array $other_relations
      * @return Product
      */
     public function setOtherRelations(array $other_relations): Product
@@ -423,7 +427,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStores(): array
     {
@@ -431,7 +435,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $stores
+     * @param array $stores
      * @return Product
      */
     public function setStores(array $stores): Product
@@ -451,7 +455,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getTitle(): array
     {
@@ -459,7 +463,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $title
+     * @param array $title
      * @return Product
      */
     public function setTitle(array $title): Product
@@ -483,7 +487,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDescription(): array
     {
@@ -491,7 +495,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $description
+     * @param array $description
      * @return Product
      */
     public function setDescription(array $description): Product
@@ -515,7 +519,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getShortDescription(): array
     {
@@ -523,7 +527,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $short_description
+     * @param array $short_description
      * @return Product
      */
     public function setShortDescription(array $short_description): Product
@@ -547,7 +551,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getBrands(): array
     {
@@ -555,7 +559,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $brands
+     * @param array $brands
      * @return Product
      */
     public function setBrands(array $brands): Product
@@ -579,7 +583,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getSuppliers(): array
     {
@@ -587,7 +591,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $suppliers
+     * @param array $suppliers
      * @return Product
      */
     public function setSuppliers(array $suppliers): Product
@@ -611,7 +615,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getCategories(): array
     {
@@ -619,7 +623,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $categories
+     * @param array $categories
      * @return Product
      */
     public function setCategories(array $categories): Product
@@ -629,7 +633,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getImages(): array
     {
@@ -637,7 +641,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $images
+     * @param array $images
      * @return Product
      */
     public function setImages(array $images): Product
@@ -661,7 +665,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLink(): array
     {
@@ -669,7 +673,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $link
+     * @param array $link
      * @return Product
      */
     public function setLink(array $link): Product
@@ -693,7 +697,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getTags(): array
     {
@@ -701,7 +705,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $tags
+     * @param array $tags
      * @return Product
      */
     public function setTags(array $tags): Product
@@ -725,7 +729,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLabels(): array
     {
@@ -733,7 +737,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $labels
+     * @param array $labels
      * @return Product
      */
     public function setLabels(array $labels): Product
@@ -757,7 +761,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPeriods(): array
     {
@@ -765,7 +769,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $periods
+     * @param array $periods
      * @return Product
      */
     public function setPeriods(array $periods): Product
@@ -789,7 +793,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStringAttributes(): array
     {
@@ -797,7 +801,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $string_attributes
+     * @param array $string_attributes
      * @return self
      */
     public function setStringAttributes(array $string_attributes): self
@@ -835,7 +839,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedStringAttributes(): array
     {
@@ -843,7 +847,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_string_attributes
+     * @param array $localized_string_attributes
      * @return self
      */
     public function setLocalizedStringAttributes(array $localized_string_attributes): self
@@ -880,7 +884,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getNumericAttributes(): array
     {
@@ -888,7 +892,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $numeric_attributes
+     * @param array $numeric_attributes
      * @return self
      */
     public function setNumericAttributes(array $numeric_attributes): self
@@ -925,7 +929,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedNumericAttributes(): array
     {
@@ -933,7 +937,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_numeric_attributes
+     * @param array $localized_numeric_attributes
      * @return self
      */
     public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
@@ -971,7 +975,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getDatetimeAttributes(): array
     {
@@ -979,7 +983,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $datetime_attributes
+     * @param array $datetime_attributes
      * @return self
      */
     public function setDatetimeAttributes(array $datetime_attributes): self
@@ -1017,7 +1021,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getLocalizedDatetimeAttributes(): array
     {
@@ -1025,7 +1029,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $localized_datetime_attributes
+     * @param array $localized_datetime_attributes
      * @return self
      */
     public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
@@ -1082,7 +1086,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPrice(): array
     {
@@ -1090,7 +1094,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $price
+     * @param array $price
      * @return Product
      */
     public function setPrice(array $price): Product
@@ -1114,7 +1118,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getVisibility(): array
     {
@@ -1122,7 +1126,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $visibility
+     * @param array $visibility
      * @return Product
      */
     public function setVisibility(array $visibility): Product
@@ -1146,7 +1150,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getAttributeVisibilityGrouping(): array
     {
@@ -1154,7 +1158,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $visibility
+     * @param array $visibility
      * @return Product
      */
     public function setAttributeVisibilityGrouping(array $visibilities): Product
@@ -1178,7 +1182,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStatus(): array
     {
@@ -1186,7 +1190,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $status
+     * @param array $status
      * @return Product
      */
     public function setStatus(array $status): Product
@@ -1264,7 +1268,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getAdditionalProductGroups(): array
     {
@@ -1272,7 +1276,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $additional_product_groups
+     * @param array $additional_product_groups
      * @return Product
      */
     public function setAdditionalProductGroups(array $additional_product_groups): Product
@@ -1292,7 +1296,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStock(): array
     {
@@ -1300,7 +1304,7 @@ class Product implements DocPropertiesInterface
     }
 
     /**
-     * @param Array $stock
+     * @param array $stock
      * @return Product
      */
     public function setStock(array $stock): Product

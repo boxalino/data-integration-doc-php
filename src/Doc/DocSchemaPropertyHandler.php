@@ -1,8 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
-
 /**
  * Class DocSchemaPropertyHandler
  *
@@ -70,12 +68,13 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
     }
 
     /**
-     * @param string $attributeName
+     * @param string $docAttributeName
      * @return DocPropertiesInterface|null
      */
     public function getAttributeSchema(string $docAttributeName) : ?DocPropertiesInterface
     {
-        if ($this->attributeSchemaDefinitionList->offsetExists($docAttributeName)) {
+        if ($this->attributeSchemaDefinitionList->offsetExists($docAttributeName))
+        {
             $schema = $this->attributeSchemaDefinitionList->offsetGet($docAttributeName);
             return new $schema;
         }

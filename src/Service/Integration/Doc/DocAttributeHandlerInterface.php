@@ -1,8 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
-use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
-
 /**
  * Interface DocAttributeHandlerInterface
  *

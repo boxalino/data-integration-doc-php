@@ -75,7 +75,7 @@ class Sku  implements DocGeneratorInterface
     protected $show_out_of_stock = false;
 
     /**
-     * @return Array
+     * @return array
      */
     public function getPrice(): array
     {
@@ -83,7 +83,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $price
+     * @param array $price
      * @return self
      */
     public function setPrice(array $price): self
@@ -103,7 +103,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getVisibility(): array
     {
@@ -111,7 +111,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $visibility
+     * @param array $visibility
      * @return self
      */
     public function setVisibility(array $visibility): self
@@ -131,7 +131,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStatus(): array
     {
@@ -139,7 +139,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $status
+     * @param array $status
      * @return self
      */
     public function setStatus(array $statuss): self
@@ -216,7 +216,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getAdditionalProductGroups(): array
     {
@@ -224,7 +224,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $additional_product_groups
+     * @param array $additional_product_groups
      * @return self
      */
     public function setAdditionalProductGroups(array $additional_product_groups): self
@@ -244,7 +244,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @return Array
+     * @return array
      */
     public function getStock(): array
     {
@@ -252,7 +252,7 @@ class Sku  implements DocGeneratorInterface
     }
 
     /**
-     * @param Array $stock
+     * @param array $stock
      * @return self
      */
     public function setStock(array $stock): self

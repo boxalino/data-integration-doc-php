@@ -3,6 +3,10 @@ namespace Boxalino\DataIntegrationDoc\Doc;
 
 /**
  * Interface DocSchemaInterface
+ * Handles all the doc_X attributes
+ * Any update on the doc_X schemas - will be reflected in the constants
+ *
+ * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252280881/Data+Structure
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
@@ -60,6 +64,7 @@ interface DocSchemaInterface
     public const FIELD_SEARCH_SUGGESTION = "search_suggestion";
     public const FIELD_FILTER_BY = "filter_by";
     public const FIELD_GROUP_BY = "group_by";
+    public const FIELD_ORDER_BY = "order_by";
     public const FIELD_INDEXED = "indexed";
 
     /**

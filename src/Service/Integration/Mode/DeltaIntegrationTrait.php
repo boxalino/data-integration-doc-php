@@ -3,8 +3,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Mode;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\SyncCheckTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\MissingConfigurationException;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode\DocDeltaIntegrationInterface;
 

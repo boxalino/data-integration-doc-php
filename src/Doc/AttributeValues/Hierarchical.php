@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\AttributeValues;
 
-use Boxalino\DataIntegrationDoc\Doc\Localized;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
@@ -52,9 +52,9 @@ class Hierarchical implements \JsonSerializable
 
     /**
      * @param string $attribute_name
-     * @return AttributeValue
+     * @return Hierarchical
      */
-    public function setAttributeName(string $attribute_name): AttributeValue
+    public function setAttributeName(string $attribute_name): Hierarchical
     {
         $this->attribute_name = $attribute_name;
         return $this;
@@ -70,9 +70,9 @@ class Hierarchical implements \JsonSerializable
 
     /**
      * @param bool $numerical
-     * @return AttributeValue
+     * @return Hierarchical
      */
-    public function setNumerical(bool $numerical): AttributeValue
+    public function setNumerical(bool $numerical): Hierarchical
     {
         $this->numerical = $numerical;
         return $this;
@@ -88,9 +88,9 @@ class Hierarchical implements \JsonSerializable
 
     /**
      * @param string $value_id
-     * @return AttributeValue
+     * @return Hierarchical
      */
-    public function setValueId(string $value_id): AttributeValue
+    public function setValueId(string $value_id): Hierarchical
     {
         $this->value_id = $value_id;
         return $this;
@@ -106,9 +106,9 @@ class Hierarchical implements \JsonSerializable
 
     /**
      * @param [] $value_label
-     * @return AttributeValue
+     * @return Hierarchical
      */
-    public function setValueLabel(array $value_label): AttributeValue
+    public function setValueLabel(array $value_label): Hierarchical
     {
         $this->value_label = $value_label;
         return $this;
@@ -124,9 +124,9 @@ class Hierarchical implements \JsonSerializable
 
     /**
      * @param [] $parent_value_ids
-     * @return AttributeValue
+     * @return Hierarchical
      */
-    public function setParentValueIds(array $parent_value_ids): AttributeValue
+    public function setParentValueIds(array $parent_value_ids): Hierarchical
     {
         $this->parent_value_ids = $parent_value_ids;
         return $this;

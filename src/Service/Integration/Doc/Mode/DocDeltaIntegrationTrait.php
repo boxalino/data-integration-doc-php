@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode;
 
-use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use Boxalino\DataIntegrationDoc\Service\Integration\Mode\DeltaIntegrationInterface;
 
 /**

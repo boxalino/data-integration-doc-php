@@ -6,6 +6,9 @@ use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 /**
  * Trait DocProductAttributeTrait
  *
+ * Grouping of properties for a given doc_X data structure
+ * To be used for sync automation logic
+ *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
 trait DocProductAttributeTrait
