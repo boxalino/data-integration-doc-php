@@ -29,9 +29,9 @@ trait DiPropertyTrait
      */
     public function sanitizePropertyNames(array $properties) : array
     {
-        array_walk($properties, function($property)
+        array_walk($properties, function(&$property, $k)
         {
-            return preg_replace("/[\s\'\,\-\+\/\!\[\]\)\(\:\^\"\{\}\~\*\?\|\&\;\,\\\]/", '_', $property);
+            $property = preg_replace("/[\s\'\,\-\+\/\!\[\]\)\(\:\^\"\{\}\~\*\?\|\&\;\,\\\]/", '_', $property);
         });
 
         return $properties;
