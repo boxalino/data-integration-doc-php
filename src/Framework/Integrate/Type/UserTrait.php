@@ -5,7 +5,7 @@ use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 
 /**
  * Class UserTrait
- * @package Boxalino\DataIntegration\Service
+ * @package Boxalino\DataIntegrationDoc\Framework\Integrate\Type
  */
 trait UserTrait
 {

@@ -104,11 +104,7 @@ trait DocHandlerIntegrationTrait
 
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
-                $values = $handler->getValues();
-//                $file = explode("\\", get_class($handler));
-//                file_put_contents("/var/www/magento2/var/log/" . end($file) . ".txt", json_encode($values));
-                if(isset($values[4])) {file_put_contents("/var/www/magento2/var/log/4.log", json_encode($values), FILE_APPEND);}
-                $this->docData = array_merge_recursive($this->docData,  $values);
+                $this->docData = array_merge_recursive($this->docData,  $handler->getValues());
             }
 
             $this->logTime("endTimeHandler");
