@@ -143,9 +143,42 @@ trait DocSchemaIntegrationTrait
     }
 
     /**
+     * @param array $languages
+     * @param array $currencyCodes
+     * @param array $currencyFactors
+     * @param array $salesPrices
+     * @param array $listPrices
+     * @return Price
+     */
+    public function getLocalizedPriceSchema(array $languages, array $currencyCodes, array $currencyFactors, array $salesPrices = [], array $listPrices = []) : Price
+    {
+        $schema = new Price();
+        foreach($languages as $language)
+        {
+            foreach($currencyCodes as $currencyCode)
+            {
+                $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
+                $salesPrice = isset($salesPrices[$language]) ? (float) $salesPrices[$language] : -1;
+                if($salesPrice > -1)
+                {
+                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$salesPrice, $currencyFactor));
+                }
+
+                $listPrice = isset($listPrices[$language]) ? (float) $listPrices[$language] : -1;
+                if($listPrice > -1)
+                {
+                    $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$listPrice, $currencyFactor));
+                }
+            }
+        }
+
+        return $schema;
+    }
+
+    /**
      * @param string $language
      * @param string $currencyCode
-     * @param int $value
+     * @param float $value
      * @param float $factor
      * @return PriceLocalized
      */
@@ -388,6 +421,27 @@ trait DocSchemaIntegrationTrait
     {
         $propertyName = ucwords(str_replace("_", " ", $propertyName));
         return $this->getLocalizedSchema($propertyName, $languages);
+    }
+
+    /**
+     * @param string $property
+     * @param array &$schema
+     * @param array $languages
+     * @param null $source
+     */
+    public function addingLocalizedPropertyToSchema(string $property, array &$schema, array $languages, $source = null)
+    {
+        foreach($languages as $language)
+        {
+            $content = null;
+            if(is_array($source) && isset($source[$language])){ $content = $source[$language]; }
+            if(isset($schema[$language]) && !isset($source[$language])){ $content = $schema[$language]; }
+            if(is_null($content)){  continue; }
+
+            $localized = new Localized();
+            $localized->setValue($content)->setLanguage($language);
+            $schema[$property][] = $localized;
+        }
     }
 
 }
