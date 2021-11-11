@@ -17,6 +17,7 @@ interface DocSchemaInterface
     public const DI_PARENT_ID_FIELD = 'doc_parent';
     public const DI_DOC_TYPE_FIELD = 'doc_type';
     public const DI_AS_VARIANT = 'di_as_variant';
+    public const DI_PARENT_ID_TYPE_FIELD = 'doc_parent_type';
 
     /**
      * common properties
