@@ -7,6 +7,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\PriceLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\PricingLocalized;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Product;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
@@ -442,6 +443,33 @@ trait DocSchemaIntegrationTrait
             $localized->setValue($content)->setLanguage($language);
             $schema[$property][] = $localized;
         }
+    }
+
+    public function getProductRelationSchema(\ArrayObject $relation)
+    {
+        $schema = new Product();
+        if($relation->offsetExists("type"))
+        {
+            $schema->setType((string)$relation->offsetGet("type"));
+        }
+        if($relation->offsetExists("name"))
+        {
+            $schema->setName((string)$relation->offsetGet("name"));
+        }
+        if($relation->offsetExists("product_group"))
+        {
+            $schema->setProductGroup((string)$relation->offsetGet("product_group"));
+        }
+        if($relation->offsetExists("sku"))
+        {
+            $schema->setSku((string)$relation->offsetGet("sku"));
+        }
+        if($relation->offsetExists("value"))
+        {
+            $schema->setValue((int)$relation->offsetGet("value"));
+        }
+
+        return $schema;
     }
 
 }
