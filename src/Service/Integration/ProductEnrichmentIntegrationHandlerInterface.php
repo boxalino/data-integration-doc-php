@@ -4,7 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration;
 use Boxalino\DataIntegrationDoc\Service\Integration\Mode\EnrichmentIntegrationInterface;
 
 /**
- * Interface ProductDeltaIntegrationHandlerInterface
+ * Interface ProductEnrichmentIntegrationHandlerInterface
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
