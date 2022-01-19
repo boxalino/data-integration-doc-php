@@ -151,5 +151,13 @@ trait DocHandlerIntegrationTrait
         $this->docs = [];
     }
 
+    /**
+     * Reset doc data (generated)
+     */
+    public function resetDocData()  : void
+    {
+        $this->docData = null;
+    }
+
 
 }
