@@ -159,5 +159,18 @@ trait DocHandlerIntegrationTrait
         $this->docData = null;
     }
 
+    /**
+     * @return DocGeneratorInterface|null
+     */
+    public function getLastDoc() : ?DocGeneratorInterface
+    {
+        if(empty($this->docs))
+        {
+            return null;
+        }
+
+        return end($this->docs);
+    }
+
 
 }
