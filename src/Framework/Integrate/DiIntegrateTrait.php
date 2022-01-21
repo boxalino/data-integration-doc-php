@@ -4,6 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Framework\Integrate;
 use Boxalino\DataIntegrationDoc\Framework\Util\DiIntegrationConfigurationInterface;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
+use Boxalino\DataIntegrationDoc\Service\ErrorHandler\NoRecordsFoundException;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 
@@ -43,6 +44,9 @@ trait DiIntegrateTrait
             $this->getLogger()->info(
                 "Boxalino DI: End of {$this->getIntegrationHandler()->getIntegrationType()} {$this->getIntegrationHandler()->getIntegrationMode()} {$this->getIntegrationHandler()->getDiConfiguration()->getTm()} sync for {$configuration->getAccount()}"
             );
+        } catch (NoRecordsFoundException $exception)
+        {
+            $this->info($exception);
         } catch (FailDocLoadException $exception)
         {
             //maybe a fallback to save the content of the documents and try again later or have the integration team review

@@ -30,12 +30,28 @@ trait DiLoggerTrait
     public function logOrThrowException(\Throwable $exception)
     {
         if ($this->environment === 'prod') {
-            $this->getLogger()->warning("Boxalino DI error: " . $exception->getMessage());
+            $this->warning($exception);
             throw $exception;
         }
 
-        $this->getLogger()->info("Boxalino DI error: " . $exception->getMessage());
+        $this->info($exception);
         throw $exception;
+    }
+
+    /**
+     * @param \Throwable $exception
+     */
+    public function info(\Throwable $exception)
+    {
+        $this->getLogger()->info("Boxalino DI: " . $exception->getMessage());
+    }
+
+    /**
+     * @param \Throwable $exception
+     */
+    public function warning(\Throwable $exception)
+    {
+        $this->getLogger()->warning("Boxalino DI: " . $exception->getMessage());
     }
 
     /**
