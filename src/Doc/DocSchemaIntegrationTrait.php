@@ -116,7 +116,7 @@ trait DocSchemaIntegrationTrait
      * @param string|null $listPrice
      * @return Price
      */
-    public function getPriceSchema(array $languages, array $currencyCodes, array $currencyFactors, ?string $salesPrice, ?string $listPrice) : Price
+    public function getPriceSchema(array $languages, array $currencyCodes, array $currencyFactors, ?string $salesPrice = null, ?string $listPrice = null) : Price
     {
         $schema = new Price();
         foreach($languages as $language)
@@ -199,7 +199,7 @@ trait DocSchemaIntegrationTrait
      * @param string $propertyName
      * @return NumericAttribute
      */
-    public function getNumericAttributeSchema(array $values, string $propertyName, ?string $key) : NumericAttribute
+    public function getNumericAttributeSchema(array $values, string $propertyName, ?string $key = null) : NumericAttribute
     {
         $typedProperty = new NumericAttribute();
         $typedProperty->setName($propertyName);
