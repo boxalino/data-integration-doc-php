@@ -236,7 +236,7 @@ trait DocSchemaIntegrationTrait
      * @param string $propertyName
      * @return NumericAttribute
      */
-    public function getNumericAttributeSchema(array $values, string $propertyName, ?string $key) : NumericAttribute
+    public function getNumericAttributeSchema(array $values, string $propertyName, ?string $key = null) : NumericAttribute
     {
         $typedProperty = new NumericAttribute();
         $typedProperty->setName($propertyName);

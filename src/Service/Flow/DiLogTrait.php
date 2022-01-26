@@ -66,6 +66,55 @@ trait DiLogTrait
     }
 
     /**
+     * @param string $step
+     * @param bool $start
+     * @return void
+     */
+    public function logMemory(string $step, bool $start = true) : void
+    {
+        if($this->getDiConfiguration()->isTest())
+        {
+            if($start)
+            {
+                $this->getLogger()->info("Start $step MEMORY with: " . $this->getMemory());
+                return;
+            }
+
+            $this->getLogger()->info("End $step MEMORY with: " . $this->getMemory());
+        }
+    }
+
+    /**
+     * @param string $step
+     * @return void
+     */
+    public function logPeakMemory(string $step) : void
+    {
+        if($this->getDiConfiguration()->isTest())
+        {
+            $this->getLogger()->info("Peak memory on $step : " . $this->getPeakMemory());
+        }
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMemory()  : string
+    {
+        $memory = memory_get_usage();
+        return round($memory/1048576,2)." MB";
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPeakMemory()  : string
+    {
+        $memory = memory_get_peak_usage();
+        return round($memory/1048576,2)." MB";
+    }
+
+    /**
      * @return ConfigurationDataObject
      */
     public function getDiConfiguration(): ConfigurationDataObject

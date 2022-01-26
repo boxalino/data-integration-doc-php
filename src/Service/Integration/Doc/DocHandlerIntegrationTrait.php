@@ -100,6 +100,7 @@ trait DocHandlerIntegrationTrait
         $this->logTime("start" . __FUNCTION__);
         foreach($this->getHandlers() as $handler)
         {
+            $this->logMemory(get_class($handler));
             $this->logTime("startTimeHandler");
 
             if($handler instanceof DocSchemaPropertyHandlerInterface)
@@ -108,6 +109,7 @@ trait DocHandlerIntegrationTrait
             }
 
             $this->logTime("endTimeHandler");
+            $this->logMemory(get_class($handler), false);
             $this->logMessage(get_class($handler), "endTimeHandler", "startTimeHandler");
         }
         $this->logTime("end" . __FUNCTION__);
