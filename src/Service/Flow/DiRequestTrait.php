@@ -132,7 +132,7 @@ trait DiRequestTrait
 
         if(is_null($connectTimeout))
         {
-            $timeout = $this->connectTimeout;
+            $connectTimeout = $this->connectTimeout;
         }
 
         return [
