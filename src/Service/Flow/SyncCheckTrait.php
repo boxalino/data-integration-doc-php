@@ -48,6 +48,11 @@ trait SyncCheckTrait
 
             return null;
         } catch (\Throwable $exception) {
+            if (strpos($exception->getMessage(), "timed out after"))
+            {
+                return null;
+            }
+
             throw new FailSyncException(
                 "Boxalino Data Integration sync check request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
                 . $exception->getMessage()

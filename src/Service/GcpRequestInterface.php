@@ -39,5 +39,6 @@ interface GcpRequestInterface
     public const DI_REQUEST_PROJECT="project";
     public const DI_REQUEST_DATASET="dataset";
     public const DI_REQUEST_CHUNK="chunk";
+    public const DI_REQUEST_DISPATCH="dispatch";
 
 }

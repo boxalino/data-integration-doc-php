@@ -113,7 +113,15 @@ class ConfigurationDataObject extends AbstractSimpleObject
      */
     public function getChunk() : ?string
     {
-        return (int) $this->_get(GcpRequestInterface::DI_REQUEST_CHUNK);
+        return (string) $this->_get(GcpRequestInterface::DI_REQUEST_CHUNK);
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDispatch() : ?int
+    {
+        return (int) $this->_get(GcpRequestInterface::DI_REQUEST_DISPATCH);
     }
 
     /**
@@ -171,6 +179,16 @@ class ConfigurationDataObject extends AbstractSimpleObject
     public function setChunk($chunk) : self
     {
         $this->setData(GcpRequestInterface::DI_REQUEST_CHUNK, (int) $chunk);
+        return $this;
+    }
+
+    /**
+     * @param string|int $dispatch
+     * @return $this
+     */
+    public function setDispatch($dispatch) : self
+    {
+        $this->setData(GcpRequestInterface::DI_REQUEST_DISPATCH, (int) $dispatch);
         return $this;
     }
 

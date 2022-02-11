@@ -193,6 +193,7 @@ trait DiRequestTrait
             GcpRequestInterface::DI_REQUEST_TS       => $this->getDiConfiguration()->getTs(),
             GcpRequestInterface::DI_REQUEST_PROJECT  => $this->getDiConfiguration()->getProject(),
             GcpRequestInterface::DI_REQUEST_DATASET  => $this->getDiConfiguration()->getDataset(),
+            GcpRequestInterface::DI_REQUEST_DISPATCH => $this->getDiConfiguration()->getDispatch(),
             GcpRequestInterface::DI_REQUEST_DOC      => $doc,
             GcpRequestInterface::DI_REQUEST_CHUNK    => $chunk
         ];
