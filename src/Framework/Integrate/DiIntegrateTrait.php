@@ -5,6 +5,7 @@ use Boxalino\DataIntegrationDoc\Framework\Util\DiIntegrationConfigurationInterfa
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\NoRecordsFoundException;
+use Boxalino\DataIntegrationDoc\Service\ErrorHandler\StopSyncException;
 use Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 
@@ -51,6 +52,9 @@ trait DiIntegrateTrait
         {
             //maybe a fallback to save the content of the documents and try again later or have the integration team review
             $this->logOrThrowException($exception);
+        } catch (StopSyncException $exception)
+        {
+            $this->info($exception);
         } catch (FailSyncException $exception)
         {
             //save that the product id was not synced (relevant for full error data sync alerts)
