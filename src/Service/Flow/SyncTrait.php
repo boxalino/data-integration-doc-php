@@ -38,7 +38,7 @@ trait SyncTrait
                 return;
             }
 
-            if (strpos($exception->getMessage(), "curl 28"))
+            if (strpos($exception->getMessage(), "error 28"))
             {
                 throw new StopSyncException("Boxalino DI sync request {$this->getDiConfiguration()->getAccount()}_{$this->getDiConfiguration()->getMode()}_{$this->getDiConfiguration()->getTm()} was reset by a new connection.");
             }
