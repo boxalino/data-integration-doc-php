@@ -3,6 +3,7 @@ namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\StopSyncException;
+use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -24,6 +25,7 @@ trait SyncTrait
     public function sync() : void
     {
         try{
+            $this->log("Calling for the 'SYNC REQUEST'");
             $this->getClient()->send(
                 new Request(
                     'POST',
@@ -32,9 +34,11 @@ trait SyncTrait
                 ),
                 $this->getHttpRequestOptions()
             );
+            $this->log("End of the 'SYNC REQUEST': the computation will continue on Boxalino node");
         } catch (\Throwable $exception) {
             if (strpos($exception->getMessage(), "timed out after"))
             {
+                $this->log("Stopping the 'SYNC REQUEST' due to timeout " . $this->getTimeout());
                 return;
             }
 

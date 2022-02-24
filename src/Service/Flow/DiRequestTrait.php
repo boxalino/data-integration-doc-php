@@ -5,6 +5,7 @@ use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 
 /**
  * Assists with content for the Data Integration (DI) request
@@ -234,5 +235,22 @@ trait DiRequestTrait
         $this->connectTimeout = (int) $timeout;
     }
 
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function log(string $message) : void
+    {
+        try{
+            $logger = $this->getLogger();
+            if($logger instanceof LoggerInterface)
+            {
+                $logger->info($message . " for " . json_encode(array_merge($this->getHttpRequestHeaders(), $this->getHttpRequestOptions())));
+            }
+        } catch (\Throwable $exception)
+        {
+            // do nothing
+        }
+    }
 
 }

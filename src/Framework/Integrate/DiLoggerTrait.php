@@ -21,6 +21,11 @@ trait DiLoggerTrait
     protected $environment;
 
     /**
+     * @var string | null
+     */
+    protected $processName;
+
+    /**
      * Do not throw exception, the product update must not be blocked if the SOLR SYNC update does not work
      *
      * @param \Throwable $exception
@@ -43,7 +48,7 @@ trait DiLoggerTrait
      */
     public function info(\Throwable $exception)
     {
-        $this->getLogger()->info("Boxalino DI: " . $exception->getMessage());
+        $this->getLogger()->info("Boxalino DI " . $this->_getName() . ": " . $exception->getMessage());
     }
 
     /**
@@ -51,7 +56,7 @@ trait DiLoggerTrait
      */
     public function warning(\Throwable $exception)
     {
-        $this->getLogger()->warning("Boxalino DI: " . $exception->getMessage());
+        $this->getLogger()->warning("Boxalino DI " . $this->_getName() . ": " . $exception->getMessage());
     }
 
     /**
@@ -62,5 +67,13 @@ trait DiLoggerTrait
         return $this->logger;
     }
 
+    /**
+     * @return string|null
+     */
+    protected function _getName() : ?string
+    {
+        return $this->processName;
+    }
 
+    
 }

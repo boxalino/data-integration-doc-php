@@ -17,6 +17,7 @@ trait LoadTrait
     public function load(string $document, string $type) : void
     {
         try{
+            $this->log("Calling for 'LOAD REQUEST'");
             $response = $this->getClient()->send(
                 new Request(
                     'POST',
@@ -26,10 +27,12 @@ trait LoadTrait
                 ),
                 $this->getHttpRequestOptions()
             );
+            $this->log("End for 'LOAD REQUEST': the file is successfully loaded to BQ");
         } catch (\Throwable $exception)
         {
             if(strpos($exception->getMessage(), "timed out after"))
             {
+                $this->log("Calling for 'LOAD REQUEST' timed out after " . $this->getTimeout());
                 return;
             }
 

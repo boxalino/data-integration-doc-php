@@ -22,6 +22,7 @@ trait LoadBqTrait
     public function loadBq() : void
     {
         try{
+            $this->log("Calling for 'LOADBQ REQUEST'");
             $response = $this->getClient()->send(
                 new Request(
                     'POST',
@@ -30,6 +31,7 @@ trait LoadBqTrait
                 ),
                 $this->getHttpRequestOptions()
             );
+            $this->log("End for 'LOADBQ REQUEST': the GCS files are successfully loaded to BQ");
         } catch (\Throwable $exception)
         {
             if(strpos($exception->getMessage(), "timed out after"))
