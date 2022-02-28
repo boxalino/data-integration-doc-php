@@ -20,7 +20,7 @@ trait LoadByChunkTrait
     public function loadByChunk(string $document) : void
     {
         try{
-            $this->log("Calling for 'LOADBYCHUNK REQUEST'");
+            $this->log("Calling for 'LOADBYCHUNK REQUEST'", $this->getDocType());
             $url = $this->getGcsLoadUrl();
             $upload = $this->getClient()->send(
                 new Request(
@@ -41,7 +41,7 @@ trait LoadByChunkTrait
                 $this->getLogger()->info("{$this->getDiConfiguration()->getType()} Chunk loaded to Boxalino GCS. Code - $uploadId. Load size - $loadedSize ");
             }
 
-            $this->log("End for 'LOADBYCHUNK REQUEST': the data chunk is successfully loaded to GCS");
+            $this->log("End for 'LOADBYCHUNK REQUEST': the {$this->getDocType()} data chunk is successfully loaded to GCS");
         } catch (\Throwable $exception)
         {
             if(strpos($exception->getMessage(), "timed out after"))

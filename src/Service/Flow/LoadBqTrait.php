@@ -22,7 +22,7 @@ trait LoadBqTrait
     public function loadBq() : void
     {
         try{
-            $this->log("Calling for 'LOADBQ REQUEST'");
+            $this->log("Calling for 'LOADBQ REQUEST'", $this->getDocType());
             $response = $this->getClient()->send(
                 new Request(
                     'POST',

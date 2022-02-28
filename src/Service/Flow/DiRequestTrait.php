@@ -58,7 +58,7 @@ trait DiRequestTrait
     {
         if(is_null($endpoint))
         {
-            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD;
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD ;
         }
 
         return $endpoint . GcpRequestInterface::GCP_ENDPOINT_LOAD;
@@ -237,15 +237,21 @@ trait DiRequestTrait
 
     /**
      * @param string $message
+     * @param string | null $doc
      * @return void
      */
-    public function log(string $message) : void
+    public function log(string $message, ?string $doc = null) : void
     {
         try{
             $logger = $this->getLogger();
             if($logger instanceof LoggerInterface)
             {
-                $logger->info($message . " for " . json_encode(array_merge($this->getHttpRequestHeaders(), $this->getHttpRequestOptions())));
+                if($doc)
+                {
+                    $message = $message . " for " . json_encode($this->getHttpRequestHeaders($doc));
+                }
+
+                $logger->info($message);
             }
         } catch (\Throwable $exception)
         {
