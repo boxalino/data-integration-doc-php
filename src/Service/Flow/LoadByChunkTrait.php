@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailDocLoadException;
-use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use GuzzleHttp\Psr7\Request;
 
 /**

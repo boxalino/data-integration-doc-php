@@ -2,9 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Mode;
 
 
-use Boxalino\DataIntegrationDoc\Service\ErrorHandler\MissingConfigurationException;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
-
 /**
  * Interface TransformerIntegrationTrait
  * @package Boxalino\DataIntegrationDoc\Service\Integration\Mode

@@ -125,6 +125,14 @@ class ConfigurationDataObject extends AbstractSimpleObject
     }
 
     /**
+     * @return bool
+     */
+    public function getOutsource() : bool
+    {
+        return (bool) $this->_get(GcpRequestInterface::DI_REQUEST_OUTSOURCE) ?? false;
+    }
+
+    /**
      * @return array
      */
     public function getData() : array

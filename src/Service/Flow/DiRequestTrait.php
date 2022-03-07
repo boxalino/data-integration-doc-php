@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
@@ -195,6 +194,7 @@ trait DiRequestTrait
             GcpRequestInterface::DI_REQUEST_PROJECT  => $this->getDiConfiguration()->getProject(),
             GcpRequestInterface::DI_REQUEST_DATASET  => $this->getDiConfiguration()->getDataset(),
             GcpRequestInterface::DI_REQUEST_DISPATCH => $this->getDiConfiguration()->getDispatch(),
+            GcpRequestInterface::DI_REQUEST_OUTSOURCE => $this->getDiConfiguration()->getOutsource(),
             GcpRequestInterface::DI_REQUEST_DOC      => $doc,
             GcpRequestInterface::DI_REQUEST_CHUNK    => $chunk
         ];
