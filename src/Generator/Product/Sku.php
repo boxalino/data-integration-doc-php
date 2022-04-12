@@ -144,6 +144,7 @@ class Sku  implements DocGeneratorInterface
      */
     public function setStatus(array $statuss): self
     {
+        $this->status = [];
         foreach($statuss as $status)
         {
             $this->status[] = $status->toArray();
