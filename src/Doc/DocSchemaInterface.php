@@ -99,6 +99,11 @@ interface DocSchemaInterface
     public const FIELD_DATETIME = "datetime_attributes";
     public const FIELD_DATETIME_LOCALIZED = "localized_datetime_attributes";
 
+    /**
+     * special properties for compute logic
+     */
+    public const FIELD_STRING_INDIVIDUAL_VISIBILITY="individual_visibility";
+
 
     /**
      * order properties
