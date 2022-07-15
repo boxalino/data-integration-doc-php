@@ -31,7 +31,7 @@ trait LoadTrait
                     $this->getHttpRequestHeaders($type),
                     $document
                 ),
-                $this->getHttpRequestOptions()
+                $this->getHttpRequestOptions(300)
             );
             $this->log("End for 'LOAD REQUEST': the $type file is successfully loaded to BQ");
         } catch (\Throwable $exception)

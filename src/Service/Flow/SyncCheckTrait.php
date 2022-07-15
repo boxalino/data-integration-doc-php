@@ -19,6 +19,12 @@ trait SyncCheckTrait
     use DiRequestTrait;
 
     /**
+     * flag for fallback state (in case of GCP resource unavailability)
+     * @var bool
+     */
+    protected $fallbackSyncCheck = true;
+
+    /**
      * Checks the latest sync for the given parameters
      * The sync check returns a JSON structure with tm, ts and created_at (UTC time)
      */
@@ -31,7 +37,7 @@ trait SyncCheckTrait
                     $this->getEndpointSyncCheck(),
                     $this->getHttpRequestHeaders()
                 ),
-                $this->getHttpRequestOptions()
+                $this->getHttpRequestOptions(120)
             );
 
             $checkInfo = json_decode($syncCheckRequest->getBody()->getContents(), true);
@@ -48,6 +54,15 @@ trait SyncCheckTrait
 
             return null;
         } catch (\Throwable $exception) {
+            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackSyncCheck)
+            {
+                $this->fallbackSyncCheck = false;
+                $this->log("Retry call out for SYNC CHECK for " . $this->getDiConfiguration()->getTm());
+                sleep(60);
+
+               return $this->syncCheck();
+            }
+
             if (strpos($exception->getMessage(), "timed out after"))
             {
                 return null;

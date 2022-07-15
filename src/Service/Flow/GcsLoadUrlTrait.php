@@ -35,7 +35,7 @@ trait GcsLoadUrlTrait
                     $this->getEndpointLoadChunk(),
                     $this->getHttpRequestHeaders($this->getDocType(), (int) $this->getDiConfiguration()->getChunk())
                 ),
-                $this->getHttpRequestOptions()
+                $this->getHttpRequestOptions(300)
             );
 
             $this->useChunk();
