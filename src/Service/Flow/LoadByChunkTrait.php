@@ -14,6 +14,12 @@ trait LoadByChunkTrait
     use LoadBqTrait;
 
     /**
+     * flag for fallback state (in case of GCP resource unavailability)
+     * @var bool 
+     */
+    protected $fallbackLoadByChunk = true;
+
+    /**
      * Load docs to GCS, by batches
      */
     public function loadByChunk(string $document) : void
@@ -43,6 +49,16 @@ trait LoadByChunkTrait
             $this->log("End for 'LOADBYCHUNK REQUEST': the {$this->getDocType()} data chunk is successfully loaded to GCS");
         } catch (\Throwable $exception)
         {
+            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackLoadByChunk)
+            {
+                $this->fallbackLoadByChunk = false;
+                $this->log("Retry call out for LOAD BY CHUNK for " . $this->getDiConfiguration()->getTm());
+                sleep(60);
+
+                $this->loadByChunk($document);
+                return;
+            }
+
             if(strpos($exception->getMessage(), "timed out after"))
             {
                 $this->getLogger()->alert("Please review the timeout for the loadByChunk call. The document took longer to be exported.". $exception->getMessage());

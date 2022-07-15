@@ -19,6 +19,12 @@ trait SyncTrait
     use DiRequestTrait;
 
     /**
+     * flag for fallback state (in case of GCP resource unavailability)
+     * @var bool
+     */
+    protected $fallbackSync = true;
+
+    /**
      * Triggers the content sync request
      */
     public function sync() : void
@@ -48,6 +54,16 @@ trait SyncTrait
 
             if(strpos($exception->getMessage(), "504 Gateway Timeout"))
             {
+                if($this->fallbackSync)
+                {
+                    $this->fallbackSync = false;
+                    $this->log("Retry call out for SYNC for " . $this->getDiConfiguration()->getTm());
+                    sleep(60);
+
+                    $this->sync();
+                    return;
+                }
+
                 throw new FailSyncException("Boxalino Data Integration sync request reached the timeout for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()}. Please report this incident to Boxalino.");
             }
 

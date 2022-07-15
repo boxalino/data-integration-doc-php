@@ -12,6 +12,12 @@ trait LoadTrait
     use LoadByChunkTrait;
 
     /**
+     * flag for fallback state (in case of GCP resource unavailability)
+     * @var bool 
+     */
+    protected $fallbackLoad = true;
+
+    /**
      * Load docs to GCS, by batches
      */
     public function load(string $document, string $type) : void
@@ -30,6 +36,16 @@ trait LoadTrait
             $this->log("End for 'LOAD REQUEST': the $type file is successfully loaded to BQ");
         } catch (\Throwable $exception)
         {
+            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackLoad)
+            {
+                $this->fallbackLoad = false;
+                $this->log("Retry call out for LOAD for " . $this->getDiConfiguration()->getTm());
+                sleep(60);
+
+                $this->load($document, $type);
+                return;
+            }
+
             if(strpos($exception->getMessage(), "timed out after"))
             {
                 $this->log("Calling for 'LOAD REQUEST' timed out after " . $this->getTimeout());
