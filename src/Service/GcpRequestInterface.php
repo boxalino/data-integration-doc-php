@@ -41,6 +41,7 @@ interface GcpRequestInterface
     public const DI_REQUEST_CHUNK="chunk";
     public const DI_REQUEST_DISPATCH="dispatch";
     public const DI_REQUEST_OUTSOURCE="outsource";
+    public const DI_REQUEST_FIELDS="fields";
 
 
 }

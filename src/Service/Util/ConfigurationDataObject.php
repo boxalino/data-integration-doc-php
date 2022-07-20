@@ -200,5 +200,23 @@ class ConfigurationDataObject extends AbstractSimpleObject
         return $this;
     }
 
+    /**
+     * @param string | null $fields
+     * @return $this
+     */
+    public function setFields(?string $fields = null) : self
+    {
+        $this->setData(GcpRequestInterface::DI_REQUEST_FIELDS, $fields);
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFields() : ?string
+    {
+        return $this->_get(GcpRequestInterface::DI_REQUEST_FIELDS);
+    }
+
 
 }
