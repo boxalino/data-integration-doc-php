@@ -196,6 +196,7 @@ trait DiRequestTrait
             GcpRequestInterface::DI_REQUEST_DISPATCH => $this->getDiConfiguration()->getDispatch(),
             GcpRequestInterface::DI_REQUEST_OUTSOURCE => $this->getDiConfiguration()->getOutsource(),
             GcpRequestInterface::DI_REQUEST_FIELDS   => $this->getDiConfiguration()->getFields(),
+            GcpRequestInterface::DI_REQUEST_THRESHOLD => $this->getDiConfiguration()->getThreshold(),
             GcpRequestInterface::DI_REQUEST_DOC      => $doc,
             GcpRequestInterface::DI_REQUEST_CHUNK    => $chunk
         ];

@@ -218,5 +218,23 @@ class ConfigurationDataObject extends AbstractSimpleObject
         return $this->_get(GcpRequestInterface::DI_REQUEST_FIELDS);
     }
 
+    /**
+     * @param string | null $value
+     * @return $this
+     */
+    public function setThreshold(?string $value = null) : self
+    {
+        $this->setData(GcpRequestInterface::DI_REQUEST_THRESHOLD, $value);
+        return $this;
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getThreshold() : ?string
+    {
+        return $this->_get(GcpRequestInterface::DI_REQUEST_THRESHOLD);
+    }
+
 
 }
