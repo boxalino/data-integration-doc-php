@@ -120,6 +120,20 @@ trait DiRequestTrait
     }
 
     /**
+     * @param string | null $endpoint
+     * @return string
+     */
+    public function getEndpointThresholdCheck(?string $endpoint = null) : string
+    {
+        if(is_null($endpoint))
+        {
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
+        }
+
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
+    }
+
+    /**
      * @param int|null $timeout
      * @return array
      */

@@ -14,6 +14,7 @@ interface GcpRequestInterface
     public const GCP_ENDPOINT_LOAD_BQ="/load/bq";
     public const GCP_ENDPOINT_SYNC="/sync";
     public const GCP_ENDPOINT_SYNC_CHECK="/sync/check";
+    public const GCP_ENDPOINT_THRESHOLD="/threshold";
 
     public const GCP_MODE_INSTANT_UPDATE="I";
     public const GCP_MODE_DELTA="D";
