@@ -149,9 +149,11 @@ trait DocSchemaIntegrationTrait
      * @param array $currencyFactors
      * @param array $salesPrices
      * @param array $listPrices
+     * @param array $grossPrices
+     * @param array $otherPrices
      * @return Price
      */
-    public function getLocalizedPriceSchema(array $languages, array $currencyCodes, array $currencyFactors, array $salesPrices = [], array $listPrices = []) : Price
+    public function getLocalizedPriceSchema(array $languages, array $currencyCodes, array $currencyFactors, array $salesPrices = [], array $listPrices = [], array $grossPrices = [], array $otherPrices = []) : Price
     {
         $schema = new Price();
         foreach($languages as $language)
@@ -169,6 +171,18 @@ trait DocSchemaIntegrationTrait
                 if($listPrice > -1)
                 {
                     $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$listPrice, $currencyFactor));
+                }
+
+                $grossPrice = isset($grossPrices[$language]) ? (float) $grossPrices[$language] : -1;
+                if($grossPrice > -1)
+                {
+                    $schema->addGrossMargin($this->getPriceLocalizedSchema($language, $currencyCode, (float)$grossPrice, $currencyFactor));
+                }
+
+                $otherPrice = isset($otherPrices[$language]) ? (float) $otherPrices[$language] : -1;
+                if($otherPrice > -1)
+                {
+                    $schema->addOtherPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$otherPrice, $currencyFactor));
                 }
             }
         }

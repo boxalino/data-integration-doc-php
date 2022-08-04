@@ -165,6 +165,16 @@ class Price implements DocPropertiesInterface
     }
 
     /**
+     * @param PriceLocalized $priceLocalized
+     * @return $this
+     */
+    public function addGrossMargin(PriceLocalized $priceLocalized) : Price
+    {
+        $this->gross_margin[] = $priceLocalized->toArray();
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getOtherPrices(): array
@@ -184,5 +194,16 @@ class Price implements DocPropertiesInterface
         }
         return $this;
     }
+
+    /**
+     * @param PriceLocalized $priceLocalized
+     * @return $this
+     */
+    public function addOtherPrice(PriceLocalized $priceLocalized) : Price
+    {
+        $this->other_prices[] = $priceLocalized->toArray();
+        return $this;
+    }
+
 
 }
