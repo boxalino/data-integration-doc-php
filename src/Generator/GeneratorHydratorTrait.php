@@ -29,6 +29,10 @@ trait GeneratorHydratorTrait
             foreach($data as $propertyName=>$value)
             {
                 $functionSuffix = preg_replace('/\s+/', '', ucwords(implode(" ", explode("_", $propertyName))));
+                if(empty($functionSuffix))
+                {
+                    continue;
+                }
                 $setter = "set" . $functionSuffix;
                 $adder = "add" . $functionSuffix;
                 if(in_array($adder, $methods))

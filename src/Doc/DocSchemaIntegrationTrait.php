@@ -161,26 +161,26 @@ trait DocSchemaIntegrationTrait
             foreach($currencyCodes as $currencyCode)
             {
                 $currencyFactor = isset($currencyFactors[$currencyCode]) ? (float) $currencyFactors[$currencyCode] : 1;
-                $salesPrice = isset($salesPrices[$language]) ? (float) $salesPrices[$language] : -1;
-                if($salesPrice > -1)
-                {
-                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$salesPrice, $currencyFactor));
-                }
-
-                $listPrice = isset($listPrices[$language]) ? (float) $listPrices[$language] : -1;
-                if($listPrice > -1)
+                $listPrice = isset($listPrices[$language]) ? (float) $listPrices[$language] : null;
+                if($listPrice <> null)
                 {
                     $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$listPrice, $currencyFactor));
                 }
 
-                $grossPrice = isset($grossPrices[$language]) ? (float) $grossPrices[$language] : -1;
-                if($grossPrice > -1)
+                $salesPrice = isset($salesPrices[$language]) ? (float) $salesPrices[$language] : null;
+                if($salesPrice <> null)
+                {
+                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$salesPrice, $currencyFactor));
+                }
+
+                $grossPrice = isset($grossPrices[$language]) ? (float) $grossPrices[$language] : null;
+                if($grossPrice <> null)
                 {
                     $schema->addGrossMargin($this->getPriceLocalizedSchema($language, $currencyCode, (float)$grossPrice, $currencyFactor));
                 }
 
-                $otherPrice = isset($otherPrices[$language]) ? (float) $otherPrices[$language] : -1;
-                if($otherPrice > -1)
+                $otherPrice = isset($otherPrices[$language]) ? (float) $otherPrices[$language] : null;
+                if($otherPrice <> null)
                 {
                     $schema->addOtherPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$otherPrice, $currencyFactor));
                 }
