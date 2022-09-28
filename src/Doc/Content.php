@@ -317,19 +317,13 @@ class Content implements DocPropertiesInterface
         {
             if($content instanceof \Boxalino\DataIntegrationDoc\Doc\Schema\Content)
             {
-                $this->addContent($content);
+                $this->contents[] = $content->toArray();
                 continue;
             }
 
             $this->contents[] = $content;
         }
 
-        return $this;
-    }
-
-    public function addContent(\Boxalino\DataIntegrationDoc\Doc\Schema\Content $content)
-    {
-        $this->contents[] = $content;
         return $this;
     }
 

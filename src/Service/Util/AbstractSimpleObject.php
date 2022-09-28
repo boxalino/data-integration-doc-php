@@ -37,7 +37,7 @@ abstract class AbstractSimpleObject
         {
             try{
                 return $this->_get($key);
-            } catch (\Exception $exception)
+            } catch (\Throwable $exception)
             {
                 //do nothing, the property is simply not set.
             }

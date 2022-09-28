@@ -23,6 +23,7 @@ trait DocPropertiesTrait
     /**
      * @return false|mixed|string
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return json_encode($this->toArray());

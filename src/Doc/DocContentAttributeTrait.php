@@ -104,4 +104,17 @@ trait DocContentAttributeTrait
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function getContentRelationSchemaTypes() : array
+    {
+        return [
+            DocSchemaInterface::FIELD_PRODUCTS,
+            DocSchemaInterface::FIELD_CONTENTS,
+            DocSchemaInterface::FIELD_CUSTOMERS
+        ];
+    }
+
+
 }

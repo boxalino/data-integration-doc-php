@@ -16,6 +16,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Content;
 
 /**
  * Trait DocSchemaIntegrationTrait
@@ -27,6 +28,46 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
  */
 trait DocSchemaIntegrationTrait
 {
+
+    /**
+     * @param array $values
+     * @return Content
+     */
+    public function getContentSchema(array $values) : Content
+    {
+        $schema = new Content();
+        try {
+            if(isset($values["type"]))
+            {
+                $schema->setType($values["type"]);
+            }
+
+            if(isset($values["name"]))
+            {
+                $schema->setName($values["name"]);
+            }
+
+            if(isset($values["content_type"]))
+            {
+                $schema->setContentType($values["content_type"]);
+            }
+
+            if(isset($values["content_id"]))
+            {
+                $schema->setContentId($values["content_id"]);
+            }
+
+            if(isset($values["value"]))
+            {
+                $schema->setValue($values["value"]);
+            }
+        } catch(\Throwable $exception)
+        {
+            //
+        }
+
+        return $schema;
+    }
 
     /**
      * @param array $languages
