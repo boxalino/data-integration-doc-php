@@ -145,7 +145,7 @@ trait DocSchemaIntegrationTrait
     public function getPricingLocalizedSchema(string $language, string $currencyCode, float $value, float $factor, string $label) : PricingLocalized
     {
         $schema = new PricingLocalized();
-        $schema->setValue(round($value*$factor, 2))
+        $schema->setValue(round((float)$value*$factor, 2))
             ->setCurrency($currencyCode)
             ->setLanguage($language)
             ->setLabel($label);
@@ -241,7 +241,7 @@ trait DocSchemaIntegrationTrait
     public function getPriceLocalizedSchema(string $language, string $currencyCode, float $value, float $factor) : PriceLocalized
     {
         $schema = new PriceLocalized();
-        $schema->setValue(round($value*$factor, 2))
+        $schema->setValue(round((float)$value*$factor, 2))
             ->setCurrency($currencyCode)
             ->setLanguage($language);
 
