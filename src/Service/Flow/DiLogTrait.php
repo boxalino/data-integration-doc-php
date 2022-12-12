@@ -98,6 +98,42 @@ trait DiLogTrait
     }
 
     /**
+     * @param string $message
+     * @return void
+     */
+    public function logDebug(string $message) : void
+    {
+        if($this->getDiConfiguration()->isTest())
+        {
+            $this->getLogger()->debug($this->getLogProcessName() .": " . $message);
+        }
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function logInfo(string $message) : void
+    {
+        if($this->getDiConfiguration()->isTest())
+        {
+            $this->getLogger()->info($this->getLogProcessName() .": " . $message);
+        }
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function logWarning(string $message) : void
+    {
+        if($this->getDiConfiguration()->isTest())
+        {
+            $this->getLogger()->warning($this->getLogProcessName() .": " . $message);
+        }
+    }
+
+    /**
      * @return string
      */
     protected function getLogProcessName() : string

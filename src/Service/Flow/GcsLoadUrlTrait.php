@@ -40,6 +40,7 @@ trait GcsLoadUrlTrait
             );
 
             $this->useChunk();
+            $this->log("End of 'LOAD CHUNK PUBLIC URL'", $this->getDocType());
             return trim(stripslashes(rawurldecode($signedUrlRequest->getBody()->getContents())), '"');
         } catch (\Throwable $exception)
         {
