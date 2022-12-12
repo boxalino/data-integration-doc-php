@@ -2,6 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Mode;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\SyncCheckTrait;
+use Boxalino\DataIntegrationDoc\Service\Flow\SyncStartTrait;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\MissingConfigurationException;
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode\DocDeltaIntegrationInterface;
@@ -13,6 +14,7 @@ use Boxalino\DataIntegrationDoc\Service\Integration\Doc\Mode\DocDeltaIntegration
 trait DeltaIntegrationTrait
 {
     use SyncCheckTrait;
+    use SyncStartTrait;
 
     /**
      * @var null
@@ -48,6 +50,7 @@ trait DeltaIntegrationTrait
                 {
                     $handler->setSyncCheck($this->syncCheck());
                 }
+
                 $handler->integrate();
             }
         }

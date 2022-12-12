@@ -95,6 +95,20 @@ trait DiRequestTrait
      * @param string | null $endpoint
      * @return string
      */
+    public function getEndpointSyncStart(?string $endpoint = null) : string
+    {
+        if(is_null($endpoint))
+        {
+            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_SYNC_START;
+        }
+
+        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_SYNC_START;
+    }
+
+    /**
+     * @param string | null $endpoint
+     * @return string
+     */
     public function getEndpointLoadChunk(?string $endpoint = null) : string
     {
         if(is_null($endpoint))

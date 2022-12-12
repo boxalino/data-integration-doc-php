@@ -61,7 +61,7 @@ trait DiLogTrait
     {
         if($this->getDiConfiguration()->isTest())
         {
-            $this->getLogger()->info("TIME SPENT ON $step : " . $this->logDiff($endTime, $startTime) . " (sec)");
+            $this->getLogger()->info($this->getLogProcessName(). ": TIME SPENT ON $step : " . $this->logDiff($endTime, $startTime) . " (sec)");
         }
     }
 
@@ -74,13 +74,14 @@ trait DiLogTrait
     {
         if($this->getDiConfiguration()->isTest())
         {
+            $processName = $this->getLogProcessName();
             if($start)
             {
-                $this->getLogger()->info("Start $step MEMORY with: " . $this->getMemory());
+                $this->getLogger()->info("$processName: Start $step MEMORY with: " . $this->getMemory());
                 return;
             }
 
-            $this->getLogger()->info("End $step MEMORY with: " . $this->getMemory());
+            $this->getLogger()->info("$processName: End $step MEMORY with: " . $this->getMemory());
         }
     }
 
@@ -92,8 +93,27 @@ trait DiLogTrait
     {
         if($this->getDiConfiguration()->isTest())
         {
-            $this->getLogger()->info("Peak memory on $step : " . $this->getPeakMemory());
+            $this->getLogger()->info($this->getLogProcessName() .": Peak memory on $step : " . $this->getPeakMemory());
         }
+    }
+
+    /**
+     * @return string
+     */
+    protected function getLogProcessName() : string
+    {
+        $configuration = $this->getDiConfiguration();
+        return implode(".", [
+            implode("_", [
+                $configuration->getAccount(),
+                $configuration->getMode()
+            ]),
+            implode("_", [
+                $configuration->getType(),
+                $configuration->getMode(),
+                $configuration->getTm()
+            ])
+        ]);
     }
 
     /**

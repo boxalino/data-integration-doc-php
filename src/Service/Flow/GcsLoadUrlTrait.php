@@ -29,6 +29,7 @@ trait GcsLoadUrlTrait
     public function getGcsLoadUrl() : ?string
     {
         try{
+            $this->log("Calling for 'LOAD CHUNK PUBLIC URL'", $this->getDocType());
             $signedUrlRequest = $this->getClient()->send(
                 new Request(
                     'POST',
