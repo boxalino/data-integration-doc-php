@@ -281,7 +281,13 @@ trait DiRequestTrait
                     $message = $message . " for " . json_encode($this->getHttpRequestHeaders($doc));
                 }
 
-                $logger->info($message);
+                try{
+                    // in case DiLogTrait is used
+                    $this->logInfo($message);
+                } catch (\Throwable $exception)
+                {
+                    $logger->info($message);
+                }
             }
         } catch (\Throwable $exception)
         {

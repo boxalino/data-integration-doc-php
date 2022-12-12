@@ -145,6 +145,7 @@ trait DiLogTrait
                 $configuration->getMode()
             ]),
             implode("_", [
+                "doc",
                 $configuration->getType(),
                 $configuration->getMode(),
                 $configuration->getTm()
