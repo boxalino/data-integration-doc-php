@@ -3,13 +3,12 @@ namespace Boxalino\DataIntegrationDoc\Doc\AttributeValues;
 
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 /**
  * Class Hierarchical
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252313624/doc+attribute+values
  *
- * Currently in use for instant-updates on categories (hierarchical properties)
+ * Currently, in use for instant-updates on categories (hierarchical properties)
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */

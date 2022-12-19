@@ -71,7 +71,7 @@ class Repeated implements DocPropertiesInterface
      */
     public function getValues(): array
     {
-        return $this->value;
+        return $this->values;
     }
 
     /**

@@ -29,7 +29,7 @@ trait LoadBqTrait
     {
         try{
             $this->log("Calling for 'LOADBQ REQUEST'", $this->getDocType());
-            $response = $this->getClient()->send(
+            $this->getClient()->send(
                 new Request(
                     'POST',
                     $this->getEndpointLoadBq(),

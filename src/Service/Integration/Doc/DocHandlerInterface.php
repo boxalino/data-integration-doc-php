@@ -61,7 +61,7 @@ interface DocHandlerInterface
     public function getHandlers() : \ArrayIterator;
 
     /**
-     * Load the doc content to the Boxalino Data Integration eco-system
+     * Load the doc content to the Boxalino Data Integration ecosystem
      * Depending on the document type and mode - the load strategy might differ
      */
     public function integrate() : void;

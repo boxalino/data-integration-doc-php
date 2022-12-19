@@ -24,7 +24,7 @@ trait LoadTrait
     {
         try{
             $this->log("Calling for 'LOAD REQUEST'", $type);
-            $response = $this->getClient()->send(
+            $this->getClient()->send(
                 new Request(
                     'POST',
                     $this->getEndpointLoad(),

@@ -17,12 +17,12 @@ class NumericAttribute extends Repeated
     protected $type = "numeric";
 
     /**
-     * @param int | null $value
+     * @param float | null $value
      * @return $this
      */
     public function addValue($value = null) : self
     {
-        $this->values[] = (int) $value;
+        $this->values[] = (float) $value;
         return $this;
     }
 

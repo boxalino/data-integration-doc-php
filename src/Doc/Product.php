@@ -12,7 +12,6 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
-use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
@@ -23,7 +22,6 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 
 /**
  * doc_product data structure

@@ -1,8 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedLocalized;
-
 /**
  * Class RepeatedGenericLocalized
  *

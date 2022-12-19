@@ -6,7 +6,6 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;

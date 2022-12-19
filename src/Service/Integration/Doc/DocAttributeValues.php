@@ -3,8 +3,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
 use Boxalino\DataIntegrationDoc\Generator\Attribute\Values\Doc;
-use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
-use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerIntegrationTrait;
 use Psr\Log\LoggerInterface;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 

@@ -10,7 +10,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
  * Class AttributeValue
  * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/252313624/doc+attribute+values
  *
- * Currently in use for instant-updates on categories (hierarchical properties)
+ * Currently, in use for instant-updates on categories (hierarchical properties)
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */

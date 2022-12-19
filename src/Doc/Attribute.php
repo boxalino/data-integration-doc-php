@@ -4,11 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Doc;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Generator\Product\Sku;
-use League\Flysystem\Adapter\Local;
 
 /**
  * Class Attribute
@@ -59,7 +55,7 @@ class Attribute implements DocPropertiesInterface
     protected $attribute_group = [];
 
     /**
-     * the attribute sub-group in which this attribute belongs
+     * the attribute subgroup in which this attribute belongs
      *
      * @var array | Array<<Localized>>
      */
@@ -108,7 +104,7 @@ class Attribute implements DocPropertiesInterface
 
     /**
      * is it possible for this attribute to have more than 1 value per sku (or final content),
-     * set to false unless necessary, as multi-valued fields cannot be sorted or grouped by
+     * set to false unless necessary, as multivalued fields cannot be sorted or grouped by
      *
      * @var bool
      */
@@ -122,7 +118,7 @@ class Attribute implements DocPropertiesInterface
     protected $hierarchical = false;
 
     /**
-     * should be indexed as part of the searcheable :
+     * should be indexed as part of the searchable :
      * 0 : values not indexed for search,
      * 1 : values indexed for search only in main index,
      * 2 : values indexed for search in specialized field which can be boosted individually
@@ -162,7 +158,7 @@ class Attribute implements DocPropertiesInterface
     protected $order_by = false;
 
     /**
-     * should this attribute values be indexed independently so they can be searched for
+     * should this attribute values be indexed independently so that they can be searched for
      * (e.g.: author, brand, ...)
      *
      * @var bool

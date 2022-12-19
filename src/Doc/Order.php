@@ -125,7 +125,7 @@ class Order implements DocPropertiesInterface
     protected $currency_factor;
 
     /**
-     * was the order tax free?
+     * was the order tax free
      * @var bool | null
      */
     protected $tax_free;

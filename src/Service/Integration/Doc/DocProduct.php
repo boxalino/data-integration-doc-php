@@ -50,6 +50,7 @@ class DocProduct implements DocProductHandlerInterface
      */
     public function getSchemaGeneratorByType(string $type, array $data = []) : DocGeneratorInterface
     {
+        $schema = new Doc();
         switch($type)
         {
             case DocProductHandlerInterface::DOC_PRODUCT_LEVEL_SKU:

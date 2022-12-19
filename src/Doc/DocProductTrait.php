@@ -7,7 +7,6 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Content as RelatedContent;
-use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
@@ -748,7 +747,7 @@ trait DocProductTrait
      */
     public function setLabels(array $labels): self
     {
-        $this->labels[] = $label->toArray();
+        $this->labels[] = $labels;
         return $this;
     }
 

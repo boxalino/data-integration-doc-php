@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Framework\Console\Product;
 
-use Boxalino\DataIntegrationDoc\Framework\Integrate\Mode\Configuration\DeltaTrait;
 use Boxalino\DataIntegrationDoc\Framework\Integrate\Mode\Configuration\EnrichmentTrait;
 use Boxalino\DataIntegrationDoc\Framework\Integrate\Type\ProductTrait;
 use Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface;
