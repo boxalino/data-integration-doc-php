@@ -11,8 +11,8 @@ class Product
     implements DocPropertiesInterface, DocGeneratorInterface
 {
 
-    use GeneratorHydratorTrait;
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
     use TypedAttributesTrait;
 
     /**
@@ -290,6 +290,65 @@ class Product
     {
         $this->status_code = $status_code;
         return $this;
+    }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList() : array
+    {
+        return array_merge(
+            [
+                'sku_id' => $this->sku_id,
+                'connection_property' => $this->connection_property,
+                'type' => $this->type,
+                'unit_list_price' => $this->unit_list_price,
+                'unit_sales_price' => $this->unit_sales_price,
+                'unit_gross_margin' => $this->unit_gross_margin,
+                'quantity' => $this->quantity,
+                'total_list_price' => $this->total_list_price,
+                'total_sales_price' => $this->total_sales_price,
+                'total_gross_margin' => $this->total_gross_margin,
+                'status' => $this->status,
+                'status_code' => $this->status_code
+            ],
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getSkuId',
+            'setSkuId',
+            'getConnectionProperty',
+            'setConnectionProperty',
+            'getUnitListPrice',
+            'setUnitListPrice',
+            'getUnitSalesPrice',
+            'setUnitSalesPrice',
+            'getUnitGrossMargin',
+            'setUnitGrossMargin',
+            'getQuantity',
+            'setQuantity',
+            'getTotalListPrice',
+            'setTotalListPrice',
+            'getTotalSalesPrice',
+            'setTotalSalesPrice',
+            'getTotalGrossMargin',
+            'setTotalGrossMargin',
+            'getStatus',
+            'setStatus',
+            'getStatusCode',
+            'setStatusCode'
+        ];
     }
 
 

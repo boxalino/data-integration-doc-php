@@ -104,5 +104,38 @@ class Comment implements DocPropertiesInterface, DocGeneratorInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList() : array
+    {
+        return [
+          'created' => $this->created,
+          'persona_id' => $this->persona_id,
+          'persona_type' => $this->persona_type,
+          'comment' => $this->comment
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getCreated',
+            'setCreated',
+            'getPersonaId',
+            'setPersonaId',
+            'getPersonaType',
+            'setPersonaType',
+            'getComment',
+            'setComment'
+        ];
+    }
+
+
 
 }

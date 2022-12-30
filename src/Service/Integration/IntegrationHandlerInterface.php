@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php /** @noinspection GrazieInspection */
+declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Integration;
 
 use Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocHandlerInterface;

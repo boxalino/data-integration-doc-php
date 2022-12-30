@@ -60,5 +60,31 @@ class Period implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'end_datetime' => $this->end_datetime,
+            'start_datetime' => $this->start_datetime
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getEndDateTime',
+            'setEndDateTime',
+            'getStartDateTime',
+            'setStartDateTime'
+        ];
+    }
+
 
 }

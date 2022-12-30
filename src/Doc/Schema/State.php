@@ -104,5 +104,37 @@ class State implements DocPropertiesInterface, DocGeneratorInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'status' => $this->status,
+            'periods' => $this->periods,
+            'name' => $this->name,
+            'type' => $this->type
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getName',
+            'setName',
+            'getStatus',
+            'setStatus',
+            'getPeriods',
+            'setPeriods',
+        ];
+    }
+
 
 }

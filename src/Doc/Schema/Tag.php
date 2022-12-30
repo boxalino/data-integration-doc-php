@@ -98,5 +98,35 @@ class Tag implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'loc_values' => $this->loc_values,
+            'value' => $this->value,
+            'type' => $this->type
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getValue',
+            'setValue',
+            'getLocValues',
+            'setLocValues',
+            'addLocValue'
+        ];
+    }
+
 
 }

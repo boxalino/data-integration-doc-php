@@ -131,5 +131,40 @@ class Hierarchical implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'attribute_name' => $this->attribute_name,
+            'numerical' => $this->numerical,
+            'value_id' => $this->value_id,
+            'value_label' => $this->value_label,
+            'parent_value_ids' => $this->parent_value_ids
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getAttributeName',
+            'setAttributeName',
+            'isNumerical',
+            'setNumerical',
+            'getValueId',
+            'setValueId',
+            'getValueLabel',
+            'setValueLabel',
+            'getParentValueIds',
+            'setParentValueIds'
+        ];
+    }
+
 
 }

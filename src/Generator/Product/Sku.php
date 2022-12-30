@@ -2,12 +2,14 @@
 namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -15,6 +17,7 @@ class Sku  implements DocGeneratorInterface
 {
 
     use DocProductTrait;
+    use TypedAttributesTrait;
     use DocPropertiesTrait;
     use GeneratorHydratorTrait;
 
@@ -146,8 +149,15 @@ class Sku  implements DocGeneratorInterface
         $this->status = [];
         foreach($statuss as $status)
         {
-            $this->status[] = $status->toArray();
+            if($status instanceof DocPropertiesInterface)
+            {
+                $this->status[] = $status->toArray();
+                continue;
+            }
+
+            $this->status[] = $status;
         }
+
         return $this;
     }
 
@@ -259,7 +269,13 @@ class Sku  implements DocGeneratorInterface
     {
         foreach($stock as $data)
         {
-            $this->stock[] = $data->toArray();
+            if($data instanceof DocPropertiesInterface)
+            {
+                $this->stock[] = $stock->toArray();
+                continue;
+            }
+
+            $this->stock[] = $data;
         }
         return $this;
     }
@@ -310,6 +326,68 @@ class Sku  implements DocGeneratorInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'price' => $this->price,
+                'visibility' => $this->visibility,
+                'status' => $this->status,
+                'type' => $this->type,
+                'sku' => $this->sku,
+                'ean' => $this->ean,
+                'additional_product_groups' => $this->additional_product_groups,
+                'stock' => $this->stock,
+                'individually_visible' => $this->individually_visible,
+                'show_out_of_stock' => $this->show_out_of_stock
+            ],
+            $this->_toArrayDocProduct(),
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getPrice',
+                'setPrice',
+                'addPrice',
+                'getVisibility',
+                'setVisibility',
+                'addVisibility',
+                'getStatus',
+                'setStatus',
+                'addStatus',
+                'getType',
+                'setType',
+                'getSku',
+                'setSku',
+                'getEan',
+                'setEan',
+                'getAdditionalProductGroups',
+                'setAdditionalProductGroups',
+                'addAdditionalProductGroup',
+                'getStock',
+                'setStock',
+                'addStock',
+                'isIndividuallyVisible',
+                'setIndividuallyVisible',
+                'isShowOutOfStock',
+                'setShowOutOfStock'
+            ],
+            $this->_toArrayDocProductClassMethods(),
+            $this->_toArrayTypedClassMethods()
+        );
+    }
 
 
 }

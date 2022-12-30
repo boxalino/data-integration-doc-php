@@ -4,6 +4,7 @@ namespace Boxalino\DataIntegrationDoc\Generator\Product;
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -17,6 +18,7 @@ class Line implements DocGeneratorInterface
 
     use DocProductTrait;
     use DocPropertiesTrait;
+    use TypedAttributesTrait;
     use GeneratorHydratorTrait;
 
     /**
@@ -77,5 +79,40 @@ class Line implements DocGeneratorInterface
         $this->product_groups[] = $productGroup->toArray();
         return $this;
     }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'pricing' => $this->pricing,
+                'product_groups' => $this->product_groups
+            ],
+            $this->_toArrayDocProduct(),
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getPricing',
+                'setPricing',
+                'getProductGroups',
+                'setProductGroups'
+            ],
+            $this->_toArrayTypedClassMethods(),
+            $this->_toArrayDocProductClassMethods()
+        );
+    }
+
 
 }

@@ -82,4 +82,33 @@ class Visibility implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'values' => $this->values,
+            'customer_groups' => $this->customer_groups
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getCustomerGroups',
+            'setCustomerGroups',
+            'addCustomerGroup',
+            'getValues',
+            'setValues',
+            'addValue'
+        ];
+    }
+
+
 }

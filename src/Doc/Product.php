@@ -10,17 +10,10 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Product as RelatedProduct;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Content as RelatedContent;
 use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Repeated;
 use Boxalino\DataIntegrationDoc\Doc\Schema\RepeatedGenericLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\DatetimeLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\NumericLocalizedAttribute;
-use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 
 /**
@@ -31,6 +24,7 @@ class Product implements DocPropertiesInterface
 {
 
     use DocPropertiesTrait;
+    use TypedAttributesTrait;
 
     /**
      * @var string | null
@@ -136,37 +130,6 @@ class Product implements DocPropertiesInterface
      * @var Array<<Period>>
      */
     protected $periods = [];
-
-    /**
-     * @var Array<<StringAttribute>>
-     */
-    protected $string_attributes = [];
-
-    /**
-     * @var Array<<StringLocalizedAttribute>>
-     */
-    protected $localized_string_attributes = [];
-
-    /**
-     * @var Array<<NumericAttribute>>
-     */
-    protected $numeric_attributes = [];
-
-    /**
-     * @var Array<<NumericLocalizedAttribute>>
-     */
-    protected $localized_numeric_attributes = [];
-
-    /**
-     * @var Array<<DatetimeAttribute>>
-     */
-    protected $datetime_attributes = [];
-
-    /**
-     * @var Array<<DatetimeLocalizedAttribute>>
-     */
-    protected $localized_datetime_attributes = [];
-
 
     /** Product - Line specific attributes */
 
@@ -674,9 +637,18 @@ class Product implements DocPropertiesInterface
      * @param array $link
      * @return Product
      */
-    public function setLink(array $link): Product
+    public function setLink(array $links): Product
     {
-        $this->link = $link->toArray();
+        foreach($links as $link)
+        {
+            if($link instanceof DocPropertiesInterface)
+            {
+                $this->link[] = $link->toArray();
+                continue;
+            }
+
+            $this->link[] = $link;
+        }
         return $this;
     }
 
@@ -789,281 +761,6 @@ class Product implements DocPropertiesInterface
 
         return $this;
     }
-
-    /**
-     * @return array
-     */
-    public function getStringAttributes(): array
-    {
-        return $this->string_attributes;
-    }
-
-    /**
-     * @param array $string_attributes
-     * @return self
-     */
-    public function setStringAttributes(array $string_attributes): self
-    {
-        foreach($string_attributes as $attribute)
-        {
-            $this->addStringAttribute($attribute);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringAttribute>> $repeateds
-     * @return $this
-     */
-    public function addStringAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addStringAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addStringAttribute(Repeated $attribute) : self
-    {
-        $this->string_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedStringAttributes(): array
-    {
-        return $this->localized_string_attributes;
-    }
-
-    /**
-     * @param array $localized_string_attributes
-     * @return self
-     */
-    public function setLocalizedStringAttributes(array $localized_string_attributes): self
-    {
-        foreach($localized_string_attributes as $attribute)
-        {
-            $this->addLocalizedStringAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedStringAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedStringAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addLocalizedStringAttribute(Repeated $attribute) : self
-    {
-        $this->localized_string_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNumericAttributes(): array
-    {
-        return $this->numeric_attributes;
-    }
-
-    /**
-     * @param array $numeric_attributes
-     * @return self
-     */
-    public function setNumericAttributes(array $numeric_attributes): self
-    {
-        foreach($numeric_attributes as $attribute)
-        {
-            $this->addNumericAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<NumericAttribute>> $repeateds
-     * @return $this
-     */
-    public function addNumericAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addNumericAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addNumericAttribute(Repeated $attribute) : self
-    {
-        $this->numeric_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedNumericAttributes(): array
-    {
-        return $this->localized_numeric_attributes;
-    }
-
-    /**
-     * @param array $localized_numeric_attributes
-     * @return self
-     */
-    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
-    {
-        /** @var NumericLocalizedAttribute $attribute */
-        foreach($localized_numeric_attributes as $attribute)
-        {
-            $this->addLocalizedNumericAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<NumericLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedNumericAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedNumericAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addLocalizedNumericAttribute(Repeated $attribute) : self
-    {
-        $this->localized_numeric_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDatetimeAttributes(): array
-    {
-        return $this->datetime_attributes;
-    }
-
-    /**
-     * @param array $datetime_attributes
-     * @return self
-     */
-    public function setDatetimeAttributes(array $datetime_attributes): self
-    {
-        /** @var DatetimeAttribute $attribute */
-        foreach($datetime_attributes as $attribute)
-        {
-            $this->addDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<DatetimeAttribute>> $repeateds
-     * @return $this
-     */
-    public function addDatetimeAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addDatetimeAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addDatetimeAttribute(Repeated $attribute) : self
-    {
-        $this->datetime_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedDatetimeAttributes(): array
-    {
-        return $this->localized_datetime_attributes;
-    }
-
-    /**
-     * @param array $localized_datetime_attributes
-     * @return self
-     */
-    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
-    {
-        /** @var DatetimeLocalizedAttribute $attribute */
-        foreach($localized_datetime_attributes as $attribute)
-        {
-            $this->addLocalizedDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<DatetimeLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedDatetimeAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedDatetimeAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Repeated $attribute
-     * @return $this
-     */
-    public function addLocalizedDatetimeAttribute(Repeated $attribute) : self
-    {
-        $this->localized_datetime_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
 
     /**
      * @return Pricing|null
@@ -1359,6 +1056,150 @@ class Product implements DocPropertiesInterface
     {
         $this->show_out_of_stock = $show_out_of_stock;
         return $this;
+    }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'internal_id' => $this->internal_id,
+                'external_id' => $this->external_id,
+                'label' => $this->label,
+                'creation' => $this->creation,
+                'last_update' => $this->last_update,
+                'is_new' => $this->is_new,
+                'in_sales' => $this->in_sales,
+                'product_relations' => $this->product_relations,
+                'other_relations' => $this->other_relations,
+                'stores' => $this->stores,
+                'title' => $this->title,
+                'description' => $this->description,
+                'short_description' => $this->short_description,
+                'brands' => $this->brands,
+                'suppliers' => $this->suppliers,
+                'categories' => $this->categories,
+                'images' => $this->images,
+                'link' => $this->link,
+                'tags' => $this->tags,
+                'labels' => $this->labels,
+                'periods' => $this->periods,
+                'pricing' => $this->pricing,
+                'price' => $this->price,
+                'visibility' => $this->visibility,
+                'attribute_visibility_grouping' => $this->attribute_visibility_grouping,
+                'status' => $this->status,
+                'type' => $this->type,
+                'sku' => $this->sku,
+                'ean' => $this->ean,
+                'additional_product_groups' => $this->additional_product_groups,
+                'stock' => $this->stock,
+                'individually_visible' => $this->individually_visible,
+                'show_out_of_stock' => $this->show_out_of_stock
+            ],
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getInternalId',
+                'setInternalId',
+                'getExternalId',
+                'setExternalId',
+                'getLabel',
+                'setLabel',
+                'getCreation',
+                'setCreation',
+                'getLastUpdate',
+                'setLastUpdate',
+                'isIsNew',
+                'setIsNew',
+                'isInSales',
+                'setInSales',
+                'getProductRelations',
+                'setProductRelations',
+                'addProductRelations',
+                'getOtherRelations',
+                'setOtherRelations',
+                'addOtherRelations',
+                'getStores',
+                'setStores',
+                'addStore',
+                'getTitle',
+                'setTitle',
+                'addTitle',
+                'getDescription',
+                'setDescription',
+                'addDescription',
+                'getShortDescription',
+                'setShortDescription',
+                'addShortDescription',
+                'getBrands',
+                'setBrands',
+                'addBrands',
+                'getSuppliers',
+                'setSuppliers',
+                'addSuppliers',
+                'getCategories',
+                'setCategories',
+                'getImages',
+                'setImages',
+                'addImages',
+                'getLink',
+                'setLink',
+                'addLink',
+                'getTags',
+                'setTags',
+                'addTags',
+                'getLabels',
+                'setLabels',
+                'addLabels',
+                'getPeriods',
+                'setPeriods',
+                'addPeriods',
+                'getPricing',
+                'setPricing',
+                'getPrice',
+                'setPrice',
+                'addPrice',
+                'getVisibility',
+                'setVisibility',
+                'addVisibility',
+                'getAttributeVisibilityGrouping',
+                'setAttributeVisibilityGrouping',
+                'addAttributeVisibilityGrouping',
+                'getStatus',
+                'setStatus',
+                'addStatus',
+                'getType',
+                'setType',
+                'getSku',
+                'setSku',
+                'getEan',
+                'setEan',
+                'getAdditionalProductGroups',
+                'setAdditionalProductGroups',
+                'addAdditionalProductGroups',
+                'getStock',
+                'setStock',
+                'addStock',
+                'isIndividuallyVisible',
+                'setIndividuallyVisible',
+                'isShowOutOfStock',
+                'setShowOutOfStock'
+            ],
+            $this->_toArrayTypedClassMethods()
+        );
     }
 
 

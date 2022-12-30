@@ -16,34 +16,34 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 trait TypedAttributesTrait
 {
     /**
-     * @var Array<<StringAttribute>>
+     * @var Array<<StringAttribute>>  | array
      */
-    protected $string_attributes = [];
+    protected $string_attributes;
 
     /**
-     * @var Array<<StringLocalizedAttribute>>
+     * @var Array<<StringLocalizedAttribute>> | array
      */
-    protected $localized_string_attributes = [];
+    protected $localized_string_attributes;
 
     /**
-     * @var Array<<NumericAttribute>>
+     * @var Array<<NumericAttribute>> | array
      */
-    protected $numeric_attributes = [];
+    protected $numeric_attributes;
 
     /**
-     * @var Array<<NumericLocalizedAttribute>>
+     * @var Array<<NumericLocalizedAttribute>> | array
      */
-    protected $localized_numeric_attributes = [];
+    protected $localized_numeric_attributes;
 
     /**
-     * @var Array<<DatetimeAttribute>>
+     * @var Array<<DatetimeAttribute>> | array
      */
-    protected $datetime_attributes = [];
+    protected $datetime_attributes;
 
     /**
-     * @var Array<<DatetimeLocalizedAttribute>>
+     * @var Array<<DatetimeLocalizedAttribute>> | array
      */
-    protected $localized_datetime_attributes = [];
+    protected $localized_datetime_attributes;
 
     /**
      * @return array
@@ -54,28 +54,20 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param array $string_attributes
-     * @return self
-     */
-    public function setStringAttributes(array $string_attributes): self
-    {
-        foreach($string_attributes as $attribute)
-        {
-            $this->addStringAttribute($attribute);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringAttribute>> $repeateds
+     * @param Array<<StringAttribute>> | array $string_attributes
      * @return $this
      */
-    public function addStringAttributes(array $repeateds): self
+    public function addStringAttributes(array $string_attributes): self
     {
-        foreach ($repeateds as $repeated)
+        foreach ($string_attributes as $attribute)
         {
-            $this->addStringAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                $this->addStringAttribute($attribute);
+                continue;
+            }
+
+            $this->string_attributes[] = $attribute;
         }
 
         return $this;
@@ -100,27 +92,20 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param array $localized_string_attributes
-     * @return self
-     */
-    public function setLocalizedStringAttributes(array $localized_string_attributes): self
-    {
-        foreach($localized_string_attributes as $attribute)
-        {
-            $this->addLocalizedStringAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringLocalizedAttribute>> $repeateds
+     * @param Array<<StringLocalizedAttribute>> | array $localized_string_attributes
      * @return $this
      */
-    public function addLocalizedStringAttributes(array $repeateds): self
+    public function addLocalizedStringAttributes(array $localized_string_attributes): self
     {
-        foreach ($repeateds as $repeated)
+        foreach ($localized_string_attributes as $attribute)
         {
-            $this->addLocalizedStringAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                $this->addLocalizedStringAttribute($attribute);
+                continue;
+            }
+
+            $this->localized_string_attributes[] = $attribute;
         }
 
         return $this;
@@ -145,27 +130,20 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param array $numeric_attributes
-     * @return self
-     */
-    public function setNumericAttributes(array $numeric_attributes): self
-    {
-        foreach($numeric_attributes as $attribute)
-        {
-            $this->addNumericAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<NumericAttribute>> $repeateds
+     * @param Array<<NumericAttribute>> | array $repeateds
      * @return $this
      */
-    public function addNumericAttributes(array $repeateds): self
+    public function addNumericAttributes(array $numeric_attributes): self
     {
-        foreach ($repeateds as $repeated)
+        foreach ($numeric_attributes as $attribute)
         {
-            $this->addNumericAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                $this->addNumericAttribute($attribute);
+                continue;
+            }
+
+            $this->numeric_attributes[] = $attribute;
         }
 
         return $this;
@@ -204,14 +182,20 @@ trait TypedAttributesTrait
     }
 
     /**
-     * @param Array<<NumericLocalizedAttribute>> $repeateds
+     * @param Array<<NumericLocalizedAttribute>> | array $localized_numeric_attributes
      * @return $this
      */
-    public function addLocalizedNumericAttributes(array $repeateds): self
+    public function addLocalizedNumericAttributes(array $localized_numeric_attributes): self
     {
-        foreach ($repeateds as $repeated)
+        foreach ($localized_numeric_attributes as $attribute)
         {
-            $this->addLocalizedNumericAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                $this->addLocalizedNumericAttribute($attribute);
+                continue;
+            }
+
+            $this->localized_numeric_attributes[] = $attribute;
         }
 
         return $this;
@@ -239,25 +223,22 @@ trait TypedAttributesTrait
      * @param array $datetime_attributes
      * @return self
      */
-    public function setDatetimeAttributes(array $datetime_attributes): self
-    {
-        /** @var DatetimeAttribute $attribute */
-        foreach($datetime_attributes as $attribute)
-        {
-            $this->addDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
 
     /**
-     * @param Array<<DatetimeAttribute>> $repeateds
+     * @param Array<<DatetimeAttribute>> | array $datetime_attributes
      * @return $this
      */
-    public function addDatetimeAttributes(array $repeateds): self
+    public function addDatetimeAttributes(array $datetime_attributes): self
     {
-        foreach ($repeateds as $repeated)
+        foreach ($datetime_attributes as $attribute)
         {
-            $this->addDatetimeAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                $this->addDatetimeAttribute($attribute);
+                continue;
+            }
+
+            $this->datetime_attributes[] = $attribute;
         }
 
         return $this;
@@ -283,28 +264,20 @@ trait TypedAttributesTrait
 
     /**
      * @param Array<<DatetimeLocalizedAttribute>> $localized_datetime_attributes
-     * @return self
-     */
-    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
-    {
-        /** @var DatetimeLocalizedAttribute $attribute */
-        foreach($localized_datetime_attributes as $attribute)
-        {
-            $this->addLocalizedDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<DatetimeLocalizedAttribute>> $repeateds
      * @return $this
      */
-    public function addLocalizedDatetimeAttributes(array $repeateds): self
+    public function addLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
     {
-        /** @var DatetimeLocalizedAttribute $repeated */
-        foreach ($repeateds as $repeated)
+        foreach ($localized_datetime_attributes as $attribute)
         {
-            $this->addLocalizedDatetimeAttribute($repeated);
+            if($attribute instanceof DocPropertiesInterface)
+            {
+                /** @var DatetimeLocalizedAttribute $attribute */
+                $this->addLocalizedDatetimeAttribute($attribute);
+                continue;
+            }
+
+            $this->localized_datetime_attributes[] = $attribute;
         }
 
         return $this;
@@ -318,6 +291,49 @@ trait TypedAttributesTrait
     {
         $this->localized_datetime_attributes[] = $attribute->toArray();
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function _toArrayTypedAttributes() : array
+    {
+        return [
+            'string_attributes' => $this->string_attributes,
+            'localized_string_attributes' => $this->localized_string_attributes,
+            'numeric_attributes' => $this->numeric_attributes,
+            'localized_numeric_attributes' => $this->localized_numeric_attributes,
+            'datetime_attributes' => $this->datetime_attributes,
+            'localized_datetime_attributes' => $this->localized_datetime_attributes
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function _toArrayTypedClassMethods() : array
+    {
+        return [
+            'getStringAttributes',
+            'addStringAttributes',
+            'addStringAttribute',
+            'getLocalizedStringAttributes',
+            'addLocalizedStringAttributes',
+            'addLocalizedStringAttribute',
+            'getNumericAttributes',
+            'addNumericAttributes',
+            'addNumericAttribute',
+            'getLocalizedNumericAttributes',
+            'setLocalizedNumericAttributes',
+            'addLocalizedNumericAttributes',
+            'addLocalizedNumericAttribute',
+            'getDatetimeAttributes',
+            'addDatetimeAttributes',
+            'addDatetimeAttribute',
+            'getLocalizedDatetimeAttributes',
+            'addLocalizedDatetimeAttributes',
+            'addLocalizedDatetimeAttribute'
+        ];
     }
 
 

@@ -666,6 +666,100 @@ class Content implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList() : array
+    {
+        return array_merge(
+            [
+                'id' => $this->id,
+                'type' => $this->type,
+                'creation' => $this->creation,
+                'last_update' => $this->last_update,
+                'persona_type' => $this->persona_type,
+                'persona_id' => $this->persona_id,
+                'parent_content_ids' => $this->parent_content_ids,
+                'products' => $this->products,
+                'contents' => $this->contents,
+                'customers' => $this->customers,
+                'stores' => $this->stores,
+                'title' => $this->title,
+                'description' => $this->description,
+                'short_description' => $this->short_description,
+                'images' => $this->images,
+                'link' => $this->link,
+                'tags' => $this->tags,
+                'labels' => $this->labels,
+                'status' => $this->status,
+                'periods' => $this->periods
+            ],
+            $this->_toArrayPropertiesTechnical(),
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getId',
+                'setId',
+                'getType',
+                'setType',
+                'getCreation',
+                'setCreation',
+                'getLastUpdate',
+                'setLastUpdate',
+                'getPersonaType',
+                'setPersonaType',
+                'getPersonaId',
+                'setPersonaId',
+                'getParentContentIds',
+                'setParentContentIds',
+                'getProducts',
+                'setProducts',
+                'addProduct',
+                'getContents',
+                'setContents',
+                'getCustomers',
+                'setCustomers',
+                'addCustomer',
+                'getStores',
+                'setStores',
+                'getTitle',
+                'setTitle',
+                'getDescription',
+                'setDescription',
+                'getShortDescription',
+                'setShortDescription',
+                'getImages',
+                'setImages',
+                'addImage',
+                'getLink',
+                'setLink',
+                'addLink',
+                'getTags',
+                'setTags',
+                'addTag',
+                'getLabels',
+                'setLabels',
+                'addLabel',
+                'getStatus',
+                'setStatus',
+                'getPeriods',
+                'setPeriods',
+                'addPeriod'
+            ],
+            $this->_toArrayTypedClassMethods(),
+            $this->_toArrayTechnicalClassMethods()
+        );
+    }
 
 
 }

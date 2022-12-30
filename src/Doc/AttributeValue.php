@@ -36,42 +36,42 @@ class AttributeValue implements DocPropertiesInterface
     protected $value_id;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<Localized>> | array
      */
     protected $value_label;
 
     /**
-     * @var Array<<string>>
+     * @var Array<<string>> | array
      */
     protected $parent_value_ids;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<Localized>> | array
      */
     protected $short_description;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<Localized>> | array
      */
     protected $description;
 
     /**
-     * @var Array<<RepeatedGenericLocalized>>
+     * @var Array<<RepeatedGenericLocalized>> | array
      */
     protected $images;
 
     /**
-     * @var Array<<Localized>>
+     * @var Array<<Localized>> | array
      */
     protected $link;
 
     /**
-     * @var Array<<Status>>
+     * @var Array<<Status>> | array
      */
     protected $status;
 
     /**
-     * @var Array<<Tag>>
+     * @var Array<<Tag>> | array
      */
     protected $tags;
 
@@ -138,28 +138,20 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param [] $value_label
+     * @param [] | Array<<Localized>> $value_label
      * @return AttributeValue
      */
     public function setValueLabel(array $value_label): AttributeValue
     {
         foreach($value_label as $value)
         {
-            $this->value_label[] = $value->toArray();
-        }
+            if($value instanceof DocPropertiesInterface)
+            {
+                $this->value_label[] = $value->toArray();
+                continue;
+            }
 
-        return $this;
-    }
-
-    /**
-     * @param Array<<Localized>> $value_label
-     * @return AttributeValue
-     */
-    public function addValueLabel(array $value_label): AttributeValue
-    {
-        foreach($value_label as $value)
-        {
-            $this->value_label[] = $value->toArray();
+            $this->value_label[] = $value;
         }
 
         return $this;
@@ -192,24 +184,20 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param [] $short_description
+     * @param [] | Array<<Localized>> $short_description
      * @return AttributeValue
      */
-    public function setShortDescription(array $short_description): AttributeValue
+    public function setShortDescription(array $short_descriptions): AttributeValue
     {
-        $this->short_description = $short_description;
-        return $this;
-    }
-
-    /**
-     * @param Array<<Localized>> $localized
-     * @return $this
-     */
-    public function addShortDescription(array $descriptions): self
-    {
-        foreach($descriptions as $localized)
+        foreach($short_descriptions as $localized)
         {
-            $this->short_description[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->short_description[] = $localized->toArray();
+                continue;
+            }
+
+            $this->short_description[] = $localized;
         }
 
         return $this;
@@ -224,29 +212,21 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param [] $description
+     * @param [] | Array<<Localized>> $description
      * @return AttributeValue
      */
-    public function setDescription(array $description): AttributeValue
-    {
-        foreach($description as $status)
-        {
-            $this->description[] = $status->toArray();
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<Localized>> $localized
-     * @return $this
-     */
-    public function addDescription(array $descriptions): self
+    public function setDescription(array $descriptions): AttributeValue
     {
         foreach($descriptions as $localized)
         {
-            $this->description[] = $localized->toArray();
-        }
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->description[] = $localized->toArray();
+                continue;
+            }
 
+            $this->description[] = $localized;
+        }
         return $this;
     }
 
@@ -259,29 +239,21 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param [] $images
+     * @param [] | Array<<RepeatedGenericLocalized>> $images
      * @return AttributeValue
      */
     public function setImages(array $images): AttributeValue
     {
-        foreach($images as $status)
+        foreach($images as $image)
         {
-            $this->images[] = $status->toArray();
-        }
-        return $this;
-    }
+            if($image instanceof DocPropertiesInterface)
+            {
+                $this->images[] = $image->toArray();
+                continue;
+            }
 
-    /**
-     * @param Array<<RepeatedGenericLocalized>> $repeateds
-     * @return $this
-     */
-    public function addImages(array $repeateds): self
-    {
-        foreach($repeateds as $repeated)
-        {
-            $this->images[] = $repeated->toArray();
+            $this->images[] = $image;
         }
-
         return $this;
     }
 
@@ -294,27 +266,20 @@ class AttributeValue implements DocPropertiesInterface
     }
 
     /**
-     * @param [] $link
+     * @param [] | Array<<Localized>> $links
      * @return AttributeValue
      */
-    public function setLink(array $link): AttributeValue
+    public function setLink(array $links): AttributeValue
     {
-        foreach($link as $status)
+        foreach($links as $link)
         {
-            $this->link[] = $status->toArray();
-        }
-        return $this;
-    }
+            if($link instanceof DocPropertiesInterface)
+            {
+                $this->link[] = $link->toArray();
+                continue;
+            }
 
-    /**
-     * @param Array<<Localized>> $localizeds
-     * @return $this
-     */
-    public function addLink(array $localizeds): self
-    {
-        foreach($localizeds as $localized)
-        {
-            $this->link[] = $localized->toArray();
+            $this->link[] = $link;
         }
 
         return $this;
@@ -336,8 +301,15 @@ class AttributeValue implements DocPropertiesInterface
     {
         foreach($statuss as $status)
         {
-            $this->status[] = $status->toArray();
+            if($status instanceof DocPropertiesInterface)
+            {
+                $this->status[] = $status->toArray();
+                continue;
+            }
+
+            $this->status[] = $status;
         }
+
         return $this;
     }
 
@@ -365,22 +337,79 @@ class AttributeValue implements DocPropertiesInterface
      */
     public function setTags(array $tags): AttributeValue
     {
-        $this->tags = $tags;
+        foreach($tags as $tag)
+        {
+            if($tag instanceof DocPropertiesInterface)
+            {
+                $this->tags[] = $tag->toArray();
+                continue;
+            }
+
+            $this->tags[] = $tag;
+        }
         return $this;
     }
 
     /**
-     * @param Array<<Tag>> $tags
-     * @return $this
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
      */
-    public function addTags(array $tags): self
+    protected function toArrayList(): array
     {
-        foreach($tags as $tag)
-        {
-            $this->tags[] = $tag->toArray();
-        }
+        return array_merge(
+            [
+                'attribute_name' => $this->attribute_name,
+                'numerical' => $this->numerical,
+                'value_id' => $this->value_id,
+                'value_label' => $this->value_label,
+                'parent_value_ids' => $this->parent_value_ids,
+                'short_description' => $this->short_description,
+                'description' => $this->description,
+                'images' => $this->images,
+                'link' => $this->link,
+                'status' => $this->status,
+                'tags' => $this->tags
+            ],
+            $this->_toArrayPropertiesTechnical(),
+            $this->_toArrayTypedAttributes()
+        );
+    }
 
-        return $this;
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getAttributeName',
+                'setAttributeName',
+                'isNumerical',
+                'setNumerical',
+                'getValueId',
+                'setValueId',
+                'getValueLabel',
+                'setValueLabel',
+                'getParentValueIds',
+                'setParentValueIds',
+                'getShortDescription',
+                'setShortDescription',
+                'getDescription',
+                'setDescription',
+                'getImages',
+                'setImages',
+                'getLink',
+                'setLink',
+                'getStatus',
+                'setStatus',
+                'addStatus',
+                'getTags',
+                'setTags'
+            ],
+            $this->_toArrayTechnicalClassMethods(),
+            $this->_toArrayTypedClassMethods()
+        );
     }
 
 

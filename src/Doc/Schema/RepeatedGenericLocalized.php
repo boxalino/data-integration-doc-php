@@ -19,4 +19,18 @@ class RepeatedGenericLocalized extends Repeated
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'addValue'
+            ],
+            parent::toArrayClassMethods()
+        );
+    }
+
+
 }

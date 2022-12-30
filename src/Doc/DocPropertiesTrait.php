@@ -8,6 +8,7 @@ namespace Boxalino\DataIntegrationDoc\Doc;
  */
 trait DocPropertiesTrait
 {
+
     /**
      * Will only return the properties that are not set to null
      *
@@ -15,7 +16,7 @@ trait DocPropertiesTrait
      */
     public function toArray() : array
     {
-        return array_filter(get_object_vars($this), function($k, $v) {
+        return array_filter($this->toArrayList(), function($k, $v) {
             return json_encode($k) !== "null";
         }, ARRAY_FILTER_USE_BOTH);
     }
@@ -36,7 +37,8 @@ trait DocPropertiesTrait
      */
     public function toList() : array
     {
-        return get_object_vars($this);
+        return array_keys($this->toArrayList());
     }
+
 
 }

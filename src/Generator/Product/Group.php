@@ -2,11 +2,13 @@
 namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
+use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -18,6 +20,7 @@ use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 class Group implements DocGeneratorInterface
 {
     use DocProductTrait;
+    use TypedAttributesTrait;
     use DocPropertiesTrait;
     use GeneratorHydratorTrait;
 
@@ -67,10 +70,7 @@ class Group implements DocGeneratorInterface
      */
     public function setPricing(array $prices): self
     {
-        foreach($prices as $price)
-        {
-            $this->pricing[] = $price->toArray();
-        }
+        $this->pricing = $prices;
         return $this;
     }
 
@@ -100,7 +100,13 @@ class Group implements DocGeneratorInterface
     {
         foreach($visibilities as $visibility)
         {
-            $this->visibility[] = $visibility->toArray();
+            if($visibility instanceof DocPropertiesInterface)
+            {
+                $this->visibility[] = $visibility->toArray();
+                continue;
+            }
+
+            $this->visibility[] = $visibility;
         }
         return $this;
     }
@@ -239,5 +245,53 @@ class Group implements DocGeneratorInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'pricing' => $this->pricing,
+                'price' => $this->price,
+                'visibility' => $this->visibility,
+                'attribute_visibility_grouping' => $this->attribute_visibility_grouping,
+                'status' => $this->status,
+                'skus' => $this->skus
+            ],
+            $this->_toArrayDocProduct(),
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getPricing',
+                'setPricing',
+                'addPricing',
+                'getVisibility',
+                'setVisibility',
+                'addVisibility',
+                'getAttributeVisibilityGrouping',
+                'setAttributeVisibilityGrouping',
+                'addAttributeVisibilityGrouping',
+                'getStatus',
+                'setStatus',
+                'addStatus',
+                'getSkus',
+                'setSkus',
+                'addSkus',
+                'getPrice',
+                'setPrice',
+                'addPrice'
+            ],
+            $this->_toArrayDocProductClassMethods(),
+            $this->_toArrayTypedClassMethods()
+        );
+    }
 
 }

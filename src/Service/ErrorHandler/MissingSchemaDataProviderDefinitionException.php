@@ -12,6 +12,6 @@ class MissingSchemaDataProviderDefinitionException extends \Error
      */
     public function __construct(string $message)
     {
-        parent::__construct($message, 0, null);
+        parent::__construct($message);
     }
 }

@@ -44,5 +44,34 @@ class Doc implements DocGeneratorInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'product_line' => $this->product_line
+            ],
+            $this->_toArrayPropertiesTechnical()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getProductLine',
+                'setProductLine'
+            ],
+            $this->_toArrayTechnicalClassMethods()
+        );
+    }
+
 
 }

@@ -28,13 +28,11 @@ abstract class DiGenericAbstractCommand extends Command
     use DiIntegrateTrait;
 
     public function __construct(
-//        string $environment,
         LoggerInterface $logger,
         DiConfigurationInterface $configurationManager
     ){
         $this->configurationManager = $configurationManager;
         $this->logger = $logger;
-//        $this->environment = $environment;
 
         parent::__construct();
     }

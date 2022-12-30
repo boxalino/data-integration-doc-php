@@ -59,5 +59,31 @@ class ProductGroupLink implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'type' => $this->type,
+            'product_group' => $this->product_group
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getProductGroup',
+            'setProductGroup'
+        ];
+    }
+
 
 }

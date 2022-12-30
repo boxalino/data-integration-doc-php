@@ -205,25 +205,25 @@ trait DocSchemaIntegrationTrait
                 $listPrice = isset($listPrices[$language]) ? (float) $listPrices[$language] : null;
                 if($listPrice <> null)
                 {
-                    $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$listPrice, $currencyFactor));
+                    $schema->addListPrice($this->getPriceLocalizedSchema($language, $currencyCode, $listPrice, $currencyFactor));
                 }
 
                 $salesPrice = isset($salesPrices[$language]) ? (float) $salesPrices[$language] : null;
                 if($salesPrice <> null)
                 {
-                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$salesPrice, $currencyFactor));
+                    $schema->addSalesPrice($this->getPriceLocalizedSchema($language, $currencyCode, $salesPrice, $currencyFactor));
                 }
 
                 $grossPrice = isset($grossPrices[$language]) ? (float) $grossPrices[$language] : null;
                 if($grossPrice <> null)
                 {
-                    $schema->addGrossMargin($this->getPriceLocalizedSchema($language, $currencyCode, (float)$grossPrice, $currencyFactor));
+                    $schema->addGrossMargin($this->getPriceLocalizedSchema($language, $currencyCode, $grossPrice, $currencyFactor));
                 }
 
                 $otherPrice = isset($otherPrices[$language]) ? (float) $otherPrices[$language] : null;
                 if($otherPrice <> null)
                 {
-                    $schema->addOtherPrice($this->getPriceLocalizedSchema($language, $currencyCode, (float)$otherPrice, $currencyFactor));
+                    $schema->addOtherPrice($this->getPriceLocalizedSchema($language, $currencyCode, $otherPrice, $currencyFactor));
                 }
             }
         }
@@ -241,7 +241,7 @@ trait DocSchemaIntegrationTrait
     public function getPriceLocalizedSchema(string $language, string $currencyCode, float $value, float $factor) : PriceLocalized
     {
         $schema = new PriceLocalized();
-        $schema->setValue(round((float)$value*$factor, 2))
+        $schema->setValue(round($value*$factor, 2))
             ->setCurrency($currencyCode)
             ->setLanguage($language);
 
@@ -346,13 +346,13 @@ trait DocSchemaIntegrationTrait
             {
                 foreach($value as $data)
                 {
-                    $schema[] = $this->_addLocalized($data, $language);
+                    $schema[] = $this->_addLocalized($data, $language)->toArray();
                 }
 
                 continue;
             }
 
-            $schema[] = $this->_addLocalized($value, $language);
+            $schema[] = $this->_addLocalized($value, $language)->toArray();
         }
 
         return $schema;
@@ -465,8 +465,7 @@ trait DocSchemaIntegrationTrait
      */
     public function getImagesSchema($item, array $languages=[], string $type = "main", array $localizedValues = []) : DocPropertiesInterface
     {
-        $propertyType = new RepeatedGenericLocalized();
-        return $this->getRepeatedGenericLocalizedSchema($item, $languages, $type, $propertyType);
+        return $this->getRepeatedGenericLocalizedSchema($item, $languages, $type, new RepeatedGenericLocalized());
     }
 
     /**
@@ -481,11 +480,12 @@ trait DocSchemaIntegrationTrait
 
     /**
      * @param string $property
-     * @param array &$schema
+     * @param array $schema
      * @param array $languages
      * @param null $source
+     * @return array
      */
-    public function addingLocalizedPropertyToSchema(string $property, array &$schema, array $languages, $source = null)
+    public function addingLocalizedPropertyToSchema(string $property, array $schema, array $languages, $source = null) : array
     {
         foreach($languages as $language)
         {
@@ -496,11 +496,17 @@ trait DocSchemaIntegrationTrait
 
             $localized = new Localized();
             $localized->setValue($content)->setLanguage($language);
-            $schema[$property][] = $localized;
+            $schema[$property][] = $localized->toArray();
         }
+
+        return $schema;
     }
 
-    public function getProductRelationSchema(\ArrayObject $relation)
+    /**
+     * @param \ArrayObject $relation
+     * @return Product
+     */
+    public function getProductRelationSchema(\ArrayObject $relation) : Product
     {
         $schema = new Product();
         if($relation->offsetExists("type"))

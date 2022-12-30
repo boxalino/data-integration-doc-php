@@ -83,4 +83,32 @@ trait TechnicalPropertiesTrait
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    protected function _toArrayPropertiesTechnical() : array
+    {
+        return [
+          'creation_tm' => $this->creation_tm,
+          'client_id' => $this->client_id,
+          'src_sys_id' => $this->src_sys_id
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function _toArrayTechnicalClassMethods() : array
+    {
+        return [
+            'getCreationTm',
+            'setCreationTm',
+            'getClientId',
+            'setClientId',
+            'getSrcSysId',
+            'setSrcSysId'
+        ];
+    }
+
+
 }

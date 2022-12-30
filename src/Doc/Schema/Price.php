@@ -205,5 +205,47 @@ class Price implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'customer_groups' => $this->customer_groups,
+            'periods' => $this->periods,
+            'list_price' => $this->list_price,
+            'sales_price' => $this->sales_price,
+            'gross_margin' => $this->gross_margin,
+            'other_prices' => $this->other_prices
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getCustomerGroups',
+            'setCustomerGroups',
+            'getPeriods',
+            'setPeriods',
+            'getListPrice',
+            'setListPrice',
+            'addListPrice',
+            'getSalesPrice',
+            'setSalesPrice',
+            'addSalesPrice',
+            'getGrossMargin',
+            'setGrossMargin',
+            'addGrossMargin',
+            'getOtherPrices',
+            'setOtherPrices',
+            'addOtherPrice'
+        ];
+    }
+
 
 }

@@ -10,8 +10,8 @@ use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 class Voucher implements DocPropertiesInterface, DocGeneratorInterface
 {
 
-    use GeneratorHydratorTrait;
     use DocPropertiesTrait;
+    use GeneratorHydratorTrait;
     use TypedAttributesTrait;
 
     /**
@@ -220,6 +220,59 @@ class Voucher implements DocPropertiesInterface, DocGeneratorInterface
     {
         $this->status = $status;
         return $this;
+    }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList() : array
+    {
+        return array_merge(
+            [
+                'internal_id' => $this->internal_id,
+                'external_id' => $this->external_id,
+                'voucher_products' => $this->voucher_products,
+                'type' => $this->type,
+                'ean' => $this->ean,
+                'label' => $this->label,
+                'voucher_percentage_value' => $this->voucher_percentage_value,
+                'voucher_absolute_value' => $this->voucher_absolute_value,
+                'status' => $this->status
+            ],
+            $this->_toArrayTypedAttributes()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getInternalId',
+                'setInternalId',
+                'getExternalId',
+                'setExternalId',
+                'getVoucherProducts',
+                'setVoucherProducts',
+                'getType',
+                'setType',
+                'getEan',
+                'setEan',
+                'getLabel',
+                'setLabel',
+                'getVoucherPercentageValue',
+                'setVoucherPercentageValue',
+                'getVoucherAbsoluteValue',
+                'setVoucherAbsoluteValue',
+                'getStatus',
+                'setStatus'
+            ],
+            $this->_toArrayTypedClassMethods()
+        );
     }
 
 

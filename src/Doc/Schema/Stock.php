@@ -82,5 +82,34 @@ class Stock implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'value' => $this->value,
+            'delivery_center' => $this->delivery_center,
+            'availability' => $this->availability
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getAvailability',
+            'setAvailability',
+            'getDeliveryCenter',
+            'setDeliveryCenter',
+            'getValue',
+            'setValue'
+        ];
+    }
+
 
 }

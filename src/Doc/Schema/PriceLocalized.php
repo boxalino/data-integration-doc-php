@@ -56,7 +56,7 @@ class PriceLocalized implements DocPropertiesInterface
     }
 
     /**
-     * @param int | string | value $value
+     * @param int | string  $value
      * @return self
      */
     public function setValue($value): self
@@ -82,6 +82,39 @@ class PriceLocalized implements DocPropertiesInterface
         $this->currency = $currency;
         return $this;
     }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'language' => $this->language,
+            'value' => $this->value,
+            'currency' => $this->currency,
+            'region' => $this->region
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getLanguage',
+            'setLanguage',
+            'getValue',
+            'setValue',
+            'getCurrency',
+            'setCurrency',
+            'getRegion',
+            'setRegion'
+        ];
+    }
+
 
 
 }

@@ -100,5 +100,37 @@ class Label implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'type' => $this->type,
+            'name' => $this->name,
+            'value' => $this->value,
+            'loc_values' => $this->loc_values
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getName',
+            'setName',
+            'getValue',
+            'setValue',
+            'getLocValues',
+            'setLocValues',
+        ];
+    }
+
 
 }

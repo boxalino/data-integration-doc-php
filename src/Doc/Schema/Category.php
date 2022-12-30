@@ -65,5 +65,33 @@ class Category implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'categorization' => $this->categorization,
+            'category_ids' => $this->category_ids
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getCategorization',
+            'setCategorization',
+            'getCategoryIds',
+            'setCategoryIds',
+            'addCategoryId'
+        ];
+    }
+
+
 
 }

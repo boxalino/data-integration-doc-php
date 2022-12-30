@@ -151,5 +151,45 @@ class Product implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'type' => $this->type,
+            'name' => $this->name,
+            'product_line' => $this->product_line,
+            'product_group' => $this->product_group,
+            'sku' => $this->sku,
+            'value' => $this->value
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getName',
+            'setName',
+            'getProductLine',
+            'setProductLine',
+            'getProductGroup',
+            'setProductGroup',
+            'getSku',
+            'setSku',
+            'getValue',
+            'setValue',
+
+        ];
+    }
+
+
 
 }

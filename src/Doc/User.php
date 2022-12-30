@@ -57,5 +57,37 @@ class User extends Contact implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            parent::toArrayList(),
+            [
+                'contacts' => $this->contacts
+            ],
+            $this->_toArrayPropertiesTechnical()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods(): array
+    {
+        return array_merge(
+            [
+                'getContacts',
+                'setContacts',
+                'addContacts'
+            ],
+            $this->_toArrayTechnicalClassMethods(),
+            parent::toArrayClassMethods()
+        );
+    }
+
 
 }

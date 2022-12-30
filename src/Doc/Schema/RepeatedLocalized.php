@@ -82,4 +82,31 @@ class RepeatedLocalized implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+          'value' => $this->value,
+          'value_id' => $this->value_id
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getValue',
+            'setValue',
+            'getValueId',
+            'setValueId'
+        ];
+    }
+
+
 }

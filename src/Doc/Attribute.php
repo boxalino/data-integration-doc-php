@@ -713,5 +713,104 @@ class Attribute implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge([
+            'name' => $this->name,
+            'internal_id' => $this->internal_id,
+            'external_id' => $this->external_id,
+            'label' => $this->label,
+            'attribute_group' => $this->attribute_group,
+            'attribute_sub_group' => $this->attribute_sub_group,
+            'stores' => $this->stores,
+            'format' => $this->format,
+            'localized' => $this->localized,
+            'link' => $this->link,
+            'data_types' => $this->data_types,
+            'multi_value' => $this->multi_value,
+            'hierarchical' => $this->hierarchical,
+            'search_by' => $this->search_by,
+            'search_suggestion' => $this->search_suggestion,
+            'filter_by' => $this->filter_by,
+            'group_by' => $this->group_by,
+            'order_by' => $this->order_by,
+            'indexed' => $this->indexed,
+            'visibility' => $this->visibility,
+            'status' => $this->status,
+            'periods' => $this->periods,
+
+        ], $this->_toArrayPropertiesTechnical());
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getName',
+                'setName',
+                'getInternalId',
+                'setInternalId',
+                'getExternalId',
+                'setExternalId',
+                'getLabel',
+                'setLabel',
+                'addLabel',
+                'getAttributeGroup',
+                'setAttributeGroup',
+                'addAttributeGroup',
+                'getAttributeSubGroup',
+                'setAttributeSubGroup',
+                'addAttributeSubGroup',
+                'getStores',
+                'setStores',
+                'addStores',
+                'addStore',
+                'getFormat',
+                'setFormat',
+                'isLocalized',
+                'setLocalized',
+                'getLink',
+                'setLink',
+                'addLink',
+                'getDataTypes',
+                'setDataTypes',
+                'isMultiValue',
+                'setMultiValue',
+                'isHierarchical',
+                'setHierarchical',
+                'getSearchBy',
+                'setSearchBy',
+                'isSearchSuggestion',
+                'setSearchSuggestion',
+                'isFilterBy',
+                'setFilterBy',
+                'isGroupBy',
+                'setGroupBy',
+                'isOrderBy',
+                'setOrderBy',
+                'isIndexed',
+                'setIndexed',
+                'getVisibility',
+                'setVisibility',
+                'addVisibility',
+                'getStatus',
+                'setStatus',
+                'addStatus',
+                'getPeriods',
+                'setPeriods',
+                'addPeriods',
+                'addPeriod'
+            ],
+            $this->_toArrayTechnicalClassMethods()
+        );
+    }
 
 }

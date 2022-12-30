@@ -93,4 +93,34 @@ class Repeated implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return [
+            'values' => $this->values,
+            'type' => $this->type,
+            'name' => $this->name
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getValues',
+            'setValues',
+            'getType',
+            'setType',
+            'getName',
+            'setName'
+        ];
+    }
+
+
 }

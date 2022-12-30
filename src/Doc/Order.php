@@ -21,6 +21,7 @@ class Order implements DocPropertiesInterface
 {
     use DocPropertiesTrait;
     use TechnicalPropertiesTrait;
+    use TypedAttributesTrait;
 
     /**
      * the internal identifier of the order
@@ -339,24 +340,6 @@ class Order implements DocPropertiesInterface
      * @var Array<<OrderVoucher>>
      */
     protected $vouchers = [];
-
-    /**
-     * technical field
-     * @var string
-     */
-    protected $creation_tm;
-
-    /**
-     * technical field
-     * @var int
-     */
-    protected $client_id = 0;
-
-    /**
-     * technical field
-     * @var int
-     */
-    protected $src_sys_id = 0;
 
     /**
      * @return string
@@ -1227,280 +1210,6 @@ class Order implements DocPropertiesInterface
     }
 
     /**
-     * @return array
-     */
-    public function getStringAttributes(): array
-    {
-        return $this->string_attributes;
-    }
-
-    /**
-     * @param array $string_attributes
-     * @return self
-     */
-    public function setStringAttributes(array $string_attributes): self
-    {
-        foreach($string_attributes as $attribute)
-        {
-            $this->addStringAttribute($attribute);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringAttribute>> $repeateds
-     * @return $this
-     */
-    public function addStringAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addStringAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param StringAttribute $attribute
-     * @return $this
-     */
-    public function addStringAttribute(StringAttribute $attribute) : self
-    {
-        $this->string_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedStringAttributes(): array
-    {
-        return $this->localized_string_attributes;
-    }
-
-    /**
-     * @param array $localized_string_attributes
-     * @return self
-     */
-    public function setLocalizedStringAttributes(array $localized_string_attributes): self
-    {
-        foreach($localized_string_attributes as $attribute)
-        {
-            $this->addLocalizedStringAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<StringLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedStringAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedStringAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param StringLocalizedAttribute $attribute
-     * @return $this
-     */
-    public function addLocalizedStringAttribute(StringLocalizedAttribute $attribute) : self
-    {
-        $this->localized_string_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNumericAttributes(): array
-    {
-        return $this->numeric_attributes;
-    }
-
-    /**
-     * @param array $numeric_attributes
-     * @return self
-     */
-    public function setNumericAttributes(array $numeric_attributes): self
-    {
-        foreach($numeric_attributes as $attribute)
-        {
-            $this->addNumericAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<NumericAttribute>> $repeateds
-     * @return $this
-     */
-    public function addNumericAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addNumericAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param NumericAttribute $attribute
-     * @return $this
-     */
-    public function addNumericAttribute(NumericAttribute $attribute) : self
-    {
-        $this->numeric_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedNumericAttributes(): array
-    {
-        return $this->localized_numeric_attributes;
-    }
-
-    /**
-     * @param array $localized_numeric_attributes
-     * @return self
-     */
-    public function setLocalizedNumericAttributes(array $localized_numeric_attributes): self
-    {
-        /** @var NumericLocalizedAttribute $attribute */
-        foreach($localized_numeric_attributes as $attribute)
-        {
-            $this->addLocalizedNumericAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<NumericLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedNumericAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedNumericAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param NumericLocalizedAttribute $attribute
-     * @return $this
-     */
-    public function addLocalizedNumericAttribute(NumericLocalizedAttribute $attribute) : self
-    {
-        $this->localized_numeric_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDatetimeAttributes(): array
-    {
-        return $this->datetime_attributes;
-    }
-
-    /**
-     * @param array $datetime_attributes
-     * @return self
-     */
-    public function setDatetimeAttributes(array $datetime_attributes): self
-    {
-        /** @var DatetimeAttribute $attribute */
-        foreach($datetime_attributes as $attribute)
-        {
-            $this->addDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<DatetimeAttribute>> $repeateds
-     * @return $this
-     */
-    public function addDatetimeAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addDatetimeAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param DatetimeAttribute $attribute
-     * @return $this
-     */
-    public function addDatetimeAttribute(DatetimeAttribute $attribute) : self
-    {
-        $this->datetime_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocalizedDatetimeAttributes(): array
-    {
-        return $this->localized_datetime_attributes;
-    }
-
-    /**
-     * @param array $localized_datetime_attributes
-     * @return self
-     */
-    public function setLocalizedDatetimeAttributes(array $localized_datetime_attributes): self
-    {
-        /** @var DatetimeLocalizedAttribute $attribute */
-        foreach($localized_datetime_attributes as $attribute)
-        {
-            $this->addLocalizedDatetimeAttribute($attribute);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Array<<DatetimeLocalizedAttribute>> $repeateds
-     * @return $this
-     */
-    public function addLocalizedDatetimeAttributes(array $repeateds): self
-    {
-        foreach ($repeateds as $repeated)
-        {
-            $this->addLocalizedDatetimeAttribute($repeated);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param DatetimeLocalizedAttribute $attribute
-     * @return $this
-     */
-    public function addLocalizedDatetimeAttribute(DatetimeLocalizedAttribute $attribute) : self
-    {
-        $this->localized_datetime_attributes[] = $attribute->toArray();
-        return $this;
-    }
-
-    /**
      * @return []
      */
     public function getProducts(): array
@@ -1598,6 +1307,181 @@ class Order implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList() : array
+    {
+        return array_merge(
+            [
+                'internal_id' => $this->internal_id,
+                'external_id' => $this->external_id,
+                'parent_order_id' => $this->parent_order_id,
+                'persona_type' => $this->persona_type,
+                'persona_id' => $this->persona_id,
+                'order_sys_cd' => $this->order_sys_cd,
+                'store' => $this->store,
+                'seller_persona_type' => $this->seller_persona_type,
+                'seller_persona_id' => $this->seller_persona_id,
+                'currency_cd' => $this->currency_cd,
+                'total_crncy_amt' => $this->total_crncy_amt,
+                'total_crncy_amt_net' => $this->total_crncy_amt_net,
+                'total_gross_margin_crncy_amt' => $this->total_gross_margin_crncy_amt,
+                'total_net_margin_crncy_amt' => $this->total_net_margin_crncy_amt,
+                'shipping_costs' => $this->shipping_costs,
+                'shipping_costs_net' => $this->shipping_costs_net,
+                'currency_factor' => $this->currency_factor,
+                'tax_free' => $this->tax_free,
+                'tax_rate' => $this->tax_rate,
+                'tax_amnt' => $this->tax_amnt,
+                'payment_method' => $this->payment_method,
+                'shipping_method' => $this->shipping_method,
+                'shipping_description' => $this->shipping_description,
+                'device' => $this->device,
+                'referer' => $this->referer,
+                'partner' => $this->partner,
+                'language' => $this->language,
+                'tracking_code' => $this->tracking_code,
+                'is_gift' => $this->is_gift,
+                'wrapping' => $this->wrapping,
+                'email' => $this->email,
+                'comments' => $this->comments,
+                'internal_comments' => $this->internal_comments,
+                'customer_comments' => $this->customer_comments,
+                'contacts' => $this->contacts,
+                'creation' => $this->creation,
+                'last_update' => $this->last_update,
+                'confirmation' => $this->confirmation,
+                'cleared' => $this->cleared,
+                'sent' => $this->sent,
+                'received' => $this->received,
+                'returned' => $this->returned,
+                'repaired' => $this->repaired,
+                'status' => $this->status,
+                'status_code' => $this->status_code,
+                'internal_state' => $this->internal_state,
+                'products' => $this->products,
+                'vouchers' => $this->vouchers
+            ],
+            $this->_toArrayTypedAttributes(),
+            $this->_toArrayPropertiesTechnical()
+        );
+    }
 
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getInternalId',
+                'setInternalId',
+                'getExternalId',
+                'setExternalId',
+                'getParentOrderId',
+                'setParentOrderId',
+                'getPersonaType',
+                'setPersonaType',
+                'getPersonaId',
+                'setPersonaId',
+                'getOrderSysCd',
+                'setOrderSysCd',
+                'getSellerPersonaType',
+                'setSellerPersonaType',
+                'getSellerPersonaId',
+                'setSellerPersonaId',
+                'getCurrencyCd',
+                'setCurrencyCd',
+                'getTotalCrncyAmt',
+                'setTotalCrncyAmt',
+                'getTotalCrncyAmtNet',
+                'setTotalCrncyAmtNet',
+                'getTotalGrossMarginCrncyAmt',
+                'setTotalGrossMarginCrncyAmt',
+                'getTotalNetMarginCrncyAmt',
+                'setTotalNetMarginCrncyAmt',
+                'getShippingCostsNet',
+                'setShippingCostsNet',
+                'getCurrencyFactor',
+                'setCurrencyFactor',
+                'getTaxFree',
+                'setTaxFree',
+                'getTaxRate',
+                'setTaxRate',
+                'getTaxAmnt',
+                'setTaxAmnt',
+                'getPaymentMethod',
+                'setPaymentMethod',
+                'getShippingMethod',
+                'setShippingMethod',
+                'getShippingDescription',
+                'setShippingDescription',
+                'getDevice',
+                'setDevice',
+                'getReferer',
+                'setReferer',
+                'getPartner',
+                'setPartner',
+                'getLanguage',
+                'setLanguage',
+                'getTrackingCode',
+                'setTrackingCode',
+                'getIsGift',
+                'setIsGift',
+                'getWrapping',
+                'setWrapping',
+                'getEmail',
+                'setEmail',
+                'getComments',
+                'setComments',
+                'addComments',
+                'getInternalComments',
+                'setInternalComments',
+                'addInternalComments',
+                'getCustomerComments',
+                'setCustomerComments',
+                'addCustomerComments',
+                'getContacts',
+                'setContacts',
+                'addContacts',
+                'getCreation',
+                'setCreation',
+                'getLastUpdate',
+                'setLastUpdate',
+                'getConfirmation',
+                'setConfirmation',
+                'getCleared',
+                'setCleared',
+                'getSent',
+                'setSent',
+                'getReceived',
+                'setReceived',
+                'getReturned',
+                'setReturned',
+                'getRepaired',
+                'setRepaired',
+                'getStatus',
+                'setStatus',
+                'getStatusCode',
+                'setStatusCode',
+                'getInternalState',
+                'setInternalState',
+                'getProducts',
+                'setProducts',
+                'getVouchers',
+                'setVouchers',
+                'addVouchers',
+                'getStore',
+                'setStore',
+                'getShippingCosts',
+                'setShippingCosts'
+            ],
+            $this->_toArrayTypedClassMethods(),
+            $this->_toArrayTechnicalClassMethods()
+        );
+    }
 
 }

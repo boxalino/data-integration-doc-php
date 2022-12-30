@@ -22,7 +22,6 @@ class Language implements DocPropertiesInterface
      */
     protected $country_code;
 
-
     /**
      * @return string
      */
@@ -57,6 +56,38 @@ class Language implements DocPropertiesInterface
     {
         $this->country_code = $country_code;
         return $this;
+    }
+
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    protected function toArrayList(): array
+    {
+        return array_merge(
+            [
+                'language' => $this->language,
+                'country_code' => $this->country_code
+            ],
+            $this->_toArrayPropertiesTechnical()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'getLanguage',
+                'setLanguage',
+                'getCountryCode',
+                'setCountryCode'
+            ],
+            $this->_toArrayTechnicalClassMethods()
+        );
     }
 
 

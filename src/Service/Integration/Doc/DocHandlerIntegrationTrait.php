@@ -105,13 +105,14 @@ trait DocHandlerIntegrationTrait
 
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
-                $this->docData = array_merge_recursive($this->docData,  $handler->getValues());
+                $this->docData = array_merge_recursive($this->docData, $handler->getValues());
             }
 
             $this->logTime("endTimeHandler");
             $this->logMemory(get_class($handler), false);
             $this->logMessage(get_class($handler), "endTimeHandler", "startTimeHandler");
         }
+
         $this->logTime("end" . __FUNCTION__);
         $this->logMessage(__FUNCTION__, "end" . __FUNCTION__, "start" . __FUNCTION__);
 

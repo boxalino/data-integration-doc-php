@@ -32,7 +32,7 @@ class NumericLocalizedAttribute extends Repeated
 
     /**
      * @param string $key
-     * @return this
+     * @return self
      */
     public function setKey(string $key): self
     {
@@ -48,6 +48,21 @@ class NumericLocalizedAttribute extends Repeated
     {
         $this->values[] = $localized->toArray();
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return array_merge(
+            [
+                'addValue',
+                'setKey',
+                'getKey'
+            ],
+            parent::toArrayClassMethods()
+        );
     }
 
 
