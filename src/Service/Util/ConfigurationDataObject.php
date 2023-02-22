@@ -133,6 +133,14 @@ class ConfigurationDataObject extends AbstractSimpleObject
     }
 
     /**
+     * @return string|null
+     */
+    public function getOutsourceTm() : ?string
+    {
+        return $this->_get(GcpRequestInterface::DI_REQUEST_OUTSOURCE_TM);
+    }
+
+    /**
      * @return array
      */
     public function getData() : array
