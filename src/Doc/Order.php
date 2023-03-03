@@ -301,36 +301,6 @@ class Order implements DocPropertiesInterface
     protected $internal_state;
 
     /**
-     * @var Array<<StringAttribute>>
-     */
-    protected $string_attributes = [];
-
-    /**
-     * @var Array<<StringLocalizedAttribute>>
-     */
-    protected $localized_string_attributes = [];
-
-    /**
-     * @var Array<<NumericAttribute>>
-     */
-    protected $numeric_attributes = [];
-
-    /**
-     * @var Array<<NumericLocalizedAttribute>>
-     */
-    protected $localized_numeric_attributes = [];
-
-    /**
-     * @var Array<<DatetimeAttribute>>
-     */
-    protected $datetime_attributes = [];
-
-    /**
-     * @var Array<<DatetimeLocalizedAttribute>>
-     */
-    protected $localized_datetime_attributes = [];
-
-    /**
      * the products of the order
      * @var Array<<OrderProduct>>
      */
