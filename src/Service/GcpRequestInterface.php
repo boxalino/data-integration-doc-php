@@ -20,6 +20,7 @@ interface GcpRequestInterface
     public const GCP_MODE_INSTANT_UPDATE="I";
     public const GCP_MODE_DELTA="D";
     public const GCP_MODE_FULL="F";
+    public const GCP_MODE_TRANSFORMER="T";
 
     public const GCP_TYPE_PRODUCT="product";
     public const GCP_TYPE_LANGUAGE="language";
@@ -28,8 +29,11 @@ interface GcpRequestInterface
     public const GCP_TYPE_ORDER="order";
     public const GCP_TYPE_USER="user";
     public const GCP_TYPE_USER_CONTENT="user_content";
+    public const GCP_TYPE_USER_GENERATED_CONTENT="user_generated_content";
     public const GCP_TYPE_USER_SELECTION="user_selection";
     public const GCP_TYPE_CONTENT="content";
+    public const GCP_TYPE_COMMUNICATION_HISTORY="communication_history";
+    public const GCP_TYPE_COMMUNICATION_PLANNING="communication_planning";
 
     public const DI_REQUEST_MODE="mode";
     public const DI_REQUEST_TM="tm";
@@ -47,5 +51,23 @@ interface GcpRequestInterface
     public const DI_REQUEST_FIELDS="fields";
     public const DI_REQUEST_THRESHOLD="threshold";
 
+    /**
+     * @var string[]
+     */
+    public const EXCEPTION_MESSAGES_RETRY_EXTENDED = [
+        "504 Gateway Timeout",
+        "timed out after",
+        "error 7",
+        "error 28"
+    ];
+
+    /**
+     * @var string[]
+     */
+    public const EXCEPTION_MESSAGES_RETRY = [
+        "504 Gateway Timeout",
+        "error 7",
+        "error 28"
+    ];
 
 }

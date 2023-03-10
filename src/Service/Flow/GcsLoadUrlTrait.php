@@ -21,7 +21,7 @@ trait GcsLoadUrlTrait
      * @var bool 
      */
     protected $fallbackGcsLoadUrl = true;
-    
+
     /**
      * @param array $requestParameters
      * @return string|null
@@ -44,7 +44,7 @@ trait GcsLoadUrlTrait
             return trim(stripslashes(rawurldecode($signedUrlRequest->getBody()->getContents())), '"');
         } catch (\Throwable $exception)
         {
-            if((strpos($exception->getMessage(), "504 Gateway Timeout") || strpos($exception->getMessage(), "timed out after")) && $this->fallbackGcsLoadUrl)
+            if($this->isExceptionInRetryLoop($exception, "extended") && $this->fallbackGcsLoadUrl)
             {
                 $this->fallbackGcsLoadUrl = false;
                 $this->log("Retry call out for GCS Load URL for " . $this->getDiConfiguration()->getTm());

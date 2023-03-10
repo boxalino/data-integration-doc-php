@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 trait DiRequestTrait
 {
 
+    use DiExceptionTrait;
     /**
      * @var Client | null
      */

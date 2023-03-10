@@ -47,12 +47,7 @@ trait SyncTrait
                 return;
             }
 
-            if (strpos($exception->getMessage(), "error 28"))
-            {
-                throw new StopSyncException("Boxalino DI sync request {$this->getDiConfiguration()->getAccount()}_{$this->getDiConfiguration()->getMode()}_{$this->getDiConfiguration()->getTm()} was reset by a new connection.");
-            }
-
-            if(strpos($exception->getMessage(), "504 Gateway Timeout"))
+            if($this->isExceptionInRetryLoop($exception))
             {
                 if($this->fallbackSync)
                 {
@@ -64,7 +59,11 @@ trait SyncTrait
                     return;
                 }
 
-                throw new FailSyncException("Boxalino Data Integration sync request reached the timeout for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()}. Please report this incident to Boxalino.");
+                throw new FailSyncException(
+                    "Boxalino Data Integration SYNC REQUEST encountered an error {$this->getDiConfiguration()->getAccount()} " .
+                    " on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()}. Please report this incident to Boxalino."
+                    . $exception->getMessage()
+                );
             }
 
             throw new FailSyncException(
@@ -73,5 +72,6 @@ trait SyncTrait
             );
         }
     }
+
 
 }

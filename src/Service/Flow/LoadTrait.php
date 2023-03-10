@@ -36,7 +36,7 @@ trait LoadTrait
             $this->log("End for 'LOAD REQUEST': the $type file is successfully loaded to BQ");
         } catch (\Throwable $exception)
         {
-            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackLoad)
+            if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoad)
             {
                 $this->fallbackLoad = false;
                 $this->log("Retry call out for LOAD for " . $this->getDiConfiguration()->getTm());

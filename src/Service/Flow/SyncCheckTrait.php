@@ -54,7 +54,7 @@ trait SyncCheckTrait
 
             return null;
         } catch (\Throwable $exception) {
-            if((strpos($exception->getMessage(), "504 Gateway Timeout") || strpos($exception->getMessage(), "timed out after")) && $this->fallbackSyncCheck)
+            if($this->isExceptionInRetryLoop($exception, 'extended') && $this->fallbackSyncCheck)
             {
                 $this->fallbackSyncCheck = false;
                 $this->log("Retry call out for SYNC CHECK for " . $this->getDiConfiguration()->getTm());

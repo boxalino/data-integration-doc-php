@@ -49,9 +49,10 @@ trait LoadByChunkTrait
             $this->log("End for 'LOADBYCHUNK REQUEST': the {$this->getDocType()} data chunk is successfully loaded to GCS");
         } catch (\Throwable $exception)
         {
-            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackLoadByChunk)
+            if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoadByChunk)
             {
                 $this->fallbackLoadByChunk = false;
+                $this->log("Failed LOAD BY CHUNK with: " . $exception->getMessage());
                 $this->log("Retry call out for LOAD BY CHUNK for " . $this->getDiConfiguration()->getTm());
                 sleep(60);
 

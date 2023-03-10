@@ -18,10 +18,10 @@ trait LoadBqTrait
 
     /**
      * flag for fallback state (in case of GCP resource unavailability)
-     * @var bool 
+     * @var bool
      */
     protected $fallbackLoadBq = true;
-    
+
     /**
      * Loads a file from GCS to BQ
      */
@@ -40,7 +40,7 @@ trait LoadBqTrait
             $this->log("End for 'LOADBQ REQUEST': the GCS files are successfully loaded to BQ");
         } catch (\Throwable $exception)
         {
-            if(strpos($exception->getMessage(), "504 Gateway Timeout") && $this->fallbackLoadBq)
+            if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoadBq)
             {
                 $this->fallbackLoadBq = false;
                 $this->log("Retry call out for Load BQ for " . $this->getDiConfiguration()->getTm());

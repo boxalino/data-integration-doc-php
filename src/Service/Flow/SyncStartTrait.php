@@ -32,7 +32,7 @@ trait SyncStartTrait
             );
             $this->log("End of calling for the 'SYNC START'");
         } catch (\Throwable $exception) {
-            if (strpos($exception->getMessage(), "timed out after") || strpos($exception->getMessage(), "504 Gateway Timeout"))
+            if ($this->isExceptionInRetryLoop($exception, "extended"))
             {
                 return;
             }
