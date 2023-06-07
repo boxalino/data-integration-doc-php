@@ -20,6 +20,7 @@ interface DocSchemaInterface
     public const DI_PARENT_ID_TYPE_FIELD = 'doc_parent_type';
     public const DI_PRODUCT_GROUPS_SKU_RESET= '_BX_GROUP_';
     public const DI_PRODUCT_GROUPS_SKU_REPLICATE= 'N/A';
+    public const DI_SCHEMA_CONTEXTUAL_PROPERTY_PREFIX = "bx_custom_";
 
     /**
      * common properties
