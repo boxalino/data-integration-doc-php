@@ -270,7 +270,12 @@ class Attribute implements DocPropertiesInterface
     {
         foreach($localizeds as $localized)
         {
-            $this->label[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->label[] = $localized->toArray();
+                continue;
+            }
+            $this->label[] = $localized;
         }
 
         return $this;
@@ -302,7 +307,12 @@ class Attribute implements DocPropertiesInterface
     {
         foreach($localizeds as $localized)
         {
-            $this->attribute_group[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->attribute_group[] = $localized->toArray();
+                continue;
+            }
+            $this->attribute_group[] = $localized;
         }
 
         return $this;
@@ -334,7 +344,12 @@ class Attribute implements DocPropertiesInterface
     {
         foreach($localizeds as $localized)
         {
-            $this->attribute_sub_group[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->attribute_sub_group[] = $localized->toArray();
+                continue;
+            }
+            $this->attribute_sub_group[] = $localized;
         }
 
         return $this;
@@ -444,7 +459,12 @@ class Attribute implements DocPropertiesInterface
     {
         foreach($localizeds as $localized)
         {
-            $this->link[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->link[] = $localized->toArray();
+                continue;
+            }
+            $this->link[] = $localized;
         }
 
         return $this;
@@ -666,7 +686,12 @@ class Attribute implements DocPropertiesInterface
     {
         foreach($localizeds as $localized)
         {
-            $this->status[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->status[] = $localized->toArray();
+                continue;
+            }
+            $this->status[] = $localized;
         }
 
         return $this;
@@ -696,8 +721,15 @@ class Attribute implements DocPropertiesInterface
      */
     public function addPeriods(array $periods): self
     {
-        foreach ($periods as $period) {
-            $this->periods[] = $period->toArray();
+        foreach ($periods as $period)
+        {
+            if($period instanceof DocPropertiesInterface)
+            {
+                $this->period[] = $period->toArray();
+                continue;
+            }
+
+            $this->periods[] = $period;
         }
 
         return $this;

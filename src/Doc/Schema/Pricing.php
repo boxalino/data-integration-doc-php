@@ -58,7 +58,13 @@ class Pricing implements DocPropertiesInterface
     {
         foreach($values as $value)
         {
-            $this->values[] = $value->toArray();
+            if($value instanceof DocPropertiesInterface)
+            {
+                $this->values[] = $value->toArray();
+                continue;
+            }
+
+            $this->values[] = $value;
         }
         return $this;
     }

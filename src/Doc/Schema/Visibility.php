@@ -67,7 +67,13 @@ class Visibility implements DocPropertiesInterface
     {
         foreach($values as $localized)
         {
-            $this->values[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->values[] = $localized->toArray();
+                continue;
+            }
+
+            $this->values[] = $localized;
         }
         return $this;
     }

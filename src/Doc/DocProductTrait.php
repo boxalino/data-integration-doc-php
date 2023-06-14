@@ -281,7 +281,13 @@ trait DocProductTrait
     {
         foreach ($relatedProducts as $product)
         {
-            $this->product_relations[] = $product->toArray();
+            if($product instanceof DocPropertiesInterface)
+            {
+                $this->product_relations[] = $product->toArray();
+                continue;
+            }
+            
+            $this->product_relations[] = $product;
         }
 
         return $this;
@@ -313,7 +319,13 @@ trait DocProductTrait
     {
         foreach ($relatedContent as $content)
         {
-            $this->other_relations[] = $content->toArray();
+            if($content instanceof DocPropertiesInterface)
+            {
+                $this->other_relations[] = $content->toArray();
+                continue;
+            }
+
+            $this->other_relations[] = $content;
         }
 
         return $this;
@@ -373,7 +385,13 @@ trait DocProductTrait
     {
         foreach($localizeds as $localized)
         {
-            $this->title[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->title[] = $localized->toArray();
+                continue;
+            }
+
+            $this->title[] = $localized;
         }
 
         return $this;
@@ -405,7 +423,13 @@ trait DocProductTrait
     {
         foreach($descriptions as $localized)
         {
-            $this->description[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->description[] = $localized->toArray();
+                continue;
+            }
+
+            $this->description[] = $localized;
         }
 
         return $this;
@@ -437,7 +461,13 @@ trait DocProductTrait
     {
         foreach($descriptions as $localized)
         {
-            $this->short_description[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->short_description[] = $localized->toArray();
+                continue;
+            }
+
+            $this->short_description[] = $localized;
         }
         return $this;
     }
@@ -468,7 +498,13 @@ trait DocProductTrait
     {
         foreach($localizeds as $localized)
         {
-            $this->brands[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->brands[] = $localized->toArray();
+                continue;
+            }
+
+            $this->brands[] = $localized;
         }
 
         return $this;
@@ -510,7 +546,13 @@ trait DocProductTrait
     {
         foreach($localizeds as $localized)
         {
-            $this->suppliers[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->suppliers[] = $localized->toArray();
+                continue;
+            }
+
+            $this->suppliers[] = $localized;
         }
 
         return $this;
@@ -552,7 +594,13 @@ trait DocProductTrait
     {
         foreach($categories as $category)
         {
-            $this->categories[] = $category->toArray();
+            if($category instanceof DocPropertiesInterface)
+            {
+                $this->categories[] = $category->toArray();
+                continue;
+            }
+
+            $this->categories[] = $category;
         }
 
         return $this;
@@ -595,7 +643,13 @@ trait DocProductTrait
     {
         foreach($repeateds as $repeated)
         {
-            $this->images[] = $repeated->toArray();
+            if($repeated instanceof DocPropertiesInterface)
+            {
+                $this->images[] = $repeated->toArray();
+                continue;
+            }
+
+            $this->images[] = $repeated;
         }
 
         return $this;
@@ -638,7 +692,13 @@ trait DocProductTrait
     {
         foreach($localizeds as $localized)
         {
-            $this->link[] = $localized->toArray();
+            if($localized instanceof DocPropertiesInterface)
+            {
+                $this->link[] = $localized->toArray();
+                continue;
+            }
+
+            $this->link[] = $localized;
         }
 
         return $this;
@@ -680,7 +740,13 @@ trait DocProductTrait
     {
         foreach($tags as $tag)
         {
-            $this->tags[] = $tag->toArray();
+            if($tag instanceof DocPropertiesInterface)
+            {
+                $this->tags[] = $tag->toArray();
+                continue;
+            }
+
+            $this->tags[] = $tag;
         }
 
         return $this;
@@ -732,7 +798,13 @@ trait DocProductTrait
     {
         foreach($labels as $label)
         {
-            $this->labels[] = $label->toArray();
+            if($label instanceof DocPropertiesInterface)
+            {
+                $this->labels[] = $label->toArray();
+                continue;
+            }
+
+            $this->labels[] = $label;
         }
 
         return $this;
@@ -762,8 +834,15 @@ trait DocProductTrait
      */
     public function addPeriods(array $periods): self
     {
-        foreach ($periods as $period) {
-            $this->periods[] = $period->toArray();
+        foreach ($periods as $period)
+        {
+            if($period instanceof DocPropertiesInterface)
+            {
+                $this->periods[] = $period->toArray();
+                continue;
+            }
+
+            $this->periods[] = $period;
         }
 
         return $this;

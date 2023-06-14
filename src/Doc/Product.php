@@ -349,8 +349,15 @@ class Product implements DocPropertiesInterface
      */
     public function addProductRelations(RelatedProduct ...$relatedProducts) : self
     {
-        foreach ($relatedProducts as $product) {
-            $this->product_relations[] = $product->toArray();
+        foreach ($relatedProducts as $product)
+        {
+            if($product instanceof DocPropertiesInterface)
+            {
+                $this->product_relations[] = $product->toArray();
+                continue;
+            }
+
+            $this->product_relations[] = $product;
         }
 
         return $this;
@@ -380,8 +387,15 @@ class Product implements DocPropertiesInterface
      */
     public function addOtherRelations(RelatedContent ...$relatedContent) : self
     {
-        foreach ($relatedContent as $content) {
-            $this->other_relations[] = $content->toArray();
+        foreach ($relatedContent as $content)
+        {
+            if($content instanceof DocPropertiesInterface)
+            {
+                $this->other_relations[] = $content->toArray();
+                continue;
+            }
+
+            $this->other_relations[] = $content;
         }
 
         return $this;

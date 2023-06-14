@@ -72,7 +72,13 @@ class Price implements DocPropertiesInterface
     {
         foreach($periods as $period)
         {
-            $this->periods[] = $period->toArray();
+            if($period instanceof DocPropertiesInterface)
+            {
+                $this->periods[] = $period->toArray();
+                continue;
+            }
+
+            $this->periods[] = $period;
         }
         return $this;
     }
@@ -95,7 +101,13 @@ class Price implements DocPropertiesInterface
     {
         foreach($list_price as $price)
         {
-            $this->list_price[] = $price->toArray();
+            if($price instanceof DocPropertiesInterface)
+            {
+                $this->list_price[] = $price->toArray();
+                continue;
+            }
+
+            $this->list_price[] = $price;
         }
         return $this;
     }
@@ -128,7 +140,13 @@ class Price implements DocPropertiesInterface
     {
         foreach($sales_price as $price)
         {
-            $this->sales_price[] = $price->toArray();
+            if($price instanceof DocPropertiesInterface)
+            {
+                $this->sales_price[] = $price->toArray();
+                continue;
+            }
+
+            $this->sales_price[] = $price;
         }
         return $this;
     }
@@ -159,7 +177,13 @@ class Price implements DocPropertiesInterface
     {
         foreach($gross_margin as $price)
         {
-            $this->gross_margin[] = $price->toArray();
+            if($price instanceof DocPropertiesInterface)
+            {
+                $this->gross_margin[] = $price->toArray();
+                continue;
+            }
+
+            $this->gross_margin[] = $price;
         }
         return $this;
     }
@@ -190,7 +214,13 @@ class Price implements DocPropertiesInterface
     {
         foreach($other_prices as $price)
         {
-            $this->other_prices[] = $price->toArray();
+            if($price instanceof DocPropertiesInterface)
+            {
+                $this->other_prices[] = $price->toArray();
+                continue;
+            }
+
+            $this->other_prices[] = $price;
         }
         return $this;
     }
