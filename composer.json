@@ -2,6 +2,7 @@
     "name": "boxalino/data-integration-doc-php",
     "description": "Boxalino Real Time User Experience (RTUX) Data Integration Documents for PHP",
     "license": "MIT",
+    "version": "4.0.7",
     "authors": [
         {
             "name": "Boxalino AG",
@@ -19,7 +20,7 @@
     },
     "require": {
         "php": "^7.2 || ^8.0",
-        "symfony/console": ">=5.0",
+        "symfony/console": "^5.0 || ^6.3",
         "psr/log": "*"
     },
     "autoload": {
