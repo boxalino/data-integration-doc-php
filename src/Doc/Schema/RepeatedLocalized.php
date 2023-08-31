@@ -22,7 +22,7 @@ class RepeatedLocalized implements DocPropertiesInterface
     protected $value = [];
 
     /**
-     * @var string
+     * @var string | null
      */
     protected $value_id;
 
@@ -65,18 +65,18 @@ class RepeatedLocalized implements DocPropertiesInterface
     }
 
     /**
-     * @return string
+     * @return string | null
      */
-    public function getValueId(): string
+    public function getValueId(): ?string
     {
         return $this->value_id;
     }
 
     /**
-     * @param string $value_id
+     * @param string | null $value_id
      * @return self
      */
-    public function setValueId(string $value_id): self
+    public function setValueId(?string $value_id): self
     {
         $this->value_id = $value_id;
         return $this;
@@ -90,8 +90,8 @@ class RepeatedLocalized implements DocPropertiesInterface
     protected function toArrayList(): array
     {
         return [
-          'value' => $this->value,
-          'value_id' => $this->value_id
+            'value' => $this->value,
+            'value_id' => $this->value_id
         ];
     }
 

@@ -33,6 +33,11 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
      */
     protected $instantAttributesList;
 
+    /**
+     * @var array
+     */
+    protected $errors = [];
+
     public function __construct()
     {
         $this->attributeSchemaDefinitionList = new \ArrayObject();
@@ -152,6 +157,31 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
     public function getProperties() : array
     {
         return $this->properties;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasErrors() : bool
+    {
+        return (bool)count($this->errors);
+    }
+
+    /**
+     * @param string $error
+     * @return void
+     */
+    public function addError(string $error) : void
+    {
+        $this->errors[] = $error;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrors() : string
+    {
+        return json_encode(array_unique($this->errors));
     }
 
 

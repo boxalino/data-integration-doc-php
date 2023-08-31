@@ -31,6 +31,11 @@ trait DocHandlerIntegrationTrait
     protected $docs = [];
 
     /**
+     * @var array
+     */
+    protected $errors = [];
+
+    /**
      * generic integrate flow
      */
     public function integrate(): void
@@ -106,6 +111,13 @@ trait DocHandlerIntegrationTrait
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
                 $this->docData = array_merge_recursive($this->docData, $handler->getValues());
+                try{
+                    if($handler->hasErrors())
+                    {
+                        $this->errors[implode("-", array_slice(explode('\\', get_class($handler)), -3, 3))] = $handler->getErrors();
+                        $this->logWarning("Errors found: " . $handler->getErrors());
+                    }
+                } catch (\Throwable $exception) {}
             }
 
             $this->logTime("endTimeHandler");
@@ -175,5 +187,12 @@ trait DocHandlerIntegrationTrait
         return end($this->docs);
     }
 
+    /**
+     * @return array
+     */
+    public function getErrors() : array
+    {
+        return $this->errors;
+    }
 
 }

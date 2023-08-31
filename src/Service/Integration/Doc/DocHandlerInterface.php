@@ -82,5 +82,10 @@ interface DocHandlerInterface
      */
     public function getLogger() : LoggerInterface;
 
+    /**
+     * @return array
+     */
+    public function getErrors() : array;
+
 
 }
