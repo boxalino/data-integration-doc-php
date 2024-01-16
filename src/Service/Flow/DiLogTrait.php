@@ -24,13 +24,18 @@ trait DiLogTrait
     protected $diConfiguration;
 
     /**
+     *
+     */
+    protected $logValues = [];
+
+    /**
      * @param string $property
      */
     public function logTime(string $property) : void
     {
         if($this->getDiConfiguration()->isTest())
         {
-            $this->$property = microtime(true);
+            $this->logValues[$property] = microtime(true);
         }
     }
 
@@ -41,7 +46,7 @@ trait DiLogTrait
      */
     public function logDiff(string $endTime, string $startTime) : float
     {
-        return ($this->$endTime - $this->$startTime);
+        return ($this->logValues[$endTime] - $this->logValues[$startTime]);
     }
 
     /**

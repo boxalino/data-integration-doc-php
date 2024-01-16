@@ -11,6 +11,7 @@ use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
+#[AllowDynamicProperties]
 class DocAttributeValues implements DocAttributeValuesHandlerInterface
 {
 
