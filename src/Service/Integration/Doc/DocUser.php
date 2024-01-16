@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class DocUser implements DocUserHandlerInterface
 {
     use DocHandlerIntegrationTrait;
