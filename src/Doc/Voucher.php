@@ -7,7 +7,7 @@ namespace Boxalino\DataIntegrationDoc\Doc;
  */
 class Voucher implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
 
 }

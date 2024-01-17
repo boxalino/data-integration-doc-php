@@ -19,9 +19,9 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
  */
 class Order implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use TechnicalPropertiesTrait;
-    use TypedAttributesTrait;
+    use TypedPropertiesTrait;
 
     /**
      * the internal identifier of the order
@@ -1282,7 +1282,7 @@ class Order implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList() : array
+    public function toArrayList() : array
     {
         return array_merge(
             [

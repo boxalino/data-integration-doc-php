@@ -9,11 +9,12 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringAttribute;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Typed\StringLocalizedAttribute;
 
 /**
- * Trait TypedAttributesTrait
+ * Trait TypedPropertiesTrait
+ * These properties are part of all data structures
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
-trait TypedAttributesTrait
+trait TypedPropertiesTrait
 {
     /**
      * @var Array<<StringAttribute>>  | array

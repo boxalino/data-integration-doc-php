@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
-use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedPropertiesTrait;
 
 class Contact implements DocPropertiesInterface
 {
 
-    use DocPropertiesTrait;
-    use TypedAttributesTrait;
+    use PropertyToTrait;
+    use TypedPropertiesTrait;
 
     /**
      * @var string | null
@@ -1097,7 +1097,7 @@ class Contact implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             [

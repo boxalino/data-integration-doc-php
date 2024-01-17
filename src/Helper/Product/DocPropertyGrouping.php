@@ -1,22 +1,27 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper\Product;
+
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
+use Boxalino\DataIntegrationDoc\Helper\TypedAttributeTrait;
 
 /**
- * Trait DocProductAttributeTrait
+ * Class DocPropertyGrouping
+ * (replica of DocProductAttributeTrait)
  *
  * Grouping of properties for a given doc_X data structure
  * To be used for sync automation logic
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper\Product
  */
-trait DocProductAttributeTrait
+class DocPropertyGrouping
 {
 
+    use TypedAttributeTrait;
 
     /**
      * @return array
      */
-    public function getProductLocalizedSchemaProperties(): array
+    public function getLocalizedSchemaProperties(): array
     {
         return [
             DocSchemaInterface::FIELD_STATUS,
@@ -28,11 +33,10 @@ trait DocProductAttributeTrait
         ];
     }
 
-
     /**
      * @return array
      */
-    public function getProductSingleValueSchemaTypes() : array
+    public function getSingleValueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_INTERNAL_ID,
@@ -53,7 +57,7 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getProductBooleanSchemaTypes() : array
+    public function getBooleanSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_NEW,
@@ -66,9 +70,9 @@ trait DocProductAttributeTrait
     /**
      * @return array
      */
-    public function getProductMultivalueSchemaTypes() : array
+    public function getMultivalueSchemaTypes() : array
     {
-        return [
+        return array_merge([
             DocSchemaInterface::FIELD_ATTRIBUTE_VISIBILITY_GROUPING,
             DocSchemaInterface::FIELD_STATUS,
             DocSchemaInterface::FIELD_VISIBILITY,
@@ -77,25 +81,19 @@ trait DocProductAttributeTrait
             #DocSchemaInterface::FIELD_STORES,
             #DocSchemaInterface::FIELD_PRICE,
             #DocSchemaInterface::FIELD_PRICING,
-            DocSchemaInterface::FIELD_STRING,
-            DocSchemaInterface::FIELD_STRING_LOCALIZED,
-            DocSchemaInterface::FIELD_NUMERIC,
-            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
-            DocSchemaInterface::FIELD_DATETIME,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
             DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
             DocSchemaInterface::FIELD_IMAGES,
             DocSchemaInterface::FIELD_BRANDS,
             DocSchemaInterface::FIELD_SUPPLIERS,
             DocSchemaInterface::FIELD_LABELS,
             DocSchemaInterface::FIELD_PERIODS
-        ];
+        ], $this->getGenericTypedAttributes());
     }
 
     /**
      * @return array
      */
-    public function getProductContentSchemaTypes() : array
+    public function getContentSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_CATEGORIES,
@@ -105,5 +103,6 @@ trait DocProductAttributeTrait
             DocSchemaInterface::FIELD_PERIODS
         ];
     }
+
 
 }

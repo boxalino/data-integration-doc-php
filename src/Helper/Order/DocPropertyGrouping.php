@@ -1,21 +1,27 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper\Order;
+
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
+use Boxalino\DataIntegrationDoc\Helper\TypedAttributeTrait;
 
 /**
+ * Class DocPropertyGrouping for Order
  * Trait DocOrderAttributeTrait
  *
  * Grouping of properties for a given doc_X data structure
  * To be used for sync automation logic
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper\Order
  */
-trait DocOrderAttributeTrait
+class DocPropertyGrouping
 {
+
+    use TypedAttributeTrait;
 
     /**
      * @return array
      */
-    public function getOrderSingleValueSchemaTypes() : array
+    public function getSingleValueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_INTERNAL_ID,
@@ -48,7 +54,7 @@ trait DocOrderAttributeTrait
         ];
     }
 
-    public function getOrderNumericSchemaTypes() : array
+    public function getNumericSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_STATUS,
@@ -68,7 +74,7 @@ trait DocOrderAttributeTrait
     /**
      * @return array
      */
-    public function getOrderBooleanSchemaTypes() : array
+    public function getBooleanSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_IS_GIFT,
@@ -80,28 +86,22 @@ trait DocOrderAttributeTrait
     /**
      * @return array
      */
-    public function getOrderMultivalueSchemaTypes() : array
+    public function getMultivalueSchemaTypes() : array
     {
-        return [
+        return array_merge([
             DocSchemaInterface::FIELD_PRODUCTS,
             DocSchemaInterface::FIELD_COMMENTS,
             DocSchemaInterface::FIELD_INTERNAL_COMMENTS,
             DocSchemaInterface::FIELD_CUSTOMER_COMMENTS,
-            DocSchemaInterface::FIELD_STRING_LOCALIZED,
-            DocSchemaInterface::FIELD_NUMERIC,
-            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
-            DocSchemaInterface::FIELD_DATETIME,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED,
             DocSchemaInterface::FIELD_PRODUCT_RELATIONS,
             DocSchemaInterface::FIELD_VOUCHERS,
-            DocSchemaInterface::FIELD_STRING
-        ];
+        ], $this->getGenericTypedAttributes());
     }
 
     /**
      * @return array
      */
-    public function getOrderContentSchemaTypes() : array
+    public function getContentSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_PRODUCTS,

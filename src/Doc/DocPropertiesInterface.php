@@ -20,5 +20,15 @@ interface DocPropertiesInterface extends \JsonSerializable
      */
     public function toList() : array;
 
+    /**
+     * @return array
+     */
+    public function toArrayList() : array;
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods(): array;
+
 
 }

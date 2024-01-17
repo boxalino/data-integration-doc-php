@@ -1,21 +1,27 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper\Content;
+
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
+use Boxalino\DataIntegrationDoc\Helper\TypedAttributeTrait;
 
 /**
- * Trait DocContentAttributeTrait
+ * Class DocPropertyGrouping
+ * (prior version: DocContentAttributeTrait)
  *
  * Grouping of properties for a given doc_X data structure
  * To be used for sync automation logic
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper\Content
  */
-trait DocContentAttributeTrait
+class DocPropertyGrouping
 {
+
+    use TypedAttributeTrait;
 
     /**
      * @return array
      */
-    public function getContentDatetimeSchemaTypes() : array
+    public function getDatetimeSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_CREATION,
@@ -26,7 +32,7 @@ trait DocContentAttributeTrait
     /**
      * @return array
      */
-    public function getContentSingleValueSchemaTypes() : array
+    public function getSingleValueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_ID,
@@ -41,7 +47,7 @@ trait DocContentAttributeTrait
     /**
      * @return array
      */
-    public function getContentLocalizedSchemaProperties(): array
+    public function getLocalizedSchemaProperties(): array
     {
         return [
             DocSchemaInterface::FIELD_TITLE,
@@ -51,11 +57,10 @@ trait DocContentAttributeTrait
         ];
     }
 
-
     /**
      * @return array
      */
-    public function getContentBooleanSchemaTypes() : array
+    public function getBooleanSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_STATUS
@@ -65,9 +70,9 @@ trait DocContentAttributeTrait
     /**
      * @return array
      */
-    public function getContentMultivalueSchemaTypes() : array
+    public function getMultivalueSchemaTypes() : array
     {
-        return [
+        return array_merge([
             DocSchemaInterface::FIELD_PARENT_CONTENT_IDS,
             DocSchemaInterface::FIELD_PRODUCTS,
             DocSchemaInterface::FIELD_CONTENTS,
@@ -77,35 +82,26 @@ trait DocContentAttributeTrait
             DocSchemaInterface::FIELD_LABELS,
             DocSchemaInterface::FIELD_STORES,
             DocSchemaInterface::FIELD_PERIODS,
-            DocSchemaInterface::FIELD_STRING,
-            DocSchemaInterface::FIELD_STRING_LOCALIZED,
-            DocSchemaInterface::FIELD_NUMERIC,
-            DocSchemaInterface::FIELD_NUMERIC_LOCALIZED,
-            DocSchemaInterface::FIELD_DATETIME,
-            DocSchemaInterface::FIELD_DATETIME_LOCALIZED
-        ];
+        ], $this->getGenericTypedAttributes());
     }
 
     /**
      * @return array
      */
-    public function getContentContentSchemaTypes() : array
+    public function getContentSchemaTypes() : array
     {
-        return [
+        return array_merge([
             DocSchemaInterface::FIELD_IMAGES,
-            DocSchemaInterface::FIELD_PRODUCTS,
-            DocSchemaInterface::FIELD_CONTENTS,
-            DocSchemaInterface::FIELD_CUSTOMERS,
             DocSchemaInterface::FIELD_TAGS,
             DocSchemaInterface::FIELD_LABELS,
             DocSchemaInterface::FIELD_PERIODS
-        ];
+        ], $this->getRelationSchemaTypes());
     }
 
     /**
      * @return array
      */
-    public function getContentRelationSchemaTypes() : array
+    public function getRelationSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_PRODUCTS,

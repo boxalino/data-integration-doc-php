@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 /**
@@ -12,7 +12,7 @@ use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 class Period implements DocPropertiesInterface
 {
 
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var Array<<Localized>>
@@ -38,7 +38,17 @@ class Period implements DocPropertiesInterface
      */
     public function setStartDatetime(array $start_datetime): Period
     {
-        $this->start_datetime = $start_datetime;
+        foreach($start_datetime as $value)
+        {
+            if($value instanceof Localized)
+            {
+                $this->start_datetime[] = $value->toArray();
+                continue;
+            }
+
+            $this->start_datetime[] = $value;
+        }
+
         return $this;
     }
 
@@ -56,7 +66,16 @@ class Period implements DocPropertiesInterface
      */
     public function setEndDatetime(array $end_datetime): Period
     {
-        $this->end_datetime = $end_datetime;
+        foreach($end_datetime as $value)
+        {
+            if($value instanceof Localized)
+            {
+                $this->end_datetime[] = $value->toArray();
+                continue;
+            }
+
+            $this->end_datetime[] = $value;
+        }
         return $this;
     }
 
@@ -65,7 +84,7 @@ class Period implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return [
             'end_datetime' => $this->end_datetime,

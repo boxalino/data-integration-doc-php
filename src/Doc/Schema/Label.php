@@ -1,50 +1,13 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
-
-class Label implements DocPropertiesInterface
+class Label extends Tag
 {
-    use DocPropertiesTrait;
-
-    /**
-     * @var string
-     */
-    protected $type;
 
     /**
      * @var string
      */
     protected $name;
-
-    /**
-     * @var string
-     */
-    protected $value;
-
-    /**
-     * @var Array<<Localized>>
-     */
-    protected $loc_values = [];
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     * @return Label
-     */
-    public function setType(string $type): Label
-    {
-        $this->type = $type;
-        return $this;
-    }
 
     /**
      * @return string
@@ -64,55 +27,17 @@ class Label implements DocPropertiesInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param string $value
-     * @return Label
-     */
-    public function setValue(string $value): Label
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocValues(): array
-    {
-        return $this->loc_values;
-    }
-
-    /**
-     * @param array $loc_values
-     * @return Label
-     */
-    public function setLocValues(array $loc_values): Label
-    {
-        $this->loc_values = $loc_values;
-        return $this;
-    }
 
     /**
      * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
-        return [
-            'type' => $this->type,
-            'name' => $this->name,
-            'value' => $this->value,
-            'loc_values' => $this->loc_values
-        ];
+        return array_merge(parent::toArrayList(), [
+            'name' => $this->name
+        ]);
     }
 
     /**
@@ -120,16 +45,10 @@ class Label implements DocPropertiesInterface
      */
     public function toArrayClassMethods() : array
     {
-        return [
-            'getType',
-            'setType',
+        return array_merge(parent::toArrayClassMethods(), [
             'getName',
             'setName',
-            'getValue',
-            'setValue',
-            'getLocValues',
-            'setLocValues',
-        ];
+        ]);
     }
 
 

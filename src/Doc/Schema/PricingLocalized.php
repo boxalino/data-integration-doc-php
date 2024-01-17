@@ -32,7 +32,7 @@ class PricingLocalized extends PriceLocalized
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             parent::toArrayList(),

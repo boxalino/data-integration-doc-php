@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema\Order;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
-use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
 class Voucher implements DocPropertiesInterface, DocGeneratorInterface
 {
 
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use GeneratorHydratorTrait;
-    use TypedAttributesTrait;
+    use TypedPropertiesTrait;
 
     /**
      * @var string | null
@@ -227,7 +227,7 @@ class Voucher implements DocPropertiesInterface, DocGeneratorInterface
      *
      * @return array
      */
-    protected function toArrayList() : array
+    public function toArrayList() : array
     {
         return array_merge(
             [

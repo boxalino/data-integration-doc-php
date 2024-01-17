@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema\Order;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
@@ -9,7 +9,7 @@ use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 class Comment implements DocPropertiesInterface, DocGeneratorInterface
 {
 
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use GeneratorHydratorTrait;
 
     /**
@@ -109,7 +109,7 @@ class Comment implements DocPropertiesInterface, DocGeneratorInterface
      *
      * @return array
      */
-    protected function toArrayList() : array
+    public function toArrayList() : array
     {
         return [
           'created' => $this->created,

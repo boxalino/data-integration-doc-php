@@ -8,8 +8,8 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\ProductGroupLink;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Status;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Stock;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -17,8 +17,8 @@ class Sku  implements DocGeneratorInterface
 {
 
     use DocProductTrait;
-    use TypedAttributesTrait;
-    use DocPropertiesTrait;
+    use TypedPropertiesTrait;
+    use PropertyToTrait;
     use GeneratorHydratorTrait;
 
     /** Product Group & SKU specific attributes */

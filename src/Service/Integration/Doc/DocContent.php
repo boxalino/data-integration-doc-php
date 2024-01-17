@@ -20,6 +20,7 @@ class DocContent implements DocContentHandlerInterface
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
+        $this->propertyHandlerList = new \ArrayIterator();
     }
 
     /**

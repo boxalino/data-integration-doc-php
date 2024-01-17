@@ -23,8 +23,8 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 class Product implements DocPropertiesInterface
 {
 
-    use DocPropertiesTrait;
-    use TypedAttributesTrait;
+    use PropertyToTrait;
+    use TypedPropertiesTrait;
 
     /**
      * @var string | null
@@ -1077,7 +1077,7 @@ class Product implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             [

@@ -2,11 +2,11 @@
 namespace Boxalino\DataIntegrationDoc\Doc;
 
 /**
- * Trait DocPropertiesTrait
+ * Trait PropertyToTrait
  *
  * @package Boxalino\DataIntegrationDoc\Doc
  */
-trait DocPropertiesTrait
+trait PropertyToTrait
 {
 
     /**

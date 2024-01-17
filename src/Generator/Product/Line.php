@@ -3,8 +3,8 @@ namespace Boxalino\DataIntegrationDoc\Generator\Product;
 
 use Boxalino\DataIntegrationDoc\Doc\DocProductTrait;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
-use Boxalino\DataIntegrationDoc\Doc\TypedAttributesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
+use Boxalino\DataIntegrationDoc\Doc\TypedPropertiesTrait;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
 use Boxalino\DataIntegrationDoc\Generator\GeneratorHydratorTrait;
 
@@ -17,8 +17,8 @@ class Line implements DocGeneratorInterface
 {
 
     use DocProductTrait;
-    use DocPropertiesTrait;
-    use TypedAttributesTrait;
+    use PropertyToTrait;
+    use TypedPropertiesTrait;
     use GeneratorHydratorTrait;
 
     /**

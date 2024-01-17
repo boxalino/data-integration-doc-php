@@ -1,8 +1,13 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper;
 
+use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Category;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Customer;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Label;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
+use Boxalino\DataIntegrationDoc\Doc\Schema\Period;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Price;
 use Boxalino\DataIntegrationDoc\Doc\Schema\PriceLocalized;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Pricing;
@@ -19,55 +24,16 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
 use Boxalino\DataIntegrationDoc\Doc\Schema\Content;
 
 /**
- * Trait DocSchemaIntegrationTrait
+ * Class DocSchemaGetter
+ * (segment from DocSchemaIntegrationTrait)
  *
  * Generic property generation based on a given schema
  * Can be used throughout integrations
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper
  */
-trait DocSchemaIntegrationTrait
+class DocSchemaGetter
 {
-
-    /**
-     * @param array $values
-     * @return Content
-     */
-    public function getContentSchema(array $values) : Content
-    {
-        $schema = new Content();
-        try {
-            if(isset($values["type"]))
-            {
-                $schema->setType($values["type"]);
-            }
-
-            if(isset($values["name"]))
-            {
-                $schema->setName($values["name"]);
-            }
-
-            if(isset($values["content_type"]))
-            {
-                $schema->setContentType($values["content_type"]);
-            }
-
-            if(isset($values["content_id"]))
-            {
-                $schema->setContentId($values["content_id"]);
-            }
-
-            if(isset($values["value"]))
-            {
-                $schema->setValue($values["value"]);
-            }
-        } catch(\Throwable $exception)
-        {
-            //
-        }
-
-        return $schema;
-    }
 
     /**
      * @param array $languages
@@ -326,7 +292,6 @@ trait DocSchemaIntegrationTrait
         return $typedProperty;
     }
 
-
     /**
      * @param array|string|int $item
      * @return array<<Localized>>
@@ -442,18 +407,39 @@ trait DocSchemaIntegrationTrait
      * @param array $localizedValues
      * @return Tag
      */
-    public function getTagSchema(string $value, array $languages = [], string $type = "generic", array $localizedValues = []) : Tag
+    public function getTagSchema(string $value, string $type = "generic", array $localizedValues = [], array $languages = []) : Tag
     {
-        $property = new Tag();
-        $property->setValue($value);
-        $property->setType($type);
+        $schema = new Tag();
+        $schema->setValue($value);
+        $schema->setType($type);
 
         if(count($languages) > 1 && !empty($localizedValues))
         {
-            $property->setLocValues($this->getLocalizedSchema($localizedValues, $languages));
+            $schema->setLocValues($this->getLocalizedSchema($localizedValues, $languages));
         }
 
-        return $property;
+        return $schema;
+    }
+
+    /**
+     * @param array $record
+     * @param array $languages
+     * @return Period
+     */
+    public function getPeriodSchema(array $record, array $languages = []) : Period
+    {
+        $schema = new Period();
+        if(isset($record['start_time']))
+        {
+            $schema->setStartDatetime($this->getLocalizedSchema($record['start_time'], $languages));
+        }
+
+        if(isset($record['end_time']))
+        {
+            $schema->setEndTime($this->getLocalizedSchema($record['end_time'], $languages));
+        }
+
+        return $schema;
     }
 
     /**
@@ -463,9 +449,31 @@ trait DocSchemaIntegrationTrait
      * @param array $localizedValues
      * @return DocPropertiesInterface
      */
-    public function getImagesSchema($item, array $languages=[], string $type = "main", array $localizedValues = []) : DocPropertiesInterface
+    public function getImagesSchema($item, string $type = "main", array $languages=[]) : DocPropertiesInterface
     {
-        return $this->getRepeatedGenericLocalizedSchema($item, $languages, $type, new RepeatedGenericLocalized());
+        return $this->getRepeatedGenericLocalizedSchema($item, $languages, $type, new RepeatedGenericLocalized(), "value_id");
+    }
+
+    /**
+     * @param string $value
+     * @param string $name
+     * @param string $type
+     * @param array $localizedValues
+     * @param array $languages
+     * @return Label
+     */
+    public function getLabelSchema(string $value, string $name, string $type="main", array $localizedValues = [], array $languages = []) : Label
+    {
+        $schema = new Label();
+        $schema->setValue($value);
+        $schema->setName($name);
+        $schema->setType($type);
+        if(count($languages) > 1 && !empty($localizedValues))
+        {
+            $schema->setLocValues($this->getLocalizedSchema($localizedValues, $languages));
+        }
+
+        return $schema;
     }
 
     /**
@@ -506,7 +514,7 @@ trait DocSchemaIntegrationTrait
      * @param \ArrayObject $relation
      * @return Product
      */
-    public function getProductRelationSchema(\ArrayObject $relation) : Product
+    public function getProductSchema(\ArrayObject $relation) : Product
     {
         $schema = new Product();
         if($relation->offsetExists("type"))
@@ -532,5 +540,80 @@ trait DocSchemaIntegrationTrait
 
         return $schema;
     }
+
+    /**
+     * @param array $values
+     * @return Content
+     */
+    public function getContentSchema(array $values) : Content
+    {
+        $schema = new Content();
+        try {
+            if(isset($values["type"]))
+            {
+                $schema->setType($values["type"]);
+            }
+
+            if(isset($values["name"]))
+            {
+                $schema->setName($values["name"]);
+            }
+
+            if(isset($values["content_type"]))
+            {
+                $schema->setContentType($values["content_type"]);
+            }
+
+            if(isset($values["content_id"]))
+            {
+                $schema->setContentId($values["content_id"]);
+            }
+
+            if(isset($values["value"]))
+            {
+                $schema->setValue($values["value"]);
+            }
+        } catch(\Throwable $exception) {}
+
+        return $schema;
+    }
+
+    /**
+     * @param array $values
+     * @return Customer
+     */
+    public function getCustomerSchema(array $values) : Customer
+    {
+        $schema = new Customer();
+        try {
+            if(isset($values["type"]))
+            {
+                $schema->setType($values["type"]);
+            }
+
+            if(isset($values["name"]))
+            {
+                $schema->setName($values["name"]);
+            }
+
+            if(isset($values["persona_id"]))
+            {
+                $schema->setPersonaId($values["persona_id"]);
+            }
+
+            if(isset($values["customer_id"]))
+            {
+                $schema->setCustomerId($values["customer_id"]);
+            }
+
+            if(isset($values["value"]))
+            {
+                $schema->setValue($values["value"]);
+            }
+        } catch(\Throwable $exception) {}
+
+        return $schema;
+    }
+
 
 }

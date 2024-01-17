@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 /**
@@ -11,7 +11,7 @@ use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
  */
 class Visibility implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var Array<<string>>
@@ -93,7 +93,7 @@ class Visibility implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return [
             'values' => $this->values,

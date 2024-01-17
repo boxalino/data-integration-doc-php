@@ -9,7 +9,7 @@ namespace Boxalino\DataIntegrationDoc\Doc;
  */
 class Language implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use TechnicalPropertiesTrait;
 
     /**
@@ -63,7 +63,7 @@ class Language implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             [

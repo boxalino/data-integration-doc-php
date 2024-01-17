@@ -195,5 +195,8 @@ interface DocSchemaInterface
     public const FIELD_CONTENTS="contents";
     public const FIELD_CUSTOMERS="customers";
 
+    /** user_generated_content properties */
+    public const FIELD_PARENT_UGC_IDS="parent_ugc_ids";
+    public const FIELD_VALUE="value";
 
 }

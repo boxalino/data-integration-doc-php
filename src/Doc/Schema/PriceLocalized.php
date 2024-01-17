@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 class PriceLocalized implements DocPropertiesInterface
 {
 
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var string
@@ -88,7 +88,7 @@ class PriceLocalized implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return [
             'language' => $this->language,

@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc;
 
+use Boxalino\DataIntegrationDoc\Helper\DocSchemaGetter;
+use Boxalino\DataIntegrationDoc\Helper\TypedAttributeTrait;
+
 /**
  * Class DocSchemaPropertyHandler
  *
@@ -9,9 +12,7 @@ namespace Boxalino\DataIntegrationDoc\Doc;
 abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInterface
 {
 
-    use DocPropertiesTrait;
-    use DocSchemaIntegrationTrait;
-    use GenericAttributeTrait;
+    use TypedAttributeTrait;
 
     /**
      * @var \ArrayObject
@@ -38,16 +39,35 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
      */
     protected $errors = [];
 
+    /**
+     * @var DocSchemaGetter
+     */
+    protected $schemaGetter;
+
     public function __construct()
     {
         $this->attributeSchemaDefinitionList = new \ArrayObject();
         $this->instantAttributesList = new \ArrayIterator();
+        $this->schemaGetter = new DocSchemaGetter();
     }
 
     /**
      * @return array
      */
     abstract function getValues() : array;
+
+    /**
+     * @return DocSchemaGetter
+     */
+    public function schemaGetter() : DocSchemaGetter
+    {
+        if(is_null($this->schemaGetter))
+        {
+            $this->schemaGetter = new DocSchemaGetter();
+        }
+
+        return $this->schemaGetter;
+    }
 
     /**
      * Dynamically configure the attribute schema for every property
@@ -116,7 +136,7 @@ abstract class DocSchemaPropertyHandler implements DocSchemaPropertyHandlerInter
         if(isset($this->properties[$propertyName]))
         {
             $maping = $this->properties[$propertyName];
-            if(in_array($maping, $this->getGenericAttributeGrouping()))
+            if(in_array($maping, $this->getGenericTypedAttributes()))
             {
                 return $propertyName;
             }

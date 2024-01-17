@@ -10,7 +10,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\User\Contact as UserContact;
  */
 class User extends Contact implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use TechnicalPropertiesTrait;
 
     /**
@@ -62,7 +62,7 @@ class User extends Contact implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             parent::toArrayList(),

@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Doc\Attribute;
-use Boxalino\DataIntegrationDoc\Doc\DocSchemaIntegrationTrait;
 use Boxalino\DataIntegrationDoc\Service\Flow\LoadTrait;
 use Boxalino\DataIntegrationDoc\Generator\Attribute\Doc;
 use Psr\Log\LoggerInterface;
@@ -19,7 +18,6 @@ class DocAttribute implements DocAttributeHandlerInterface
 {
 
     use DocHandlerIntegrationTrait;
-    use DocSchemaIntegrationTrait;
     use LoadTrait;
 
     /**

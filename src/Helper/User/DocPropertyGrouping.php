@@ -1,17 +1,20 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper\User;
+
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 
 /**
- * Trait DocUserAttributeTrait
+ * Class DocPropertyGrouping
+ * (copy from DocUserAttributeTrait)
  *
  * Grouping of properties for a given doc_X data structure
  * To be used for sync automation logic
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper\User
  */
-trait DocUserAttributeTrait
+class DocPropertyGrouping
 {
-    public function getUserNumericSchemaTypes() : array
+    public function getNumericSchemaTypes() : array
     {
         return [];
     }
@@ -19,7 +22,7 @@ trait DocUserAttributeTrait
     /**
      * @return array
      */
-    public function getUserBooleanSchemaTypes() : array
+    public function getBooleanSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_VAT_IS_VALID,
@@ -30,7 +33,7 @@ trait DocUserAttributeTrait
     /**
      * @return array
      */
-    public function getUserMultivalueSchemaTypes() : array
+    public function getMultivalueSchemaTypes() : array
     {
         return [
             DocSchemaInterface::FIELD_CHILDREN_IDS,

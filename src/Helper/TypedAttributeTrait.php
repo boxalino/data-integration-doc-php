@@ -1,18 +1,17 @@
 <?php declare(strict_types=1);
-namespace Boxalino\DataIntegrationDoc\Doc;
+namespace Boxalino\DataIntegrationDoc\Helper;
+
+use Boxalino\DataIntegrationDoc\Doc\DocSchemaInterface;
 
 /**
- * Trait DocProductAttributeTrait
+ * Trait TypedAttributeTrait
  *
- * @package Boxalino\DataIntegrationDoc\Doc
+ * @package Boxalino\DataIntegrationDoc\Helper
  */
-trait GenericAttributeTrait
+trait TypedAttributeTrait
 {
 
-    /**
-     * @return array
-     */
-    public function getGenericAttributeGrouping() : array
+    public function getGenericTypedAttributes() : array
     {
         return [
             DocSchemaInterface::FIELD_STRING,

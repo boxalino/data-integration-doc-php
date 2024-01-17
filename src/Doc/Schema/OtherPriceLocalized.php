@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 class OtherPriceLocalized extends PriceLocalized
     implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var string
@@ -60,7 +60,7 @@ class OtherPriceLocalized extends PriceLocalized
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             parent::toArrayList(),

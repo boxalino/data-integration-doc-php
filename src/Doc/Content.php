@@ -14,8 +14,8 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
  */
 class Content implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
-    use TypedAttributesTrait;
+    use PropertyToTrait;
+    use TypedPropertiesTrait;
     use TechnicalPropertiesTrait;
 
     /**
@@ -392,16 +392,19 @@ class Content implements DocPropertiesInterface
 
     /**
      * @param [] $title
-     * @return Content
+     * @return UserGeneratedContent
      */
-    public function setTitle(array $titles): Content
+    public function setTitle(array $titles): UserGeneratedContent
     {
         foreach($titles as $title)
         {
-            if($title instanceof  Localized)
+            if($title instanceof Localized)
             {
                 $this->title[]  = $title->toArray();
+                continue;
             }
+
+            $this->title[] = $title;
         }
 
         return $this;
@@ -427,7 +430,10 @@ class Content implements DocPropertiesInterface
             if($description instanceof Localized)
             {
                 $this->description[]  = $description->toArray();
+                continue;
             }
+
+            $this->description[] = $description;
         }
 
         return $this;
@@ -452,7 +458,10 @@ class Content implements DocPropertiesInterface
             if($short_description instanceof Localized)
             {
                 $this->short_description[] = $short_description->toArray();
+                continue;
             }
+
+            $this->short_description[] = $short_description;
         }
 
         return $this;
@@ -671,7 +680,7 @@ class Content implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList() : array
+    public function toArrayList() : array
     {
         return array_merge(
             [

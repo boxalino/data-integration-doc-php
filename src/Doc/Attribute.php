@@ -14,7 +14,7 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Visibility;
  */
 class Attribute implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use TechnicalPropertiesTrait;
 
     /**
@@ -750,7 +750,7 @@ class Attribute implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge([
             'name' => $this->name,

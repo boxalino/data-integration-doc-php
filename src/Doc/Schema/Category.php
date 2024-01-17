@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc\Schema;
 
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 use Boxalino\DataIntegrationDoc\Doc\DocPropertiesInterface;
 
 class Category implements DocPropertiesInterface
 {
 
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var string | null
@@ -70,7 +70,7 @@ class Category implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return [
             'categorization' => $this->categorization,

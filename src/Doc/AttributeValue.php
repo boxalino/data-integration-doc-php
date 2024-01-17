@@ -16,9 +16,9 @@ use Boxalino\DataIntegrationDoc\Doc\Schema\Tag;
  */
 class AttributeValue implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
     use TechnicalPropertiesTrait;
-    use TypedAttributesTrait;
+    use TypedPropertiesTrait;
 
     /**
      * @var string
@@ -355,7 +355,7 @@ class AttributeValue implements DocPropertiesInterface
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return array_merge(
             [

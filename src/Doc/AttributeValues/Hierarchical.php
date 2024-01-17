@@ -2,7 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Doc\AttributeValues;
 
 use Boxalino\DataIntegrationDoc\Doc\Schema\Localized;
-use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
+use Boxalino\DataIntegrationDoc\Doc\PropertyToTrait;
 
 /**
  * Class Hierarchical
@@ -14,7 +14,7 @@ use Boxalino\DataIntegrationDoc\Doc\DocPropertiesTrait;
  */
 class Hierarchical implements \JsonSerializable
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
     /**
      * @var string
@@ -136,7 +136,7 @@ class Hierarchical implements \JsonSerializable
      *
      * @return array
      */
-    protected function toArrayList(): array
+    public function toArrayList(): array
     {
         return [
             'attribute_name' => $this->attribute_name,

@@ -7,6 +7,6 @@ namespace Boxalino\DataIntegrationDoc\Doc;
  */
 class Bundle implements DocPropertiesInterface
 {
-    use DocPropertiesTrait;
+    use PropertyToTrait;
 
 }

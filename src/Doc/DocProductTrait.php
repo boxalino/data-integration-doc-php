@@ -286,7 +286,7 @@ trait DocProductTrait
                 $this->product_relations[] = $product->toArray();
                 continue;
             }
-            
+
             $this->product_relations[] = $product;
         }
 

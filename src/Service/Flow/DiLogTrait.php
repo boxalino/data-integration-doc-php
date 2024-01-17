@@ -24,7 +24,7 @@ trait DiLogTrait
     protected $diConfiguration;
 
     /**
-     *
+     * @var array
      */
     protected $logValues = [];
 
