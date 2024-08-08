@@ -21,7 +21,7 @@ trait DiExceptionTrait
     {
         foreach($this->retryMessages($mode) as $message)
         {
-            if(strpos($exception->getMessage(), $message))
+            if(strpos($this->_exceptionMessage($exception), $message))
             {
                 return true;
             }
@@ -50,5 +50,20 @@ trait DiExceptionTrait
         }
     }
 
+
+    /**
+     * @param \Throwable $exception
+     * @return string
+     */
+    protected function _exceptionMessage(\Throwable $exception) : string
+    {
+        $message = $exception->getMessage();
+        if($exception instanceof \GuzzleHttp\Exception\ClientException)
+        {
+            $message = $exception->getResponse()->getBody()->getContents();
+        }
+
+        return $message;
+    }
 
 }

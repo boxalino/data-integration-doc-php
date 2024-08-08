@@ -28,7 +28,7 @@ trait SyncStartTrait
                     $this->getEndpointSyncStart(),
                     $this->getHttpRequestHeaders()
                 ),
-                $this->getHttpRequestOptions(10,30)
+                $this->getHttpRequestOptions(5,30)
             );
             $this->log("End of calling for the 'SYNC START'");
         } catch (\Throwable $exception) {
@@ -37,7 +37,7 @@ trait SyncStartTrait
                 return;
             }
 
-            $this->log("Error during calling for the 'SYNC START'");
+            $this->log("Error during calling for the 'SYNC START': " . $this->_exceptionMessage($exception));
         }
     }
 

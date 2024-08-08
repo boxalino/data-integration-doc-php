@@ -31,7 +31,7 @@ trait LoadTrait
                     $this->getHttpRequestHeaders($type),
                     $document
                 ),
-                $this->getHttpRequestOptions(300)
+                $this->getHttpRequestOptions(180)
             );
             $this->log("End for 'LOAD REQUEST': the $type file is successfully loaded to BQ");
         } catch (\Throwable $exception)
@@ -40,7 +40,7 @@ trait LoadTrait
             {
                 $this->fallbackLoad = false;
                 $this->log("Retry call out for LOAD for " . $this->getDiConfiguration()->getTm());
-                sleep(60);
+                sleep(30);
 
                 $this->load($document, $type);
                 return;
@@ -61,7 +61,7 @@ trait LoadTrait
 
             throw new FailDocLoadException(
                 "Doc Load failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
-                . $exception->getMessage()
+                . $this->_exceptionMessage($exception)
             );
         }
     }

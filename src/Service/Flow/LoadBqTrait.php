@@ -43,8 +43,8 @@ trait LoadBqTrait
             if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoadBq)
             {
                 $this->fallbackLoadBq = false;
-                $this->log("Retry call out for Load BQ for " . $this->getDiConfiguration()->getTm());
-                sleep(60);
+                $this->log("Error during 'LOADBQ REQUEST' {$this->_exceptionMessage($exception)}. Retry call out for Load BQ for {$this->getDiConfiguration()->getTm()}");
+                sleep(30);
 
                 $this->loadBq();
                 return;
@@ -55,7 +55,7 @@ trait LoadBqTrait
                 return;
             }
 
-            throw new FailDocLoadException("Doc Load failed. Exception: " . $exception->getMessage());
+            throw new FailDocLoadException("Doc Load failed. Exception: " . $this->_exceptionMessage($exception));
         }
     }
 

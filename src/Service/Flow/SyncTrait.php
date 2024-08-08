@@ -2,7 +2,6 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
-use Boxalino\DataIntegrationDoc\Service\ErrorHandler\StopSyncException;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -53,7 +52,7 @@ trait SyncTrait
                 {
                     $this->fallbackSync = false;
                     $this->log("Retry call out for SYNC for " . $this->getDiConfiguration()->getTm());
-                    sleep(60);
+                    sleep(30);
 
                     $this->sync();
                     return;
@@ -62,13 +61,13 @@ trait SyncTrait
                 throw new FailSyncException(
                     "Boxalino Data Integration SYNC REQUEST encountered an error {$this->getDiConfiguration()->getAccount()} " .
                     " on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()}. Please report this incident to Boxalino."
-                    . $exception->getMessage()
+                    . $this->_exceptionMessage($exception)
                 );
             }
 
             throw new FailSyncException(
                 "Boxalino Data Integration sync request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
-                . $exception->getMessage()
+                . $this->_exceptionMessage($exception)
             );
         }
     }

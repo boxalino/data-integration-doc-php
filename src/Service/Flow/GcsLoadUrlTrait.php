@@ -36,7 +36,7 @@ trait GcsLoadUrlTrait
                     $this->getEndpointLoadChunk(),
                     $this->getHttpRequestHeaders($this->getDocType(), (int) $this->getDiConfiguration()->getChunk())
                 ),
-                $this->getHttpRequestOptions(300)
+                $this->getHttpRequestOptions(80)
             );
 
             $this->useChunk();
@@ -48,12 +48,12 @@ trait GcsLoadUrlTrait
             {
                 $this->fallbackGcsLoadUrl = false;
                 $this->log("Retry call out for GCS Load URL for " . $this->getDiConfiguration()->getTm());
-                sleep(60);
+                sleep(30);
 
                 return $this->getGcsLoadUrl();
             }
 
-            throw new FailDocLoadException("Accessing GcsLoaderUrl failed. Exception: " . $exception->getMessage());
+            throw new FailDocLoadException("Accessing GcsLoaderUrl failed. Exception: " . $this->_exceptionMessage($exception));
         }
     }
 

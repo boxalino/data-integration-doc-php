@@ -36,11 +36,10 @@ trait LoadByChunkTrait
                     ],
                     $document
                 ),
-                [ 'connect_timeout' => 900, 'timeout' => 0 ]
+                ['connect_timeout' => 180, 'timeout' => 0]
             );
 
-            if($this->getDiConfiguration()->isTest())
-            {
+            if ($this->getDiConfiguration()->isTest()) {
                 $uploadId = $upload->getHeader("X-GUploader-UploadID")[0];
                 $loadedSize = $upload->getHeader("x-goog-stored-content-length")[0];
                 $this->getLogger()->info("{$this->getDiConfiguration()->getType()} Chunk loaded to Boxalino GCS. Code - $uploadId. Load size - $loadedSize ");
@@ -49,24 +48,23 @@ trait LoadByChunkTrait
             $this->log("End for 'LOADBYCHUNK REQUEST': the {$this->getDocType()} data chunk is successfully loaded to GCS");
         } catch (\Throwable $exception)
         {
+            if($exception instanceof FailDocLoadException)
+            {
+                throw $exception;
+            }
+
+            $excMessage = $this->_exceptionMessage($exception);
             if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoadByChunk)
             {
                 $this->fallbackLoadByChunk = false;
-                $this->log("Failed LOAD BY CHUNK with: " . $exception->getMessage());
-                $this->log("Retry call out for LOAD BY CHUNK for " . $this->getDiConfiguration()->getTm());
-                sleep(60);
+                $this->log("Failed LOAD BY CHUNK with: $excMessage. Retry call out for LOAD BY CHUNK for {$this->getDiConfiguration()->getTm()}");
+                sleep(30);
 
                 $this->loadByChunk($document);
                 return;
             }
 
-            if(strpos($exception->getMessage(), "timed out after"))
-            {
-                $this->getLogger()->alert("Please review the timeout for the loadByChunk call. The document took longer to be exported.". $exception->getMessage());
-                return;
-            }
-
-            throw new FailDocLoadException("Doc Load Chunk failed. Exception: " . $exception->getMessage());
+            throw new FailDocLoadException("Doc Load Chunk failed. Exception: " . $excMessage);
         }
     }
 

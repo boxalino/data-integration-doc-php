@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
-use Boxalino\DataIntegrationDoc\Service\ErrorHandler\FailSyncException;
 use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
 use GuzzleHttp\Psr7\Request;
 
@@ -37,7 +36,7 @@ trait SyncCheckTrait
                     $this->getEndpointSyncCheck(),
                     $this->getHttpRequestHeaders()
                 ),
-                $this->getHttpRequestOptions(120)
+                $this->getHttpRequestOptions(80)
             );
 
             $checkInfo = json_decode($syncCheckRequest->getBody()->getContents(), true);
@@ -58,21 +57,18 @@ trait SyncCheckTrait
             {
                 $this->fallbackSyncCheck = false;
                 $this->log("Retry call out for SYNC CHECK for " . $this->getDiConfiguration()->getTm());
-                sleep(60);
+                sleep(30);
 
                return $this->syncCheck();
             }
 
-            if (strpos($exception->getMessage(), "timed out after"))
-            {
-                return null;
-            }
-            
-            throw new FailSyncException(
-                "Boxalino Data Integration sync check request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
-                . $exception->getMessage()
+            $this->log(
+                "Boxalino Data Integration SYNC CHECK request failed for {$this->getDiConfiguration()->getAccount()} on {$this->getDiConfiguration()->getMode()} mode at {$this->getDiConfiguration()->getTm()} with exception: "
+                . $this->_exceptionMessage($exception)
             );
         }
+
+        return null;
     }
 
 
