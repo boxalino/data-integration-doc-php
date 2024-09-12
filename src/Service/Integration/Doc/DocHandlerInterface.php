@@ -83,6 +83,12 @@ interface DocHandlerInterface
     public function getLogger() : LoggerInterface;
 
     /**
+     * @param LoggerInterface $logger
+     * @return void
+     */
+    public function setLogger(LoggerInterface $logger) : void;
+
+    /**
      * @return array
      */
     public function getErrors() : array;

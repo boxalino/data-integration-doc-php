@@ -110,6 +110,7 @@ trait DocHandlerIntegrationTrait
 
             if($handler instanceof DocSchemaPropertyHandlerInterface)
             {
+                $handler->setLogger($this->getLogger());
                 $this->docData = array_merge_recursive($this->docData, $handler->getValues());
                 try{
                     if($handler->hasErrors())

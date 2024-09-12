@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Boxalino\DataIntegrationDoc\Doc;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Interface DocSchemaPropertyHandlerInterface
  *
@@ -50,6 +52,12 @@ interface DocSchemaPropertyHandlerInterface
      * @return DocSchemaPropertyHandlerInterface
      */
     public function allowPropertyOnInstantMode(string $propertyName) : DocSchemaPropertyHandlerInterface;
+
+    /**
+     * @param LoggerInterface $logger
+     * @return void
+     */
+    public function setLogger(LoggerInterface $logger) : void;
 
 
 }

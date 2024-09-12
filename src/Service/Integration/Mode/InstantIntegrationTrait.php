@@ -38,6 +38,7 @@ trait InstantIntegrationTrait
         {
             if($handler instanceof DocHandlerInterface)
             {
+                $handler->setLogger($this->getLogger());
                 if($handler instanceof DocInstantIntegrationInterface)
                 {
                     if($handler->hasModeEnabled())

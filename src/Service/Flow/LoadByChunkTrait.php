@@ -15,7 +15,7 @@ trait LoadByChunkTrait
 
     /**
      * flag for fallback state (in case of GCP resource unavailability)
-     * @var bool 
+     * @var bool
      */
     protected $fallbackLoadByChunk = true;
 
@@ -52,7 +52,7 @@ trait LoadByChunkTrait
             {
                 throw $exception;
             }
-
+            
             $excMessage = $this->_exceptionMessage($exception);
             if($this->isExceptionInRetryLoop($exception) && $this->fallbackLoadByChunk)
             {
