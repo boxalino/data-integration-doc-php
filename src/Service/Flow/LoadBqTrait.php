@@ -35,7 +35,7 @@ trait LoadBqTrait
                     $this->getEndpointLoadBq(),
                     $this->getHttpRequestHeaders($this->getDocType())
                 ),
-                $this->getHttpRequestOptions(300)
+                $this->getHttpRequestOptions(240)
             );
             $this->log("End for 'LOADBQ REQUEST': the GCS files are successfully loaded to BQ");
         } catch (\Throwable $exception)

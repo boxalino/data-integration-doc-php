@@ -2,13 +2,13 @@
     "name": "boxalino/data-integration-doc-php",
     "description": "Boxalino Real Time User Experience (RTUX) Data Integration Documents for PHP",
     "license": "MIT",
-    "version": "6.0.0",
+    "version": "6.0.1",
     "authors": [
         {
             "name": "Boxalino AG",
             "role": "Manufacturer",
             "email": "support@boxalino.com",
-            "homepage": "http://www.boxalino.com/"
+            "homepage": "https://www.boxalino.com/"
         }
     ],
     "extra": {

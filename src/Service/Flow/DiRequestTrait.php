@@ -79,31 +79,19 @@ trait DiRequestTrait
     }
 
     /**
-     * @param string | null $endpoint
      * @return string
      */
-    public function getEndpointSyncCheck(?string $endpoint = null) : string
+    public function getEndpointSyncCheck() : string
     {
-        if(is_null($endpoint))
-        {
-            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_SYNC_CHECK;
-        }
-
-        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_SYNC_CHECK;
+        return GcpRequestInterface::GCP_PROCESS_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_SYNC_CHECK;
     }
 
     /**
-     * @param string | null $endpoint
      * @return string
      */
-    public function getEndpointSyncStart(?string $endpoint = null) : string
+    public function getEndpointSyncStart() : string
     {
-        if(is_null($endpoint))
-        {
-            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_SYNC_START;
-        }
-
-        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_SYNC_START;
+        return GcpRequestInterface::GCP_PROCESS_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_SYNC_START;
     }
 
     /**
@@ -135,17 +123,11 @@ trait DiRequestTrait
     }
 
     /**
-     * @param string | null $endpoint
      * @return string
      */
-    public function getEndpointThresholdCheck(?string $endpoint = null) : string
+    public function getEndpointThresholdCheck() : string
     {
-        if(is_null($endpoint))
-        {
-            return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
-        }
-
-        return $endpoint . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
+        return GcpRequestInterface::GCP_PROCESS_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
     }
 
     /**

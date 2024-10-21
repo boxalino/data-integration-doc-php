@@ -69,7 +69,13 @@ trait GeneratorHydratorTrait
                             continue;
                         } catch (\Throwable $exception)
                         {
-                            throw new \Exception($exception->getMessage());
+                            try {
+                                $this->$setter($value);
+                                continue;
+                            } catch(\Throwable $exception)
+                            {
+                                throw new \Exception($exception->getMessage());
+                            }
                         }
                     }
                 }

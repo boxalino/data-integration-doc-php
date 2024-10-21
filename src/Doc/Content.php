@@ -328,6 +328,16 @@ class Content implements DocPropertiesInterface
     }
 
     /**
+     * @param Content $content
+     * @return $this
+     */
+    public function addContents(Content $content) : self
+    {
+        $this->contents[] = $content->toArray();
+        return $this;
+    }
+
+    /**
      * @return []
      */
     public function getCustomers(): array
@@ -392,13 +402,13 @@ class Content implements DocPropertiesInterface
 
     /**
      * @param [] $title
-     * @return UserGeneratedContent
+     * @return Content
      */
-    public function setTitle(array $titles): UserGeneratedContent
+    public function setTitle(array $titles): Content
     {
         foreach($titles as $title)
         {
-            if($title instanceof Localized)
+            if($title instanceof  Localized)
             {
                 $this->title[]  = $title->toArray();
                 continue;

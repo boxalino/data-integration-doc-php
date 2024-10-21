@@ -57,13 +57,14 @@ trait DiExceptionTrait
      */
     protected function _exceptionMessage(\Throwable $exception) : string
     {
+        $clientException = null;
         $message = $exception->getMessage();
         if($exception instanceof \GuzzleHttp\Exception\ClientException)
         {
-            $message = $exception->getResponse()->getBody()->getContents();
+            $clientException = $exception->getResponse()->getBody()->getContents();
         }
 
-        return $message;
+        return empty($clientException) ? $message : $clientException;
     }
 
 }

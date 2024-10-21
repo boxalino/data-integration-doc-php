@@ -9,6 +9,7 @@ namespace Boxalino\DataIntegrationDoc\Service;
 interface GcpRequestInterface
 {
 
+    public const GCP_PROCESS_ENDPOINT="https://boxalino-di-process-55483703770.europe-west1.run.app";
     public const GCP_ENDPOINT_LOAD="/load";
     public const GCP_ENDPOINT_LOAD_CHUNK="/load/chunk";
     public const GCP_ENDPOINT_LOAD_BQ="/load/bq";

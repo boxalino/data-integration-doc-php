@@ -26,6 +26,7 @@ trait LoadByChunkTrait
     {
         try{
             $this->log("Calling for 'LOADBYCHUNK REQUEST'", $this->getDocType());
+            $this->fallbackGcsLoadUrl = true;
             $url = $this->getGcsLoadUrl();
             $upload = $this->getClient()->send(
                 new Request(

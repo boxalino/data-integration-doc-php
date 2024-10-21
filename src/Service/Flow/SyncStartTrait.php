@@ -16,6 +16,7 @@ trait SyncStartTrait
 
     /**
      * Request to Boxalino DI services to track the sync start process
+     * (it has no real value to the flow, just for monitoring purposes)
      * @return void
      */
     public function syncStart() : void

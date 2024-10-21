@@ -57,7 +57,7 @@ trait SyncCheckTrait
             {
                 $this->fallbackSyncCheck = false;
                 $this->log("Retry call out for SYNC CHECK for " . $this->getDiConfiguration()->getTm());
-                sleep(30);
+                sleep(15);
 
                return $this->syncCheck();
             }

@@ -124,5 +124,40 @@ class Content implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    public function toArrayList(): array
+    {
+        return [
+            'type' => $this->type,
+            'content_type' => $this->content_type,
+            'content_id' => $this->content_id,
+            'value' => $this->value,
+            'name' => $this->name
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getContentId',
+            'setContentId',
+            'getContentType',
+            'setContentType',
+            'getValue',
+            'setValue',
+            'getName',
+            'setName'
+        ];
+    }
+
 
 }

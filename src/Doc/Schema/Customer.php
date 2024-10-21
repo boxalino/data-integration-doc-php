@@ -124,5 +124,39 @@ class Customer implements DocPropertiesInterface
         return $this;
     }
 
+    /**
+     * Static definition of data structure property to avoid the use of object_get_vars (memory leak fix)
+     *
+     * @return array
+     */
+    public function toArrayList(): array
+    {
+        return [
+            'type' => $this->type,
+            'customer_id' => $this->customer_id,
+            'persona_id' => $this->persona_id,
+            'value' => $this->value,
+            'name' => $this->name
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArrayClassMethods() : array
+    {
+        return [
+            'getType',
+            'setType',
+            'getPersonaId',
+            'setPersonaId',
+            'getCustomerId',
+            'setCustomerId',
+            'getValue',
+            'setValue',
+            'getName',
+            'setName'
+        ];
+    }
 
 }

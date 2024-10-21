@@ -18,7 +18,7 @@ trait GcsLoadUrlTrait
 
     /**
      * flag for fallback state (in case of GCP resource unavailability)
-     * @var bool 
+     * @var bool
      */
     protected $fallbackGcsLoadUrl = true;
 
@@ -36,7 +36,7 @@ trait GcsLoadUrlTrait
                     $this->getEndpointLoadChunk(),
                     $this->getHttpRequestHeaders($this->getDocType(), (int) $this->getDiConfiguration()->getChunk())
                 ),
-                $this->getHttpRequestOptions(80)
+                $this->getHttpRequestOptions(60)
             );
 
             $this->useChunk();
@@ -44,7 +44,7 @@ trait GcsLoadUrlTrait
             return trim(stripslashes(rawurldecode($signedUrlRequest->getBody()->getContents())), '"');
         } catch (\Throwable $exception)
         {
-            if($this->isExceptionInRetryLoop($exception, "extended") && $this->fallbackGcsLoadUrl)
+            if($this->isExceptionInRetryLoop($exception, "extended") || $this->fallbackGcsLoadUrl)
             {
                 $this->fallbackGcsLoadUrl = false;
                 $this->log("Retry call out for GCS Load URL for " . $this->getDiConfiguration()->getTm());
