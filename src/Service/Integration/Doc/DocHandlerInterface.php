@@ -3,8 +3,6 @@ namespace Boxalino\DataIntegrationDoc\Service\Integration\Doc;
 
 use Boxalino\DataIntegrationDoc\Doc\DocSchemaPropertyHandlerInterface;
 use Boxalino\DataIntegrationDoc\Generator\DocGeneratorInterface;
-use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
-use Psr\Log\LoggerInterface;
 
 /**
  * Interface DocHandlerInterface
@@ -12,24 +10,8 @@ use Psr\Log\LoggerInterface;
  *
  * @package Boxalino\DataIntegrationDoc\Service\Integration
  */
-interface DocHandlerInterface
+interface DocHandlerInterface extends HandlerInterface
 {
-
-    /**
-     * Doc type for export (ex: doc_product, doc_user, doc_X)
-     * Matches the "doc" property for the POST request
-     *
-     * @return string
-     */
-    public function getDocType() : string;
-
-    /**
-     * Get document content as it is meant to be exported
-     * JSONL format https://jsonlines.org/
-     *
-     * @return string
-     */
-    public function getDocContent() : string;
 
     /**
      * Add a new doc line (with the matching schema) to the doc
@@ -60,38 +42,6 @@ interface DocHandlerInterface
      */
     public function getHandlers() : \ArrayIterator;
 
-    /**
-     * Load the doc content to the Boxalino Data Integration ecosystem
-     * Depending on the document type and mode - the load strategy might differ
-     */
-    public function integrate() : void;
-
-    /**
-     * @param ConfigurationDataObject $configurationDataObject
-     * @return DocHandlerInterface
-     */
-    public function setDiConfiguration(ConfigurationDataObject $configurationDataObject) : DocHandlerInterface;
-
-    /**
-     * @return ConfigurationDataObject
-     */
-    public function getDiConfiguration() : ConfigurationDataObject;
-
-    /**
-     * @return LoggerInterface
-     */
-    public function getLogger() : LoggerInterface;
-
-    /**
-     * @param LoggerInterface $logger
-     * @return void
-     */
-    public function setLogger(LoggerInterface $logger) : void;
-
-    /**
-     * @return array
-     */
-    public function getErrors() : array;
 
 
 }

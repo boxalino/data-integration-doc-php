@@ -9,11 +9,16 @@ namespace Boxalino\DataIntegrationDoc\Service;
 interface GcpRequestInterface
 {
 
-    public const GCP_PROCESS_ENDPOINT="https://boxalino-di-process-55483703770.europe-west1.run.app";
+    public const GCP_PROCESS_ENDPOINT="https://boxalino-di-process-krceabfwya-ew.a.run.app";
+    public const GCP_DI_SASS_ENDPOINT="https://boxalino-di-saas-krceabfwya-ew.a.run.app";
+    public const GCP_DI_FULL_ENDPOINT="https://boxalino-di-full-krceabfwya-ew.a.run.app";
     public const GCP_ENDPOINT_LOAD="/load";
     public const GCP_ENDPOINT_LOAD_CHUNK="/load/chunk";
     public const GCP_ENDPOINT_LOAD_BQ="/load/bq";
     public const GCP_ENDPOINT_SYNC="/sync";
+    public const GCP_ENDPOINT_CORE="/core";
+    public const GCP_ENDPOINT_TRANSFORMER_URL="/transformer/load/url";
+    public const GCP_ENDPOINT_TRANSFORMER_LOAD="/transformer/load";
     public const GCP_ENDPOINT_SYNC_CHECK="/sync/check";
     public const GCP_ENDPOINT_SYNC_START="/sync/start";
     public const GCP_ENDPOINT_THRESHOLD="/threshold";
@@ -35,6 +40,7 @@ interface GcpRequestInterface
     public const GCP_TYPE_CONTENT="content";
     public const GCP_TYPE_COMMUNICATION_HISTORY="communication_history";
     public const GCP_TYPE_COMMUNICATION_PLANNING="communication_planning";
+    public const GCP_TYPE_CORE="core";
 
     public const DI_REQUEST_MODE="mode";
     public const DI_REQUEST_TM="tm";

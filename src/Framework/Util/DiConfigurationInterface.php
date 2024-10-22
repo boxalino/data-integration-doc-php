@@ -40,5 +40,10 @@ interface DiConfigurationInterface
      */
     public function getDeltaConfigurations() : array;
 
+    /**
+     * @return array
+     */
+    public function getCoreConfigurations() : array;
+
 
 }

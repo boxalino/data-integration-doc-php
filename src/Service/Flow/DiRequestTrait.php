@@ -2,6 +2,7 @@
 namespace Boxalino\DataIntegrationDoc\Service\Flow;
 
 use Boxalino\DataIntegrationDoc\Service\GcpRequestInterface;
+use Boxalino\DataIntegrationDoc\Service\Integration\Mode\TransformerIntegrationInterface;
 use Boxalino\DataIntegrationDoc\Service\Util\ConfigurationDataObject;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
@@ -56,6 +57,11 @@ trait DiRequestTrait
      */
     public function getEndpointLoad(?string $endpoint = null) : string
     {
+        if($this->getDiConfiguration()->getMode() === TransformerIntegrationInterface::INTEGRATION_MODE)
+        {
+            return $this->getEndpointTransformerLoad();
+        }
+
         if(is_null($endpoint))
         {
             return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD ;
@@ -100,6 +106,11 @@ trait DiRequestTrait
      */
     public function getEndpointLoadChunk(?string $endpoint = null) : string
     {
+        if($this->getDiConfiguration()->getMode() === TransformerIntegrationInterface::INTEGRATION_MODE)
+        {
+            return $this->getEndpointTransformerLoadUrl();
+        }
+
         if(is_null($endpoint))
         {
             return $this->getDiConfiguration()->getEndpoint() . GcpRequestInterface::GCP_ENDPOINT_LOAD_CHUNK;
@@ -128,6 +139,31 @@ trait DiRequestTrait
     public function getEndpointThresholdCheck() : string
     {
         return GcpRequestInterface::GCP_PROCESS_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_THRESHOLD;
+    }
+
+    /**
+     * @param string | null $endpoint
+     * @return string
+     */
+    public function getEndpointCore() : string
+    {
+        return GcpRequestInterface::GCP_DI_SASS_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_CORE;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndpointTransformerLoad() : string
+    {
+        return GcpRequestInterface::GCP_DI_FULL_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_TRANSFORMER_LOAD;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndpointTransformerLoadUrl() : string
+    {
+        return GcpRequestInterface::GCP_DI_FULL_ENDPOINT . GcpRequestInterface::GCP_ENDPOINT_TRANSFORMER_URL;
     }
 
     /**
